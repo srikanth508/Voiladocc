@@ -1523,19 +1523,19 @@
                                 <!-- {{labels[0].appointments}} -->
                             </a>
                         </li>
-                        <li *ngIf="doctor=='1'">
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/Diagnosticdash" >
-                                {{labels[0].doctor}}
-                                <!-- {{labels[0].revenue}} -->
-                            </a>
-                        </li>
                         <li *ngIf="diagnosticlogins=='1'">
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/DiagnesticDashboard" >
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/Diagnosticdash" >
                                 {{labels[0].diagnosticss}}
                                 <!-- {{labels[0].revenue}} -->
                             </a>
-
                         </li>
+                        <!-- <li *ngIf="diagnosticlogins=='1'">
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/DiagnesticDashboard" >
+                                {{labels[0].diagnosticss}}
+                               
+                            </a>
+
+                        </li> -->
                         <li *ngIf="pharmacylogins=='1'">
                             <a class="tablinks" (click)="highlight($event)" routerLink="/Pharmacydash" >
                                 {{labels[0].pharmacy}}
