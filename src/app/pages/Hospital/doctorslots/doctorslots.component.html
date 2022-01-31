@@ -1,0 +1,129 @@
+<div class="container-fluid card card-hover " style="margin-top: 10px;">
+  <div class="row " style="margin-top: 19px;">
+    <div class="col-lg-3">
+      <h5 style="text-transform:uppercase">{{labels[0].doctorSlots}}</h5>
+    </div>
+    <div class="col-lg-3">
+      <input *ngIf="languageid==1" type="text" [minDate]="mindate" placeholder="MM/DD/YYYY" class="form-control"
+        [bsConfig]="{ showWeekNumbers:false }" [(ngModel)]="filterdate" name="filterdate"
+        (ngModelChange)="GetDate($event)" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" bsDatepicker>
+
+      <input *ngIf="languageid==6" type="text" placeholder="jj/mm/aa" [minDate]="mindate" class="form-control"
+        [bsConfig]="{ showWeekNumbers:false }" [(ngModel)]="filterdate" name="filterdate"
+        (ngModelChange)="GetDate($event)" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" bsDatepicker>
+      <!-- <input type="date" class="form-control" min={{todaydatessss}} [(ngModel)]="filterdate"   name="filterdate" (change)="GetDate($event)"> -->
+    </div>
+    <div class="col-lg-3">
+      <label *ngIf="languageid=='1'"  >Appointment : {{combinationvalue}} </label>
+      <label *ngIf="languageid=='6'" >Rendez-vous : {{combinationvalue}}</label>
+    </div>
+    <div class="col-lg-3">
+      <label  >{{doctorname}}</label>
+    </div>
+  </div><br>
+</div>
+<br>
+<div class="container">
+  <div class="card">
+    <div class="row">
+      <div class="col-lg-2" style="margin-left: 15px;">
+        <h4 *ngIf="languageid=='1'">Morning</h4>
+        <h4 *ngIf="languageid=='6'">Matin</h4>
+      </div>
+      <div class="col-lg-2">
+      </div>
+    </div>
+    <br>
+    <div class="row" style="margin-left: 5px;">
+      <br>
+      <div class="col-lg-2" style="margin-left: 15px; " *ngFor="let slot of doctorslots">
+        <label [routerLink]="['/Bookappments',slot.doctorSlotID,slot.slotName,slot.doctorFees]"
+          style="text-align: center; border: 3px solid gray;color:#1dbfd2; height: 28px;width: 62%;">{{slot.slotName}}</label>
+        <br>
+      </div>
+      <br>
+    </div>
+    <br>
+  </div>
+  <br>
+</div>
+<div class="container">
+  <div class="card">
+    <div class="row">
+      <div class="col-lg-2" style="margin-left: 15px;">
+        <h4 *ngIf="languageid=='1'">Afternoon</h4>
+        <h4 *ngIf="languageid=='6'">Après midi</h4>
+      </div>
+    </div>
+    <br>
+    <div class="row" style="margin-left: 5px;">
+      <div class="col-lg-2" style="margin-left: 15px;" *ngFor="let slot of afternoonslots">
+        <label [routerLink]="['/Bookappments',slot.doctorSlotID,slot.slotName,slot.doctorFees]"
+          style="text-align: center; border: 3px solid gray;color:#1dbfd2; height: 28px;width: 62%;">{{slot.slotName}}</label>
+      </div>
+      <br>
+    </div>
+    <br>
+  </div>
+  <br>
+</div>
+<div class="container">
+  <div class="card">
+    <div class="row">
+      <div class="col-lg-2" style="margin-left: 15px;">
+        <h4 *ngIf="languageid=='1'">Evening</h4>
+        <h4 *ngIf="languageid=='6'">Soir</h4>
+      </div>
+    </div>
+    <br>
+    <div class="row" style="margin-left: 5px;">
+      <div class="col-lg-2" style="margin-left: 15px; " *ngFor="let slot of eveningslosts">
+        <label [routerLink]="['/Bookappments',slot.doctorSlotID,slot.slotName,slot.doctorFees]"
+          style="text-align: center; border: 3px solid gray;color:#1dbfd2; height: 28px;width: 62%;">{{slot.slotName}}</label>
+      </div>
+      <br>
+    </div>
+    <br>
+  </div>
+  <br>
+</div>
+<div class="container">
+  <div class="card">
+    <div class="row">
+      <div class="col-lg-2" style="margin-left: 15px;">
+        <h4 *ngIf="languageid=='1'">Night </h4>
+        <h4 *ngIf="languageid=='6'">Nuit</h4>
+      </div>
+    </div>
+    <br>
+    <div class="row" style="margin-left: 5px;">
+      <div class="col-lg-2" style="margin-left: 15px; " *ngFor="let slot of nightslots">
+        <label [routerLink]="['/Bookappments',slot.doctorSlotID,slot.slotName,slot.doctorFees]"
+          style="text-align: center; border: 3px solid gray;color:#1dbfd2; height: 28px;width: 62%;">{{slot.slotName}}</label>
+      </div>
+      <br>
+    </div>
+    <br>
+ 
+  </div>
+  <br>
+</div>
+
+<div class="container" *ngIf="showback=='1'">
+  <div class="row">
+    <div class="col-lg-2">
+      <button style="background-color:#f18235 ;" class="btn btn-primary" *ngIf="languageid=='1'"  [routerLink]="['/Bookappointment']">Back</button>
+      <button style="background-color:#f18235 ;" class="btn btn-primary"  *ngIf="languageid=='6'" [routerLink]="['/Bookappointment']">Retour</button>
+      </div>
+  </div>
+</div><br>
+
+<div class="container"  *ngIf="showback=='2'">
+  <div class="row">
+    <div class="col-lg-2">
+      <button style="background-color:#f18235 ;" class="btn btn-primary" *ngIf="languageid=='1'"  [routerLink]="['/IndBookAppointment']">Back</button>
+      <button style="background-color:#f18235 ;" class="btn btn-primary"  *ngIf="languageid=='6'" [routerLink]="['/IndBookAppointment']">Retour</button>
+      </div>
+  </div>
+</div><br>
+

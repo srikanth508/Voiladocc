@@ -1,0 +1,35 @@
+.headerspace{
+  margin-top: 10px;
+  text-transform:uppercase;
+}
+
+
+  th::first-letter{
+    text-transform: uppercase;
+  }
+  th{
+    text-transform: lowercase;
+  }
+
+  .homecare
+  {
+   
+    background-color: #0099FF;
+    color:white;
+   
+  }
+  .Notavailable
+  {
+    
+    background-color: #D3D3D3;
+    color:white;
+   
+  }
+
+  .meeting
+  {
+   
+    background-color: #FFC000;
+    color:white;
+  
+  }

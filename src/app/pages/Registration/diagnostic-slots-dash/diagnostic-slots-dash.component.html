@@ -1,0 +1,303 @@
+<!-- <ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner> -->
+<div class="container-fluid card card:hover headerspace">
+  <div class="row headerspace">
+    <div class="col-lg-9">
+      <!-- <h5>{{labels[0].workingdetails}}</h5> -->
+      <h5>Planning</h5>
+    </div>
+    <div class="col-lg-3" style="text-align: end;">
+      <button style="margin-top:-10px" type="button" class="btn  btncolor"
+        routerLink="/Diagnosticcenterslots">{{labels[0].add}}</button>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container-fluid card card-hover">
+  <br>
+  <div class="row">
+    <div class="tab">
+      <button class="tablinks" (click)="openCity($event, 'Diagnosticcenter')" id="defaultOpen">
+        {{labels[0].diagnosticentre}}
+      </button>
+      <button class="tablinks" (click)="openCity($event, 'Homesample')">{{labels[0].homesample}}</button>
+    </div>
+  </div>
+  <div id="Diagnosticcenter" class="tabcontent">
+    <div class="row" style="margin-top:10px;">
+      <div class="col-lg-3">
+        <input type="text" class="form-control" placeholder="{{labels1[0].search}}" [(ngModel)]="term" name="term">
+      </div>
+     <div class="col-lg-3">
+      <select class="form-control" (change)="GetDiagnosticcenterID($event)">
+        <option value="0">{{labels[0].selectDiagmosticcenter}}</option>
+        <option *ngFor="let dia of diagnosticlist" value="{{dia.id}}">{{dia.diagnosticCenterName}}</option>
+      </select>
+    </div>
+
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-12" style="overflow: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>{{labels[0].timings}}</th>
+              <th>{{labels3[0].monday}}</th>
+              <th>{{labels3[0].tuesday}}</th>
+              <th>{{labels3[0].wednessday}}</th>
+              <th>{{labels3[0].thursday}}</th>
+              <th>{{labels3[0].friday}}</th>
+              <th>{{labels3[0].saturday}}</th>
+              <th>{{labels3[0].sunday}}</th>
+            </tr>
+            <tr *ngFor="let details of Workingdetails|filter:term">
+              <td>{{details.slotname}}</td>
+              <td [style.background-color]="details.mondayColor" style="color:white">{{details.monday}}<br>
+
+                {{details.mondayTotalappointments}}<br>
+
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetMondayID(details)">
+                </a>
+              </td>
+              <td [style.background-color]="details.tuesdayColor" style="color:white">{{details.tuesday}}<br>
+                {{details.tuesdayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetTuesDayID(details)">
+                </a>
+              </td>
+              <td [style.background-color]="details.wednesdayColor" style="color:white">{{details.wednesday}}<br>
+                {{details.wednessdayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetWednessDayID(details)">
+                </a>
+              </td>
+              <td [style.background-color]="details.thursdayColor" style="color:white">{{details.thursday}}<br>
+                {{details.thusdayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetThursadyID(details)">
+                </a>
+              </td>
+              <td [style.background-color]="details.fridayColor" style="color:white">{{details.friday}}<br>
+
+                {{details.fridayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetFridayID(details)">
+                </a>
+              </td>
+              <td [style.background-color]="details.saturdayColor" style="color:white">{{details.saturday}}<br>
+
+                {{details.satdayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetSaturdatID(details)">
+                </a>
+              </td>
+              <td [style.background-color]="details.sundayColor" style="color:white">{{details.sunday}}<br>
+
+                {{details.sundayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetSundayID(details)">
+                </a>
+
+              </td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <br>
+  </div>
+
+  <div id="Homesample" class="tabcontent">
+    <div class="row" style="margin-top:10px;">
+      <div class="col-lg-3">
+        <input type="text" class="form-control" placeholder="{{labels1[0].search}}" [(ngModel)]="term" name="term">
+      </div>
+      <div class="col-lg-3">
+        <select class="form-control" (change)="GetDiagnosticcenterID($event)">
+          <option value="0">{{labels[0].selectDiagmosticcenter}}</option>
+          <option *ngFor="let dia of diagnosticlist" value="{{dia.id}}">{{dia.diagnosticCenterName}}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-12" style="overflow: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>{{labels[0].timings}}</th>
+              <th>{{labels3[0].monday}}</th>
+              <th>{{labels3[0].tuesday}}</th>
+              <th>{{labels3[0].wednessday}}</th>
+              <th>{{labels3[0].thursday}}</th>
+              <th>{{labels3[0].friday}}</th>
+              <th>{{labels3[0].saturday}}</th>
+              <th>{{labels3[0].sunday}}</th>
+            </tr>
+            <tr *ngFor="let details of Workingdetails|filter:term">
+              <td>{{details.slotname}}</td>
+              <td [style.background-color]="details.mondayColor" style="color:white">{{details.monday}}<br>
+                {{details.mondayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetMondayID(details)">
+                </a>
+              </td>
+              <td [style.background-color]="details.tuesdayColor" style="color:white">{{details.tuesday}}<br>
+                {{details.tuesdayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetTuesDayID(details)">
+                </a>
+              </td>
+              <td [style.background-color]="details.wednesdayColor" style="color:white">{{details.wednesday}}<br>
+                {{details.wednessdayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetWednessDayID(details)">
+                </a>
+              </td>
+              <td [style.background-color]="details.thursdayColor" style="color:white">{{details.thursday}}<br>
+                {{details.thusdayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetThursadyID(details)">
+                </a>
+
+              </td>
+              <td [style.background-color]="details.fridayColor" style="color:white">{{details.friday}}<br>
+                {{details.fridayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetFridayID(details)">
+                </a>
+
+              </td>
+              <td [style.background-color]="details.saturdayColor" style="color:white">{{details.saturday}}<br>
+                {{details.satdayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetSaturdatID(details)">
+                </a>
+
+              </td>
+              <td [style.background-color]="details.sundayColor" style="color:white">{{details.sunday}}<br>
+                {{details.sundayTotalappointments}}<br>
+                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                  <img src="assets/Images/edit.png" data-toggle="modal" data-target="#myModal" style="width: 18px"
+                    (click)="GetSundayID(details)">
+                </a>
+
+              </td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+<br>
+<br>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" *ngIf="languageid=='1'">Edit Slots</h4>
+        <h4 class="modal-title" *ngIf="languageid=='6'">Pélèvements</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <span *ngIf="typeidss=='1'">
+              <input type="radio" [(ngModel)]="typeid" name="typeid" [value]="1"> &nbsp;
+              {{labels[0].homesample}} &nbsp;
+            </span>
+            <span *ngIf="typeidss=='2'">
+              <input type="radio" [(ngModel)]="typeid" name="typeid" [value]="2"> &nbsp;
+              {{labels[0].diagnosticentre}} &nbsp;
+            </span>
+            <input type="radio" [(ngModel)]="typeid" name="typeid" [value]="4"> &nbsp;
+            {{labels[0].notavailable}}&nbsp;
+          </div><br>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+          </div>
+          <div class="col-lg-5">
+            <input type="text" class="form-control" [(ngModel)]="totalappoiments" placeholder="Total Appointments" name="totalappoiments">
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-3">
+          </div>
+          <div class="col-lg-4">
+            <button type="button" data-dismiss="modal" class="btn btn-block btncolor"
+              (click)="updatedetails()">{{labels[0].update}}</button>
+
+          </div>
+          <div class="col-lg-4">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" *ngIf="languageid=='1'">Edit Slots</h4>
+        <h4 class="modal-title" *ngIf="languageid=='6'">Modifier les horaires</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <input type="radio" [(ngModel)]="typeid" name="typeid" [value]="1"> &nbsp;
+            Home Sample &nbsp;
+    
+            <input type="radio" [(ngModel)]="typeid" name="typeid" [value]="4"> &nbsp;
+            Not Available&nbsp;
+          </div>
+
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+          </div>
+          <div class="col-lg-4">
+            <button type="button" data-dismiss="modal" class="btn btn-block btncolor"
+              (click)="updatedetails()">Update</button>
+
+
+          </div>
+          <div class="col-lg-4">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

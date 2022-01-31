@@ -1,0 +1,109 @@
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="container-fluid card card:hover headerspace">
+  <div class="row headerspace headercolor">
+    <div class="col-lg-5">
+      <h5>{{labels[0].physiotherapistWoringDetails}}</h5>
+    </div>
+    <div class="col-lg-5">
+    </div>
+    <div class="col-lg-2">
+    </div>
+  </div>
+</div>
+<div class="container-fluid card card:hover" style="margin-top:20px;">
+  <br>
+  <form #physioForm="ngForm">
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="dname_label">{{labels[0].physiotherapist}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="select" [data]="physiolist" [settings]="physiodd"
+          (onSelect)="getphysioid($event)">
+        </ng-multiselect-dropdown>
+
+        
+      </div>
+    </div>
+    <br>
+    <div *ngIf="dummid==null">
+   
+      <div class="row">
+        <div class="col-lg-3">
+          <label>{{labels[0].hospitalClinic}} : </label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" class="form-control" disabled [(ngModel)]="hospital_ClinicName" name="hospital_ClinicName"
+            disabled>
+        </div>
+      </div>
+      <br>
+  
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].day}} : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+    
+        <ng-multiselect-dropdown [placeholder]="select" [data]="dayslist" [settings]="daysdd"
+          (onSelect)="GetDaysID($event)">
+        </ng-multiselect-dropdown>
+
+      </div>
+
+
+    </div>
+    <br>
+   
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].startTime}} : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <select class="form-control" required (change)="changeStarttime($event)">
+          <option value="0">{{labels[0].startTime}}</option>
+          <option *ngFor="let day of Timeings" value={{day.id}}>{{day.slotName}}
+          </option>
+        </select>
+    
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].endTime}} : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <select class="form-control" required (change)="changeEndtime($event)">
+          <option value="0">{{labels[0].endTime}}</option>
+          <option *ngFor="let day of endslotlist" value={{day.id}}>{{day.slotName}}
+          </option>
+        </select>
+     
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-2">
+        <button type="button" class="btn btn-block btn-md allbtns btncolor" [disabled]="physioForm.form.invalid"
+          (click)="InsertPhysiotherapyHospitalDetailsAdmin()">{{labels[0].save}}</button>
+      </div>
+      <div class="col-lg-5">
+      </div>
+    </div>
+    <br>
+   
+  </form>
+</div>

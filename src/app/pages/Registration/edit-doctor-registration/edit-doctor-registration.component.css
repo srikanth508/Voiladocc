@@ -1,0 +1,73 @@
+.requird{
+    color:red;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    .headerspace{
+        margin-top:20px;
+        height:70px;
+        color: #251156;
+    }
+    .divspacee{
+        margin-top:10px;
+      
+    }
+    .btncolor
+    {
+        background-color: #f18235;
+        color:white;
+    }
+    .nextbtncolor{
+        background: #444a48;
+        color:white;
+       }
+       .specforimg
+       {
+         background-color: #86c5be;
+         height:70px;
+         width:100%;
+       }
+       .h5{
+           text-transform: capitalize;
+       }
+   
+
+
+       
+label::first-letter{
+    text-transform: uppercase;
+  }
+  label{
+    text-transform: lowercase;
+  }
+
+  input::first-letter{
+    text-transform: uppercase;
+  }
+
+
+  textarea::first-letter{
+    text-transform: uppercase;
+  }
+
+.textarea{
+  text-transform: lowercase; 
+}
+
+input:placeholder-shown {
+  text-transform: lowercase; 
+}
+
+#imp{
+  text-transform: none;
+}
+
+.Address_label{
+  margin-left: 10px;
+}

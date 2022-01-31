@@ -1,0 +1,13 @@
+label::first-letter{
+    text-transform: uppercase;
+  }
+  label{
+    text-transform: lowercase;
+  }
+  #imp{
+    text-transform: none;
+  }
+  .required
+  {
+    color: red;
+  }

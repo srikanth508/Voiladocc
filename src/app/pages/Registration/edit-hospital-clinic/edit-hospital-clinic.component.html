@@ -1,0 +1,590 @@
+<div class="container-fluid card card:hover headerspace">
+  <div class="row headerspace">
+    <div class="col-lg-3">
+      <h5>{{labels[0].profile}}</h5>
+    </div>
+  </div>
+</div>
+<aw-wizard navBarLocation="top" navBarLayout="small" navBarDirection="left-to-right" navigationMode="strict"
+  class="card card:hover divspacee">
+  <aw-wizard-step stepTitle="Profile">
+    <div class="container-fluid  divspacee" style="margin-top:20px;">
+      <div class="row">
+        <div class="col-lg-8">
+          <form #hospitalForm="ngForm">
+            <div class="row" style="margin-top:20px;">
+              <div class="col-lg-4">
+                <label>{{labels[0].hospitalClinicName}}: </label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" disabled [(ngModel)]="hospitalname" name="hospitalname" class="form-control">
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].hospitalPhoneNo}}: </label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" maxlength="13" required  [(ngModel)]="phno" name="phno" class="form-control"
+                  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].contactPersonName}}: </label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" required  placeholder="{{labels[0].contactPersonName}}" [(ngModel)]="contactpersonname"
+                  name="contactpersonname" class="form-control">
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].contactPersonPhoneNumber}}:</label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" required placeholder="{{labels[0].contactPersonPhoneNumber}}" maxlength="13"
+                  [(ngModel)]="contactpersonphno" name="contactpersonphno" class="form-control"
+                  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].email}}:</label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <input type="email" required [(ngModel)]="emailid" name="emailid" class="form-control"
+                  (ngModelChange)="onChange($event)">
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].address}} :</label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <textarea class="form-control" rows="4" required [(ngModel)]="address" name="address"
+                  placeholder="{{labels[0].address}}"></textarea>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].country}} : </label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <select class="form-control" required [(ngModel)]="countryid" name="countryid" (change)="GetCountryID($event)">
+                  <option value="">{{labels[0].select}}</option>
+                  <option *ngFor="let cou of countrylist" value="{{cou.id}}">{{cou.short}}</option>
+                </select>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].province}} : </label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <select class="form-control" required (change)="GetCityID($event)" [(ngModel)]="cityid" name="cityid">
+                  <option value="" >{{labels[0].select}}</option>
+                  <option *ngFor="let city of citylist" value={{city.id}}>{{city.short}}</option>
+                </select>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label class="City_label">{{labels[0].city}} :</label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <select class="form-control" required (change)="GetAreaID($event)" [(ngModel)]="areaid" name="areaid">
+                  <option value="" >{{labels[0].select}}</option>
+                  <option *ngFor="let area of arealist" value={{area.id}}>{{area.areaName}}</option>
+                </select>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].zipCode}}: </label>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" [(ngModel)]="zipcode" maxlength="6" name="zipcode" class="form-control"
+                  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              </div>
+            </div><br>
+            <!-- <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].timings}}: </label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" [(ngModel)]="timings" required name="timings" class="form-control" onkeypress='return(event.charCode>=48 && event.charCode<=57)||(event.charCode>=65 && event.charCode<=90) ||(event.charCode>=97 && 
+                event.charCode<=122 )||event.charCode==32||event.charCode==47||event.charCode==44||event.charCode==58'>
+              </div>
+            </div><br> -->
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].website}}: </label>
+
+              </div>
+              <div class="col-lg-6">
+                <input type="text" [(ngModel)]="website" name="website" class="form-control"
+                  onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode==32||event.charCode>=48||event.charCode<=57'>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].yearEstablished}}: </label>
+
+              </div>
+              <div class="col-lg-6">
+                <input type="text" [(ngModel)]="yearestablished" maxlength="4" name="yearestablished"
+                  class="form-control" onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].noOfBeds}} : </label>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" [(ngModel)]="noofbeds" maxlength="10" name="noofbeds" class="form-control"
+                  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>{{labels[0].description}} : </label>
+
+              </div>
+              <div class="col-lg-6">
+                <textarea class="form-control" rows="4" [(ngModel)]="description" name="description"></textarea>
+              </div>
+            </div><br>
+            <!-- <div class="row">
+              <div class="col-lg-3" *ngFor="let mulphoto of multiplephotos">
+                <img src="{{mulphoto.photoURL}}" style="height:140px;width:140px;">&nbsp;&nbsp;
+              </div>
+    
+            </div> -->
+            <div class="row">
+              <div class="col-lg-5">
+              </div>
+              <div class="col-lg-2">
+                <button type="button" [disabled]="hospitalForm.form.invalid||validEmail==false" text_align="center"
+                  class="btn btn-block btn-md allbtns btncolor" (click)="updatedetails()">{{labels[0].update}}</button>
+              </div>
+              <div class="col-lg-5">
+              </div>
+            </div><br><br>
+            <div class="row">
+              <div class="col-lg-3" *ngFor="let mulphoto of multiplephotos">
+                <img src="{{mulphoto.photoURL}}" style="height:140px;width:140px;">&nbsp;&nbsp;<br><br>
+                <button class="btn  btncolor" (click)="GetHospitalID(mulphoto.hospitalid)">{{labels[0].edit}}</button>
+              </div><br><br>
+            </div><br><br>
+            <div class="row">
+              <div class="col-lg-4" *ngIf="mulbit=='1'">
+                <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
+
+                  <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
+                </ngx-dropzone><br>
+                <span *ngFor="let hspphoto of showphoto">
+                  <img src="{{hspphoto}}" style="height: 35px; width: auto;">
+                </span>
+              </div><br><br><br>
+              <div class="col-lg-9" *ngIf="mulbit=='1'">
+                <button class="btn btncolor" (click)="UpdateMultiplePhotos()">{{labels[0].save}}</button>
+              </div>
+            </div>
+          </form>
+        </div><br>
+        <div class="col-lg-4" style="margin-top:20px;">
+          <img src="{{photourl}}" style="width:90%;height:auto;" /><br><br>
+          <button class="btn   btncolor" (click)="GetID()">{{labels[0].edit}}</button><br><br>
+          <div class="col-lg-8" *ngIf="showdrop=='1'">
+            <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
+              <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
+            </ngx-dropzone>
+            <span *ngFor="let hspphoto of showphoto">
+              <img src="{{hspphoto}}" style="height: 35px; width: auto;">
+            </span>
+          </div><br><br><br>
+          <div class="col-lg-8" *ngIf="showdrop=='1'">
+            <button class="btn btncolor" (click)="updatephoto()">{{labels[0].update}}</button>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- <button type="button" style="float: right" class="btn dashbtn btncolor" awNextStep>
+            <label *ngIf="languageid=='1'">Next</label>
+            <label *ngIf="languageid=='6'">Suite </label>
+          </button><br> -->
+        </div>
+      </div>
+    </div><br><br>
+  </aw-wizard-step>
+  <!-- <aw-wizard-step stepTitle="Subscriptions">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3">
+          <label>{{labels[0].subscriptiontype}} :</label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-md-8">
+          <input type="radio" name="subscriptiontype" [(ngModel)]="subscriptiontype" (click)="Getsubscriptontype()"
+            [value]="1">{{labels[0].monthlySubscription}}
+          &nbsp;
+          <input type="radio" name="subscriptiontype" [(ngModel)]="subscriptiontype" (click)="Getsubscriptontype()"
+            [value]="2"> {{labels[0].appointmentpercentage}}
+           &nbsp;
+          <input type="radio" name="subscriptiontype" [(ngModel)]="subscriptiontype" (click)="Getsubscriptontype()"
+            [value]="3"> {{labels[0].both}}
+        </div>
+      </div><br>
+      <div *ngIf="subscriptiontype=='1'">
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].monthlySubscription}} :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" placeholder="{{labels[0].monthlySubscription}}" name="monthlysubription"
+              [(ngModel)]="monthlysubription" class="form-control"
+              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].contractstratdate}} :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+            placeholder="{{labels[0].contractstratdate}}" name="contractstartdate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+            [(ngModel)]="contractstartdate" bsDatepicker>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].contractenddate}} :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+            placeholder="{{labels[0].contractenddate}}" name="contractenddate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+            [(ngModel)]="contractenddate" bsDatepicker>
+          </div>
+        </div> 
+      </div>
+      <div *ngIf="subscriptiontype=='2'">
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].appointmentpercentage}} :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" placeholder="{labels[0].appointmentpercentage}}" name="appointmentpercentage"
+              [(ngModel)]="appointmentpercentage" class="form-control"
+              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].contractstratdate}} :</label>
+    
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+            placeholder="{{labels[0].contractstratdate}}" name="contractstartdate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+            [(ngModel)]="contractstartdate" bsDatepicker>
+          </div>
+        </div>
+        <br />
+    
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].contractenddate}} :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+            placeholder="{{labels[0].contractenddate}}" name="contractenddate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+            [(ngModel)]="contractenddate" bsDatepicker>
+          </div>
+        </div> 
+      </div>
+      <div *ngIf="subscriptiontype=='3'">
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].appointmentpercentage}} :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" placeholder="{{labels[0].appointmentpercentage}}" name="appointmentpercentage"
+              [(ngModel)]="appointmentpercentage" class="form-control"
+              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].monthlySubscription}} :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" placeholder="{{labels[0].monthlySubscription}}" name="monthlysubription"
+              [(ngModel)]="monthlysubription" class="form-control"
+              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].contractstratdate}} :</label>
+    
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+            placeholder="{{labels[0].contractstratdate}}" name="contractstartdate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+            [(ngModel)]="contractstartdate" bsDatepicker>
+          </div>
+        </div>
+        <br />
+    
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].contractenddate}} :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+            placeholder="{{labels[0].contractenddate}}" name="contractenddate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+            [(ngModel)]="contractenddate" bsDatepicker>
+          </div>
+        </div> 
+      </div><br>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <table>
+            <thead>
+              <tr>
+                <th>{{labels[0].contractstratdate}}</th>
+                <th>{{labels[0].contractenddate}}</th>
+                <th>{{labels[0].monthlySubscription}}</th>
+                <th>{{labels[0].appointmentpercentage}}</th>
+                <th>Actions</th>
+              </tr>
+              <tr *ngFor="let subscriptions of subscrilist">
+                <td>{{subscriptions.contractStartdate|date:'dd-MM-yyyy'}}</td>
+                <td>{{subscriptions.contractEnddate|date:'dd-MM-yyyy'}}</td>
+                <td>{{subscriptions.monthlySubscription}}</td>
+                <td>{{subscriptions.appointmentPercentage}}</td>
+                <td>
+                  <ng-template #tipcontent1>Edit</ng-template>
+                  <a [ngbTooltip]="tipcontent1"  style="color:black">
+                    <img src="assets/Images/edit.png" data-toggle="modal"  data-target="#EditSubscriptionfees" style="width: 18px"
+                    (click)="GetContractSubscriptions(subscriptions)">
+                  </a>
+                </td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-lg-5">
+      </div>
+      <div class="col-lg-2">
+        <button type="button"  text_align="center"
+          class="btn btn-block btn-md allbtns btncolor" (click)="InsertSubscriptionRevenue()">{{labels[0].save}}</button>
+      </div>
+      <div class="col-lg-5">
+      </div>
+    </div><br><br>
+    <button type="button" style="float: left" class="btn btncolor dashbtn nextbtncolor"
+    awPreviousStep>
+    <label *ngIf="languageid=='1'">Previous</label>  
+    <label *ngIf="languageid=='6'">Précédent</label>  
+    </button>
+    <br>
+    <br>
+    <br>
+  </aw-wizard-step><br> -->
+</aw-wizard><br><br>
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="EditSubscriptionfees" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle" *ngIf="languageid=='1'">Edit Subscriptions</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle" *ngIf="languageid=='6'">Éditer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-3">
+              <label>{{labels[0].subscriptiontype}} :</label>
+              <span class="required">*</span>
+            </div>
+            <div class="col-md-8">
+              <input type="radio" name="subscriptiontypeedit" [(ngModel)]="subscriptiontypeedit" (click)="Getsubscriptontype()"
+                [value]="1">{{labels[0].monthlySubscription}}
+              &nbsp;
+              <input type="radio" name="subscriptiontypeedit" [(ngModel)]="subscriptiontypeedit" (click)="Getsubscriptontype()"
+                [value]="2"> {{labels[0].appointmentpercentage}}
+               &nbsp;
+              <input type="radio" name="subscriptiontypeedit" [(ngModel)]="subscriptiontypeedit" (click)="Getsubscriptontype()"
+                [value]="3"> {{labels[0].both}}
+            </div>
+          </div><br>
+          <div *ngIf="subscriptiontypeedit=='1'">
+            <div class="row">
+              <div class="col-lg-3">
+                <label>{{labels[0].monthlySubscription}} :</label>
+              </div>
+              <div class="col-lg-4">
+                <input type="text" placeholder="{{labels[0].monthlySubscription}}" name="monthlysubription"
+                  [(ngModel)]="monthlysubription" class="form-control"
+                  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-3">
+                <label>{{labels[0].contractstratdate}} :</label>
+              </div>
+              <div class="col-lg-4">
+                <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+                placeholder="{{labels[0].contractstratdate}}" name="contractstartdate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+                [(ngModel)]="contractstartdate" bsDatepicker>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-lg-3">
+                <label>{{labels[0].contractenddate}} :</label>
+              </div>
+              <div class="col-lg-4">
+                <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+                placeholder="{{labels[0].contractenddate}}" name="contractenddate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+                [(ngModel)]="contractenddate" bsDatepicker>
+              </div>
+            </div> 
+          </div>
+          <div *ngIf="subscriptiontypeedit=='2'">
+            <div class="row">
+              <div class="col-lg-3">
+                <label>{{labels[0].appointmentpercentage}} :</label>
+              </div>
+              <div class="col-lg-4">
+                <input type="text" placeholder="{labels[0].appointmentpercentage}}" name="appointmentpercentage"
+                  [(ngModel)]="appointmentpercentage" class="form-control"
+                  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-3">
+                <label>{{labels[0].contractstratdate}} :</label>
+        
+              </div>
+              <div class="col-lg-4">
+                <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+                placeholder="{{labels[0].contractstratdate}}" name="contractstartdate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+                [(ngModel)]="contractstartdate" bsDatepicker>
+              </div>
+            </div>
+            <br />
+        
+            <div class="row">
+              <div class="col-lg-3">
+                <label>{{labels[0].contractenddate}} :</label>
+              </div>
+              <div class="col-lg-4">
+                <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+                placeholder="{{labels[0].contractenddate}}" name="contractenddate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+                [(ngModel)]="contractenddate" bsDatepicker>
+              </div>
+            </div> 
+          </div>
+          <div *ngIf="subscriptiontypeedit=='3'">
+            <div class="row">
+              <div class="col-lg-3">
+                <label>{{labels[0].appointmentpercentage}} :</label>
+              </div>
+              <div class="col-lg-4">
+                <input type="text" placeholder="{{labels[0].appointmentpercentage}}" name="appointmentpercentage"
+                  [(ngModel)]="appointmentpercentage" class="form-control"
+                  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-lg-3">
+                <label>{{labels[0].monthlySubscription}} :</label>
+              </div>
+              <div class="col-lg-4">
+                <input type="text" placeholder="{{labels[0].monthlySubscription}}" name="monthlysubription"
+                  [(ngModel)]="monthlysubription" class="form-control"
+                  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-3">
+                <label>{{labels[0].contractstratdate}} :</label>
+        
+              </div>
+              <div class="col-lg-4">
+                <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+                placeholder="{{labels[0].contractstratdate}}" [minDate]="date" name="contractstartdate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+                [(ngModel)]="contractstartdate" bsDatepicker>
+              </div>
+            </div>
+            <br />
+        
+            <div class="row">
+              <div class="col-lg-3">
+                <label>{{labels[0].contractenddate}} :</label>
+              </div>
+              <div class="col-lg-4">
+                <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+                placeholder="{{labels[0].contractenddate}}" name="contractenddate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+                [(ngModel)]="contractenddate" bsDatepicker>
+              </div>
+            </div> 
+          </div><br>
+          <div class="row">
+            <div class="col-lg-5">
+            </div>
+            <div class="col-lg-2">
+              <button type="button" class="btn btn-block btn-md allbtns btncolor"
+                (click)="updatedetailss()">{{labels[0].update}}</button>
+            </div>
+            <div class="col-lg-5">
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="modal-footer">
+        <button id="close1" type="button" style="background-color: #f18235; color: white;" class="btn  btn-default"
+         *ngIf="languageid=='1'" data-dismiss="modal">Close</button>
+
+         <button id="close1" type="button" style="background-color: #f18235; color: white;" class="btn  btn-default"
+         *ngIf="languageid=='6'" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

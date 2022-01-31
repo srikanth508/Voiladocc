@@ -1,0 +1,19 @@
+.headerspace{
+    margin-top: 10px;
+    text-transform:uppercase;
+  }
+
+
+		th::first-letter{
+      text-transform: uppercase;
+    }
+    th{
+      text-transform: lowercase;
+    }
+
+
+    .Labels{
+      text-align: end;
+      /* margin-right: -2px; */
+      margin-left: -6px;
+    }

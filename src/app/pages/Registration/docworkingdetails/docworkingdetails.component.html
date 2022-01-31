@@ -1,0 +1,231 @@
+<div class="container-fluid card card:hover headerspace">
+  <div class="row headerspace">
+    <div class="col-lg-3">
+      <h5>{{labels[0].doctorWorkingDetails}}</h5>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container-fluid card card:hover ">
+  <form #doctorForm="ngForm">
+    <div *ngIf="dummid!=null" class="row" style="margin-top: 20px;">
+      <div class="col-lg-2">
+        <label>{{labels[0].doctor}} : </label>
+        <span class="requird">*</span>
+      </div>
+      <div class="col-lg-4">
+        <!-- <select class="form-control" (change)="GetDoctorID($event)" [(ngModel)]="doctorid" name="doctorid"
+          [disabled]="tablecount=='1'">
+          <option value="" selected>{{labels[0].select}}</option>
+          <option *ngFor="let doctor of doctorlist" value={{doctor.id}}>{{doctor.doctorName}}</option>
+        </select> -->
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" [disabled]="tablecount=='1'" [data]="doctorlist"
+          [settings]="docdd" (onSelect)="GetDoctorID($event)">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <br>
+    <div *ngIf="dummid==null">
+      <div class="row">
+        <div class="col-lg-2">
+          <label>{{labels[0].doctor}} : </label>
+          <span class="requird">*</span>
+        </div>
+        <div class="col-lg-4">
+          <ng-multiselect-dropdown [placeholder]="SelectLabel" [disabled]="tablecount=='1'" [data]="doctorlist"
+            [settings]="docdd" (onSelect)="GetDoctorID($event)">
+          </ng-multiselect-dropdown>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-2">
+          <label>{{labels[0].hospitalName}} : </label>
+        </div>
+        <div class="col-lg-4">
+          <input class="form-control" type="text" [(ngModel)]="hospital_ClinicName" id="hospital_ClinicName"
+            name="hospital_ClinicName" placeholder="HospitalName" disabled>
+        </div>
+      </div>
+      <br>
+    </div>
+
+    <!-- <div class="row">
+      <div class="col-lg-2">
+        <label>{{labels[0].bookingType}}: </label>
+        <span class="requird">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="bookingtype" [settings]="bookingtypedd"
+          (onSelect)="GetBookingTpeID($event)" (onDeSelect)="onItemDeSelect7($event)">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <br> -->
+    <div class="row">
+      <div class="col-lg-2">
+        <label>
+          {{labels[0].day}}: </label>
+        <span class="requird">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" [disabled]="tablecount=='1'" [data]="dayslist"
+          [settings]="daysdd" (onSelect)="GetDaysID($event)" (onDeSelect)="onItemDeslectDay($event)">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-lg-2">
+        <label>{{labels[0].scheduletype}} : </label>
+        <span class="requird">*</span>
+      </div>
+      <div class="col-lg-4">
+        <select class="form-control" (change)="GetAppointmentTypeID($event)" [(ngModel)]="mrngAppointmenttype" name="mrngAppointmenttype">
+          <option value="0">{{labels[0].select}}</option>
+          <option value="1">{{labels[0].inclinic}}</option>
+          <option  value="2">{{labels[0].video}}</option>
+          <option  value="5">{{labels[0].homeVisit}}</option>
+          <option  value="6"> {{labels[0].meeting}}</option>
+        </select>
+      </div>
+    </div><br>
+
+    <div class="row">
+      <!-- <div class="col-lg-2">
+        <label>{{labels[0].scheduletype}} : </label>
+      </div>
+      <div class="col-lg-1">
+      </div>
+      <div class="col-lg-9">
+        <input type="radio" [(ngModel)]="mrngAppointmenttype" name="mrngAppointmenttype" value="1"> &nbsp;
+        {{labels[0].inclinic}}
+        &nbsp;
+        <input type="radio" [(ngModel)]="mrngAppointmenttype" name="mrngAppointmenttype" value="2"> &nbsp;
+        {{labels[0].video}}
+        &nbsp;
+        <input type="radio" [(ngModel)]="mrngAppointmenttype" name="mrngAppointmenttype" value="5"> &nbsp;
+        {{labels[0].homeVisit}}
+        <input type="radio" [(ngModel)]="mrngAppointmenttype" name="mrngAppointmenttype" value="6"> &nbsp;
+        {{labels[0].meeting}}
+      </div> -->
+      <div class="col-lg-2">
+        <label>{{labels[0].timings}} : </label>
+        <span class="requird">*</span>
+      </div>
+      <div class="col-lg-3">
+        <select class="form-control" (change)="getmrngfrom($event)" [(ngModel)]="mrngfromid" name="mrngfromid">
+          <option value="">{{labels[0].startTime}}</option>
+          <option *ngFor="let mrngfrm of mrngfromlist" value="{{ mrngfrm.id }}">{{ mrngfrm.slots }}</option>
+        </select>
+      </div>
+      <div class="col-lg-3" style="margin-top: 0px;">
+
+        <select class="form-control" (change)="getmrngto($event)" [(ngModel)]="mrngtoid" name="mrngtoid">
+          <option value="">{{labels[0].endTime}}</option>
+          <option *ngFor="let mrngto of mrngtolist" value="{{ mrngto.id }}">{{ mrngto.slots
+            }}</option>
+        </select>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-lg-2">
+        <label *ngIf="mrngAppointmenttype!=6">Fees : </label>
+        <span class="requird" *ngIf="mrngAppointmenttype!=6">*</span>
+      </div>
+      <div class="col-lg-3">
+        <input type="text" class="form-control" *ngIf="mrngAppointmenttype!=6" [(ngModel)]="fees" required name="fees"
+          onkeypress='return(event.charCode>=48&&event.charCode<=57)' placeholder="Fees">
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-lg-3">
+      </div>
+      <div class="col-lg-2">
+        <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor" (click)="adddetails()"
+          [disabled]="doctorForm.form.invalid">{{labels[0].add}}</button>
+      </div>
+
+      <div class="col-lg-1" style="margin-right: -1px;">
+        <div class="rectangle"><span style="margin-left: 21px;">{{labels[0].inclinic}}</span></div>
+      </div>
+      <div class="col-lg-1" style="margin-right: -6px;">
+        <div class="vdioerect"> <span style="margin-left: 18px;">{{labels[0].video}}</span></div>
+      </div>
+      <div class="col-lg-1" style="margin-left: 33px;">
+        <div class="homecare"><span style="margin-left: 20px;">{{labels[0].homeVisit}}</span></div>
+      </div>
+
+      <div class="col-lg-1 ">
+        <div class="meeting" style="margin-left: 29px;width: 127%;">
+          <p style="margin-left:12px"> {{labels[0].meeting}}</p>
+        </div>
+        <!-- <div class="col-lg-1">
+        <div class="rectangle"><span style="margin-left: 5px;">{{labels[0].inclinic}}</span></div>
+      </div>
+      <div class="col-lg-1">
+        <div class="vdioerect"> <span style="margin-left: 11px;">{{labels[0].video}}</span></div>
+      </div>
+      <div class="col-lg-1" style="margin-left: 30px;">
+        <div class="homecare"><span style="margin-left: 11px;"> {{labels[0].homeVisit}}</span></div>
+      </div>
+      <div class="col-lg-1 ">
+        <div class="meeting" style="margin-left: 31px;width: 120px;">
+          <p> {{labels[0].meeting}}</p>
+        </div> -->
+      </div>
+    </div>
+    <br>
+    <div class="row" *ngIf="tablecount=='1'">
+      <div class="col-lg-12" style="overflow: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th *ngIf="hospitalid!='3'">{{labels[0].hospitalClinic}}</th>
+
+              <th>{{labels[0].startTime}}</th>
+              <th>{{labels[0].endTime}}</th>
+              <th>Fees</th>
+              <th>{{labels[0].actions}}</th>
+            </tr>
+            <tr *ngFor="let details of qwerty">
+              <td>{{details.Hospital_Clinic}}</td>
+              <td [style.background-color]="details.MrngColorCode" style="color:white">{{details.StartTime}}
+              </td>
+              <td [style.background-color]="details.MrngColorCode" style="color:white">
+                {{details.EndTime}}</td>
+              <td> {{details.Fees}}</td>
+              <td>
+                <ng-template #tipcontent2>Delete</ng-template>
+                <a [ngbTooltip]="tipcontent2">
+                  <img src="assets/Images/dell.png" (click)="delete(details.Sno)"
+                    style="width: 20px;margin-left: 10px;">
+                </a>
+              </td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <br>
+    <div class="row" *ngIf="tablecount=='1'">
+      <div class="col-lg-5">
+      </div>
+      <!-- <div *ngIf="active==0" class="col-lg-2">
+        <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+          (click)="insertdetailsadmin()">{{labels[0].save}}</button>
+      </div> -->
+      <div class="col-lg-2">
+        <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+          (click)="insertdetails()">{{labels[0].save}}</button>
+      </div>
+      <div class="col-lg-5">
+      </div>
+    </div>
+    <br>
+    <br>
+  </form>
+</div>
+<br>
+<br>

@@ -1,0 +1,399 @@
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="container-fluid card card:hover headerspace">
+  <div class="row headerspace">
+    <div class="col-lg-7">
+      <h5>{{labels[0].diagnosticCeneter}}
+      </h5>
+    </div>
+    <div class="col-lg-3">
+    </div>
+    <!-- <div class="col-lg-2">
+      <button type="button" routerLink="/DiagnesticDashboard" class="btn btncolor">{{labels[0].dashboard}}</button>
+    </div> -->
+  </div>
+</div>
+
+<div class="container-fluid card card:hover" style="margin-top:20px;">
+  <form #diagnosticForm="ngForm">
+    <aw-wizard>
+      <hr>
+      <aw-wizard-step stepTitle="{{labels[0].basicInfo}}">
+        <div class="row" style="margin-top:20px;">
+          <div class="col-lg-3">
+            <label>{{labels[0].diacenter}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control" type="text" name="diagnosticcentername" required
+            oncopy="return false" onpaste="return false"  [(ngModel)]="diagnosticcentername" placeholder="{{labels[0].diacenter}}"  >
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].diagnosticCenterPhoneNo}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control" type="text" maxlength="13" name="diagnosticphno" [(ngModel)]="diagnosticphno"
+            required  placeholder="{{labels[0].diagnosticCenterPhoneNo}}"
+            oncopy="return false" onpaste="return false"   onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].contactPersonName}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control" required type="text" name="contactpersonname" [(ngModel)]="contactpersonname"
+            oncopy="return false" onpaste="return false" placeholder="{{labels[0].contactPersonName}}">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].phno}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control" type="text" maxlength="13" name="contactpersonphno"
+           required   [(ngModel)]="contactpersonphno" placeholder="{{labels[0].phno}}"
+           oncopy="return false" onpaste="return false"  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].licenseNumber}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control" maxlength="15" type="text" [(ngModel)]="licenseno" name="licenseno"
+            required  placeholder="{{labels[0].licenseNumber}}"
+            oncopy="return false" onpaste="return false"      onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode>=48&&event.charCode<=57'>
+          </div>
+        </div>
+        <br>
+        <!-- <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].licenceValidTill}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" placeholder="{{labels[0].licenceValidTill}}" class="form-control"
+              [bsConfig]="{ showWeekNumbers:false }" name="licensevalidtill"
+              [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="licensevalidtill" bsDatepicker>
+            
+          </div>
+        </div>
+        <br> -->
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].email}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control" type="email" required (ngModelChange)="onChange($event)" name="email" [(ngModel)]="email"
+            oncopy="return false" onpaste="return false"  placeholder="{{labels[0].email}}">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].address}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <textarea class="form-control" required rows="4" name="address" [(ngModel)]="address"
+              placeholder="{{labels[0].address}}"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].country}} : </label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-4">
+            <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="countrylist" [settings]="countrydd"
+              (onSelect)="GetCountryID($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].province}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="citylist" [settings]="citydd"
+              (onSelect)="GetCityID($event)" (onDeSelect)="onItemDeSelect3($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="City_label">{{labels[0].city}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-4">
+            <!-- <select class="form-control" (change)="GetAreaID($event)">
+                <option value="" selected="selected">Select</option>
+                <option *ngFor="let area of arealist" value={{area.id}}>{{area.areaName}}</option>
+              </select> -->
+            <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="arealist" [settings]="areadd"
+              (onSelect)="GetAreaID($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].zipCode}} : </label>
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control" type="text" maxlength="6" name="zipcode" [(ngModel)]="zipcode"
+            oncopy="return false" onpaste="return false"  placeholder="{{labels[0].zipCode}}" onkeypress='return(event.charCode>=47&&event.charCode<=58)'>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].monthlysubscription}} :</label>
+            <span class="requird">*</span>
+          </div>
+
+          <div class="col-lg-4">
+            <input type="text" placeholder="{{labels[0].monthlysubscription}}" name="monthlysubription"
+            required  [(ngModel)]="monthlysubription" class="form-control"
+              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+          </div>
+
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].contractstartdate}} :</label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+          required  placeholder="{{labels[0].contractstartdate}}" name="contractstartdate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+            [(ngModel)]="contractstartdate" bsDatepicker>
+          </div>
+        </div>
+        <br />
+    
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].contractenddate}} :</label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+          required  placeholder="{{labels[0].contractenddate}}" name="contractenddate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+            [(ngModel)]="contractenddate" bsDatepicker>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].webSite}} : </label>
+            <!-- <span class="requird">*</span> -->
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control" type="text" name="website" [(ngModel)]="website"
+              placeholder="{{labels[0].webSite}}"
+              onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode==32||event.charCode==46'>
+          </div>
+        </div>
+        <br>
+
+        <!-- <div class="row">
+          <div class="col-lg-3">
+            <label>Diagnostics Appointments Per Slot: </label>
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control" type="text" name="diagnosticappointmentperslot" [(ngModel)]="diagnosticappointmentperslot"
+              placeholder="Diagnostics Appointments Per Slot"
+              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Home Sample orders Per Slot : </label>
+          
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control" type="text" name="homesampleordersperslot" [(ngModel)]="homesampleordersperslot"
+              placeholder="Home Sample orders Per Slot"
+              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+          </div>
+        </div> -->
+        <!-- <br> -->
+        <!-- <div class="row">
+          <div class="col-lg-3">
+            <label>Open 24 hrs:</label>
+            <span class="required">*</span>
+          </div>
+
+          <div class="col-md-4">
+            <input type="radio" name="fulltime" [(ngModel)]="hospitalfulltimebit" value="1" Checked>{{labels[0].yes}}
+            <input type="radio" name="fulltime" [(ngModel)]="hospitalfulltimebit" value="0">{{labels[0].no}}
+          </div>
+
+        </div> -->
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].timings}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-2">
+            <input type="time" class="form-control" name="tone" required [(ngModel)]="tone"
+              placeholder="{{labels[0].timings}}">
+          </div>
+         
+          <div class="col-lg-2">
+            <input type="time" class="form-control" name="ttwo" required [(ngModel)]="ttwo" placeholder="Timings">
+          </div>
+         
+        </div>
+        <br>
+
+
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].evngTimings}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-2">
+            <input type="time" class="form-control" name="evngtime1" required [(ngModel)]="evngtime1"
+              placeholder="{{labels[0].timings}}">
+          </div>
+         
+          <div class="col-lg-2">
+            <input type="time" class="form-control" name="evngtime2" required [(ngModel)]="evngtime2" placeholder="Timings">
+          </div>
+         
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].homeSamplePicUp}}  </label>
+
+          </div>
+          <div class="col-lg-4">
+            <input type="radio" name="samplepickup" [(ngModel)]="samplepickup" value="1"> {{labels[0].yes}} &nbsp;
+            <input type="radio" name="samplepickup" [(ngModel)]="samplepickup" value="0">{{labels[0].no}}
+          </div>
+        </div>
+        <br>
+        <!-- <div class="row">
+          <div class="col-lg-3">
+            <label>
+              {{labels[0].preffered}} : </label>
+         
+          </div>
+          <div class="col-lg-4">
+            <input type="radio" name="prefered" [(ngModel)]="prefered" value="1">{{labels[0].yes}} &nbsp;
+            <input type="radio" name="prefered" [(ngModel)]="prefered" value="0">{{labels[0].no}}
+          </div>
+        </div>
+        <br> -->
+        <div class="row">
+          <div class="col-lg-3">
+            <label>{{labels[0].description}} : </label>
+            <!-- <span class="requird">*</span> -->
+          </div>
+          <div class="col-lg-4">
+            <textarea class="form-control" rows="4" name="description" [(ngModel)]="description"
+              placeholder="{{labels[0].description}}"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <button type="button" style="background-color: #f18235;color: white;float: right;" awNextStep
+              class="btn dashbtn nextbtncolor">{{labels[0].next}}</button>
+          </div>
+        </div>
+      </aw-wizard-step>
+      <br>
+      <aw-wizard-step stepTitle="{{labels[0].facilities}}" awOptionalStep>
+        <div class="container-fluid" style="height:100%">
+          <div class="row">
+            <div class="col-lg-3">
+              <label>{{labels[0].diagnosticCenterPhotos}} : </label>
+            </div>
+            <div class="col-lg-4">
+              <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
+                <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
+              </ngx-dropzone>
+              <div>
+                <span *ngFor="let photo of showphoto">
+                  <img src="{{photo}}" style="height:70px;width:50px">&nbsp;
+                </span>
+              </div>
+            </div>
+            <div>
+
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-3">
+              <label>{{labels[0].insurencesAvailable}} : </label>
+
+            </div>
+            <div class="col-lg-4">
+              <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="insurancelist" [settings]="insurancedd"
+                (onSelect)="GetInuranceID($event)">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-3">
+              <label>{{labels[0].awards}} : </label>
+            </div>
+            <div class="col-lg-4">
+              <textarea placeholder="{{labels[0].awards}}" rows="4" name="awards" [(ngModel)]="awards"
+                class="form-control"
+                onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode==32||event.charCode>=48&&event.charCode<=57'></textarea>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row" >
+            <div class="col-lg-5">
+            </div>
+            <div class="col-lg-2">
+              <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                [disabled]="diagnosticForm.form.invalid||validEmail==false" (click)="insertdetails()">{{labels[0].save}}
+              </button>
+            </div>
+            <div class="col-lg-5">
+            </div>
+          </div>
+          <button type="button" style="background-color: #f18235;color: white;" class="btn nextbtncolor"
+            awPreviousStep>{{labels[0].previous}}</button>
+        </div>
+        <br>
+        <br>
+      </aw-wizard-step>
+    </aw-wizard>
+    <br>
+  </form>
+</div>
+<br>
+<br>
+<br>
+<br>

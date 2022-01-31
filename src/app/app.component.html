@@ -1,0 +1,998 @@
+<div class="container-fluid" *ngIf="temp=='1'" style="height:100vh;overflow: hidden;">
+    <div class="row" style="height: 10vh;" *ngIf="isDescktopResolution==true">
+        <div class="col-lg-2">
+            <img src="assets/Images/logo1.png">
+        </div>
+        <div class="col-lg-6">
+            <marquee *ngFor="let noti of docnoti" style="margin-top:18px;color:red">{{noti.description}}</marquee>
+        </div>
+        <div class="col-lg-4" id="vidpagehead">
+            <img src="assets/Images/logout.png" title="{{labels[0].logout}}"
+                style="float: right;padding: 2%;cursor: pointer;height:62px;margin-top: 9px;" (click)="clear()"><br>
+            <span class="badge" style="float: right;cursor: pointer;background-color: green;color: aliceblue;
+                margin-left: 0%;">{{notificationcount}}</span>
+            <img src="assets/icons/bell.png" data-toggle="modal" data-target="#notification"
+                style="float: right;cursor: pointer;height: 34px;">
+            <label style="float: right;padding: 1%;cursor: pointer;height:80px;">{{labels[0].welcome}},
+                <b>{{user}}</b></label>
+        </div>
+    </div>
+
+    <!-- *ngIf="isDescktopResolution==true" -->
+    <div class="row" >
+        <div class="col-lg-2" style="height: 90vh;overflow-y: auto;background-color: #f3f3f3;" id="sidbarid">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-lg-10" style="overflow-y: auto;height: 90vh;background-color: #f3f3f3;" id="vidiv">
+            <router-outlet (activate)="onActivate($event)"></router-outlet>
+        </div>
+
+    </div>
+
+    <!-- <div class="row" style="height: 20vh;" *ngIf="isMobileResolution==true">
+        <div class="col-lg-12">
+            <img src="assets/Images/logo.png" style="margin-top:5px;">
+            <img src="assets/Images/ham.png" *ngIf="showsidebar==0" (click)="openNav()"
+                style="margin-left: 1%;float: right;height:30px;margin-top: 21px;">
+            <img src="assets/Images/ham.png" *ngIf="showsidebar==1" (click)="closeNav()"
+                style="margin-left: 1%;float: right;height:30px;margin-top: 21px;">
+        </div>
+
+        <div class="col-lg-9">
+            <img src="assets/Images/logout.png" title="{{labels[0].logout}}"
+                style="float: right;padding: 2%;cursor: pointer;height: 50px;margin-top: 4%;" (click)="clear()"><br>
+            <span class="badge" style="float: right;cursor: pointer;background-color: green;color: aliceblue;
+                margin-left: 0%;">{{notificationcount}}</span>
+            <img src="assets/icons/bell.png" data-toggle="modal" data-target="#notification"
+                style="float: left;cursor: pointer;    width: 30px;">
+            <label style="float: left;padding: 1%;cursor: pointer;height:80px;">{{labels[0].welcome}},
+                <b>{{user}}</b></label>
+        </div>
+    </div> -->
+    <!-- <div class="row" *ngIf="isMobileResolution==true">
+        <div class="col-lg-12" style="overflow-y: auto;height: 80vh;">
+            <div id="sidenav" *ngIf="showsidebar==1">
+                <div class="row" id="mySidenav">
+                    <div class="col-md-2 sidenav" style="overflow-y: auto;    width: 70%;border-top-right-radius: 5px;">
+
+                        <a routerLink="/AdminDash" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].registredEntityDetails}}
+                        </a>
+                        <a routerLink="/AdminAllAppointments" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].appointments}}
+                        </a>
+                        <a routerLink="/AdminRevenue" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].revenue}}
+                        </a>
+                        <a routerLink="/SupportRegDash" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].supportReg}}
+                        </a>
+                        <a routerLink="/DeliveryPartnerDashboard" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/phareg.png" style="width: 15px;"
+                                (click)="closeNav()">&nbsp;{{labels[0].deliveryCompany}}
+                        </a>
+                        <a routerLink="/Faq" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].faq}}
+                        </a>
+                        <a routerLink="/HowToUseVoilaDOc" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].howToUseVoilaDoc}}
+                        </a>
+                        <a routerLink="/DoctorTipsAndTricks" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].doctorTips}}
+                        </a>
+                        <a routerLink="/HowToUseDoctors" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].howtoUseDoc}}
+                        </a>
+                        <a data-toggle="collapse" class="togglebtn button" *ngIf="roleid=='1'"
+                            data-target="#REGISTRATION">
+                            <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp; {{labels[0].registration}}
+                        </a>
+                        <div id="REGISTRATION" class="collapse" style="padding-left: 7%;">
+                            <a routerLink="/LocalDocDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].prescriptionVerifiers}}
+                            </a>
+                            <a routerLink="/HspClidash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].hospitals}}
+                            </a>
+                            <a routerLink="/ClinicDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].clinics}}
+                            </a>
+                            <a routerLink="/Docdash" (click)="closeNav()">
+                                <img src="assets/Images/docreg.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].doctor}}
+                            </a>
+                            <a routerLink="/DiagnesticDashboard" (click)="closeNav()">
+                                <img src="assets/Images/diareg.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].diagnostic}}
+                            </a>
+                            <a routerLink="/Pharmacydashboard" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].pharmacy}}
+                            </a>
+                            <a routerLink="/NurseDashboard" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].nurse}}
+                            </a>
+                            <a routerLink="/PhysiotherapistDashboard" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].physiotherapist}}
+                            </a>
+                            <a routerLink="/MidwifeDashboard" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].midwife}}
+                            </a>
+
+                        </div>
+                        <a data-toggle="collapse" class="togglebtn button" *ngIf="roleid=='1'" data-target="#WORKING">
+                            <img src="assets/Images/work.png" style="width: 20px;">&nbsp; {{labels[0].workingDetails}}
+                        </a>
+                        <div id="WORKING" class="collapse" style="padding-left: 7%;">
+                            <a routerLink="/HospitalServicesDash" (click)="closeNav()">
+                                <img src="assets/Images/hs.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].hospitalServices}}
+                            </a>
+                            <a routerLink="/DocWorkingDash" (click)="closeNav()">
+                                <img src="assets/Images/docwor.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].doctor}}
+                            </a>
+                            <a routerLink="/DoctorFeeDash" (click)="closeNav()">
+                                <img src="assets/Images/docwor.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].doctorFees}}
+                            </a>
+                            <a routerLink="/DoctorServicesDash" (click)="closeNav()">
+                                <img src="assets/Images/ds.png" style="width: 15px;" (click)="closeNav()">
+                                &nbsp;{{labels[0].doctorServices}}
+                            </a>
+                            <a routerLink="/DiagnosticTestDash" (click)="closeNav()">
+                                <img src="assets/Images/dt.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].diagnosticTest}}
+                            </a>
+                            <a routerLink="/DiagnosticPackageDash" (click)="closeNav()">
+                                <img src="assets/Images/diapack.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].diagnosticpackage}}
+                            </a>
+                            <a routerLink="/Diagnosticcenterslots" (click)="closeNav()">
+                                <img src="assets/Images/diaslot.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].diagnosticSlots}}
+                            </a>
+                            <a routerLink="/Nurseworkingdash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].nurse}}
+                            </a>
+                            <a routerLink="/NurseFeeDash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].nurseFees}}
+                            </a>
+                            <a routerLink="/PhysioworkingDash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].physiotherapist}}
+                            </a>
+                            <a routerLink="/PhysiFeedash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].physitherapistFees}}
+                            </a>
+                            <a routerLink="/MidwifeWorkingDash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].midwife}}
+                            </a>
+                            <a routerLink="/MidwifeFeesDash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].midwifefee}}
+                            </a>
+                        </div>
+                        <a data-toggle="collapse" class="togglebtn button" *ngIf="roleid=='1'" data-target="#LOGINS">
+                            <img src="assets/Images/reglogin.png" style="width: 20px;">&nbsp;
+                            {{labels[0].registerLogins}}
+                        </a>
+                        <div id="LOGINS" class="collapse" style="padding-left: 7%;">
+                            <a routerLink="/Doctordash" (click)="closeNav()">
+                                <img src="assets/Images/ds.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].doctor}}
+                            </a>
+                            <a routerLink="/Hspdash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].hospitalClinic}}
+                            </a>
+                            <a routerLink="/Diagnosticdash" (click)="closeNav()">
+                                <img src="assets/Images/diagnostic.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].diagnostic}}
+                            </a>
+                            <a routerLink="/Pharmacydash" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].pharmacy}}
+                            </a>
+                            <a routerLink="/NurseLoginDashboard" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].nurse}}
+                            </a>
+                            <a routerLink="/PhysiotherapistLoginDashboard" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].physiotherapist}}
+                            </a>
+                            <a routerLink="/MidwifeLoginDashboard" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].midwife}}
+                            </a>
+                            <a routerLink="/DeliveryCompanyLoginDashboard" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].deliveryCompany}}
+                            </a>
+                        </div>
+                        <a data-toggle="collapse" class="togglebtn button" *ngIf="roleid=='1'" data-target="#SPONSORED">
+                            <img src="assets/Images/sponser.png" style="width: 20px;">&nbsp; {{labels[0].sponsored}}
+                        </a>
+                        <div id="SPONSORED" class="collapse" style="padding-left: 7%;">
+                            <a routerLink="/Hspclidash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].hospitalClinic}}
+                            </a>
+                            <a routerLink="/Diagdash" (click)="closeNav()">
+                                <img src="assets/Images/diacenter.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].diagnostiCenter}}
+                            </a>
+                            <a routerLink="/Pharmdash" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].pharmacy}}
+                            </a>
+
+                            <a routerLink="/HomePageSponsrshipDashBoard" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                Home Page Sponsership
+                            </a>
+                        </div>
+
+
+                        <a data-toggle="collapse" class="togglebtn button" *ngIf="roleid=='1'" data-target="#ecommerce">
+                            <img src="assets/Images/sponser.png" style="width: 20px;">&nbsp; Ecommerce
+                        </a>
+                        <div id="ecommerce" class="collapse" style="padding-left: 7%;">
+                            <a routerLink="/Categorydashboard" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                Category
+                            </a>
+                            <a routerLink="/SubCategoryDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp; Sub
+                                Category
+                            </a>
+
+                            <a routerLink="/ItemMaster" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                Product
+                            </a>
+
+                            <a routerLink="/InventoryDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                Inventory
+                            </a>
+
+
+                            <a routerLink="/OrdersDashboard" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp; Orders
+                                Dashboard
+                            </a>
+                            <a routerLink="/Diagdash" (click)="closeNav()">
+                                <img src="assets/Images/diacenter.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].diagnostiCenter}}
+                            </a>
+                            <a routerLink="/Pharmdash" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].pharmacy}}
+                            </a>
+                        </div>
+
+
+                        <a routerLink="/RegisterPatients" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].registeredPatients}}
+                        </a>
+                        <a routerLink="/PatientWallet" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].patientWallet}}
+                        </a>
+
+                        <a routerLink="/SalesDash" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].salesUsers}}
+                        </a>
+
+                        <a routerLink="/SupportProfile" *ngIf="roleid=='13'" (click)="closeNav()">
+                            <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a routerLink="/SupportDash" *ngIf="roleid=='13'" (click)="closeNav()">
+                            <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].support}}
+                        </a>
+                        <a routerLink="/AnnounseDash" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].announcements}}
+                        </a>
+                        <a routerLink="/ArticleDash" *ngIf="roleid=='12'" (click)="closeNav()">
+                            <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            ARTICLES
+                        </a>
+                        <a data-toggle="collapse" class="togglebtn button" *ngIf="roleid=='12'" data-target="#Masters">
+                            <img src="assets/Images/sponser.png" style="width: 20px;">&nbsp; {{labels[0].masters}}
+                        </a>
+                        <div id="Masters" class="collapse" style="padding-left: 7%;">
+                            <a routerLink="/EnableLocalDoctor" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].enableLocadoctor}}
+                            </a>
+                            <a routerLink="/CountryDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].countryMaster}}
+                            </a>
+                            <a routerLink="/Provincedash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].provinceMaster}}
+                            </a>
+                            <a routerLink="/CityMasterDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].cityMaster}}
+                            </a>
+                            <a routerLink="/DepartmentDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].departmentMaster}}
+                            </a>
+                            <a routerLink="/CompaintDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].complaintMaster}}
+                            </a>
+                            <a routerLink="/SpecilizationDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].specilizationMaster}}
+                            </a>
+                            <a routerLink="/ServiceMasterDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].serviceMaster}}
+                            </a>
+                            <a routerLink="/FacilityMasterDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].facilityMaster}}
+                            </a>
+                            <a routerLink="/MedicineTypeMasterDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].medicineTypeMaster}}
+                            </a>
+                            <a routerLink="/DiagnosticTestTypeDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].diagnosticTestType}}
+                            </a>
+                            <a routerLink="/DiaTestDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].diagnosticTests}}
+                            </a>
+                            <a routerLink="/BloodGroupMasterDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].bloodGroupMaster}}
+                            </a>
+                            <a routerLink="/WhenToConsumeMaster" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].whenToConsumeMaster}}
+                            </a>
+                            <a routerLink="/InsuranceMasterDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].insuranceMaster}}
+                            </a>
+                            <a routerLink="/DegreeMasterDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].degreeMaster}}
+                            </a>
+                            <a routerLink="/TreatmentDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].treatmentservice}}
+                            </a>
+                            <a routerLink="/FrequentlyDash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].frequentlYaskedQuestions}}
+                            </a>
+                            <a routerLink="/Howtousedash" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].howTOuseMaster}}
+                            </a>
+                            <a routerLink="/DocTipsDash" *ngIf="roleid=='12'" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].doctorTipsMaster}}
+                            </a>
+                            <a routerLink="/HowToUseDocDash" *ngIf="roleid=='12'" (click)="closeNav()">
+                                <img src="assets/Images/hos.png" style="width: 15px;" (click)="closeNav()">&nbsp; How To
+                                Use Doctors
+                            </a>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        
+                        <a *ngIf="roleid=='2'" routerLink="/DoctorDashboard" (click)="closeNav()">
+                            <img src="assets/Images/dash.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].dashboard}}
+                        </a>
+                        <a *ngIf="roleid=='2'" routerLink="/Myprofile" (click)="closeNav()">
+                            <img src="assets/Images/profile.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a *ngIf="roleid=='2'" routerLink="/DoctorRev" (click)="closeNav()">
+                            <img src="assets/Images/myrevenue.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myRevenue}}
+                        </a>
+
+
+                        <a *ngIf="roleid=='2'" routerLink="/Myappointments" (click)="closeNav()">
+                            <img src="assets/Images/app.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myAppointments}}
+                        </a>
+                        <a *ngIf="roleid=='2'" routerLink="/MedicalHistory" (click)="closeNav()">
+                            <img src="assets/Images/EMR.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].pmr}}
+                        </a>
+                        <a *ngIf="roleid=='2'" routerLink="/Appointmentsreport" (click)="closeNav()">
+                            <img src="assets/Images/appreport.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].appointmentReport}}
+                        </a>
+                        <a *ngIf="roleid=='2'" routerLink="/MyWorkingDetails" (click)="closeNav()">
+                            <img src="assets/Images/mywork.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myWorkingDetails}}
+                        </a>
+                        <a *ngIf="roleid=='2'" routerLink="/SickSlipGenerator" (click)="closeNav()">
+                            <img src="assets/Images/sickslip.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].sickSlipGenarator}}
+                        </a>
+                        <a *ngIf="roleid=='2'" routerLink="/ReferredPatients" (click)="closeNav()">
+                            <img src="assets/Images/patientreferal.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            Patient Referrals
+                        </a>
+
+                        <a *ngIf="roleid=='3'" routerLink="/Profile" (click)="closeNav()">
+                            <img src="assets/Images/profile.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a *ngIf="roleid=='3'" routerLink="/HospitalRevenue" (click)="closeNav()">
+                            <img src="assets/Images/app.png" style="width: 15px;" (click)="closeNav()">&nbsp; Dashboard
+                        </a>
+                        <a *ngIf="roleid=='3'" routerLink="/Appointments" (click)="closeNav()">
+                            <img src="assets/Images/app.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].hosAppointments}}
+                        </a>
+                        <a data-toggle="collapse" class="togglebtn button" *ngIf="roleid=='3'"
+                            data-target="#REGISTRATIONS">
+                            <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp; {{labels[0].registration}}
+                        </a>
+                        <div id="REGISTRATIONS" class="collapse" style="padding-left: 7%;">
+
+                            <a routerLink="/Docdash" (click)="closeNav()">
+                                <img src="assets/Images/docreg.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].doctor}}
+                            </a>
+
+                            <a routerLink="/NurseDashboard" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].nurse}}
+                            </a>
+                            <a routerLink="/PhysiotherapistDashboard" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].physiotherapist}}
+                            </a>
+                            <a routerLink="/MidwifeDashboard" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].midwife}}
+                            </a>
+
+                        </div>
+
+                        <a data-toggle="collapse" class="togglebtn button" *ngIf="roleid=='3'"
+                            data-target="#WORKINGHos">
+                            <img src="assets/Images/work.png" style="width: 20px;">&nbsp; {{labels[0].workingDetails}}
+                        </a>
+                        <div id="WORKINGHos" class="collapse" style="padding-left: 7%;">
+                            <a routerLink="/HospitalServicesDash" (click)="closeNav()">
+                                <img src="assets/Images/hs.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].hospitalServices}}
+                            </a>
+                            <a routerLink="/DocWorkingDash" (click)="closeNav()">
+                                <img src="assets/Images/docwor.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].doctor}}
+                            </a>
+                            <a routerLink="/DoctorFeeDash" (click)="closeNav()">
+                                <img src="assets/Images/docwor.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].doctorFees}}
+                            </a>
+                            <a routerLink="/DoctorServicesDash" (click)="closeNav()">
+                                <img src="assets/Images/ds.png" style="width: 15px;" (click)="closeNav()">
+                                &nbsp;{{labels[0].doctorServices}}
+                            </a>
+                            <a routerLink="/Nurseworkingdash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].nurse}}
+                            </a>
+                            <a routerLink="/NurseFeeDash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].nurseFees}}
+                            </a>
+                            <a routerLink="/PhysioworkingDash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].physiotherapist}}
+                            </a>
+                            <a routerLink="/PhysiFeedash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].physitherapistFees}}
+                            </a>
+                            <a routerLink="/MidwifeWorkingDash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;"
+                                    (click)="closeNav()">&nbsp;{{labels[0].midwife}}
+                            </a>
+                            <a routerLink="/MidwifeFeesDash" (click)="closeNav()">
+                                <img src="assets/Images/phareg.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].midwifefee}}
+                            </a>
+                            <br>
+                            <br>
+                        </div>
+                        <a data-toggle="collapse" class="togglebtn button" *ngIf="roleid=='3'" data-target="#LOGINSS">
+                            <img src="assets/Images/reglogin.png" style="width: 20px;">&nbsp;
+                            {{labels[0].registerLogins}}
+                        </a>
+                        <div id="LOGINSS" class="collapse" style="padding-left: 7%;">
+                            <a routerLink="/Doctordash" (click)="closeNav()">
+                                <img src="assets/Images/ds.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].doctor}}
+                            </a>
+                            <a routerLink="/NurseLoginDashboard" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].nurse}}
+                            </a>
+                            <a routerLink="/PhysiotherapistLoginDashboard" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].physiotherapist}}
+                            </a>
+                            <a routerLink="/MidwifeLoginDashboard" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                {{labels[0].midwife}}
+                            </a>
+                            <a routerLink="/ReceptionstloginDash" (click)="closeNav()">
+                                <img src="assets/Images/pharmacy.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                                Receptionist
+                            </a>
+                        </div>
+
+                      
+                        <a *ngIf="roleid=='4'" routerLink="/Profiles" (click)="closeNav()">
+                            <img src="assets/Images/profile.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a *ngIf="roleid=='4'" routerLink="/Orders" (click)="closeNav()">
+                            <img src="assets/Images/orders.png" style="width: 15px;"
+                                (click)="closeNav()">&nbsp;{{labels[0].orders}}
+                        </a>
+                        <a *ngIf="roleid=='4'" routerLink="/DiagnosticReports" (click)="closeNav()">
+                            <img src="assets/Images/orders.png" style="width: 15px;"
+                                (click)="closeNav()">&nbsp;{{labels[0].orederReports}}
+                        </a>
+                        <a *ngIf="roleid=='4'" routerLink="/Offers" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].offers}}
+                        </a>
+
+                      
+                        <a *ngIf="roleid=='5'" routerLink="/Pharmacyprofile" (click)="closeNav()">
+                            <img src="assets/Images/profile.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a *ngIf="roleid=='5'" routerLink="/DoctorPrescription" (click)="closeNav()">
+                            <img src="assets/Images/orders.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].doctorPrescription}}
+                        </a>
+                        <a *ngIf="roleid=='5'" routerLink="/PrescriptionReports" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].reports}}
+                        </a>
+
+                        <a *ngIf="roleid=='5'" routerLink="/Pharmacyoffers" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].offers}}
+                        </a>
+                      
+                        <a *ngIf="roleid=='7'" routerLink="/NurseAdminDash" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].dashboard}}
+                        </a>
+                        <a *ngIf="roleid=='7'" routerLink="/Nurserevenue" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myRevenue}}
+                        </a>
+                        <a *ngIf="roleid=='7'" routerLink="/NurseProfile" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a *ngIf="roleid=='7'" routerLink="/NurseAppointments" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myAppointments}}
+                        </a>
+                        <a *ngIf="roleid=='7'" routerLink="/NurseReports" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;"
+                                (click)="closeNav()">&nbsp;{{labels[0].reports}}
+                        </a>
+                        <a *ngIf="roleid=='7'" routerLink="/NurseTimings" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myWorkingDetails}}
+                        </a>
+
+
+
+
+                      
+                        <a *ngIf="roleid=='8'" routerLink="/PhysioAdminDash" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].dashboard}}
+                        </a>
+                        <a *ngIf="roleid=='8'" routerLink="/PhysioRevenue" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myRevenue}}
+                        </a>
+                        <a *ngIf="roleid=='8'" routerLink="/PhysiotherapistProfile" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a *ngIf="roleid=='8'" routerLink="/PhysiotherapistAppointments" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myAppointments}}
+                        </a>
+                        <a *ngIf="roleid=='8'" routerLink="/PhysiotherapistReports" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].reports}}
+                        </a>
+                        <a *ngIf="roleid=='8'" routerLink="/PhysiotherapistTimings" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myWorkingDetails}}
+                        </a>
+
+
+                        
+                        <a *ngIf="roleid=='9'" routerLink="/AdminMidWifeDash" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].dashboard}}
+                        </a>
+                        <a *ngIf="roleid=='9'" routerLink="/Midwiferevenue" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myRevenue}}
+                        </a>
+                        <a *ngIf="roleid=='9'" routerLink="/MidwifeProfile" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a *ngIf="roleid=='9'" routerLink="/MidwifeAppointments" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myAppointments}}
+                        </a>
+                        <a *ngIf="roleid=='9'" routerLink="/MideWifeReports" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].reports}}
+                        </a>
+                        <a *ngIf="roleid=='9'" routerLink="/MidWifeTimings" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myWorkingDetails}}
+                        </a>
+                      
+                        <a *ngIf="roleid=='10'" routerLink="/DeliverPartnerProfile" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a *ngIf="roleid=='10'" routerLink="/DeliveryPartnerAppointments" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].orders}}
+                        </a>
+                        <a *ngIf="roleid=='10'" routerLink="/PartnerRegistration" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].employees}}
+                        </a>
+                        <a *ngIf="roleid=='11'" routerLink="/MyProfiles" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a *ngIf="roleid=='11'" routerLink="/MyPatientPrescriptions" (click)="closeNav()">
+                            <img src="assets/Images/offers.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].prescriptionEndorse}}
+                        </a>
+                        <br>
+                        <a *ngIf="roleid=='14'" routerLink="/Profile" (click)="closeNav()">
+                            <img src="assets/Images/profile.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].myProfile}}
+                        </a>
+                        <a *ngIf="roleid=='14'" routerLink="/HospitalDashboard" (click)="closeNav()">
+                            <img src="assets/Images/profile.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].hospitalDashboard}}
+                        </a>
+                        <a *ngIf="roleid=='14'" routerLink="/Appointments" (click)="closeNav()">
+                            <img src="assets/Images/app.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].hosAppointments}}
+                        </a>
+                        <a *ngIf="roleid=='14'" routerLink="/CancelledAppointments" (click)="closeNav()">
+                            <img src="assets/Images/profile.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            Cancelled Appointments
+                        </a>
+                        <a *ngIf="roleid=='14'" routerLink="/Doctors" (click)="closeNav()">
+                            <img src="assets/Images/ds.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].doctors}}
+                        </a>
+                        <a *ngIf="roleid=='14'" routerLink="/DoctorRevenue" (click)="closeNav()">
+                            <img src="assets/Images/ds.png" style="width: 15px;" (click)="closeNav()">&nbsp; Payments
+                        </a>
+                        <a *ngIf="roleid=='14'" routerLink="/HospitalServicesDash" (click)="closeNav()">
+                            <img src="assets/Images/hs.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            {{labels[0].hospitalServices}}
+                        </a>
+                        <a *ngIf="roleid=='14'" routerLink="/Ptientregdash" (click)="closeNav()">
+                            <img src="assets/Images/feedback.png" style="width: 15px;" (click)="closeNav()">&nbsp;
+                            Patient Registration
+                        </a>
+                        <div *ngIf="this.docservice.showvid == 1">
+                            <p style="color: aliceblue;">Doctor Video</p>
+                            <app-publisher [session]="session" id="publishme" [ngStyle]="{ display: block }">
+                            </app-publisher>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <router-outlet id="main" (activate)="onActivate($event)"></router-outlet>
+        </div>
+    </div> -->
+</div>
+
+<div class="container-fluid" *ngIf="temp!='1'">
+    <div class="row">
+        <div class="col-lg-12">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+<!-- class="modal-title" -->
+
+<div id="notification" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h5> -->
+                {{labels[0].notifications}}
+                <!-- </h5> -->
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row card card-hover newcard" *ngFor="let docnoti of doctorNotifications"
+                    style="overflow: auto;">
+                    <br>
+                    <div class="col-lg-12">
+                        <p><b>{{docnoti.notification}}</b></p>
+                        <p>{{docnoti.description}}</p>
+                        <p style="float:right"><b>{{docnoti.date}}</b></p>
+                        <p style="float:left"><b>{{docnoti.notificationtime}}</b></p><br>
+                        <br>
+                        <div *ngIf="doctorid!=undefined&&recpid==undefined">
+                            <!-- <button class="chatnow" data-dismiss="modal" style="float: left;"
+                                (click)="updateseenbit(docnoti.id)">{{labels[0].seen}}</button> -->
+                            <button class="chatnow" data-dismiss="modal" style="float: right;"
+                                (click)="updateseenbit(docnoti.id)"
+                                *ngIf="docnoti.notificationTypeID!=17">{{labels[0].seenAll}}</button><br>
+
+                        </div>
+
+                        <div *ngIf="nurseid!=undefined||midwifeid!=undefined||physioid!=undefined">
+                            <button class="chatnow" data-dismiss="modal" style="float: left;"
+                                (click)="UpdateNursePhysiomidwifeseenbit(docnoti.id)">{{labels[0].seen}}</button>
+                        </div>
+                        <div *ngIf="supportid!=undefined">
+                            <button class="chatnow" data-dismiss="modal" style="float: left;"
+                                (click)="updatesupportseenbit(docnoti.id)">{{labels[0].seen}}</button>
+                        </div>
+
+                        <div *ngIf="countrymanagersid!=undefined">
+                            <button class="chatnow" data-dismiss="modal" style="float: left;"
+                                (click)="updatecountrynoti(docnoti.id)">{{labels[0].seen}}</button>
+                        </div>
+
+                        <br>
+                        <div *ngIf="pharmacyid!=undefined">
+                            <button class="chatnow1" data-toggle="modal" data-target="#Medicines"
+                                (click)="ViewMedicines(docnoti)">{{labels10[0].viewMedicines}}</button>
+                            <br><br>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="card card-hover newcard" *ngFor="let phanoti of pharmcunoti">
+                    <br>
+                    <div class="row ">
+                        <div class="col-lg-8">
+                            <p style="margin-left: 10px;"><b>{{phanoti.notification}}</b></p>
+                            <p style="margin-left: 10px;">{{phanoti.description}}</p>
+                        </div>
+                        <div class="col-lg-2">
+                            <p><b>{{phanoti.date}}</b></p>
+                        </div>
+                        <div class="col-lg-2">
+                            <!-- <p><b>{{phanoti.notificationtime}}</b></p><br> -->
+                            <!-- <i class="fa fa-minus" aria-hidden="true" *ngIf="phanoti.show=='0'"
+                                (click)="ViewMedicines(phanoti)"></i>
+
+                            <i class="fa fa-plus fa-2x" *ngIf="phanoti.show=='1'"
+                                style="margin-left: 5px; margin-top: 3px;" aria-hidden="true"
+                                (click)="ViewMedicines(phanoti)"></i> -->
+                            <button class="chatnow1" data-toggle="modal" data-target="#Medicines"
+                                (click)="ViewMedicines(phanoti)">{{labels[0].viewMedicines}}</button>
+                        </div>
+                    </div><br>
+                </div><br>
+            </div>
+            <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div> -->
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="Medicines" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" style="width:898px;margin-left: 186px;">
+            <div class="modal-header modal-xl">
+                <h5 class="modal-title" id="exampleModalLongTitle">{{labels10[0].medicines}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table>
+                                <tr>
+                                    <th>{{labels10[0].medicines}}</th>
+                                    <th>{{labels10[0].sig}}</th>
+                                    <th>{{labels10[0].quantity}}</th>
+                                    <th>
+                                        {{labels10[0].substitablenotpermitedd}}</th>
+
+                                </tr>
+                                <tr *ngFor="let ss of orderedmedicinelist">
+                                    <td>{{ss.medicineName}}</td>
+                                    <td>{{ss.sig}}</td>
+                                    <td>{{ss.quantity}}</td>
+                                    <td>{{ss.substistute}}</td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button class="chatnow" data-dismiss="modal" style="float: right;"
+                                (click)="AcceptPharmacyOrder()">{{labels[0].accept}}</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button class="chatnow" data-dismiss="modal" style="float: left;"
+                                (click)="RejectPhrmacyOrder()" data-dismiss="modal">{{labels[0].reject}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="background-color: #f18235;color: white;" class="btn btn-default"
+                    data-dismiss="modal">{{labels[0].close}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="smalchat" id="Myformsss" style="overflow: auto;">
+    <div class="w3-card-4 " *ngFor="let chat of chatlist" style="overflow: auto;">
+        <div class="w3-container cardss card-hover" (click)="GetChatIDForseen(chat.chatID)">
+            <p>1 new message from : <b>{{chat.patientName}}</b></p>
+            <hr>
+            <p>{{chat.mobileMessage}}</p>
+        </div>
+        <button class="w3-button w3-block" style="background-color: #1dbfd2;color:white"
+            (click)="GetChatShowID(chat.patientID,chat.appointmentID)">Chat</button>
+    </div>
+</div>
+
+
+<div class="chat-popup" id="myFormsssss">
+    <form class="form-container" #chatfrom="ngForm">
+        <div class="container-fluid card card-hover" style="height: 550px;width:530px;">
+            <div class="row">
+                <div class="col-lg-5">
+                    <h5>{{labels2[0].chat}}</h5>
+                </div>
+                <div class="col-lg-5">
+                </div>
+                <div class="col-lg-2">
+                    <img src="assets/Images/can.png" (click)="GetShowOffffff()">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+
+                </div>
+            </div>
+            <!-- id="chatboxdiv" -->
+            <div style="height: 500px;overflow-y: scroll;" id="chatboxdiv">
+                <div *ngFor='let convo of coversationarray'>
+                    <div class="container" *ngIf='convo.user=="doc"'>
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-7" style="background-color:#dbdbdb;border-radius: 5px;color:black;">
+                                <div *ngIf="convo.msgtype=='1'">
+                                    <img src="{{docphoto}}" class="rounded-circle" style="width:26px;;margin-top: 5px;margin-right: 3%;
+                      float: left;">
+                                    <p style="margin-top: 5px;">{{convo.chatmsg}}
+                                        <span style="float: right;;margin-top: 5px;">
+                                            {{convo.time}}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div *ngIf="convo.msgtype=='2'">
+                                    <img src="{{convo.chatmsg}}" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container" *ngIf='convo.user=="pat"'>
+                        <div class="row">
+                            <div class="col-lg-7"
+                                style="background-color:#1dbfd2;border-radius: 5px;color:black;margin-top: 1px;">
+                                <div *ngIf="convo.msgtype=='1'">
+                                    <p style="margin-top: 5px;">
+                                        <img src="{{patientphoto}}" class="rounded-circle"
+                                            style="width:26px;margin-top: 5px;"> &nbsp;
+                                        {{convo.chatmsg}}
+                                        <span style="float: right;;margin-top: 5px;">
+                                            {{convo.time}}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div *ngIf="convo.msgtype=='2'">
+                                    <img src="{{convo.chatmsg}}" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <hr>
+            <div class="container-fluid" style="border: 1px solid #bcbcbc;  padding-top: 2%;  padding-bottom: 1.5%;">
+                <div class="row">
+                    <div class="col-lg-9">
+
+                        <input type="text" [(ngModel)]="chatconversation" name="chatconversation" required
+                            class="form-control" style=" border-style:none;" placeholder="{{labels[0].typeamessage}}" />
+                    </div>
+                    <div class="col-lg-3">
+                        <button type="submit" class="chat form-control" [disabled]="chatfrom.form.invalid"
+                            (click)="InsertChatDetails()">{{labels2[0].send}}
+                            <!-- <img src="assets/Images/send.png" alt="Avatar" class="right"  style="width:50%;"> -->
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+        </div>
+        <br>
+    </form>
+</div>

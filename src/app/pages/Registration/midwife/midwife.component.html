@@ -1,0 +1,439 @@
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="container-fluid card card:hover headerspace">
+  <div class="row headerspace">
+    <div class="col-lg-12">
+      <h5>{{labels[0].midWifeRegistration}}</h5>
+    </div>
+  </div>
+</div>
+<div class="container-fluid card card:hover" style="margin-top:20px;">
+  <form #MidwifeForm="ngForm">
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="dname_label">{{labels[0].name}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" placeholder="{{labels[0].name}}" required class="form-control" [(ngModel)]="name"
+          name="name">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="dname_label">{{labels[0].phoneNo}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" maxlength="10" placeholder="{{labels[0].phoneNo}}" name="phno" [(ngModel)]="phno" required oncopy="return false" onpaste="return false"
+          class="form-control">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="dname_label">{{labels[0].emailID}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"
+        oncopy="return false" onpaste="return false"  name="email" [(ngModel)]="email" #emailref="ngModel" placeholder="{{labels[0].emailID}}">
+        <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="aler alert-danger">
+          <div [hidden]="!emailref.errors?.pattern">
+            Please enter a valid Email ID
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].gender}} : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="radio" value="1" name="genderid" [(ngModel)]="genderid">  {{labels[0].male}} &nbsp;&nbsp;
+        <input type="radio" value="2" name="genderid" [(ngModel)]="genderid">  {{labels[0].female}}
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels[0].address}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <textarea class="form-control" rows="4" name="address" [(ngModel)]="address" required
+          placeholder="{{labels[0].address}}"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].country}} : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="countrylist" [settings]="countrydd"
+          (onSelect)="GetCountryID($event)">
+        </ng-multiselect-dropdown>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="City_label">{{labels[0].province}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="citylist" [settings]="citydd"
+          (onSelect)="GetCityID($event)">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="City_label">{{labels[0].city}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="arealist" [settings]="areadd"
+          (onSelect)="GetAreaID($event)">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <br>
+    <div class="row" *ngIf="dummid==null">
+      <div class="col-lg-3">
+        <label *ngIf="languageid=='1'">Hospital/Clinic : </label>
+        <label *ngIf="languageid=='6'">Hôpital / clinique : </label>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" required [data]="hospitalcliniclist" [settings]="hospitadd"
+          (onSelect)="GetHospitalID($event)">
+        </ng-multiselect-dropdown>
+      </div>
+    </div><br>
+    <!-- <div class="row">
+      <div class="col-lg-3">
+        <label class="DEPARTMENT_label">{{labels[0].department}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <select class="form-control" (change)="GetDepartmentID($event)">
+          <option valu="" selected>{{labels[0].select}}</option>
+          <option *ngFor="let department of departmentlist" value={{department.id}}>{{department.departmentname}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <br> -->
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Email_label">{{labels[0].homecare}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-3">
+        <input type="radio" name="homevisit" required value="1" [(ngModel)]="homevisit"> {{labels[0].yes}} &nbsp;
+        <input type="radio" name="homevisit" required value="0" [(ngModel)]="homevisit"> {{labels[0].no}}
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="dname_label">Slot Type :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4" >
+        <select class="form-control" (change)="GetSlotDurationID($event)">
+          <option value="0" selected>{{labels[0].select}}</option>
+          <option value="1">30 Minutes</option>
+          <option value="4">60 Minutes</option>
+          <option value="2">90 Minutes</option>
+          <option value="3">2 Hours</option>
+         
+        </select>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="dname_label">{{labels[0].experience}}:</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" placeholder="{{labels[0].experience}}" name="exp" [(ngModel)]="exp" required
+          class="form-control">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="dname_label" *ngIf="languageid=='1'">Education :</label>
+        <label class="dname_label" *ngIf="languageid=='6'">Diplôme :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" *ngIf="languageid=='1'" placeholder="Education" name="education" [(ngModel)]="education" required
+          class="form-control">
+
+          <input type="text" *ngIf="languageid=='6'" placeholder="Diplôme" name="education" [(ngModel)]="education" required
+          class="form-control">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="dname_label">{{labels[0].spokenLanguages}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" placeholder="{{labels[0].spokenLanguages}}" name="spokenlanguages"
+          [(ngModel)]="spokenlanguages" required class="form-control">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels[0].description}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <textarea class="form-control" rows="4" name="description" [(ngModel)]="description" required
+          placeholder="{{labels[0].description}}"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label for="" class="reglabel">{{labels[0].identityProof}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ngx-dropzone [multiple]="false" (change)="onidUpload($event)" class="dropzone_vendorinvoice h-100">
+          <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
+        </ngx-dropzone>
+        <span *ngFor="let hspphoto of showidproof">
+          <img src="{{hspphoto}}" style="height: 35px; width: auto;">
+        </span>
+      </div>
+
+      <div class="col-lg-5 specforimg" *ngIf="languageid=='1'">
+        <p>
+          NOTE :Image size should be less than <b>1MB</b> and accepted only in <b>JPG , PNG and JPEG</b> formats.
+        </p>
+      </div>
+      <div class="col-lg-5 specforimg" *ngIf="languageid=='6'">
+        <p>
+          REMARQUE: la taille de l'image doit être inférieure à 1 Mo
+          et acceptée uniquement aux formats JPG, PNG et JPEG.
+
+        </p>
+      </div>
+
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label for="" class="reglabel">{{labels[0].photo}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
+          <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
+        </ngx-dropzone>
+        <span *ngFor="let hspphoto of showphoto">
+          <img src="{{hspphoto}}" style="height: 35px; width: auto;">
+        </span>
+      </div>
+      <div class="col-lg-5 specforimg" *ngIf="languageid=='1'">
+        <p>
+          NOTE :Image size should be less than <b>1MB</b> and accepted only in <b>JPG , PNG and JPEG</b> formats.
+        </p>
+      </div>
+      <div class="col-lg-5 specforimg" *ngIf="languageid=='6'">
+        <p>
+          REMARQUE: la taille de l'image doit être inférieure à 1 Mo
+          et acceptée uniquement aux formats JPG, PNG et JPEG.
+
+        </p>
+      </div>
+
+    </div>
+    <br>
+
+
+    <div class="row">
+      <div class="col-lg-8">
+        <h4 class="text-center">Financial</h4>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-3">
+        <label class="Address_label">Tax Identification :</label>
+
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Tax Identification" [(ngModel)]="taxidentification"
+          name="taxidentification">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">Business ID :</label>
+
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Business ID" [(ngModel)]="businessid" name="businessid">
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">Commercial Registration & City :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Commercial Registration & City"
+          [(ngModel)]="commercialcity" name="commercialcity">
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">Tax Professional :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Tax Professional" [(ngModel)]="taxprofessional"
+          name="taxprofessional">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">Social security fund no :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Social security fund no"
+          [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">Name of the bank :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Name of the bank" [(ngModel)]="nameofbank"
+          name="nameofbank">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">Account name :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Account name" [(ngModel)]="accountName" name="accountName">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">Account number :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Account number" maxlength="24" [(ngModel)]="accountNumber"
+          name="accountNumber">
+      </div>
+    </div>
+    <br>
+
+    <div class="row" *ngIf="hospitalclinicid=='612'">
+      <div class="col-lg-3">
+        <label>Subscription type :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-md-8">
+        <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+          (click)="Getsubscriptontype()" value="1">Monthly Subscription
+        &nbsp;
+        <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+          (click)="Getsubscriptontype()" value="2"> Appointment Percentage
+        &nbsp;
+        <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+          (click)="Getsubscriptontype()" value="3"> Both
+      </div>
+    </div><br>
+    <div *ngIf="subscriptiontype=='1'">
+      <div class="row">
+        <div class="col-lg-3">
+          <label>Monthly Subscription :</label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" placeholder="Monthly Subscription" name="monthlysubription" [(ngModel)]="monthlysubription"
+            class="form-control" onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+        </div>
+      </div><br>
+
+    </div>
+    <div *ngIf="subscriptiontype=='2'">
+      <div class="row">
+        <div class="col-lg-3">
+          <label>Appointment percentage :</label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" placeholder="Appointment percentage" name="appointmentpercentage"
+            [(ngModel)]="appointmentpercentage" class="form-control"
+            onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+        </div>
+      </div><br>
+    </div>
+    <div *ngIf="subscriptiontype=='3'">
+      <div class="row">
+        <div class="col-lg-3">
+          <label>Appointment percentage :</label>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" placeholder="Appointment Percentage" name="appointmentpercentage"
+            [(ngModel)]="appointmentpercentage" class="form-control"
+            onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-lg-3">
+          <label>Monthly Subscription :</label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" placeholder="Monthly Subscription" name="monthlysubription" [(ngModel)]="monthlysubription"
+            class="form-control" onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+        </div>
+      </div><br>
+    </div>
+    <div class="row">
+      <div class="col-lg-5">
+      </div>
+      <div class="col-lg-2">
+        <button type="button" text_align="center" (click)="InsertMidWives()"
+          class="btn btn-block btn-md allbtns btncolor"
+          [disabled]="MidwifeForm.form.invalid">{{labels[0].save}}</button>
+      </div>
+      <div class="col-lg-5">
+      </div>
+    </div>
+    <br>
+  </form>
+</div>
+<br><br><br>

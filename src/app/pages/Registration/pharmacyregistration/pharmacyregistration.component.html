@@ -1,0 +1,339 @@
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="container-fluid card card:hover headerspace">
+  <div class="row headerspace">
+    <div class="col-lg-6">
+      <h5>{{labels[0].pharmacy}}</h5>
+    </div>
+    <div class="col-lg-6"></div>
+    <!-- <div class="col-lg-2">
+      <button type="button" routerLink="/Pharmacydashboard" class="btn   btncolor">{{labels[0].dashboard}}</button>
+    </div> -->
+  </div>
+</div>
+<div class="container-fluid card card:hover divspacee">
+  <br>
+  <form #pharmacyForm="ngForm">
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].pharmacyname}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="search" class="form-control" name="pharmacyname" required [(ngModel)]="pharmacyname"
+         placeholder="{{labels[0].pharmacyname}}">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].contactPersonName}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="search" class="form-control" name="contactpersonname" [(ngModel)]="contactpersonname"
+        oncopy="return false" onpaste="return false"  required  placeholder="{{labels[0].contactPersonName}}">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].licenseNumber}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="search" class="form-control" maxlength="15" name="licenseno" [(ngModel)]="licenseno"
+        required  placeholder="{{labels[0].licenseNumber}}"
+        oncopy="return false" onpaste="return false"  onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode>=48&&event.charCode<=57'>
+      </div>
+    </div>
+    <br>
+    <!-- <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].licenseValidTill}} : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+      
+        <input type="text" placeholder="{{labels[0].licenseValidTill}}" class="form-control" required
+          [bsConfig]="{ showWeekNumbers:false }" name="licensevalidtil" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+          [(ngModel)]="licensevalidtil" bsDatepicker>
+
+      </div>
+    </div>
+    <br> -->
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].phoneNo}} : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="search" class="form-control" maxlength="13" name="phno" [(ngModel)]="phno"
+        oncopy="return false" onpaste="return false"  required  placeholder="{{labels[0].phoneNo}}" onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].email}} : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="email" class="form-control" name="email" [(ngModel)]="email" placeholder="{{labels[0].email}}"
+        oncopy="return false" onpaste="return false" required  (ngModelChange)="onChange($event)">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].address}} : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <textarea rows="4" class="form-control" name="address" required [(ngModel)]="address"
+          placeholder="{{labels[0].address}}"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].country}} : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="countrylist" [settings]="countrydd"
+          (onSelect)="GetCountryID($event)">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].province}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="citylist" [settings]="citydd"
+          (onSelect)="GetCityID($event)">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="City_label">{{labels[0].city}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="arealist" [settings]="areadd"
+          (onSelect)="GetAreaID($event)">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].zipCode}} :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="search" class="form-control" maxlength="6" name="zipcode" [(ngModel)]="zipcode"
+          placeholder="{{labels[0].zipCode}}" onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+      </div>
+    </div>
+    <br>
+
+    <!-- <div class="row">
+      <div class="col-lg-3">
+        <label>Open 24 hrs:</label>
+        <span class="required">*</span>
+      </div>
+
+      <div class="col-md-4">
+        <input type="radio" name="fulltime" [(ngModel)]="hospitalfulltimebit" value="1" Checked>{{labels[0].yes}}
+        <input type="radio" name="fulltime" [(ngModel)]="hospitalfulltimebit" value="0">{{labels[0].no}}
+      </div>
+
+    </div>
+    <br> -->
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].timing}} :</label>
+        <!-- <span class="required">*</span> -->
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-2">
+        <input type="time" class="form-control" name="tone" required [(ngModel)]="tone"
+          placeholder="{{labels[0].timing}}">
+      </div>
+ 
+      <div class="col-lg-2">
+        <input type="time" class="form-control" name="ttwo" required [(ngModel)]="ttwo"
+          placeholder="{{labels[0].timing}}">
+      </div>
+    </div>
+    <br>
+
+
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].evngTimings}} :</label>
+        <!-- <span class="required">*</span> -->
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-2">
+        <input type="time" class="form-control" name="evengtime1" required [(ngModel)]="evengtime1"
+          placeholder="{{labels[0].timing}}">
+      </div>
+ 
+      <div class="col-lg-2">
+        <input type="time" class="form-control" name="evengtime2" required [(ngModel)]="evengtime2"
+          placeholder="{{labels[0].timing}}">
+      </div>
+    </div>
+    <br>
+
+
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].monthlysubscription}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" placeholder="{{labels[0].monthlysubscription}}" name="monthlysubription" [(ngModel)]="monthlysubription"
+         required class="form-control" onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+      </div>
+    </div>
+    <br />
+
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].contractstartdate}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }" required
+        placeholder="{{labels[0].contractstartdate}}" name="contractstartdate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+        [(ngModel)]="contractstartdate" bsDatepicker>
+      </div>
+    </div>
+    <br />
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].contractenddate}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }" required
+        placeholder="{{labels[0].contractenddate}}" name="contractenddate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+        [(ngModel)]="contractenddate" bsDatepicker>
+      </div>
+    </div>
+    <br />
+    
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].website}} :</label>
+        <!-- <span class="required">*</span> -->
+      </div>
+      <div class="col-lg-4">
+        <input type="search" class="form-control" name="website" [(ngModel)]="website"
+          placeholder="{{labels[0].website}}">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].homeDelivery}} :</label>
+
+      </div>
+      <div class="col-lg-4">
+        <input type="radio" name="homedelivery" [(ngModel)]="homedelivery" value="1">{{labels[0].yes}} &nbsp;
+        <input type="radio" name="homedelivery" [(ngModel)]="homedelivery" value="0">{{labels[0].no}}
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].nightPharmacy}} :</label>
+
+      </div>
+      <div class="col-lg-4">
+        <input type="radio" name="nightpharmacy" [(ngModel)]="nightpharmacy" value="1">{{labels[0].yes}} &nbsp;
+        <input type="radio" name="nightpharmacy" [(ngModel)]="nightpharmacy" value="0">{{labels[0].no}}
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].teleOrdering}} :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="radio" name="teleordering" [(ngModel)]="teleordering" value="1">{{labels[0].yes}} &nbsp;
+        <input type="radio" name="teleordering" [(ngModel)]="teleordering" value="0">{{labels[0].no}}
+      </div>
+    </div>
+    <br>
+    <!-- <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].preffered}} :</label>
+     
+      </div>
+      <div class="col-lg-4">
+        <input type="radio" name="prefered" [(ngModel)]="prefered" value="1">{{labels[0].yes}} &nbsp;
+        <input type="radio" name="prefered" [(ngModel)]="prefered" value="0">{{labels[0].no}}
+      </div>
+    </div>
+    <br> -->
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].description}} : </label>
+        <!-- <span class="required">*</span> -->
+      </div>
+      <div class="col-lg-4">
+        <textarea rows="4" class="form-control" name="description" [(ngModel)]="description"
+          placeholder="{{labels[0].description}}"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>{{labels[0].pharmacyPhotos}} :</label>
+
+      </div>
+      <div class="col-lg-4">
+        <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
+          <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
+
+        </ngx-dropzone>
+      </div>
+      <div>
+        <span *ngFor="let photo of showphoto">
+          <img src="{{photo}}" style="height:70px;width:50px;">&nbsp;
+        </span>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-5">
+      </div>
+      <div class="col-lg-2">
+        <button type="button" [disabled]="pharmacyForm.form.invalid||validEmail==false"
+          class="btn btn-block btn-md allbtns btncolor" (click)="insertdetails()">{{labels[0].save}}</button>
+      </div>
+      <div class="col-lg-5">
+      </div>
+      <br>
+    </div>
+    <br>
+    <br>
+    <hr>
+  </form>
+</div>
+<br>
