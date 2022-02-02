@@ -39,8 +39,8 @@ export class HelloDoctorService {
   // }
 
   public SendMail(data) {
-    let url = "14.192.17.225/AmazeIncAPI/Website/SendMail";
-    return this.http.post(url, data)
+    this.url = this.host + '/Doctor/sendemail';
+    return this.http.post(this.url, data)
   }
   public GetCountrySwitchByCountryID(cid) {
 
