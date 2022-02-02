@@ -221,7 +221,8 @@ export class SupportWebComponent implements OnInit {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: "Oui, J'accepte"
+        confirmButtonText: "Oui, J'accepte",
+        cancelButtonText: 'Non'
       }).then((result) => {
         if (result.value) {
           this.docservice.UpdateSupportForWebAcceptedbit(id).subscribe(res => {
@@ -378,7 +379,7 @@ export class SupportWebComponent implements OnInit {
       abcd.length = 0;
     }
     else {
-      Swal.fire('Photo ajoutée');
+      Swal.fire('Fichier joint');
       abcd.length = 0;
     }
   }
@@ -469,7 +470,7 @@ export class SupportWebComponent implements OnInit {
     this.docservice.UpdateSupportForWebMeridionalCommetnts(entity).subscribe(data => {
       let res = data;
       this.insertazurenotification()
-      Swal.fire('Issue Assigned Meridional Successfully');
+    
       this.sendmail1()
       var smsdesc = "Your Support Ticket has been Resolved"
       this.SendTwiliSms(smsdesc, this.smsmoibilno)
@@ -477,7 +478,13 @@ export class SupportWebComponent implements OnInit {
       this.issuephotourl = [];
       this.identityattachmentsurlssss = [];
       this.showidentityproof = [];
-
+      if(this.languageid==1)
+      {
+        Swal.fire('Issue Assigned Meridional Successfully');
+      }
+      else{
+        Swal.fire("Escalade à Méridional");
+      }
       this.GetSupportIssues();
     })
   }

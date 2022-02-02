@@ -519,6 +519,15 @@
     <hr size="30">
     <div class="row">
       <div class="col-lg-3">
+
+      </div>
+      <div class="col-lg-9">
+        <h4 class="mainheader" *ngIf="languageid=='1'">Business registration and invoicing</h4>
+        <h4 class="mainheader" *ngIf="languageid=='6'">Enregistrement et facturation des entreprises</h4>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-lg-3">
         <label class="Address_label">Tax Identification :</label>
 
       </div>
@@ -567,7 +576,14 @@
         <input type="text" class="form-control" placeholder="Social security fund no" [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
       </div>
     </div>
-    <br>
+    <div class="row">
+      <div class="col-lg-3">
+      </div>
+      <div class="col-lg-9">
+        <h4 class="mainheader" *ngIf="languageid=='1'">Bank details</h4>
+        <h4 class="mainheader" *ngIf="languageid=='6'">Coordonnées bancaires</h4>
+      </div>
+    </div>
     <div class="row">
       <div class="col-lg-3">
         <label class="Address_label">Name of the bank :</label>
@@ -577,6 +593,7 @@
       </div>
     </div>
     <br>
+    
     <div class="row">
       <div class="col-lg-3">
         <label class="Address_label">Account name :</label>
@@ -594,8 +611,15 @@
         <input type="text" class="form-control" placeholder="Account number" maxlength="24" [(ngModel)]="accountNumber" name="accountNumber">
       </div>
     </div>
-    <br>
 
+    <div class="row" *ngIf="hospitalid=='590'" >
+      <div class="col-lg-3">
+      </div>
+      <div class="col-lg-9">
+        <h4 class="mainheader" *ngIf="languageid=='1'">Subscription setup</h4>
+        <h4 class="mainheader" *ngIf="languageid=='6'">Configuration de l'abonnement</h4>
+      </div>
+    </div><br>
     <div class="row" *ngIf="hospitalid=='590'">
       <div class="col-lg-3">
         <label>Subscription type :</label>
@@ -603,13 +627,13 @@
       </div>
       <div class="col-md-8">
         <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
-           value="1">Monthly Subscription
+           [value]="1">Monthly Subscription
         &nbsp;
         <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
-           value="2"> Appointment Percentage
+           [value]="2"> Appointment Percentage
         &nbsp;
         <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
-           value="3"> Both
+           [value]="3"> Both
       </div>
     </div><br>
     <div *ngIf="subscriptiontype=='1'">

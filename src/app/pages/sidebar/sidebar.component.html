@@ -333,10 +333,8 @@
                     </ul>
                 </li>
             </ul>
-            <li *ngIf="roleid=='13'">
-                <a routerLink="/SupportProfile" (click)="highlight($event)" >{{labels[0].myProfile}}</a>
-            </li>
 
+           
 
 
             <ul class="list-unstyled components" *ngIf="roleid=='13'||roleid=='12'">
@@ -355,12 +353,7 @@
                               
                             </a>
                         </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)"  routerLink="/ResolvedPatientTickets">
-                                Problèmes résolus (Patient)
-                              
-                            </a>
-                        </li>
+                      
                         <li>
                             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='12'" routerLink="/MeridionalSupport">
                                 Escalated Tickets(Providers)
@@ -375,6 +368,25 @@
                             </a>
                         </li>
 
+                        
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled components" *ngIf="roleid=='13'||roleid=='12'">
+                <li class="active">
+                    <a href="#WebsupportticetsReports" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports</a>
+                    <ul class="collapse list-unstyled" id="WebsupportticetsReports">
+                        
+                     
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)"  routerLink="/ResolvedPatientTickets">
+                                Problèmes résolus (Patient)
+                              
+                            </a>
+                        </li>
+                       
+
                         <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/SupportCometedTickets">
                                 {{labels[0].resolvedTickets}}
@@ -384,6 +396,8 @@
                     </ul>
                 </li>
             </ul>
+
+
 
             <ul class="list-unstyled components" *ngIf="roleid=='13'||roleid=='12'">
                 <li class="active">
@@ -404,6 +418,19 @@
                     </ul>
                 </li>
             </ul>
+         
+            <ul class="list-unstyled components" *ngIf="roleid=='13'">
+                <li *ngIf="roleid=='13'">
+                    <a routerLink="/SupportRegDash" class="tablinks" (click)="highlight($event)" >{{labels[0].supportReg}}</a>
+                </li>
+            </ul>
+            <ul class="list-unstyled components" *ngIf="roleid=='13'">
+                <li *ngIf="roleid=='13'">
+                    <a routerLink="/SupportProfile" class="tablinks" (click)="highlight($event)" >{{labels[0].myProfile}}</a>
+                </li>
+            </ul>
+
+
             <ul class="list-unstyled components" *ngIf="roleid=='12'">
                 <li class="active">
                     <a href="#Masters" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{labels[0].masters}}</a>
@@ -938,11 +965,7 @@
                 <img src="assets/Images/offers32x32.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].offers}}
             </a>
 
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='5'" routerLink="/PharmacySupportDash">
-                <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].supportTickets}}
-                <!-- {{labels[0].raiseTickets}}  -->
-            </a>
-
+           
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='5'" routerLink="/ChangePhaPwd">
                 <img src="assets/Images/profile.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].changepassword}}
             </a>
@@ -955,6 +978,10 @@
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='5'" routerLink="/Quickguide">
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
                 {{labels[0].quickGuide}}
+            </a>
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='5'" routerLink="/PharmacySupportDash">
+                <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].supportTickets}}
+                <!-- {{labels[0].raiseTickets}}  -->
             </a>
 
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='5'" routerLink="/Pharmacyprofile">
@@ -1379,7 +1406,7 @@
                         </li>
                         <li *ngIf="deliverycompany=='1'">
                             <a class="tablinks" (click)="highlight($event)" routerLink="/DeliveryPartnerDashboard" >
-                                {{labels[0].prescriptionVerifiers}}
+                                {{labels[0].deliveryCompany}}
                                
                             </a>
                         </li>

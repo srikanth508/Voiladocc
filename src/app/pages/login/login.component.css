@@ -62,5 +62,11 @@ background-size: cover;
     background-clip: padding-box;
     border: 1px solid #CED495;
     border-radius: 15px;
- 
+    font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+  }
+
+  .form-control:focus
+  {
+   border:2px solid #f18235;
+   
   }

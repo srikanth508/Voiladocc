@@ -272,15 +272,15 @@
             <label>Subscription type :</label>
             <span class="required">*</span>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-8">
             <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-              (click)="Getsubscriptontype()" value="1">Monthly Subscription
+              (click)="Getsubscriptontype()" [value]="1">Monthly Subscription
             &nbsp;
             <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-              (click)="Getsubscriptontype()" value="2"> Appointment Percentage
+              (click)="Getsubscriptontype()" [value]="2"> Appointment Percentage
             &nbsp;
             <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-              (click)="Getsubscriptontype()" value="3"> Both
+              (click)="Getsubscriptontype()" [value]="3"> Both
           </div>
         </div><br>
         <div *ngIf="subscriptiontype=='1'">

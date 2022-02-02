@@ -263,19 +263,19 @@
       </div>
       <br>
       <div class="row" *ngIf="hospitalclinicid=='613'">
-        <div class="col-lg-4">
+        <div class="col-lg-8">
           <label>Subscription type :</label>
           <span class="required">*</span>
         </div>
         <div class="col-md-6">
           <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-            (click)="Getsubscriptontype()" value="1">Monthly Subscription
+            (click)="Getsubscriptontype()" [value]="1">Monthly Subscription
           &nbsp;
           <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-            (click)="Getsubscriptontype()" value="2"> Appointment Percentage
+            (click)="Getsubscriptontype()" [value]="2"> Appointment Percentage
           &nbsp;
           <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-            (click)="Getsubscriptontype()" value="3"> Both
+            (click)="Getsubscriptontype()" [value]="3"> Both
         </div>
       </div><br>
       <div *ngIf="subscriptiontype=='1'">

@@ -68,7 +68,7 @@ export class EditNurseComponent implements OnInit {
         this.description = this.nursedetails[0].description;
         this.homevisit = this.nursedetails[0].homeVisit;
         this.countryid = this.nursedetails[0].countryID;
-        this.hospitalclinicid=this.nursedetails[0].hospitalclinicID;
+        this.hospitalclinicid=this.nursedetails[0].hospitalClinicID;
         this.cityid = this.nursedetails[0].cityID;
         this.areaid = this.nursedetails[0].areaID;
         this.pincode = this.nursedetails[0].pincode;

@@ -181,7 +181,7 @@ export class PrescriptionReportsComponent implements OnInit {
   totalamount: any;
   public GetReports() {
 
-    this.docservice.GetPatient_TextMedicineDetailsReportsWeb(this.id, this.startdate, this.enddate, this.languageid).subscribe(
+    this.docservice.GetPatient_TextMedicineDetails(this.id, this.startdate, this.enddate, this.languageid).subscribe(
       data => {
 
         this.reportlist = data;

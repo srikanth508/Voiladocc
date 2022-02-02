@@ -74,7 +74,7 @@
             <th>{{labels[0].actions}}</th>
           </tr>
           <tr
-            *ngFor="let details of doctorlist|filter:term|filter:departmentname| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}">
+            *ngFor="let details of doctorlist|filter:term|filter:departmentname">
             <!-- | paginate: { id: 'foo', itemsPerPage: 10, currentPage: p} -->
             <td><img src="{{details.photoURL}}" style="height: 50px;width: 50px;" /></td>
             <td>{{details.doctorName}}</td>
@@ -114,11 +114,11 @@
       </table>
     </div>
   </div><br><br>
-  <div class="col-lg-12" style="text-align: center">
+  <!-- <div class="col-lg-12" style="text-align: center">
     <br>
     <pagination-controls id="foo" (pageChange)="pageChanged($event)" maxSize="15" directionLinks="true" autoHide="true"
       responsive="true" previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination"
       screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
     </pagination-controls>
-  </div><br><br>
+  </div><br><br> -->
 </div><br><br><br>

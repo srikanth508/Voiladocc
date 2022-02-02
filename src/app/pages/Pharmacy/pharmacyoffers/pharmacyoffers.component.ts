@@ -3,6 +3,8 @@ import { HelloDoctorService } from '../../../hello-doctor.service';
 import Swal from 'sweetalert2';
 import { formatDate } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+import { collectExternalReferences } from '@angular/compiler';
 @Component({
   selector: 'app-pharmacyoffers',
   templateUrl: './pharmacyoffers.component.html',
@@ -10,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PharmacyoffersComponent implements OnInit {
 
-  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute) { }
+  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute, private spinner: NgxSpinnerService) { }
 
   public pharmacyid: any;
   public offername: any;
@@ -79,7 +81,7 @@ export class PharmacyoffersComponent implements OnInit {
 
     this.docservice.GetPharmacyOfferByPharmacyID(this.pharmacyid).subscribe(
       data => {
-        
+
         this.offerslist = data;
         var list = this.offerslist.filter(x => x.id == this.id)
         this.offername = list[0].offerName,
@@ -87,7 +89,7 @@ export class PharmacyoffersComponent implements OnInit {
           this.startdate = list[0].sdate,
           this.enddate = list[0].edate,
           this.offer = list[0].offer
-        
+
       }, error => {
       }
     )
@@ -98,53 +100,63 @@ export class PharmacyoffersComponent implements OnInit {
 
 
   public insertdetails() {
-
-    var entity = {
-      'PharmacyID': this.pharmacyid,
-      'OfferName': this.offername,
-      'Description': this.descripton,
-      'SDate': this.startdate,
-      'EDate': this.enddate,
-      'Offer': this.offer
-    }
-    this.docservice.InsertPharmacyOffers(entity).subscribe(data => {
-
-      if (data != 0) {
-        this.offerid = data;
-        for (let i = 0; i < this.attachmentsurl.length; i++) {
-          var entity = {
-            'PharmacyID': this.pharmacyid,
-            'PharmacyOfferID': this.offerid,
-            'PhotoURL': this.attachmentsurl[0]
-          }
-          this.docservice.InsertPharmacyOfferPhotos(entity).subscribe(data => {
-
-            if (data != 0) {
-              if (this.languageid == 1) {
-
-                Swal.fire('Added Successfully.');
-              }
-              else {
-                Swal.fire('Enregistré');
-
-              }
-
-            }
-          })
-        }
-        if (this.languageid == 1) {
-          Swal.fire('Added Successfully.');
-          location.href = "#/OffersDashboard"
-          this.clear();
-        }
-        else if (this.languageid == 6) {
-          Swal.fire('Enregistré.');
-          location.href = "#/OffersDashboard"
-          this.clear();
-        }
-
+    if (this.attachmentsurl.length == 0 || this.attachmentsurl == undefined) {
+      if (this.languageid == 1) {
+        Swal.fire("Please Select Attachment");
       }
-    })
+      else {
+        Swal.fire("Veuillez sélectionner la pièce jointe");
+      }
+    }
+    else {
+      var entity = {
+        'PharmacyID': this.pharmacyid,
+        'OfferName': this.offername,
+        'Description': this.descripton,
+        'SDate': this.startdate,
+        'EDate': this.enddate,
+        'Offer': this.offer
+      }
+      this.docservice.InsertPharmacyOffers(entity).subscribe(data => {
+
+        if (data != 0) {
+          this.offerid = data;
+          for (let i = 0; i < this.attachmentsurl.length; i++) {
+            var entity = {
+              'PharmacyID': this.pharmacyid,
+              'PharmacyOfferID': this.offerid,
+              'PhotoURL': this.attachmentsurl[0]
+            }
+            this.docservice.InsertPharmacyOfferPhotos(entity).subscribe(data => {
+
+              if (data != 0) {
+                if (this.languageid == 1) {
+
+                  Swal.fire('Added Successfully.');
+                }
+                else {
+                  Swal.fire('Enregistré');
+
+                }
+
+              }
+            })
+          }
+          if (this.languageid == 1) {
+            Swal.fire('Added Successfully.');
+            location.href = "#/OffersDashboard"
+            this.clear();
+          }
+          else if (this.languageid == 6) {
+            Swal.fire('Enregistré.');
+            location.href = "#/OffersDashboard"
+            this.clear();
+          }
+
+        }
+      })
+
+    }
 
   }
 
@@ -167,7 +179,7 @@ export class PharmacyoffersComponent implements OnInit {
         if (this.languageid == 1) {
           this.updatephotos()
           Swal.fire('Added Successfully.');
-          
+
           location.href = "#/OffersDashboard"
           this.clear();
         }
@@ -208,6 +220,9 @@ export class PharmacyoffersComponent implements OnInit {
   public dummattachmenturl = []
 
   public onattachmentUpload(abcd) {
+    this.spinner.show();
+    this.attachmentsurl.length = 0;
+    this.attachmentsurl = []
     this.dummattachmenturl = []
     // for (let i = 0; i < abcd.length; i++) {
     this.attachments.push(abcd.addedFiles[0]);
@@ -226,9 +241,10 @@ export class PharmacyoffersComponent implements OnInit {
   public photodetail = []
   public uploadattachments() {
     this.docservice.AttachmentsUpload(this.attachments).subscribe(res => {
+      this.spinner.hide()
       this.attachmentsurl.push(res);
       this.dummattachmenturl.push(res);
-    
+
       let a = this.dummattachmenturl[0].slice(2);
 
       let b = 'https://maroc.voiladoc.org' + a;
@@ -236,6 +252,8 @@ export class PharmacyoffersComponent implements OnInit {
       this.photodetail.push(b)
       this.attachments.length = 0;
 
+    }, error => {
+      this.spinner.hide()
     })
     // this.sendattachment();
   }
@@ -255,14 +273,16 @@ export class PharmacyoffersComponent implements OnInit {
 
 
   public updatephotos() {
-    
+    debugger
     var entity = {
       'ID': this.id,
       'PhotoURL': this.attachmentsurl[0]
     }
     this.docservice.UpdatePharmacyOffersPhotos(entity).subscribe(data => {
-      
+      debugger
       this.phrmayphotos()
+    },error=>{
+      console.log("Image Error");
     })
   }
 }
