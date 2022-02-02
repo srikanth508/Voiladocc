@@ -92,10 +92,6 @@ import { DiagnosticReportsComponent } from './pages/Diagnostic Center/diagnostic
 import { NurseReportsComponent } from './pages/Nurse/nurse-reports/nurse-reports.component';
 import { PhysiotherapistReportsComponent } from './pages/physiotherapist/physiotherapist-reports/physiotherapist-reports.component';
 import { MideWifeReportsComponent } from './pages/Midewife/mide-wife-reports/mide-wife-reports.component';
-import { NurseTimingsComponent } from './pages/Nurse/nurse-timings/nurse-timings.component';
-import { PhysiotherapistTimingsComponent } from './pages/physiotherapist/physiotherapist-timings/physiotherapist-timings.component';
-import { MidWifeTimingsComponent } from './pages/Midewife/mid-wife-timings/mid-wife-timings.component';
-
 import { DoctorPrescriptionComponent } from './pages/Pharmacy/doctor-prescription/doctor-prescription.component';
 import { PrescriptionReportsComponent } from './pages/Pharmacy/prescription-reports/prescription-reports.component';
 import { PreviousVideosComponent } from './pages/Doctor/previous-videos/previous-videos.component';
@@ -117,16 +113,12 @@ import { ServiceMasterComponent } from './pages/Masters/service-master/service-m
 import { ServiceMasterDashComponent } from './pages/Masters/service-master-dash/service-master-dash.component';
 import { FacilityMasterComponent } from './pages/Masters/facility-master/facility-master.component';
 import { FacilityMasterDashComponent } from './pages/Masters/facility-master-dash/facility-master-dash.component';
-import { MedicineTypeMasterComponent } from './pages/Masters/medicine-type-master/medicine-type-master.component';
-import { MedicineTypeMasterDashComponent } from './pages/Masters/medicine-type-master-dash/medicine-type-master-dash.component';
 import { DiagnosticTestTypeComponent } from './pages/Masters/diagnostic-test-type/diagnostic-test-type.component';
 import { DiagnosticTestTypeDashComponent } from './pages/Masters/diagnostic-test-type-dash/diagnostic-test-type-dash.component';
 import { DiagnosticTestMasterComponent } from './pages/Masters/diagnostic-test-master/diagnostic-test-master.component';
 import { DiaTestDashComponent } from './pages/Masters/dia-test-dash/dia-test-dash.component';
 import { BloodGroupMasterComponent } from './pages/Masters/blood-group-master/blood-group-master.component';
 import { BloodGroupMasterDashComponent } from './pages/Masters/blood-group-master-dash/blood-group-master-dash.component';
-import { WhenToConsumeComponent } from './pages/Masters/when-to-consume/when-to-consume.component';
-import { WhenToConsumeMasterComponent } from './pages/Masters/when-to-consume-master/when-to-consume-master.component';
 import { RelationshipTypeComponent } from './pages/Masters/relationship-type/relationship-type.component';
 import { RelationshipTypeDashComponent } from './pages/Masters/relationship-type-dash/relationship-type-dash.component';
 import { InsuranceMasterComponent } from './pages/Masters/insurance-master/insurance-master.component';
@@ -152,12 +144,7 @@ import { MyPatientPrescriptionsComponent } from './pages/LocalDoctor/my-patient-
 import { MyProfilesComponent } from './pages/LocalDoctor/my-profiles/my-profiles.component';
 import { AnnounsementsComponent } from './pages/Announsements/announsements/announsements.component';
 import { AnnounseDashComponent } from './pages/Announsements/announse-dash/announse-dash.component';
-import { NurseFeesComponent } from './pages/HomeVisitsFees/nurse-fees/nurse-fees.component';
-import { NurseFeeDashComponent } from './pages/HomeVisitsFees/nurse-fee-dash/nurse-fee-dash.component';
-import { PhysioFeesComponent } from './pages/HomeVisitsFees/physio-fees/physio-fees.component';
-import { PhysiFeedashComponent } from './pages/HomeVisitsFees/physi-feedash/physi-feedash.component';
-import { MidwifeFeesComponent } from './pages/HomeVisitsFees/midwife-fees/midwife-fees.component';
-import { MidwifeFeesDashComponent } from './pages/HomeVisitsFees/midwife-fees-dash/midwife-fees-dash.component';
+
 import { PatientWalletComponent } from './pages/Wallet/patient-wallet/patient-wallet.component';
 import { SupportDashComponent } from './pages/Support/support-dash/support-dash.component';
 import { MyRevenueComponent } from './pages/Doctor/my-revenue/my-revenue.component';
@@ -304,8 +291,6 @@ import { FAQuestionsComponent } from './pages/Faq/faquestions/faquestions.compon
 import { AddQuickGuideComponent } from './pages/Quick Guide/add-quick-guide/add-quick-guide.component';
 import { QuickGuideDashComponent } from './pages/Quick Guide/quick-guide-dash/quick-guide-dash.component';
 import { EditQuickGuideComponent } from './pages/Quick Guide/edit-quick-guide/edit-quick-guide.component';
-import { TopicMasterComponent } from './pages/Masters/topic-master/topic-master.component';
-import { TopicMasterDashComponent } from './pages/Masters/topic-master-dash/topic-master-dash.component';
 import { EnableLocalDoctorComponent } from './pages/Masters/enable-local-doctor/enable-local-doctor.component';
 import { QuickguideComponent } from './pages/Quick Guide/quickguide/quickguide.component';
 import { DocChangePwdComponent } from './pages/Doctor/doc-change-pwd/doc-change-pwd.component';
@@ -322,7 +307,6 @@ import { IndRecpdashComponent } from './pages/Doctor/ind-recpdash/ind-recpdash.c
 import { DocRecpAppointmentsComponent } from './pages/Doctor/doc-recp-appointments/doc-recp-appointments.component';
 import { IndBookAppointmentComponent } from './pages/IndependentDocRecep/ind-book-appointment/ind-book-appointment.component';
 import { IndDocPaymentsComponent } from './pages/IndependentDocRecep/ind-doc-payments/ind-doc-payments.component';
-import { DatecheckComponent } from './pages/Doctor/datecheck/datecheck.component';
 import { PatientInvitesDashComponent } from './pages/AdminDashboard/patient-invites-dash/patient-invites-dash.component';
 import { InvitationMasterComponent } from './pages/AdminDashboard/invitation-master/invitation-master.component';
 import { InvitationDashComponent } from './pages/AdminDashboard/invitation-dash/invitation-dash.component';
@@ -479,10 +463,6 @@ const routes: Routes = [
   { path: 'PhysiotherapistReports/:id', component: PhysiotherapistReportsComponent },
   { path: 'MideWifeReports', component: MideWifeReportsComponent },
   { path: 'MideWifeReports/:id', component: MideWifeReportsComponent },
-  { path: 'NurseTimings', component: NurseTimingsComponent },
-  { path: 'PhysiotherapistTimings', component: PhysiotherapistTimingsComponent },
-  { path: 'MidWifeTimings', component: MidWifeTimingsComponent },
-
   { path: 'DoctorPrescription', component: DoctorPrescriptionComponent },
   { path: 'PrescriptionReports', component: PrescriptionReportsComponent },
   { path: 'PrescriptionReports/:id', component: PrescriptionReportsComponent },
@@ -514,9 +494,6 @@ const routes: Routes = [
   { path: 'FacilityMaster', component: FacilityMasterComponent },
   { path: 'FacilityMaster/:id', component: FacilityMasterComponent },
   { path: 'FacilityMasterDash', component: FacilityMasterDashComponent },
-  { path: 'MedicineTypeMaster', component: MedicineTypeMasterComponent },
-  { path: 'MedicineTypeMaster/:id', component: MedicineTypeMasterComponent },
-  { path: 'MedicineTypeMasterDash', component: MedicineTypeMasterDashComponent },
   { path: 'DiagnosticTestType', component: DiagnosticTestTypeComponent },
   { path: 'DiagnosticTestTypeDash', component: DiagnosticTestTypeDashComponent },
   { path: 'DiagnosticTestType/:id', component: DiagnosticTestTypeComponent },
@@ -526,9 +503,6 @@ const routes: Routes = [
   { path: 'BloodGroupMaster', component: BloodGroupMasterComponent },
   { path: 'BloodGroupMaster/:id', component: BloodGroupMasterComponent },
   { path: 'BloodGroupMasterDash', component: BloodGroupMasterDashComponent },
-  { path: 'WhenToConsume', component: WhenToConsumeComponent },
-  { path: 'WhenToConsume/:id', component: WhenToConsumeComponent },
-  { path: 'WhenToConsumeMaster', component: WhenToConsumeMasterComponent },
   { path: 'RelationshipType', component: RelationshipTypeComponent },
   { path: 'RelationshipTypeDash', component: RelationshipTypeDashComponent },
   { path: 'InsuranceMaster', component: InsuranceMasterComponent },
@@ -550,7 +524,6 @@ const routes: Routes = [
   { path: 'AdminMidWifeDash', component: AdminMidWifeDashComponent },
   { path: 'MidWifeAdminDashDetails/:id', component: MidWifeAdminDashDetailsComponent },
   { path: 'LocalDoctorRegistration', component: LocalDoctorRegistrationComponent },
-
   { path: 'LocalDoctorRegistration/:id', component: LocalDoctorRegistrationComponent },
 
   { path: 'LocalDocDash', component: LocalDocDashComponent },
@@ -559,15 +532,6 @@ const routes: Routes = [
   { path: 'Announsements', component: AnnounsementsComponent },
   { path: 'Announsements/:id', component: AnnounsementsComponent },
   { path: 'AnnounseDash', component: AnnounseDashComponent },
-  { path: 'NurseFees', component: NurseFeesComponent },
-  { path: 'NurseFees/:id', component: NurseFeesComponent },
-  { path: 'NurseFeeDash', component: NurseFeeDashComponent },
-  { path: 'PhysioFees', component: PhysioFeesComponent },
-  { path: 'PhysioFees/:id', component: PhysioFeesComponent },
-  { path: 'PhysiFeedash', component: PhysiFeedashComponent },
-  { path: 'MidwifeFees', component: MidwifeFeesComponent },
-  { path: 'MidwifeFees/:id', component: MidwifeFeesComponent },
-  { path: 'MidwifeFeesDash', component: MidwifeFeesDashComponent },
   { path: 'PatientWallet', component: PatientWalletComponent },
   { path: 'SupportDash', component: SupportDashComponent },
   { path: 'MyRevenue', component: MyRevenueComponent },
@@ -734,9 +698,6 @@ const routes: Routes = [
   { path: 'AddQuickGuide', component: AddQuickGuideComponent },
   { path: 'QuickGuideDash', component: QuickGuideDashComponent },
   { path: 'EditQuickGuide/:id', component: EditQuickGuideComponent },
-  { path: 'TopicMaster', component: TopicMasterComponent },
-  { path: 'TopicMasterDash', component: TopicMasterDashComponent },
-  { path: 'TopicMaster/:id', component: TopicMasterComponent },
   { path: 'EnableLocalDoctor', component: EnableLocalDoctorComponent },
   { path: 'Quickguide', component: QuickguideComponent },
   { path: 'DocChangePwd', component:     DocChangePwdComponent},
@@ -753,7 +714,6 @@ const routes: Routes = [
   { path: 'DocRecpAppointments', component:  DocRecpAppointmentsComponent},
   { path: 'IndBookAppointment', component:  IndBookAppointmentComponent},
   { path: 'IndDocPayments', component:  IndDocPaymentsComponent},
-  { path: 'Datecheck', component:  DatecheckComponent},
   { path: 'Pharmacyoffers/:id', component: PharmacyoffersComponent },
   { path: 'PatientInvitesDash', component:  PatientInvitesDashComponent},
   { path: 'InvitationMaster', component:  InvitationMasterComponent},

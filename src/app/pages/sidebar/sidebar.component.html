@@ -448,12 +448,6 @@
                             </a>
                         </li>
                         <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/TopicMasterDash">
-                                Topic Master
-                              
-                            </a>
-                        </li>
-                        <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/CountryDash">
                                 {{labels[0].countryMaster}}
                               
@@ -519,12 +513,6 @@
                               
                             </a>
                         </li>
-                        <!-- <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/WhenToConsumeMaster">
-                                {{labels[0].whenToConsumeMaster}}
-                              
-                            </a>
-                        </li> -->
                         <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/DegreeMasterDash">
                                 {{labels[0].degreeMaster}}
@@ -1081,10 +1069,7 @@
                     {{labels[0].cancelledAppointments}}
                 </a>
             </div>
-            <!-- <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhysiotherapistTimings">
-                <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; Planning
-               
-            </a> -->
+           
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhysiomonthWiseSchedule">
                 <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; Agenda
             </a>
@@ -1978,21 +1963,12 @@
                             </a>
                         </li>
 
-
-
-
-
-
                         <li *ngIf="faciltymaster=='1'">
                             <a class="tablinks" (click)="highlight($event)"  routerLink="/FacilityMasterDash" >
                                 {{labels[0].facilityMaster}}
                             </a>
                         </li>
-                        <li *ngIf="medicinetypemaster=='1'">
-                            <a class="tablinks" (click)="highlight($event)"  routerLink="/MedicineTypeMasterDash" >
-                                {{labels[0].medicineTypeMaster}}
-                            </a>
-                        </li>
+                     
                         <li *ngIf="diagnostictesttype=='1'">
                             <a class="tablinks" (click)="highlight($event)"  routerLink="/DiagnosticTestTypeDash" >
                                 {{labels[0].diagnosticTestType}}
