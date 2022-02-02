@@ -347,6 +347,7 @@ import { FoldersDashComponent } from './pages/PersonalFolders/folders-dash/folde
 import { MyFilesComponent } from './pages/PersonalFolders/my-files/my-files.component';
 import { SubFolderFilesComponent } from './pages/PersonalFolders/sub-folder-files/sub-folder-files.component';
 import { MysubfolderfilesComponent } from './pages/PersonalFolders/mysubfolderfiles/mysubfolderfiles.component';
+import { VideoCallV2Component } from './pages/Doctor/video-call-v2/video-call-v2.component';
 
 
 
@@ -758,6 +759,8 @@ const routes: Routes = [
   { path: 'MyFiles/:id/:Foldername', component:  MyFilesComponent},
   { path: 'SubFolderFiles/:folderid/:subfolderid/:Foldername/:SubFolderName', component:  SubFolderFilesComponent},
   { path: 'Mysubfolderfiles/:folderid/:subfolderid/:SubfoldersID/:Foldername/:SubFolderName/:SubFoldersName', component:  MysubfolderfilesComponent},
+  { path: 'VideoCallV2', component:  VideoCallV2Component},
+
 ];
 
 @NgModule({

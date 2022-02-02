@@ -1,0 +1,23 @@
+<div class="container-fluid  ">
+  <div class="col-lg-3 card">
+    <div class="row">
+      <div class="col-lg-6">
+        <label>Patient</label>
+      </div>
+      <div class="col-lg-6">
+        <label>02:00</label>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-9">
+    <div *ngIf="session">
+      <div class="col-lg-6">
+        <app-subscriber *ngFor="let stream of streams" [stream]="stream" [session]="session" id="subscibre">
+        </app-subscriber><br>
+      </div>
+      <div class="col-lg-6">
+        <app-publisher [session]="session" id="publishme" style="display: block;"></app-publisher>
+      </div>
+    </div>
+  </div>
+</div>

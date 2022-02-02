@@ -528,6 +528,11 @@
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Myappointments">
                 <img src="assets/Images/app.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].myAppointments}}
             </a>
+
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/VideoCallV2">
+                <img src="assets/Images/app.png" style="width: 15px;">&nbsp; &nbsp; Video Call
+            </a>
+
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/DoctorDashboard">
                 <img src="assets/Images/dash.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].dashboard}}
             </a>
