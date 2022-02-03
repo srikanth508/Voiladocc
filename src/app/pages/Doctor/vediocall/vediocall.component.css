@@ -261,11 +261,11 @@ color:white;
   border-bottom: 3px solid lightgray;
   text-align: left;
   /* font-family: 'Bookman Old Style'; */
-  font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 label {
-  font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 774774;
   /* color: #828282; */
   font-size: 13px;
@@ -280,5 +280,5 @@ label {
 }
 
 .span{
-  font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
