@@ -7,11 +7,11 @@ const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.
 const EXCEL_EXTENSION = '.xlsx';
 import * as FileSaver from 'file-saver';
 @Component({
-  selector: 'app-hsp-clidash',
-  templateUrl: './hsp-clidash.component.html',
-  styleUrls: ['./hsp-clidash.component.css']
+  selector: 'app-groupofdocdash',
+  templateUrl: './groupofdocdash.component.html',
+  styleUrls: ['./groupofdocdash.component.css']
 })
-export class HspClidashComponent implements OnInit {
+export class GroupofdocdashComponent implements OnInit {
 
   constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute) { }
 
@@ -128,7 +128,7 @@ export class HspClidashComponent implements OnInit {
       data => {
 
         this.dummlist = data;
-        this.dummlist1 = this.dummlist.filter(x => x.hospital_ClinicID == 1)
+        this.dummlist1 = this.dummlist.filter(x => x.hospital_ClinicID == 3)
         this.hospitalcliniclist = this.dummlist1.filter(x => x.id != 590 && x.id != 614 && x.id != 613 && x.id != 612)
 
         this.hospitalcount = this.hospitalcliniclist.length;

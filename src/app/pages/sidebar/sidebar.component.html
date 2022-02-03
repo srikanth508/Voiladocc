@@ -1342,6 +1342,14 @@
                                 <!-- {{labels[0].appointments}} -->
                             </a>
                         </li>
+
+                        <li *ngIf="clinics=='1'">
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/Groupofdocdash" >
+                                {{labels[0].groupofdoctors}}
+                                <!-- {{labels[0].appointments}} -->
+                            </a>
+                        </li>
+
                         <li *ngIf="doctor=='1'">
                             <a class="tablinks" (click)="highlight($event)" routerLink="/Docdash" >
                                 {{labels[0].doctor}}

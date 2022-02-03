@@ -470,3 +470,8 @@ color:white;
   
   text-align:justify;
 } */
+.tableheight
+{
+  overflow: auto;
+  height: 350px;
+}

@@ -1912,78 +1912,113 @@ export class MyappointmentsComponent implements OnInit {
 
 
 
-  public adddetails() {
-    if (this.testid == undefined || this.testid == 0 || this.testssid == 0 || this.testssid == undefined) {
-
-      if (this.languageid == 1) {
-        Swal.fire('Please Fill Manadatory Fields');
-      }
-      else {
-        Swal.fire('Veuillez remplir les champs obligatoires*');
-      }
-
-    }
-    else {
-
-      this.tablecount = 1;
-      var entity = {
-        'Sno': this.idcount,
-        'DiagnosticTestTypeID': this.testid,
-        'DiagnosticTestName': this.diatest,
-        'DiagnosticTestTypeName': this.diagnostictesttypename,
-        'TestName': this.diagnostictestname,
-        'TestID': this.testssid,
-        'ClinicalInfo': this.clinicalinfo
-      }
-      this.qwerty.push(entity);
-      if (this.testtemplate == 1) {
-        this.SaveTestTemplate()
-      }
-      if (this.templateid != 0) {
-        this.UpdateTemplte()
-      }
-      this.idcount = this.idcount + 1;
-      this.diatest = "";
-      this.testslist.length = 0;
-      this.tsetssslist.length = 0;
-      this.diagnostictestname = ""
-      this.testid = 0;
-      this.testssid = 0;
-      this.testtemplate = 2;
-      this.getdiagnosticcentertests();
-      this.GetDiagnpsticDoctorTemplates();
-    }
-  }
-
-
-  public SaveTestTemplate() {
+  DiaenterArray=[]
+  tablecount5:any;
+  
+  public adddetailstestenter() {
+    this.tablecount5 = 1;
     var entity = {
-      'DoctorID': this.doctorid,
-      'TestTypeID': this.testid,
-      'TestID': this.testssid,
-      'AppointmentTypeID': this.diaappointmentID,
-      'ClinicalInfo': this.clinicalinfo,
-      'TemplateName': this.testtemplatename
+      'Sno': this.idcount,
+      'DiagnosticTestTypeID': 0,
+      'DiagnosticTestName': this.diagnostictestname,
+      'DiagnosticTestTypeName': '',
+      'TestName':this.diagnostictestname,
+      'TestID': 0,
+      'ClinicalInfo': this.clinicalinfo
     }
-    this.docservice.InsertDiagnosticTest_DoctorTemplate(entity).subscribe(data => {
-      this.GetDiagnpsticDoctorTemplates();
-    })
+    this.DiaenterArray.push(entity);
+    this.diagnostictestname="";
+    debugger
+    // var test = this.testslist.findIndex(x => x.id == code.id);
+    // this.testsslist = this.testslist.slice(test, 1, this.testslist.length);
+
+    debugger
+    // if (this.testtemplate == 1) {
+    //   this.SaveTestTemplate()
+    // }
+    // if (this.templateid != 0) {
+    //   this.UpdateTemplte()
+    // }
+    this.idcount = this.idcount + 1;
+    this.diatest = "";
+    // this.testslist.length = 0;
+    // this.tsetssslist.length = 0;
+    // this.diagnostictestname = ""
+    // this.testid = 0;
+    // this.testssid = 0;
+    this.testtemplate = 2;
+    // this.getdiagnosticcentertests();
+    // this.GetDiagnpsticDoctorTemplates();
   }
 
-  public UpdateTemplte() {
+
+
+
+  public adddetails(code) {
+    this.tablecount = 1;
+
     var entity = {
-      'ID': this.templateid,
-      'DoctorID': this.doctorid,
-      'TestTypeID': this.testid,
-      'TestID': this.testssid,
-      'AppointmentTypeID': this.diaappointmentID,
-      'ClinicalInfo': this.clinicalinfo,
-      'TemplateName': this.testtemplatename
+      'Sno': this.idcount,
+      'DiagnosticTestTypeID': code.testtypeid,
+      'DiagnosticTestName': code.short,
+      'DiagnosticTestTypeName': code.name,
+      'TestName': code.short,
+      'TestID': code.id,
+      'ClinicalInfo': this.clinicalinfo
     }
-    this.docservice.UpdateDiagnosticTest_DoctorTemplate(entity).subscribe(data => {
-      this.GetDiagnpsticDoctorTemplates();
-    })
+    this.qwerty.push(entity);
+    debugger
+    // var test = this.testslist.findIndex(x => x.id == code.id);
+    // this.testsslist = this.testslist.slice(test, 1, this.testslist.length);
+
+    debugger
+    // if (this.testtemplate == 1) {
+    //   this.SaveTestTemplate()
+    // }
+    // if (this.templateid != 0) {
+    //   this.UpdateTemplte()
+    // }
+    this.idcount = this.idcount + 1;
+    this.diatest = "";
+    // this.testslist.length = 0;
+    // this.tsetssslist.length = 0;
+    // this.diagnostictestname = ""
+    // this.testid = 0;
+    // this.testssid = 0;
+    this.testtemplate = 2;
+    // this.getdiagnosticcentertests();
+    this.GetDiagnpsticDoctorTemplates();
   }
+
+
+  // public SaveTestTemplate() {
+  //   var entity = {
+  //     'DoctorID': this.doctorid,
+  //     'TestTypeID': this.testid,
+  //     'TestID': this.testssid,
+  //     'AppointmentTypeID': this.diaappointmentID,
+  //     'ClinicalInfo': this.clinicalinfo,
+  //     'TemplateName': this.testtemplatename
+  //   }
+  //   this.docservice.InsertDiagnosticTest_DoctorTemplate(entity).subscribe(data => {
+  //     this.GetDiagnpsticDoctorTemplates();
+  //   })
+  // }
+
+  // public UpdateTemplte() {
+  //   var entity = {
+  //     'ID': this.templateid,
+  //     'DoctorID': this.doctorid,
+  //     'TestTypeID': this.testid,
+  //     'TestID': this.testssid,
+  //     'AppointmentTypeID': this.diaappointmentID,
+  //     'ClinicalInfo': this.clinicalinfo,
+  //     'TemplateName': this.testtemplatename
+  //   }
+  //   this.docservice.UpdateDiagnosticTest_DoctorTemplate(entity).subscribe(data => {
+  //     this.GetDiagnpsticDoctorTemplates();
+  //   })
+  // }
 
 
 
@@ -1998,18 +2033,18 @@ export class MyappointmentsComponent implements OnInit {
       this.SendTwiliSms(smsdesc, this.smsmobileno)
     }
     debugger
-    var checktestlist = this.tsetssslist.filter(x => x.checked == true)
+    // var checktestlist = this.tsetssslist.filter(x => x.checked == true)
     debugger
-    for (let i = 0; i < checktestlist.length; i++) {
+    for (let i = 0; i < this.qwerty.length; i++) {
       debugger
       var entity = {
         'DoctorID': this.doctorid,
         'PateintID': this.diapatientid,
-        'DiagnosticTestTypeID': 1,
-        'DiagnosticTestName': checktestlist[i].short,
+        'DiagnosticTestTypeID': this.qwerty[i].DiagnosticTestTypeID,
+        'DiagnosticTestName': this.qwerty[i].DiagnosticTestName,
         'LanguageID': this.languageid,
         'AppointmentID': this.diaappointmentID,
-        'TestsID': checktestlist[i].id,
+        'TestsID': this.qwerty[i].TestID,
         'ClinicalInfo': 0
       }
       this.docservice.InsertDoctor_PatientDiagnostics(entity).subscribe(data => {
@@ -2017,8 +2052,6 @@ export class MyappointmentsComponent implements OnInit {
         if (data != 0) {
           if (this.languageid == 1) {
             Swal.fire('Completed', 'Diagnostic Tests Added successfully', 'success');
-            checktestlist = [];
-            checktestlist = 0;
             this.testdisplay = "none";
             document.getElementById("close").click();
             this.getdiagnostictests();
@@ -2028,7 +2061,7 @@ export class MyappointmentsComponent implements OnInit {
             this.Insertnotificationtestazure();
             this.Insertnotificationtest()
             this.tablecount = 0;
-            this.testid.length = 0;
+            
             // this.tsetssslist = 0;
             this.testssid = 0;
 
@@ -2052,7 +2085,6 @@ export class MyappointmentsComponent implements OnInit {
             this.Insertnotificationtestazure()
             this.Insertnotificationtest()
             this.tablecount = 0;
-            this.testid.length = 0;
             this.tsetssslist = 0;
             this.testssid = 0;
             this.SerachtestOn = 0;
@@ -2111,76 +2143,83 @@ export class MyappointmentsComponent implements OnInit {
 
 
   public insertDiagnostictest() {
-    debugger
-    var entity = {
-      'DoctorID': this.doctorid,
-      'PateintID': this.diapatientid,
-      'DiagnosticTestTypeID': 1,
-      'DiagnosticTestName': this.diagnostictestname,
-      'LanguageID': this.languageid,
-      'AppointmentID': this.diaappointmentID,
-      'TestsID': 59,
-      'ClinicalInfo': 0
-    }
-    this.docservice.InsertDoctor_PatientDiagnostics(entity).subscribe(data => {
+
+    for(let i=0;i<this.DiaenterArray.length;i++)
+    {
       debugger
-      if (data != 0) {
-        if (this.languageid == 1) {
-          Swal.fire('Completed', 'Diagnostic Tests Added successfully', 'success');
-          debugger
-          this.testdisplay = "none";
-          document.getElementById("close").click();
-          this.getdiagnostictests();
-          this.SerachtestOn = 0;
-          this.testsname = "";
-          this.VisitDoctorAppointmentStatus(this.diaappointmentID);
-          this.Insertnotificationtestazure();
-          this.Insertnotificationtest()
-          this.tablecount = 0;
-          this.testid.length = 0;
-          // this.tsetssslist = 0;
-          this.testssid = 0;
-          this.diagnostictestname = ""
-
-
-
-          if (this.followupvisit == 1) {
-            this.docservice.UpdateBookAppointmentFollowupVisit(this.diaappointmentID).subscribe(data => {
-            })
-
-          }
-          this.followupvisit = 0;
-        }
-        else if (this.languageid == 6) {
-          Swal.fire('Détails enregistrés', 'Test de laboratoire', 'success');
-          this.testdisplay = "none";
-          document.getElementById("close").click();
-          this.qwerty = [];
-          this.qwerty.length = 0;
-          this.getdiagnostictests();
-          this.SerachtestOn = 0;
-          this.testsname = "";
-          this.VisitDoctorAppointmentStatus(this.diaappointmentID);
-          this.Insertnotificationtestazure()
-          this.Insertnotificationtest()
-          this.tablecount = 0;
-          this.testid.length = 0;
-          this.tsetssslist = 0;
-          this.testssid = 0;
-          this.SerachtestOn = 0;
-          this.diagnostictestname = ""
-
-
-          if (this.followupvisit == 1) {
-            this.docservice.UpdateBookAppointmentFollowupVisit(this.diaappointmentID).subscribe(data => {
-            })
-
-          }
-          this.followupvisit = 0;
-        }
-
+      var entity = {
+        'DoctorID': this.doctorid,
+        'PateintID': this.diapatientid,
+        'DiagnosticTestTypeID': 1,
+        'DiagnosticTestName': this.DiaenterArray[i].DiagnosticTestName,
+        'LanguageID': this.languageid,
+        'AppointmentID': this.diaappointmentID,
+        'TestsID': 59,
+        'ClinicalInfo': 0
       }
-    })
+      this.docservice.InsertDoctor_PatientDiagnostics(entity).subscribe(data => {
+        debugger
+        if (data != 0) {
+          if (this.languageid == 1) {
+            Swal.fire('Completed', 'Diagnostic Tests Added successfully', 'success');
+            debugger
+            this.testdisplay = "none";
+            document.getElementById("close").click();
+            this.getdiagnostictests();
+            this.SerachtestOn = 0;
+            this.testsname = "";
+            this.VisitDoctorAppointmentStatus(this.diaappointmentID);
+            this.Insertnotificationtestazure();
+            this.Insertnotificationtest()
+          
+            this.tablecount5 = 0;
+    
+            this.DiaenterArray.length = 0;
+            this.DiaenterArray = []
+
+            this.diagnostictestname = ""
+  
+  
+  
+            if (this.followupvisit == 1) {
+              this.docservice.UpdateBookAppointmentFollowupVisit(this.diaappointmentID).subscribe(data => {
+              })
+  
+            }
+            this.followupvisit = 0;
+          }
+          else if (this.languageid == 6) {
+            Swal.fire('Détails enregistrés', 'Test de laboratoire', 'success');
+            this.testdisplay = "none";
+            document.getElementById("close").click();
+            this.qwerty = [];
+            this.qwerty.length = 0;
+            this.getdiagnostictests();
+            this.SerachtestOn = 0;
+            this.testsname = "";
+            this.VisitDoctorAppointmentStatus(this.diaappointmentID);
+            this.Insertnotificationtestazure()
+            this.Insertnotificationtest()
+            this.tablecount5 = 0;
+            this.DiaenterArray.length = 0;
+            this.DiaenterArray = []
+
+            this.SerachtestOn = 0;
+            this.diagnostictestname = ""
+  
+  
+            if (this.followupvisit == 1) {
+              this.docservice.UpdateBookAppointmentFollowupVisit(this.diaappointmentID).subscribe(data => {
+              })
+  
+            }
+            this.followupvisit = 0;
+          }
+  
+        }
+      })
+    }
+  
   }
 
 
@@ -5687,7 +5726,7 @@ export class MyappointmentsComponent implements OnInit {
       var entity = {
         'PatientID': this.patientID,
         'Notification': "Amount Refunded By" + this.user,
-        'Description':"We like to inform you that Dr." + this.user + " has refunded " + this.paidamount + "MAD to your Voiladoc Wallet  ",
+        'Description': "We like to inform you that Dr." + this.user + " has refunded " + this.paidamount + "MAD to your Voiladoc Wallet  ",
         'NotificationTypeID': 30,
         'Date': this.todaydate,
         'LanguageID': this.languageid,
@@ -5704,7 +5743,7 @@ export class MyappointmentsComponent implements OnInit {
       var entity = {
         'PatientID': this.patientID,
         'Notification': "Amount Refunded By" + this.user,
-        'Description':"Nous vous informons que le  Dr." + this.user + " a remboursé " + this.paidamount + " MAD . sur votre portefeuille Voiladoc.",
+        'Description': "Nous vous informons que le  Dr." + this.user + " a remboursé " + this.paidamount + " MAD . sur votre portefeuille Voiladoc.",
         'NotificationTypeID': 30,
         'Date': this.todaydate,
         'LanguageID': this.languageid,

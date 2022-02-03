@@ -372,6 +372,7 @@ import { FoldersDashComponent } from './pages/PersonalFolders/folders-dash/folde
 import { MyFilesComponent } from './pages/PersonalFolders/my-files/my-files.component';
 import { SubFolderFilesComponent } from './pages/PersonalFolders/sub-folder-files/sub-folder-files.component';
 import { MysubfolderfilesComponent } from './pages/PersonalFolders/mysubfolderfiles/mysubfolderfiles.component';
+import { GroupofdocdashComponent } from './pages/Registration/groupofdocdash/groupofdocdash.component';
 
 
 
@@ -742,7 +743,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     FoldersDashComponent,
     MyFilesComponent,
     SubFolderFilesComponent,
-    MysubfolderfilesComponent
+    MysubfolderfilesComponent,
+    GroupofdocdashComponent
     
    
   ],

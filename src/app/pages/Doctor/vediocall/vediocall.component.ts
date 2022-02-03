@@ -1622,7 +1622,7 @@ export class VediocallComponent implements OnInit {
         this.diagnostictesttypename = this.testslist[i].name
       }
     }
-   
+
   }
   public getdiagnostictests() {
     this.docservice.GetDiagnosticTestMasterByTestIDByLanguageID(1, this.languageid).subscribe(
@@ -1650,35 +1650,7 @@ export class VediocallComponent implements OnInit {
   }
   testtemplate: any;
 
-  public adddetails() {
-    this.tablecount = 1;
-    var entity = {
-      'Sno': this.idcount,
-      'DiagnosticTestTypeID': this.testid,
-      'DiagnosticTestName': this.diagnostictestname,
-      'DiagnosticTestTypeName': this.diagnostictesttypename,
-      'TestName': this.diagnostictestname,
-      'TestID': this.testssid,
-      'ClinicalInfo': this.clinicinfo
-    }
-    this.qwerty.push(entity);
-    this.idcount = this.idcount + 1;
-    this.diatest = "";
-    if (this.testtemplate == 1) {
-      this.SaveTestTemplate()
-    }
-    if (this.templateid != 0) {
-      this.UpdateTemplte()
-    }
-    this.testslist.length = 0;
-    this.tsetssslist.length = 0;
-    this.getdiagnosticcentertests()
-    this.diagnostictestname = "";
-    this.clinicinfo = "";
-    this.testtemplate = 2;
-    this.testid = 0;
-    this.testssid = 0;
-  }
+
 
   // public insertDiagnostictestdetails() {
 
@@ -2539,7 +2511,7 @@ export class VediocallComponent implements OnInit {
 
 
 
-  vaccinationlist:any;
+  vaccinationlist: any;
 
   getvaccinatindetails() {
     this.docservice.GetPatient_VaccinationDetails(this.patientid).subscribe(
@@ -2549,14 +2521,14 @@ export class VediocallComponent implements OnInit {
       }, error => {
       }
     )
-    
 
 
-    
+
+
   }
-  firstvaccine:any;
-  firstvaccinedate:any;
-  
+  firstvaccine: any;
+  firstvaccinedate: any;
+
   InsertvaccinationStatus() {
     debugger
     let firstvaccinedate = this.docservice.GetDates(this.firstvaccinedate)
@@ -2569,86 +2541,171 @@ export class VediocallComponent implements OnInit {
     }
     this.docservice.InsertPatient_VaccinationDetails(entity).subscribe(data => {
       debugger
-      if(this.languageid==1)
-      {
+      if (this.languageid == 1) {
         Swal.fire('Updated Successfully');
         this.firstvaccinedate = "";
         this.firstvaccine = "";
         this.getvaccinatindetails();
       }
-      else
-      {
+      else {
         Swal.fire('Les vaccins ont été mis à jour.');
         this.firstvaccinedate = "";
         this.firstvaccine = "";
         this.getvaccinatindetails();
       }
-     
+
 
     })
   }
 
 
+  DiaenterArray = []
+  tablecount5: any;
+
+  public adddetailstestenter() {
+    this.tablecount5 = 1;
+    var entity = {
+      'Sno': this.idcount,
+      'DiagnosticTestTypeID': 0,
+      'DiagnosticTestName': this.diagnostictestname,
+      'DiagnosticTestTypeName': '',
+      'TestName': this.diagnostictestname,
+      'TestID': 0,
+      'ClinicalInfo': this.clinicalinfo
+    }
+    this.DiaenterArray.push(entity);
+    this.diagnostictestname = "";
+    debugger
+    this.diagnostictestname=""
+    // var test = this.testslist.findIndex(x => x.id == code.id);
+    // this.testsslist = this.testslist.slice(test, 1, this.testslist.length);
+
+    debugger
+    // if (this.testtemplate == 1) {
+    //   this.SaveTestTemplate()
+    // }
+    // if (this.templateid != 0) {
+    //   this.UpdateTemplte()
+    // }
+    this.idcount = this.idcount + 1;
+    this.diatest = "";
+    // this.testslist.length = 0;
+    // this.tsetssslist.length = 0;
+    // this.diagnostictestname = ""
+    // this.testid = 0;
+    // this.testssid = 0;
+    this.testtemplate = 2;
+    // this.getdiagnosticcentertests();
+    // this.GetDiagnpsticDoctorTemplates();
+  }
+
+
+
+  public adddetails(code) {
+    this.tablecount = 1;
+    var entity = {
+      'Sno': this.idcount,
+      'DiagnosticTestTypeID': code.testtypeid,
+      'DiagnosticTestName': code.short,
+      'DiagnosticTestTypeName': code.name,
+      'TestName': code.short,
+      'TestID': code.id,
+      'ClinicalInfo': this.clinicalinfo
+    }
+    this.qwerty.push(entity);
+    debugger
+    // var test = this.testslist.findIndex(x => x.id == code.id);
+    // this.testsslist = this.testslist.slice(test, 1, this.testslist.length);
+
+    debugger
+    // if (this.testtemplate == 1) {
+    //   this.SaveTestTemplate()
+    // }
+    // if (this.templateid != 0) {
+    //   this.UpdateTemplte()
+    // }
+    this.idcount = this.idcount + 1;
+    this.diatest = "";
+    // this.testslist.length = 0;
+    // this.tsetssslist.length = 0;
+    // this.diagnostictestname = ""
+    // this.testid = 0;
+    // this.testssid = 0;
+    this.testtemplate = 2;
+    // this.getdiagnosticcentertests();
+    this.GetDiagnpsticDoctorTemplates();
+  }
+
 
   showothertest: any;
-  SerachtestOn:any;
+  SerachtestOn: any;
 
 
 
   public insertDiagnostictest() {
     debugger
-    var entity = {
-      'DoctorID': this.doctorid,
-      'PateintID': this.diapatientid,
-      'DiagnosticTestTypeID': 1,
-      'DiagnosticTestName': this.diagnostictestname,
-      'LanguageID': this.languageid,
-      'AppointmentID': this.appointmentid,
-      'TestsID': 59,
-      'ClinicalInfo': 0
-    }
-    this.docservice.InsertDoctor_PatientDiagnostics(entity).subscribe(data => {
+    for (let i = 0; i < this.DiaenterArray.length; i++) {
       debugger
-      if (data != 0) {
-        if (this.languageid == 1) {
-          Swal.fire('Completed', 'Diagnostic Tests Added successfully', 'success');
-          debugger
-         
-          this.getdiagnostictests();
-       
-        
-          this.Insertnotificationtest()
-          this.tablecount = 0;
-          this.testid.length = 0;
-          // this.tsetssslist = 0;
-          this.testssid = 0;
-          this.diagnostictestname = ""
-
-
-
-      
-        }
-        else if (this.languageid == 6) {
-          Swal.fire('Détails enregistrés', 'Test de laboratoire', 'success');
-       
-          this.qwerty = [];
-          this.qwerty.length = 0;
-          this.getdiagnostictests();
-        
-          this.Insertnotificationtest()
-          this.tablecount = 0;
-          this.testid.length = 0;
-          this.tsetssslist = 0;
-          this.testssid = 0;
-          this.SerachtestOn = 0;
-          this.diagnostictestname = ""
-
-
-        
-        }
-
+      var entity = {
+        'DoctorID': this.doctorid,
+        'PateintID': this.patientid,
+        'DiagnosticTestTypeID': 1,
+        'DiagnosticTestName': this.DiaenterArray[i].DiagnosticTestName,
+        'LanguageID': this.languageid,
+        'AppointmentID': this.appointmentid,
+        'TestsID': 59,
+        'ClinicalInfo': 0
       }
-    })
+      this.docservice.InsertDoctor_PatientDiagnostics(entity).subscribe(data => {
+        debugger
+        if (data != 0) {
+          if (this.languageid == 1) {
+            Swal.fire('Completed', 'Diagnostic Tests Added successfully', 'success');
+            debugger
+
+            this.getdiagnostictests();
+
+
+            this.Insertnotificationtest()
+            this.tablecount = 0;
+            this.testid.length = 0;
+            // this.tsetssslist = 0;
+            this.testssid = 0;
+            this.diagnostictestname = ""
+            this.DiaenterArray.length = 0;
+            this.DiaenterArray = []
+            this.tablecount5=1
+           
+
+
+
+          }
+          else if (this.languageid == 6) {
+            Swal.fire('Détails enregistrés', 'Test de laboratoire', 'success');
+
+            this.qwerty = [];
+            this.qwerty.length = 0;
+            this.getdiagnostictests();
+
+            this.Insertnotificationtest()
+            this.tablecount = 0;
+            this.testid.length = 0;
+            this.tsetssslist = 0;
+            this.testssid = 0;
+            this.SerachtestOn = 0;
+            this.diagnostictestname = ""
+            this.DiaenterArray.length = 0;
+            this.DiaenterArray = []
+            this.tablecount5=1
+
+
+
+
+          }
+
+        }
+      })
+    }
   }
 
 
@@ -2680,16 +2737,16 @@ export class VediocallComponent implements OnInit {
     debugger
     var checktestlist = this.tsetssslist.filter(x => x.checked == true)
     debugger
-    for (let i = 0; i < checktestlist.length; i++) {
+    for (let i = 0; i < this.qwerty.length; i++) {
       debugger
       var entity = {
         'DoctorID': this.doctorid,
         'PateintID': this.patientid,
-        'DiagnosticTestTypeID': 1,
-        'DiagnosticTestName': checktestlist[i].short,
+        'DiagnosticTestTypeID': this.qwerty[i].DiagnosticTestTypeID,
+        'DiagnosticTestName': this.qwerty[i].DiagnosticTestName,
         'LanguageID': this.languageid,
         'AppointmentID': this.appointmentid,
-        'TestsID': checktestlist[i].id,
+        'TestsID': this.qwerty[i].TestID,
         'ClinicalInfo': 0
       }
       this.docservice.InsertDoctor_PatientDiagnostics(entity).subscribe(data => {
@@ -2700,10 +2757,10 @@ export class VediocallComponent implements OnInit {
             this.getpatient_diagnosticdetails();
             checktestlist = [];
             checktestlist = 0;
-      
+
             this.getdiagnostictests();
             this.SerachtestOn = 0;
-         
+
             this.Insertnotificationtest()
             this.tablecount = 0;
             this.testid.length = 0;
@@ -2715,7 +2772,7 @@ export class VediocallComponent implements OnInit {
             this.getpatient_diagnosticdetails();
             this.getdiagnostictests();
             this.SerachtestOn = 0;
-          
+
             this.Insertnotificationtest()
             this.tablecount = 0;
             this.testid.length = 0;

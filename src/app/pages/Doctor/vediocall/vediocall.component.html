@@ -708,96 +708,162 @@
 
           </form> -->
        
+          <form #diaForm="ngForm">
 
-          <div class="row">
-            <div class="col-lg-2">
-
-            </div>
-            <div class="col-lg-4">
-              <input type="radio" value="1" [(ngModel)]="showothertest"
-                name="showothertest">&nbsp;{{labels[0].testdtabase}}
-
-            </div>
-            <div class="col-lg-4">
-
-              <input type="radio" value="2" [(ngModel)]="showothertest"
-                name="showothertest">&nbsp;{{labels[0].manuallywritten}}
-            </div>
-          </div><br>
-          <div *ngIf="showothertest==2">
+         
             <div class="row">
-
               <div class="col-lg-2">
 
               </div>
-              <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="Tests" [(ngModel)]="diagnostictestname"
-                  name="diagnostictestname">
+              <div class="col-lg-4">
+                <input type="radio" value="1" [(ngModel)]="showothertest"
+                  name="showothertest">&nbsp;{{labels[0].testdtabase}}
+
+              </div>
+              <div class="col-lg-4">
+
+                <input type="radio" value="2" [(ngModel)]="showothertest"
+                  name="showothertest">&nbsp;{{labels[0].manuallywritten}}
               </div>
             </div><br>
-            <div class="row">
+            <div *ngIf="showothertest==2">
+              <div class="row">
+                <div class="col-lg-2">
+                  <label>{{labels[0].testName}} :</label>
+                  <span class="required">*</span>
+                </div>
+                <div class="col-lg-6">
+                  <input type="text" class="form-control" placeholder="Tests" [(ngModel)]="diagnostictestname"
+                    name="diagnostictestname">
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-5">
+                  <button type="button" style="background-color: #f18235;color: white;" class="btn btn-secondary"
+                    (click)="adddetailstestenter()">{{labels[0].add}}</button>
+                </div>
+                <div class="col-lg-2">
+                </div>
+              </div><br>
+              <div class="row" *ngIf="tablecount5=='1'">
+
+                <div class="col-lg-12">
+                  <table>
+                    <thead>
+                      <tr>
+                        <!-- <th>{{labels[0].testType}}</th> -->
+                        <th>{{labels[0].testName}}</th>
+                        <th>{{labels[0].delete}}</th>
+                      </tr>
+                      <tr *ngFor="let diagtest of DiaenterArray">
+                        <!-- <td>{{diagtest.DiagnosticTestTypeName}}</td> -->
+                        <td>{{diagtest.TestName}}</td>
+                        <td>
+                          <ng-template #tipcontent2>{{labels[0].delete}}</ng-template>
+                          <a [ngbTooltip]="tipcontent2">
+                            <img src="assets/Images/dell.png" style="width: 20px;margin-left: 10px;"
+                              (click)="delete(diagtest.Sno)">
+                          </a>
+                        </td>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+              <br> 
+              <div class="row" *ngIf="tablecount5=='1'">
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-5">
+                  <button type="button" style="background-color: #f18235;color: white;" class="btn btn-secondary"
+                    (click)="insertDiagnostictest()">{{labels[0].save}}</button>
+                </div>
+                <div class="col-lg-2">
+                </div>
+              </div>
+            </div>
+            <div *ngIf="showothertest==1">
+              <div class=row>
+                <div class="col-lg-2">
+                  <label>{{labels[0].testName}} :</label>
+                  <span class="required">*</span>
+                </div>
+                <div class="col-lg-6">
+                  <!-- <input id="typeahead-basic" type="text" class="form-control" placeholder="{{labels[0].drugName}}"
+                    [(ngModel)]="medicinename" [ngModelOptions]="{standalone: true}" [ngbTypeahead]="search1"
+                    (ngModelChange)="GetDrugNameID()" /> -->
+                  <input type="text" [(ngModel)]="testsname" name="testsname" class="form-control"
+                    placeholder="{{labels[0].testName}}" (ngModelChange)="SearchTestname(testsname)">
+                </div>
+              </div><br>
+            </div>
+            <div class="row" *ngIf="SerachtestOn=='1'&&showothertest==1">
+              <!-- <div class="col-lg-4">
+              </div> -->
+              <div class="col-lg-12" style="overflow-y:auto;height:300px">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>{{labels[0].testType}}</th>
+                      <th>{{labels[0].testName}}</th>
+                      <th>Actions</th>
+                    </tr>
+                    <tr *ngFor="let code of tsetssslist|filter:testsname">
+                      <td>{{code.name}}</td>
+                      <td>
+                        <input type="text" class="form-control" [(ngModel)]="code.short" name="code.short" disabled
+                          [ngModelOptions]="{standalone: true}">
+                      </td>
+                      <td>
+                        <button (click)="adddetails(code)" class="Addbutton">{{labels[0].add}}</button>
+                        <!-- <input type="checkbox" [(ngModel)]="code.checked" name="code.checked" > -->
+                      </td>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <br>
+            </div><br>
+            <div class="row" *ngIf="tablecount=='1'&&showothertest==1">
+
+              <div class="col-lg-12">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>{{labels[0].testType}}</th>
+                      <th>{{labels[0].testName}}</th>
+                      <th>{{labels[0].delete}}</th>
+                    </tr>
+                    <tr *ngFor="let diagtest of qwerty">
+                      <td>{{diagtest.DiagnosticTestTypeName}}</td>
+                      <td>{{diagtest.TestName}}</td>
+                      <td>
+                        <ng-template #tipcontent2>{{labels[0].delete}}</ng-template>
+                        <a [ngbTooltip]="tipcontent2">
+                          <img src="assets/Images/dell.png" style="width: 20px;margin-left: 10px;"
+                            (click)="delete(diagtest.Sno)">
+                        </a>
+                      </td>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+            <br> 
+            <div class="row" *ngIf="SerachtestOn=='1'&&showothertest==1&&tablecount=='1'">
               <div class="col-lg-3">
               </div>
               <div class="col-lg-5">
                 <button type="button" style="background-color: #f18235;color: white;" class="btn btn-secondary"
-                  (click)="insertDiagnostictest()">{{labels[0].save}}</button>
+                  (click)="insertDiagnostictestdetails()">{{labels[0].save}}</button>
               </div>
               <div class="col-lg-2">
               </div>
             </div>
-          </div>
-          <div *ngIf="showothertest==1">
-            <div class=row>
-              <div class="col-lg-4">
-                <label>{{labels[0].testName}} :</label>
-                <span class="required">*</span>
-              </div>
-              <div class="col-lg-6">
-                <!-- <input id="typeahead-basic" type="text" class="form-control" placeholder="{{labels[0].drugName}}"
-                  [(ngModel)]="medicinename" [ngModelOptions]="{standalone: true}" [ngbTypeahead]="search1"
-                  (ngModelChange)="GetDrugNameID()" /> -->
-                <input type="text" [(ngModel)]="testsname" name="testsname" class="form-control"
-                  placeholder="{{labels[0].testName}}" (ngModelChange)="SearchTestname(testsname)">
-              </div>
-            </div><br>
-          </div>
-          <div class="row" *ngIf="SerachtestOn=='1'&&showothertest==1">
-            <!-- <div class="col-lg-4">
-            </div> -->
-            <div class="col-lg-12" style="overflow-y:auto;height:300px">
-              <table>
-                <thead>
-                  <tr>
-                    <th>{{labels[0].testType}}</th>
-                    <th>{{labels[0].testName}}</th>
-                    <th>Actions</th>
-                  </tr>
-                  <tr *ngFor="let code of tsetssslist|filter:testsname">
-                    <td>{{code.name}}</td>
-                    <td>
-                      <input type="text" class="form-control" [(ngModel)]="code.short" name="code.short" disabled
-                        [ngModelOptions]="{standalone: true}">
-                    </td>
-                    <td>
-                      <input type="checkbox" [(ngModel)]="code.checked" name="code.checked">
-                    </td>
-                  </tr>
-                </thead>
-              </table>
-            </div>
             <br>
-          </div><br>
-          <div class="row" *ngIf="SerachtestOn=='1'&&showothertest==1">
-            <div class="col-lg-4">
-            </div>
-            <div class="col-lg-5">
-              <button type="button" style="background-color: #f18235;color: white;" class="btn btn-secondary"
-                (click)="insertDiagnostictestdetails()">{{labels[0].save}}</button>
-            </div>
-            <div class="col-lg-2">
-            </div>
-          </div>
-          <br>
+          </form>
        
        
        

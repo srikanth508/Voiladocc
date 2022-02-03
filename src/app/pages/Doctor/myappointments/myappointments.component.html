@@ -1821,63 +1821,17 @@
         <div class="container-fluid">
           <form #diaForm="ngForm">
 
-            <!-- <div class="row">
-              <div class="col-lg-5">
-                <h6>{{labels[0].chooseFromtemplate}} </h6>
-              </div>
-              <div class="col-lg-7">
-                <select class="form-control" (change)="GetTestTemplateID($event)">
-                  <option selected="selected" value="0">{{labels[0].select}}</option>
-                  <option *ngFor="let testtemp of TestTemplateList" value="{{testtemp.id}}">{{testtemp.templateName}}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <br>
+         
             <div class="row">
-              <div class="col-lg-4"></div>
-              <div class="col-lg-8">
-                <h6>{{labels[0].fillAllDetails}}</h6>
-              </div>
-            </div>
-            <br> -->
-
-            <!-- <div class="row">
-              <div class="col-lg-5">
-                <label>{{labels[0].followup}}</label>
-              </div>
-              <div class="col-lg-7">
-                <input type="radio" [(ngModel)]="followupvisit" name="followupvisit" [value]="1">&nbsp;
-                {{labels[0].yes}} &nbsp;&nbsp;
-                <input type="radio" [(ngModel)]="followupvisit" name="followupvisit" [value]="0">&nbsp;
-                {{labels[0].no}} &nbsp;&nbsp;
-              </div>
-            </div><br> -->
-
-
-            <!-- <div class="row">
-              <div class="col-lg-5">
-                <label>{{labels[0].testType}} :</label>
-                <span class="required">*</span>
-              </div>
-              <div class="col-lg-7">
-                <select class="form-control" (change)="GetDiagnosticTestID($event)" [(ngModel)]="testid" name="testid">
-                  <option value="0" selected>{{labels[0].select}}</option>
-                  <option *ngFor="let test of testslist" value={{test.id}}>{{test.name}}</option>
-                </select>
-              </div>
-            </div>
-            <br> -->
-            <div class="row">
-              <div class="col-lg-3">
+              <div class="col-lg-2">
 
               </div>
-              <div class="col-lg-3">
+              <div class="col-lg-4">
                 <input type="radio" value="1" [(ngModel)]="showothertest"
                   name="showothertest">&nbsp;{{labels[0].testdtabase}}
 
               </div>
-              <div class="col-lg-3">
+              <div class="col-lg-4">
 
                 <input type="radio" value="2" [(ngModel)]="showothertest"
                   name="showothertest">&nbsp;{{labels[0].manuallywritten}}
@@ -1885,9 +1839,9 @@
             </div><br>
             <div *ngIf="showothertest==2">
               <div class="row">
-
                 <div class="col-lg-2">
-
+                  <label>{{labels[0].testName}} :</label>
+                  <span class="required">*</span>
                 </div>
                 <div class="col-lg-6">
                   <input type="text" class="form-control" placeholder="Tests" [(ngModel)]="diagnostictestname"
@@ -1895,6 +1849,42 @@
                 </div>
               </div><br>
               <div class="row">
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-5">
+                  <button type="button" style="background-color: #f18235;color: white;" class="btn btn-secondary"
+                    (click)="adddetailstestenter()">{{labels[0].add}}</button>
+                </div>
+                <div class="col-lg-2">
+                </div>
+              </div><br>
+              <div class="row" *ngIf="tablecount5=='1'">
+
+                <div class="col-lg-12">
+                  <table>
+                    <thead>
+                      <tr>
+                        <!-- <th>{{labels[0].testType}}</th> -->
+                        <th>{{labels[0].testName}}</th>
+                        <th>{{labels[0].delete}}</th>
+                      </tr>
+                      <tr *ngFor="let diagtest of DiaenterArray">
+                        <!-- <td>{{diagtest.DiagnosticTestTypeName}}</td> -->
+                        <td>{{diagtest.TestName}}</td>
+                        <td>
+                          <ng-template #tipcontent2>{{labels[0].delete}}</ng-template>
+                          <a [ngbTooltip]="tipcontent2">
+                            <img src="assets/Images/dell.png" style="width: 20px;margin-left: 10px;"
+                              (click)="delete(diagtest.Sno)">
+                          </a>
+                        </td>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+              <br> 
+              <div class="row" *ngIf="tablecount5=='1'">
                 <div class="col-lg-3">
                 </div>
                 <div class="col-lg-5">
@@ -1907,7 +1897,7 @@
             </div>
             <div *ngIf="showothertest==1">
               <div class=row>
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                   <label>{{labels[0].testName}} :</label>
                   <span class="required">*</span>
                 </div>
@@ -1938,7 +1928,8 @@
                           [ngModelOptions]="{standalone: true}">
                       </td>
                       <td>
-                        <input type="checkbox" [(ngModel)]="code.checked" name="code.checked">
+                        <button (click)="adddetails(code)" class="Addbutton">{{labels[0].add}}</button>
+                        <!-- <input type="checkbox" [(ngModel)]="code.checked" name="code.checked" > -->
                       </td>
                     </tr>
                   </thead>
@@ -1946,80 +1937,7 @@
               </div>
               <br>
             </div><br>
-            <!-- <div class="row">
-              <div class="col-lg-5">
-                <label>{{labels[0].testName}} :</label>
-                <span class="required">*</span>
-              </div>
-              <div class="col-lg-7">
-                <select class="form-control" (change)="GetDiagnosticTestssID($event)" [(ngModel)]="testssid"
-                  name="testssid">
-                  <option value="0" selected>{{labels[0].select}}</option>
-                  <option *ngFor="let tests of tsetssslist" value={{tests.id}}>{{tests.short}}</option>
-                </select>
-              </div>
-            </div>
-            <br>
-            <div *ngIf="testssid=='59'||testssid=='60'">
-              <div class="row">
-                <div class="col-lg-5">
-                  <label>{{labels[0].testName}} :</label>
-                  <span class="required">*</span>
-                </div>
-                <div class="col-lg-7">
-                  <input type="text" class="form-control" placeholder="{{labels[0].testName}}"
-                    [(ngModel)]="diagnostictestname" name="diagnostictestname">
-                </div>
-              </div> <br>
-            </div> -->
-            <!-- *ngIf="testid==2" -->
-            <!-- <div>
-              <div class="row">
-                <div class="col-lg-5">
-                  <label>{{labels[0].clinicalInfo}} :</label>
-                </div>
-                <div class="col-lg-7">
-                  <textarea rows="3" class="form-control" placeholder="{{labels[0].clinicalInfo}}"
-                    [(ngModel)]="clinicalinfo" name="clinicalinfo"></textarea>
-                </div>
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-lg-5">
-                <label>{{labels[0].saveastemplate}} :</label>
-              </div>
-              <div class="col-lg-6">
-                <input type="radio" [(ngModel)]="testtemplate" name="testtemplate" [value]="1">&nbsp;
-                {{labels[0].yes}} &nbsp;&nbsp;
-                <input type="radio" [(ngModel)]="testtemplate" name="testtemplate" [value]="2">&nbsp;
-                {{labels[0].no}} &nbsp;&nbsp;
-              </div>
-            </div>
-            <br>
-            <div *ngIf="testtemplate=='1'">
-              <div class="row">
-                <div class="col-lg-5">
-                  <label>{{labels[0].templateName}} :</label>
-                </div>
-                <div class="col-lg-7">
-                  <input type="text" class="form-control" name="testtemplatename" [(ngModel)]="testtemplatename"
-                    placeholder="{{labels[0].templateName}}">
-                </div>
-              </div>
-              <br>
-            </div>
-            <div class="row">
-              <div class="col-lg-5">
-              </div>
-              <div class="col-lg-2">
-                <button type="button" style="background-color: #f18235;color: white;" class="btn btn-default"
-                  (click)="adddetails()">{{labels[0].add}}</button>
-              </div>
-              <div class="col-lg-5">
-              </div>
-            </div>
-            <br>
-            <div class="row" *ngIf="tablecount=='1'">
+            <div class="row" *ngIf="tablecount=='1'&&showothertest==1">
 
               <div class="col-lg-12">
                 <table>
@@ -2044,8 +1962,8 @@
                 </table>
               </div>
             </div>
-            <br> -->
-            <div class="row" *ngIf="SerachtestOn=='1'&&showothertest==1">
+            <br> 
+            <div class="row" *ngIf="SerachtestOn=='1'&&showothertest==1&&tablecount=='1'">
               <div class="col-lg-3">
               </div>
               <div class="col-lg-5">
@@ -2375,8 +2293,8 @@
       </div>
       <div class="modal-body" stylw="width:1100px">
         <div class="container-fluid">
-          <div class="row" style="overflow: auto;">
-            <div class="col-lg-12">
+          <div class="row" >
+            <div class="col-lg-12 tableheight" >
               <table>
                 <thead>
                   <tr>
@@ -2420,7 +2338,7 @@
 
 
 
-
+<!-- 
 <div class="modal fade" id="edittest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -2501,7 +2419,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <!-- Previous prescription edit -->

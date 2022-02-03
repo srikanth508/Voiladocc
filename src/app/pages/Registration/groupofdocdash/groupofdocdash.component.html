@@ -1,7 +1,8 @@
 <div class="container-fluid card card:hover headerspace">
   <div class="row headerspace">
     <div class="col-lg-9" style="    margin-top: -2px;">
-      <h5>{{labels[0].hospitalOrclinicdashboard}}</h5>
+      <h5 *ngIf="languageid==1">Group Of Doctors</h5>
+      <h5 *ngIf="languageid==6">Cabinet de group</h5>
     </div>
     <!-- *ngIf="showexportbutton=='1'" -->
     <div class="col-lg-3" style="text-align: end;margin-top: -12px;">
