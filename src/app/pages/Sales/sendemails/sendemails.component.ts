@@ -47,7 +47,7 @@ export class SendemailsComponent implements OnInit {
       this.dropzonelable = "Télécharger des fichiers"
     }
 
-    this.frommail = "voiladocamaze@gmail.com"
+    this.frommail = "info@voiladoc.com"
 
   }
 

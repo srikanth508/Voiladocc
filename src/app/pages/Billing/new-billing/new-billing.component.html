@@ -1,25 +1,21 @@
-<div class="container-fluid card card-hover ">
-    <br />
-    <div class="row ">
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+    [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="container-fluid card card-hover headerspace">
+    <div class="row headerspace1">
         <div class="col-lg-3">
             <h5 *ngIf="languageid==1">Billing</h5>
             <h5 *ngIf="languageid==6">Facturation</h5>
         </div>
-        <div class="col-lg-3">
-            <select class="form-control" (change)="GetType($event)">
-            <option selected value="">Select</option>
-            <option  value="Hospital">Hospital</option>
-            <option  value="Clinic"> Clinic</option>
-            <option  value="Doctor">Independent Doctor</option>
-            <option  value="Nurse">Independent Nurse</option>
-            <option  value="Physiotherapist">Independent Physiotherapist</option>
-            <option  value="MidWives">Independent MidWife</option>
-          </select>
-        </div>
-        <div class="col-lg-3">
-            <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }" class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" bsDaterangepicker>
-            <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }" class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" bsDaterangepicker>
-        </div>
+
+        <!-- <div class="col-lg-3">
+            <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
+                class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" bsDaterangepicker>
+            <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date"
+                [bsConfig]="{ showWeekNumbers:false }" class="form-control" [(ngModel)]="value"
+                (ngModelChange)="selectedDate($event)" bsDaterangepicker>
+        </div> -->
     </div>
     <br />
 </div>
@@ -27,9 +23,81 @@
 <div class="container-fluid card">
     <br>
     <div class="row">
+        <div class="col-lg-3">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <div class="col-lg-3">
+            <select class="form-control" (change)="GetType($event)" [(ngModel)]="typeid" name="typeid">
+                <option selected value="">Select</option>
+                <option value="1">Hospital</option>
+                <option value="2"> Clinic</option>
+                <option value="3">Independent Doctor</option>
+                <option value="4">Independent Nurse</option>
+                <option value="5">Independent Physiotherapist</option>
+                <option value="6">Independent MidWife</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <select class="form-control" (change)="GetYear($event)" [(ngModel)]="year" name="year">
+                <option value="0">Select</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <select class="form-control" (change)="GetMonth($event)" [(ngModel)]="month" name="month">
+                <option value="0">Select</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+        </div>
+    </div><br>
+    <div class="row">
         <div class="col-lg-12">
             <table>
+
                 <tr>
+                    <th *ngIf="typeid==1">Hospital Name</th>
+                    <th *ngIf="typeid==2">Clinic</th>
+                    <th *ngIf="typeid==3">Doctor</th>
+                    <th *ngIf="typeid==4">Nurse</th>
+                    <th *ngIf="typeid==5">Physiotherapist</th>
+                    <th *ngIf="typeid==6">Midwife</th>
+
+                    <th>Contact Person</th>
+                    <th>Phone No</th>
+                    <th>Email ID</th>
+                    <th>Month</th>
+                    <th>Monthly Subscription Fees</th>
+                    <th>Actions</th>
+                </tr>
+                <tr *ngFor="let details of billinglist">
+                    <td>{{details.providerName}}</td>
+                    <td>{{details.providerName}}</td>
+                    <td>{{details.phoneNo}}</td>
+                    <td>{{details.emailID}}</td>
+                    <td>{{details.name}}</td>
+                    <td>{{details.monthlySubscription}}</td>
+
+                    <td><button (click)="GetList(details)" data-toggle="modal" data-target="#invoiceModal">View
+                            Invoice</button></td>
+
+                </tr>
+
+                <!-- <tr>
                     <th *ngIf="type=='Hospital'||type=='Clinic'">Hospital/Clinic Name</th>
                     <th *ngIf="type=='Doctor'">Doctor Name</th>
                     <th *ngIf="type=='Nurse'">Nurse Name</th>
@@ -41,7 +109,6 @@
                     <th>Contract Start Date</th>
                     <th>Contract End Date</th>
                     <th>Monthly Subscription Fee</th>
-                    <!-- <th>Commission On Vedio Call Appointment</th> -->
                     <th style="width:10%;">Action</th>
                 </tr>
                 <tr *ngFor="let list of billinglist">
@@ -52,23 +119,24 @@
                     <td>{{list.contractStartdate|date}}</td>
                     <td>{{list.contractEnddate|date}}</td>
                     <td>{{list.monthlySubscription}}</td>
-                    <!-- <td>{{list.appointmentpercentageamount}}</td> -->
+                
                     <td><button (click)="GetList(list)" data-toggle="modal" data-target="#invoiceModal">View Invoice</button></td>
-                </tr>
+                </tr> -->
             </table>
         </div>
     </div>
     <br>
 </div>
 
-<div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Invoice</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                  </button>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12" id="content">
@@ -98,27 +166,30 @@
                         <div class="col-lg-4">
                             <label>From</label>
                             <p>Meridional Health Pte. Ltd.</p>
-                            <p>77 Robinson Rd, Singapore 068896</p>
+                            <!-- <p>{{address}}</p> -->
                         </div>
                     </div>
                     <br>
                     <div class="col-lg-12">
                         <table>
                             <tr>
-                                <th style="font-size: 12px;" *ngIf="type=='Hospital'||type=='Clinic'">Hospital/Clinic</th>
-                                <th style="font-size: 12px;" *ngIf="type=='Doctor'">Doctor Name</th>
-                                <th style="font-size: 12px;" *ngIf="type=='Nurse'">Nurse Name</th>
-                                <th style="font-size: 12px;" *ngIf="type=='Physiotherapist'">Physiotherapist Name</th>
-                                <th style="font-size: 12px;" *ngIf="type=='MidWives'">MidWife Name</th>
-                                <th style="font-size: 12px;">Contract Start Date</th>
-                                <th style="font-size: 12px;">Contract End Date</th>
+                                <th style="font-size: 12px;" *ngIf="typeid=='1'">Hospital
+                                </th>
+                                <th style="font-size: 12px;" *ngIf="typeid=='2'">Clinic
+                                </th>
+                                <th style="font-size: 12px;" *ngIf="typeid=='3'">Doctor Name</th>
+                                <th style="font-size: 12px;" *ngIf="typeid=='4'">Nurse Name</th>
+                                <th style="font-size: 12px;" *ngIf="typeid=='5'">Physiotherapist Name</th>
+                                <th style="font-size: 12px;" *ngIf="typeid=='6'">MidWife Name</th>
+                                <th style="font-size: 12px;">Year</th>
+                                <th style="font-size: 12px;">Month</th>
                                 <th style="font-size: 12px;">Monthly Subscription</th>
                                 <!-- <th style="font-size: 12px;">Commission On Vedio Call Appointment</th> -->
                             </tr>
                             <tr>
                                 <td>{{hospitalname}}</td>
-                                <td>{{contractsdate|date}}</td>
-                                <td>{{contractedate|date}}</td>
+                                <td>{{year}}</td>
+                                <td>{{month}}</td>
                                 <td>{{monthlysub}}</td>
                                 <!-- <td>{{appointmentperc}}</td> -->
                             </tr>
@@ -128,7 +199,9 @@
                     <div class="row">
                         <div class="col-lg-9"></div>
                         <div class="col-lg-3">
-                            <p style="margin-top: 4px;background-color: #b7c3d0;padding-top: 6px;padding-bottom: 6px;padding-left: 12px;">Invoice Total:{{totalamount}}</p>
+                            <p
+                                style="margin-top: 4px;background-color: #b7c3d0;padding-top: 6px;padding-bottom: 6px;padding-left: 12px;">
+                                Invoice Total:{{totalamount}}</p>
                         </div>
                     </div>
                     <br>

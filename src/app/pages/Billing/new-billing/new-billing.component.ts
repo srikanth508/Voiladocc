@@ -5,8 +5,7 @@ import { formatDate } from "@angular/common";
 import { NgDateRangePickerOptions } from "ng-daterangepicker";
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
-
-
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
     selector: 'app-new-billing',
     templateUrl: './new-billing.component.html',
@@ -29,7 +28,7 @@ export class NewBillingComponent implements OnInit {
     userid: any;
     yearlysub: any;
     emailid: any;
-    constructor(public docservice: HelloDoctorService) { }
+    constructor(public docservice: HelloDoctorService,private spinner: NgxSpinnerService) { }
     languageid: any;
     value: any;
     SDate = new Date();
@@ -41,6 +40,7 @@ export class NewBillingComponent implements OnInit {
     invoicenumber: any;
     blob: any;
     options: NgDateRangePickerOptions;
+    typeid: any;
 
     ngOnInit() {
         ;
@@ -50,57 +50,78 @@ export class NewBillingComponent implements OnInit {
         const myDate = new Date();
         const locale = 'en-US';
         this.todaydate = formatDate(myDate, format, locale);
-
-        this.options = {
-            theme: 'default',
-            range: 'tm',
-            dayNames: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            presetNames: ['This Month', 'Last Month', 'This Week', 'Last Week', 'This Year', 'Last Year', 'Start', 'End'],
-            dateFormat: 'yyyy/MM/dd',
-            outputFormat: 'YYYY/MM/DD',
-            startOfWeek: 1
-        };
-
         this.languageid = localStorage.getItem('LanguageID');
-        var kkk = this.SDate.setDate(this.SDate.getDate() - 0);
-        var lll = this.EDate.setDate(this.EDate.getDate() + 0);
-
-
-        this.startdate = formatDate(kkk, format, locale);
-        this.enddate = formatDate(lll, format, locale);
-
-        let date = new Date();
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        let newformat = hours >= 12 ? 'PM' : 'AM';
-        // Find current hour in AM-PM Format 
-        hours = hours % 12;
-        // To display "0" as "12" 
-        hours = hours ? hours : 12;
-        minutes = minutes < 10 ? 0 + minutes : minutes;
-
+        var date = new Date();
+        this.month = date.getMonth() + 1;
+        this.year = date.getFullYear();
+        this.typeid = 1
+        this.GetBillingdetails()
     }
+
+
+
+
+
+
     selectedDate(data) {
-        
+
         this.startdate = data[0].toLocaleString().split(',')[0];
         this.enddate = data[1].toLocaleString().split(',')[0];
-        this.GetBillingdetails(this.type, this.startdate, this.enddate);
+
     }
 
-    public GetBillingdetails(TypeID, SDATE, EDATE) {
-        
-        this.docservice.GetHospitalClinicBillingDetails(TypeID, SDATE, EDATE).subscribe(data => {
-            
+
+    //my code
+
+    public GetBillingdetails() {
+        debugger
+        this.docservice.GetAllProviderSubscriptions(this.languageid,this.year,this.month,this.typeid).subscribe(data => {
+            debugger
             this.billinglist = data;
+            this.spinner.hide()
         })
     }
 
+    year: any;
+    public GetYear(even) {
+        // this.spinner.show();
+        this.year = even.target.value;
+        this.spinner.show();
+        this.GetBillingdetails()
+    }
+
+    month: any;
+    public GetMonth(even) {
+        // this.spinner.show();
+        this.month = even.target.value;
+        this.spinner.show();
+        this.GetBillingdetails()
+    }
+
+
+    GetType(even) {
+        this.typeid = even.target.value;
+        this.spinner.show();
+        this.GetBillingdetails()
+    }
+
+
+
+
+    // public GetBillingdetails(TypeID, SDATE, EDATE) {
+
+    //     this.docservice.GetHospitalClinicBillingDetails(TypeID, SDATE, EDATE).subscribe(data => {
+
+    //         this.billinglist = data;
+    //     })
+    // }
+
     public GetList(invlist) {
         ;
-        this.hospitalname = invlist.hospital_ClinicName;
+        this.hospitalname = invlist.providerName;
         this.userid = invlist.id;
-        this.contractsdate = invlist.contractStartdate;
-        this.contractedate = invlist.contractEnddate;
+        // this.contractsdate = invlist.contractStartdate;
+        // this.contractedate = invlist.contractEnddate;
         this.monthlysub = invlist.monthlySubscription;
         this.appointmentperc = invlist.appointmentpercentageamount;
         this.address = invlist.address;
@@ -112,7 +133,7 @@ export class NewBillingComponent implements OnInit {
     }
     public SavePDF() {
         ;
-        
+
         let pdfContent = window.document.getElementById("content");
         var doc = new jsPDF('p', 'mm', "a4");
 
@@ -124,18 +145,18 @@ export class NewBillingComponent implements OnInit {
 
             doc.addImage(imgData, 'JPEG', 10, 10, 180, 150);
             var pdf = doc.output('blob');
-            
+
             var file = new File([pdf], "Invoice" + ".pdf");
-            
+
             let body = new FormData();
-            
+
             body.append('Dan', file);
-            
+
             this.docservice.UploadInvoicePDF(file).subscribe(res => {
                 ;
-                
+
                 this.invoiceurl = res;
-                
+
                 this.InsertDetailes();
             });
         });
@@ -152,12 +173,6 @@ export class NewBillingComponent implements OnInit {
     }
 
     public InsertDetailes() {
-        // let fjkjhafd = this.invoiceurl.split('.');
-        // let one = fjkjhafd[fjkjhafd.length - 2].split('/');
-        // var re = /\\/gi;
-        // var path2 = one[one.length - 1].replace(/\\/g, "-");
-        // let two = path2.split('-');
-        // var docname = two[3] + '-' + two[4] + '.pdf';
         var entity = {
             Type: this.type,
             UserID: this.userid,
@@ -172,15 +187,13 @@ export class NewBillingComponent implements OnInit {
         this.docservice.InsertSentInvoice(entity).subscribe(data => {
             ;
             if (data != undefined) {
-                
+
                 Swal.fire("Invoice Send Successfully");
-                this.GetBillingdetails(this.type, this.startdate, this.enddate);
+                // this.GetBillingdetails(this.type, this.startdate, this.enddate);
             }
         })
     }
 
-    public GetType(even) {
-        this.type = even.target.value;
-    }
+
 
 }

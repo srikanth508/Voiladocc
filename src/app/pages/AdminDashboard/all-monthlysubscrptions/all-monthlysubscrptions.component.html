@@ -1,0 +1,77 @@
+<br>
+<div class="container-fluid card card:hover headerspace">
+  <div class="row headerspace">
+    <div class="col-lg-10">
+      <h5>Subscription Reports</h5>
+    </div>
+
+    <div class="col-lg-2">
+      <!-- <button style="height:35px;background-color: #f18235;color:white" class="btn btn-block btncolor"
+        (click)="getglmasterexcel()">{{labels[0].exportToExcel}}</button> -->
+    </div>
+  </div>
+</div>
+<br>
+<div class="container-fluid card card-hover">
+  <br>
+  <div class="row">
+   
+
+    <div class="col-lg-3">
+      <input type="search" placeholder="{{labels[0].search}}" [(ngModel)]="term" class="form-control">
+    </div>
+    <div class="col-lg-7">
+
+      
+    </div>
+    <div class="col-lg-2" style="text-align: end;">
+      <label>{{labels[0].count}} : {{count}}</label>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-12" style="overflow-y: auto;">
+      <table class="table" id="Appointment" style="overflow: auto;">
+        <thead>
+          <tr style="height: 20px">
+            <th>ID</th>
+            <th>Type</th>
+            <th>Provider Name</th>
+            <th>Mobile Number</th>
+            <th>Email ID</th>
+            <th>Subscription Type</th>
+            <th>Monthly SUbscription</th>
+            <th>Appointment Percentage</th>
+          </tr>
+          <tr *ngFor="let details of AllDetails|filter:term">
+            <td>{{details.id}}</td>
+            <td>{{details.typename}}</td>
+            <td>{{details.providerName}}</td>
+            <td>{{details.mobileNumber}}</td>
+             <td>{{details.emailID}}</td> 
+             <td>
+               <label *ngIf="details.subscriptionTypeID==1">Monthly Subscription</label>
+               <label *ngIf="details.subscriptionTypeID==2">Appointment Percentage</label>
+               <label *ngIf="details.subscriptionTypeID==3">Both</label>
+             </td>
+             <td >
+               <label *ngIf="details.subscriptionTypeID==1||details.subscriptionTypeID==3">{{details.monthlySubscription}}</label>
+               
+              </td>
+             <td>
+              <label *ngIf="details.subscriptionTypeID==2||details.subscriptionTypeID==3">{{details.appointmentPercentage}}</label>
+              
+              </td>
+          </tr>
+        </thead>
+      </table>
+      <br>
+      <br>
+    </div>
+  </div>
+  <br>
+</div>
+<br>
+<br>
+<br>
+<br>

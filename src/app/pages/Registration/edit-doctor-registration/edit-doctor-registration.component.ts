@@ -191,8 +191,8 @@ export class EditDoctorRegistrationComponent implements OnInit {
       }
     )
   }
-  hospitalname:any;
-  subscriptiontype:any;
+  hospitalname: any;
+  subscriptiontype: any;
   public getdoctordetailsbyid() {
 
     this.docservice.GetDoctorDetailsForAdminByLanguageID(this.id, this.languageid).subscribe(
@@ -229,20 +229,20 @@ export class EditDoctorRegistrationComponent implements OnInit {
           this.signatureurl = this.details.signatureURL,
           this.referbit = this.details.referealBit,
           this.categoryid = this.details.categoryID,
-          this.hospitalname=this.details.hospital_ClinicName,
-          this.subscriptiontype=this.details.subscriptionTypeID,
-          this.monthlysubription=this.details.monthlySubscription
-          this.appointmentpercentage=this.details.appointmentPercentage
-           this.taxidentification=this.details.taxIdentification
-           this.businessid=this.details.businessID
-          this.commercialcity=this.details.commercialRegCity
-           this.taxprofessional=this.details.taxProfessional
+          this.hospitalname = this.details.hospital_ClinicName,
+          this.subscriptiontype = this.details.subscriptionTypeID,
+          this.monthlysubription = this.details.monthlySubscription
+        this.appointmentpercentage = this.details.appointmentPercentage
+        this.taxidentification = this.details.taxIdentification
+        this.businessid = this.details.businessID
+        this.commercialcity = this.details.commercialRegCity
+        this.taxprofessional = this.details.taxProfessional
 
-           this.socialseccurityfundno=this.details.socialSeccurityNo
-           this.nameofbank=this.details.nameofthebank
-            this.accountName=this.details.accountName
-            this.accountNumber=this.details.accountNumber
-           
+        this.socialseccurityfundno = this.details.socialSeccurityNo
+        this.nameofbank = this.details.nameofthebank
+        this.accountName = this.details.accountName
+        this.accountNumber = this.details.accountNumber
+
 
 
         this.GetCountryMaster()
@@ -307,7 +307,7 @@ export class EditDoctorRegistrationComponent implements OnInit {
   }
 
   public updatedetails() {
-
+    debugger
     var entity = {
       'LanguageID': this.languageid,
       'DoctorID': this.id,

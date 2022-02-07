@@ -9,9 +9,9 @@ import { pipeDef } from '@angular/core/src/view';
 
 export class HelloDoctorService {
   //live
-  public host = "https://maroc.voiladoc.org/MarocAPI";
+  public host = "https://maroc.voiladoc.org/VoilaDocTestAPI";
 
-  private host1 = "https://maroc.voiladoc.org/MarocAPI";
+  private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
 
 
 
@@ -264,6 +264,7 @@ export class HelloDoctorService {
   }
 
   public UpdateDoctorPersonelInfo(data) {
+    debugger
     this.url = this.host + '/Doctor/UpdateDoctorPersonelInfo';
     return this.http.post(this.url, data)
   }
@@ -6214,4 +6215,22 @@ export class HelloDoctorService {
     this.url = this.host + '/Doctor/InsertSub_Folders_Attachemnts';
     return this.http.post(this.url, data)
   }
+
+
+  public GetAllCountryManagerReports(sdate, edtae,typeid,lid) {
+    debugger
+    return this.http.get<any[]>(this.host+ '/Doctor/GetAllCountryManagerReports?Sdate=' + sdate + '&Edate=' + edtae+'&TypeID='+typeid+'&LanguageID='+lid);
+  }
+
+  public GetAllProvidersMontlySubscriptions(lid) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/GetAllProvidersMontlySubscriptions?LanguageID=' + lid );
+  }
+
+
+  public GetAllProviderSubscriptions(lid,year,month,typeid) {
+    debugger
+    return this.http.get<any[]>("http://localhost:4199/" + '/Doctor/GetAllProviderSubscriptions?LanguageID=' + lid +'&Year='+year+'&Month='+month+'&TypeID='+typeid);
+  }
+
 }
