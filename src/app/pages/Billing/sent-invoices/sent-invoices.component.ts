@@ -31,17 +31,17 @@ export class SentInvoicesComponent implements OnInit {
 
     }
 
-    public Getsentinvoices(type) {
-        this.docservice.GetSentInvoice(type).subscribe(data => {
-            this.invoiceslist = data;
-            this.invoiceslist = this.invoiceslist.filter(x => x.paid == 0);
-        })
-    }
+    // public Getsentinvoices(type) {
+    //     this.docservice.GetSentInvoice(type).subscribe(data => {
+    //         this.invoiceslist = data;
+    //         this.invoiceslist = this.invoiceslist.filter(x => x.paid == 0);
+    //     })
+    // }
 
     public GetType(even) {
         this.show = 1;
         this.type = even.target.value;
-        this.Getsentinvoices(this.type);
+        // this.Getsentinvoices(this.type);
 
     }
     public Makestatuspaid(id) {
@@ -50,7 +50,7 @@ export class SentInvoicesComponent implements OnInit {
             
             if (data != undefined) {
                 Swal.fire("Paid Successfully");
-                this.Getsentinvoices(this.type);
+                // this.Getsentinvoices(this.type);
             }
         })
     }

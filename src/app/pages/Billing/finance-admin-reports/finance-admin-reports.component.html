@@ -1,0 +1,97 @@
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+    [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="container-fluid card card-hover headerspace">
+    <div class="row headerspace1">
+        <div class="col-lg-3">
+            <h5>InVoices</h5>
+        
+        </div>
+    </div>
+    <br />
+</div>
+<br>
+<div class="container-fluid card">
+    <br>
+    <div class="row">
+        <div class="col-lg-3">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <!-- <div class="col-lg-3">
+            <select class="form-control" (change)="GetType($event)" [(ngModel)]="typeid" name="typeid">
+                <option selected value="">Select</option>
+                <option value="1">Hospital</option>
+                <option value="2"> Clinic</option>
+                <option value="3">Independent Doctor</option>
+                <option value="4">Independent Nurse</option>
+                <option value="5">Independent Physiotherapist</option>
+                <option value="6">Independent MidWife</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <select class="form-control" (change)="GetYear($event)" [(ngModel)]="year" name="year">
+                <option value="0">Select</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <select class="form-control" (change)="GetMonth($event)" [(ngModel)]="Month" name="Month">
+                <option value="0">Select</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+        </div> -->
+    </div><br>
+    <div class="row">
+        <div class="col-lg-12">
+            <table>
+
+                <tr>
+                    <th *ngIf="typeid==1">Hospital Name</th>
+                    <th *ngIf="typeid==2">Clinic</th>
+                    <th *ngIf="typeid==3">Doctor</th>
+                    <th *ngIf="typeid==4">Nurse</th>
+                    <th *ngIf="typeid==5">Physiotherapist</th>
+                    <th *ngIf="typeid==6">Midwife</th>
+                    <th>Phone No</th>
+                    <th>Email ID</th>
+                    <th>Month</th>
+                    <th>Invoice Amount</th>
+                    <th>Invoice</th>
+                    <!-- <th>Actions</th> -->
+                </tr>
+                <tr *ngFor="let details of reportList">
+                  <td>{{details.hospital_ClinicName}}</td>
+                  <td>{{details.phoneNo}}</td>
+                  <td>{{details.emailID}}</td>
+                  <td>{{details.monthName}}</td>
+                  <td>{{details.invoiceAmount}}</td>
+                  <td>
+                    <img src="assets/Images/pdf.png" (click)="openInvoice(details.invoiceUrl)" style="width: 30px;">
+                  </td>
+                  <!-- <td>
+
+                  </td> -->
+                </tr>
+           
+               
+            </table>
+        </div>
+    </div>
+    <br>
+</div>

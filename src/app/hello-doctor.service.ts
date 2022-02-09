@@ -5066,8 +5066,8 @@ export class HelloDoctorService {
     formdata.append('file_upload', files, files.name);
     return this.http.post(this.host + '/Master/UploadInvoicePDF/', formdata);
   }
-  public GetSentInvoice(type) {
-    return this.http.get<any[]>(this.host + '/Master/GetSentInvoice?Type=' + type);
+  public GetSentInvoice(type,year,month,lid) {
+    return this.http.get<any[]>(this.host + '/Master/GetSentInvoice?Type=' + type+'&Year='+year+'&Month='+month+'&LanguageID='+lid);
   }
 
   public MakePaymentPaid(id, paiddate) {
@@ -6230,7 +6230,13 @@ export class HelloDoctorService {
 
   public GetAllProviderSubscriptions(lid,year,month,typeid) {
     debugger
-    return this.http.get<any[]>("http://localhost:4199/" + '/Doctor/GetAllProviderSubscriptions?LanguageID=' + lid +'&Year='+year+'&Month='+month+'&TypeID='+typeid);
+    return this.http.get<any[]>(this.host + '/Doctor/GetAllProviderSubscriptions?LanguageID=' + lid +'&Year='+year+'&Month='+month+'&TypeID='+typeid);
+  }
+
+
+  public GetSendivoicesCount(lid,typeid,year,month) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/GetSendivoicesCount?LanguageID=' + lid +'&Type='+typeid+'&Year='+year+'&Month='+month);
   }
 
 }

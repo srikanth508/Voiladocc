@@ -15,7 +15,7 @@ export class NewBillingComponent implements OnInit {
     billinglist: any;
     invoicelist: any;
     totalamount: any;
-    @ViewChild('content')
+    // @ViewChild('content')
     content: ElementRef;
     invoiceurl: any;
     type: any;
@@ -28,7 +28,7 @@ export class NewBillingComponent implements OnInit {
     userid: any;
     yearlysub: any;
     emailid: any;
-    constructor(public docservice: HelloDoctorService,private spinner: NgxSpinnerService) { }
+    constructor(public docservice: HelloDoctorService, private spinner: NgxSpinnerService) { }
     languageid: any;
     value: any;
     SDate = new Date();
@@ -75,7 +75,7 @@ export class NewBillingComponent implements OnInit {
 
     public GetBillingdetails() {
         debugger
-        this.docservice.GetAllProviderSubscriptions(this.languageid,this.year,this.month,this.typeid).subscribe(data => {
+        this.docservice.GetAllProviderSubscriptions(this.languageid, this.year, this.month, this.typeid).subscribe(data => {
             debugger
             this.billinglist = data;
             this.spinner.hide()
@@ -116,24 +116,69 @@ export class NewBillingComponent implements OnInit {
     //     })
     // }
 
+    pincode: any;
+    phoneNo: any;
+    monthName: any;
     public GetList(invlist) {
         ;
         this.hospitalname = invlist.providerName;
         this.userid = invlist.id;
-        // this.contractsdate = invlist.contractStartdate;
-        // this.contractedate = invlist.contractEnddate;
+        this.phoneNo = invlist.phoneNo
         this.monthlysub = invlist.monthlySubscription;
         this.appointmentperc = invlist.appointmentpercentageamount;
         this.address = invlist.address;
         this.emailid = invlist.emailID;
+        this.pincode = invlist.pincode;
         this.totalamount = Number(invlist.monthlySubscription)
-        //  + Number(invlist.appointmentpercentageamount);
         this.invoicenumber = Math.floor(100000 + Math.random() * 900000);
+        this.monthName = invlist.name
+
+
 
     }
+
+
+
+
+
+//     public SavePDF() {
+
+//         this.spinner.show();
+
+
+//         // parentdiv is the html element which has to be converted to PDF
+//         html2canvas(document.querySelector("#content")).then(canvas => {
+// debugger
+//             var pdf = new jsPDF('p', 'pt', [800, canvas.height]);
+//             debugger
+//             var imgData = canvas.toDataURL("image/jpeg", 1.0);
+//             pdf.addImage(imgData, 0, 0, 800, canvas.height);
+
+//             var pdf1 = pdf.output('blob');
+//             var file = new File([pdf1], this.hospitalname + this.year + this.monthName + ".pdf");
+
+//             let body = new FormData();
+//             debugger
+//             body.append('Dan', file);
+
+//             this.docservice.UploadInvoicePDF(file).subscribe(res => {
+//                 ;
+
+//                 this.invoiceurl = res;
+
+//                 this.InsertDetailes();
+//             });
+
+//             // pdf.save('PO.pdf');
+
+//         });
+
+//     }
+
+
     public SavePDF() {
         ;
-
+this.spinner.show()
         let pdfContent = window.document.getElementById("content");
         var doc = new jsPDF('p', 'mm', "a4");
 
@@ -165,6 +210,9 @@ export class NewBillingComponent implements OnInit {
 
 
 
+
+
+
     public UploadPdf(data) {
         this.docservice.UploadInvoicePDF(data).subscribe(res => {
             ;
@@ -174,21 +222,19 @@ export class NewBillingComponent implements OnInit {
 
     public InsertDetailes() {
         var entity = {
-            Type: this.type,
+            Type: this.typeid,
             UserID: this.userid,
             InvoiceUrl: this.invoiceurl,
-            HospitalName: this.hospitalname,
-            filename: this.invoiceurl,
-            ContractStartDate: this.contractsdate,
-            ContractEndDate: this.contractedate,
-            PaidAmount: this.totalamount,
-            EmailID: this.emailid
+            InvoiceAmount: this.totalamount,
+            Year: this.year,
+            Month: this.month
         }
         this.docservice.InsertSentInvoice(entity).subscribe(data => {
             ;
             if (data != undefined) {
-
+                this.spinner.hide()
                 Swal.fire("Invoice Send Successfully");
+                this.GetBillingdetails()
                 // this.GetBillingdetails(this.type, this.startdate, this.enddate);
             }
         })

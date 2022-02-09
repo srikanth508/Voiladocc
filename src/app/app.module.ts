@@ -375,6 +375,7 @@ import { MysubfolderfilesComponent } from './pages/PersonalFolders/mysubfolderfi
 import { GroupofdocdashComponent } from './pages/Registration/groupofdocdash/groupofdocdash.component';
 import { CountryRevenueComponent } from './pages/AdminDashboard/country-revenue/country-revenue.component';
 import { AllMonthlysubscrptionsComponent } from './pages/AdminDashboard/all-monthlysubscrptions/all-monthlysubscrptions.component';
+import { FinanceAdminReportsComponent } from './pages/Billing/finance-admin-reports/finance-admin-reports.component';
 
 
 
@@ -748,7 +749,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MysubfolderfilesComponent,
     GroupofdocdashComponent,
     CountryRevenueComponent,
-    AllMonthlysubscrptionsComponent
+    AllMonthlysubscrptionsComponent,
+    FinanceAdminReportsComponent
     
    
   ],

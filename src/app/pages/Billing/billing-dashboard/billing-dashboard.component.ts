@@ -1,6 +1,7 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HelloDoctorService } from '../../../hello-doctor.service';
-
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
     selector: 'app-billing-dashboard',
     templateUrl: './billing-dashboard.component.html',
@@ -18,50 +19,53 @@ export class BillingDashboardComponent implements OnInit {
     paidinvoice: any;
     paidamount: any;
     pendingamount: any;
-    constructor(public docservice: HelloDoctorService) { }
-
+    constructor(public docservice: HelloDoctorService, private spinner: NgxSpinnerService) { }
+    todaydate: any;
+    languageid: any;
+    typeid: any;
     ngOnInit() {
+        this.spinner.show()
+        const format = 'yyyy-MM-dd';
+        const myDate = new Date();
+        const locale = 'en-US';
+        this.todaydate = formatDate(myDate, format, locale);
+        this.languageid = localStorage.getItem('LanguageID');
+        var date = new Date();
+        this.month = date.getMonth() + 1;
+        this.year = date.getFullYear();
+        this.typeid = 1
+        this.GetCounts()
     }
-
-    public GetCounts(Type, Month, Year) {
-        
-        this.docservice.GetCountsForDashboard(Type, Month, Year).subscribe(data => {
-            
-            this.dummylist = data;
-            this.pendinginvoice = this.dummylist.filter(x => x.paid == 0);
-            this.paidinvoice = this.dummylist.filter(x => x.paid == 1);
-            this.sentinvoicecount = this.dummylist.length;
-            this.paidinvoicecount = this.pendinginvoice.length;
-            this.pendinginvoicecount = this.paidinvoice.length;
-            if (this.pendinginvoice.length == 0) {
-                this.pendingamount = 0;
-            }
-            else {
-                this.pendingamount = this.pendinginvoice.map(a => a.paidAmount).reduce(function (a, b) {
-                    return a + b;
-                });
-            }
-            if (this.paidinvoice.length == 0) {
-                this.paidamount = 0;
-            }
-            else {
-                this.paidamount = this.paidinvoice.map(a => a.paidAmount).reduce(function (a, b) {
-                    return a + b;
-                });
-            }
-
+    counts: any;
+    public GetCounts() {
+        debugger
+        this.docservice.GetSendivoicesCount(this.languageid, this.typeid, this.year, this.month).subscribe(data => {
+            console.log("All Counts", this.counts);
+            this.counts = data;
+            this.spinner.hide()
         })
     }
     public GetType(even) {
-        this.type = even.target.value;
+        this.spinner.show()
+        this.typeid = even.target.value;
+        this.GetCounts();
 
     }
     public GetYear(even) {
+        this.spinner.show()
         this.year = even.target.value;
+        this.GetCounts();
 
     }
     public GetMonth(even) {
+        this.spinner.show()
         this.month = even.target.value;
-        this.GetCounts(this.type, this.month, this.year);
+        this.GetCounts();
+    }
+
+
+
+    gotoReports(value) {
+        location.href = "#/FinanceAdminReports/" + this.year + "/" + this.month + "/" + this.typeid + "/" + value
     }
 }
