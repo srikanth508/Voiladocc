@@ -135,13 +135,18 @@
 <div id="errorServer" class="modal  fade show" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog"
     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content"  >
-            <div class="modal-body" >
-                <div >
-                    <div class="container-fluid" id="content" >
+        <div class="modal-content">
+            <div class="modal-body">
+                <div>
+                    <div class="container-fluid" id="content">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <img src="assets/Images/telehealth.png" style="width: 200px;">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-8 text-alignments ">
-                                <h4 style="background:#303577;color:white">Client</h4>
+                                <h4 style="background:#303577;color:white">Client : {{hospitalname}}</h4>
                                 <label>Address : {{address}}</label><br>
                                 <label>Pin code : {{pincode}}</label><br>
                                 <label>Phone No : {{phoneNo}}</label><br>
@@ -162,7 +167,7 @@
                         </div><br>
                         <div class="row">
                             <h5>Abonnement au service Voiladoc - plateforme d'optimisation de pratique médicale</h5>
-                            <div class="col-lg-12" style="    height: 100px;">
+                            <div class="col-lg-12" style=" height: 100px;">
                                 <table>
                                     <tr>
                                         <th>Provider Name</th>
@@ -183,12 +188,21 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-8">
-
+                                <table>
+                                    <tr>
+                                        <th>No de compte bancaire TELEHEALTH :</th>
+                                    </tr>
+                                    <tr>
+                                       <label>Bank Name :</label><br>
+                                       <label>Account Number :</label><br>
+                                       <label>Ifcs Code :</label><br>
+                                    </tr>
+                                </table>
                             </div>
                             <div class="col-lg-4 text-alignments">
                                 <span>Net Total : {{totalamount}}</span><br>
-                                <span>TVA  : </span><br>
-                                <span>TOTAL TTC MAD  : {{totalamount}}</span><br>
+                                <span>TVA : </span><br>
+                                <span>TOTAL TTC MAD : {{totalamount}}</span><br>
                             </div>
                         </div>
 

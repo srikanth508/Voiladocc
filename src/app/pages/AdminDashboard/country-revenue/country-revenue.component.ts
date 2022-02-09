@@ -67,7 +67,7 @@ export class CountryRevenueComponent implements OnInit {
 
 
 
-
+  dummAllDetails:any;
 
   public GetAllProviderReports() {
     debugger
@@ -75,10 +75,21 @@ export class CountryRevenueComponent implements OnInit {
       data => {
         debugger
         this.AllDetails = data;
+        this.dummAllDetails = data;
         this.count = this.AllDetails.length;
       }, error => {
       }
     )
+  }
+
+  GettypeID(even) {
+    this.typeid = even.target.value;
+    if (even.target.value != 0) {
+      this.AllDetails = this.dummAllDetails.filter(x => x.typeid == this.typeid)
+    }
+    else {
+      this.GetAllProviderReports();
+    }
   }
 
 

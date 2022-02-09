@@ -26,8 +26,16 @@
     <div class="col-lg-3">
       <input type="search" placeholder="{{labels[0].search}}" [(ngModel)]="term" class="form-control">
     </div>
-    <div class="col-lg-4">
-
+    <div class="col-lg-3">
+   
+        <select class="form-control" (change)="GettypeID($event)">
+          <option value="0">Select</option>
+          <option value="4">Doctor</option>
+          <option value="1">Nurse</option>
+          <option value="2">Phsiotherapist</option>
+          <option value="3">Midwife</option>
+      </select>
+     
       <label>{{startdate}} - {{enddate}}</label>
     </div>
     <div class="col-lg-2" style="text-align: end;">
@@ -43,12 +51,14 @@
             <th>{{labels[0].appointmentDate}}</th>
             <th>{{labels[0].appointmentNumber}}</th>
             <th>{{labels[0].appointmentTime}}</th>
-            <th>Provider</th>
+            <th>Type</th>
+            <th>Provider Name</th>
             <!-- <th>{{labels[0].appointmentType}}</th> -->
             <th>{{labels[0].ailment}}</th>
             <th>{{labels[0].patientName}}</th>
             <th>{{labels[0].mobileNo}}</th>
             <th>{{labels[0].emailID}}</th>
+            <th>Payment Type</th>
             <th>Paid Amount</th>
             <th>Provider Revenue</th>
             <th>Voiladoc Commission</th>
@@ -59,11 +69,13 @@
             <td>{{details.appointmentID}}</td>
             <td>{{details.bookedTime}}</td>
             <td>{{details.type}}</td>
+            <td>{{details.nurseName}}</td>
             <!-- <td>{{details.combinationValue}}</td> -->
             <td>{{details.reasonForVisit}}</td>
             <td>{{details.patientName}}</td>
             <td>{{details.mobileNumber}}</td>
             <td>{{details.emailID}}</td>
+            <td>{{details.paymentType}}</td>
             <td>{{details.totalpaidamount}}</td>
             <td>{{details.paidAmount}}</td>
             <td>{{details.voialadoccommission}}</td>
