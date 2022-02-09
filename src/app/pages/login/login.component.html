@@ -4,18 +4,12 @@
 </ngx-spinner>
 <div class="container-fluid bg">
   <div class="row">
-    <div class="col-lg-1">
+    <div class="col-lg-7">
     </div>
-    <div class="col-lg-10">
-      <br><br>
+    <div class="col-lg-5">
+      <br>
       <div class="row">
-        <div class="col-lg-6 insidecard">
-          <br>
-          <br>
-          <img src="assets/Images/homescreen.png" style="width: 100%;height: auto;">
-          <h4 class="headinline">Plateforme d'optimisation opérationnelle.</h4>
-        </div>
-        <div class="col-lg-6 anothercard">
+        <div class="col-lg-10 anothercard">
           <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4" style="margin: 15px;">
@@ -24,20 +18,22 @@
           </div>
          
           <div class="row">
-            <div class="col-lg-2">
+            <div class="col-lg-1">
              
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-10">
               <form #loginForm="ngForm">
-                <span class="loginlable">LOGIN TO YOUR ACCOUNT</span><br><br>
+  
                 <div>
+                  <span class="loginlable">LOGIN TO YOUR ACCOUNT</span><br><br>
                   <select class="form-control" style="height:40px;" (change)="GetLanguageID($event)">
                     <option value="" selected>Select Language</option>
                     <option *ngFor="let lang of languagelist" value={{lang.id}}>{{lang.languageName}}</option>
                   </select>
                 </div>
                 <br>
-                <div *ngIf="LanguageID!=null">
+                <!-- *ngIf="LanguageID!=null" -->
+                <div >
                   <select class="form-control" style="height:40px;" (change)="onchangeFunction($event)">
                     <option value="" selected>{{labels[0].selectRole}}</option>
                     <option *ngFor="let role of rolelist" value={{role.id}}>{{role.short}}</option>
@@ -73,12 +69,23 @@
               </form>
 
             </div>
-            <div class="col-lg-2"></div>
+            <div class="col-lg-1">
+              
+            </div>
           </div>
+     
+          
+        </div>
+        <div class="col-lg-10">
+          <br>
+          <span class="loginlables">Plateforme d'optimisation opérationnelle.</span>
+        </div>
+      
+        <div class="col-lg-2">
+       
         </div>
       </div>
     </div>
-    <div class="col-lg-1">
-    </div>
+   
   </div>
 </div>

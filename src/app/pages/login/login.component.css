@@ -12,7 +12,8 @@
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-background-color: #FF725E;
+background-image: url("../../../assets/Images/Homebg1.png");
+/* background-color: #FF725E; */
    }
    ::placeholder { /* Firefox, Chrome, Opera */ 
     color: black; 
@@ -33,10 +34,10 @@ background-color: #FF725E;
   background-color: #FFFF;
   width: 100%;
   opacity: 1.5;
-  height: 90vh;
+  height: 85vh;
   /* padding-top: 35%; */
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+ border: 10px solid #FF725E;
+ border-radius: 20px;
 }
 
 
@@ -114,4 +115,12 @@ background-color: #FF725E;
     text-align: center;
     font-weight: 600;
     margin: 90px;
+    font-weight: 700;
+  }
+
+  .loginlables{
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 65px;
   }
