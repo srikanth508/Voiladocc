@@ -196,6 +196,14 @@ export class DiagnosticsregistrationComponent implements OnInit {
   evngtime1: any;
   evngtime2: any;
   evngtimings: any;
+  taxidentification: any;
+  businessid: any;
+  commercialcity: any;
+  taxprofessional: any;
+  socialseccurityfundno: any;
+  nameofbank: any;
+  accountName: any;
+  accountNumber: any;
   public insertdetails() {
 
     // if (this.attachmentsurl.length == 0) {
@@ -254,7 +262,16 @@ export class DiagnosticsregistrationComponent implements OnInit {
         'ContractEndDate': this.contractenddate,
         'DiagnosticAppointmentPerSlot': this.diagnosticappointmentperslot,
         'HomeSampleOrdersPerSlot': this.homesampleordersperslot,
-        'EveningTimings':this.evngtimings
+        'EveningTimings':this.evngtimings,
+        'TaxIdentification': this.taxidentification,
+        'BusinessID': this.businessid,
+        'CommercialRegCity': this.commercialcity,
+        'TaxProfessional': this.taxprofessional,
+        'SocialSeccurityNo': this.socialseccurityfundno,
+        'Nameofthebank': this.nameofbank,
+        'AccountName': this.accountName,
+        'AccountNumber': this.accountNumber,
+        'VAT': 0
       }
       this.docservice.InsertDiagnosticCenterRegistration(entity).subscribe(data => {
 

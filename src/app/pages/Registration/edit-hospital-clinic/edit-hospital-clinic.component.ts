@@ -158,7 +158,19 @@ export class EditHospitalClinicComponent implements OnInit {
           this.pincode = this.details.pincode,
           this.countryid = this.details.countryID,
           this.areaid = this.details.areaID,
-          this.pincode = this.details.pincode
+          this.pincode = this.details.pincode,
+          this.subscriptiontype = this.details.subscriptionTypeID,
+          this.monthlysubription = this.details.monthlySubscription
+        this.appointmentpercentage = this.details.appointmentPercentage
+        this.taxidentification = this.details.taxIdentification
+        this.businessid = this.details.businessID
+        this.commercialcity = this.details.commercialRegCity
+        this.taxprofessional = this.details.taxProfessional
+
+        this.socialseccurityfundno = this.details.socialSeccurityNo
+        this.nameofbank = this.details.nameofthebank
+        this.accountName = this.details.accountName
+        this.accountNumber = this.details.accountNumber
         this.GetCountryMaster();
         this.getcitymaster()
         this.getareamasterbyid();
@@ -170,6 +182,14 @@ export class EditHospitalClinicComponent implements OnInit {
 
 
 
+  taxidentification: any;
+  businessid: any;
+  commercialcity: any;
+  taxprofessional: any;
+  socialseccurityfundno: any;
+  nameofbank: any;
+  accountName: any;
+  accountNumber: any;
 
 
 
@@ -192,7 +212,19 @@ export class EditHospitalClinicComponent implements OnInit {
       'Description': this.description,
       'AreaID': this.areaid,
       'Pincode': this.pincode,
-      'CountryID': this.countryid
+      'CountryID': this.countryid,
+      'SubscriptionTypeID': this.subscriptiontype,
+      'MonthlySubscription': this.monthlysubription,
+      'AppointmentPercentage': this.appointmentpercentage,
+      'TaxIdentification': this.taxidentification,
+      'BusinessID': this.businessid,
+      'CommercialRegCity': this.commercialcity,
+      'TaxProfessional': this.taxprofessional,
+      'SocialSeccurityNo': this.socialseccurityfundno,
+      'Nameofthebank': this.nameofbank,
+      'AccountName': this.accountName,
+      'AccountNumber': this.accountNumber,
+      'VAT': 0
     }
     this.docservice.UpdateHospitalClinicProfile(entity).subscribe(res => {
       let test = res;

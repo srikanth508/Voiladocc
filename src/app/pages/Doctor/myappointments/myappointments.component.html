@@ -4464,7 +4464,8 @@
                   <td>{{view.medicalHistory}}</td>
                   <td>{{view.surgeryHistory}}</td>
                   <td>{{view.longtermTreatment}}</td>
-                  <td>{{view.vaccinationStatus}}
+                  <td>
+                    <!-- {{view.vaccinationStatus}} -->
 
                     <div class="txtorng">
                       <!-- <span placement="right" ngbTooltip="{{view.firstVaccine}},{{view.secondVaccine}}" role="button"
@@ -4492,7 +4493,7 @@
                     <p *ngIf="view.medicalinsurance=='0'" style="margin-top: 14px;"></p>
                   </td>
                   <td>
-                    {{view.knownAllergies}}
+                    <!-- {{view.knownAllergies}} -->
                     <img src="assets/Images/allergy.png" style="width: 17px;" data-toggle="modal" data-target="#Allergies" (click)="GetAllerges(view.knownAllergies)">
                   </td>
                 </tr>

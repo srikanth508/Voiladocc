@@ -101,7 +101,17 @@ export class EditDiagnosticRegistrationComponent implements OnInit {
           this.diagnosticappointmentperslot = this.details.diagnosticAppointmentPerSlot,
           this.homesampleordersperslot = this.details.homeSampleOrdersPerSlot,
           this.homesample = this.details.homeSample,
-          this.evngtimings = this.details.eveningTimings
+          this.evngtimings = this.details.eveningTimings,
+          this.taxidentification = this.details.taxIdentification
+          this.businessid = this.details.businessID
+          this.commercialcity = this.details.commercialRegCity
+          this.taxprofessional = this.details.taxProfessional
+  
+          this.socialseccurityfundno = this.details.socialSeccurityNo
+          this.nameofbank = this.details.nameofthebank
+          this.accountName = this.details.accountName
+          this.accountNumber = this.details.accountNumber
+
         debugger
         this.GetCountryMaster();
         this.getcitymaster();
@@ -155,6 +165,16 @@ export class EditDiagnosticRegistrationComponent implements OnInit {
     this.cityid = even.target.value;
     this.getareamasterbyid();
   }
+
+  taxidentification: any;
+  businessid: any;
+  commercialcity: any;
+  taxprofessional: any;
+  socialseccurityfundno: any;
+  nameofbank: any;
+  accountName: any;
+  accountNumber: any;
+
   public updatedetails() {
 
     var entity = {
@@ -178,7 +198,16 @@ export class EditDiagnosticRegistrationComponent implements OnInit {
       'DiagnosticAppointmentPerSlot': this.diagnosticappointmentperslot,
       'HomeSampleOrdersPerSlot': this.homesampleordersperslot,
       'HomeSample': this.homesample,
-      'EveningTimings': this.evngtimings
+      'EveningTimings': this.evngtimings,
+      'TaxIdentification': this.taxidentification,
+      'BusinessID': this.businessid,
+      'CommercialRegCity': this.commercialcity,
+      'TaxProfessional': this.taxprofessional,
+      'SocialSeccurityNo': this.socialseccurityfundno,
+      'Nameofthebank': this.nameofbank,
+      'AccountName': this.accountName,
+      'AccountNumber': this.accountNumber,
+      'VAT': 0
     }
     this.docservice.UpdateDiagnosticCenterProfile(entity).subscribe(res => {
       let test = res;

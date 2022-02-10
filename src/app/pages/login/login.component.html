@@ -4,30 +4,28 @@
 </ngx-spinner>
 <div class="container-fluid bg">
   <div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-4" style="text-align: center;">
-      <br><br><br>
-      <div style="background-color: #322b6b;padding: 12%;border-radius: 20px;">
+    <div class="col-lg-7">
+    </div>
+    <div class="col-lg-4">
+      <br> <br><br>
+      <div style="background-color: #FFFF;padding: 8%;border-radius: 20px;">
+        <div class="row">
+          <div class="col-lg-4">
+          </div>
+          <div class="col-lg-4">
+            <img src="assets/Images/logo.png" class="loginimge">
+          </div>
+        </div>
         <form #loginForm="ngForm">
-          <h3
-            style="border-radius: 10px;padding-top: 3%;height:114px;width:100%;background-color: white;color: aliceblue;">
-            <img src="assets/Images/logo.png" style="margin-top: -14px;width: 29%;">
-            <h6 style="color: #322b6b;margin-top: -9px;
-            font-size: 10px;">Plateforme d'optimisation opérationnelle. </h6>
-          </h3>
-          <br>
-          <!-- <select class="form-control" style="hei  ght:40px;" (change)="GetCountryID($event)">
-            <option value="0" selected>Select Country</option>
-            <option *ngFor="let cou of countrylist" value={{cou.countryID}}>{{cou.countryName}}</option>
-          </select><br> -->
-          <!-- *ngIf="countryid!=null" -->
           <div>
+            <!-- <span class="loginlable">LOGIN TO YOUR ACCOUNT</span><br><br> -->
             <select class="form-control" style="height:40px;" (change)="GetLanguageID($event)">
               <option value="" selected>Select Language</option>
               <option *ngFor="let lang of languagelist" value={{lang.id}}>{{lang.languageName}}</option>
             </select>
           </div>
           <br>
+          <!-- *ngIf="LanguageID!=null" -->
           <div *ngIf="LanguageID!=null">
             <select class="form-control" style="height:40px;" (change)="onchangeFunction($event)">
               <option value="" selected>{{labels[0].selectRole}}</option>
@@ -43,35 +41,47 @@
             <br>
 
             <input type="password" [(ngModel)]="pwd" *ngIf="Showpass=='1'" style="height:40px;" name="pwd" required
-              placeholder="{{labels[0].pass}}" class="form-control">
-            <span style="position:absolute;right: 83px;top: 531px;" *ngIf="Showpass=='1'" (click)="hidepassord()"
+            placeholder="{{labels[0].pass}}" class="form-control">
+          <span style="position:absolute;right: 72px;margin-top: -5%;" *ngIf="Showpass=='1'" (click)="hidepassord()"
+            class="fa fa-eye-slash"></span>
+
+          <input type="text" [(ngModel)]="pwd" *ngIf="Showpass=='0'" style="height:40px;" name="pwd" required
+            placeholder="{{labels[0].pass}}" class="form-control">
+          <span style="position:absolute;right: 72px;margin-top: -5%;" *ngIf="Showpass=='0'" (click)="showpassword()"
+            class="fa fa-eye"></span>
+            <!-- *ngIf="Showpass=='1'" -->
+            <!-- <input type="password" [(ngModel)]="pwd" style="height:40px;" name="pwd" required
+              placeholder="{{labels[0].pass}}" class="form-control"> -->
+            <!-- <span style="position:absolute;right: 83px;top: 531px;" *ngIf="Showpass=='1'" (click)="hidepassord()"
               class="fa fa-eye-slash"></span>
+ -->
+            <!-- <input type="text" [(ngModel)]="pwd" *ngIf="Showpass=='0'" style="height:40px;" name="pwd" required
+              placeholder="{{labels[0].pass}}" class="form-control"> -->
+            <!-- <span style="position:absolute;right: 83px;top: 531px;" *ngIf="Showpass=='0'" (click)="showpassword()"
+              class="fa fa-eye"></span> -->
 
-            <input type="text" [(ngModel)]="pwd" *ngIf="Showpass=='0'" style="height:40px;" name="pwd" required
-              placeholder="{{labels[0].pass}}" class="form-control">
-            <span style="position:absolute;right: 83px;top: 531px;" *ngIf="Showpass=='0'" (click)="showpassword()"
-              class="fa fa-eye"></span>
 
-            <!-- <input type="text"   [(ngModel)]="otp" style="height:40px;" name="otp" required placeholder="Password"
-            class="form-control"> -->
             <label style="color:#f18235;float: right;cursor: pointer;"
               routerLink="/ForgotPassword">{{labels[0].forgotpassword}}</label><br>
 
-            <div class="row">
-              <div class="col-lg-4">
 
-              </div>
-              <div class="col-lg-4">
-                <button type="submit" class="login" (click)="login()"
-                  [disabled]="loginForm.form.invalid">{{labels[0].login}}</button>
-              </div>
-            </div>
+            <button type="submit" class="login" (click)="login()"
+              [disabled]="loginForm.form.invalid">{{labels[0].login}}</button>
 
           </div>
         </form>
+
+      </div><br>
+
+      <div class="row">
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-10">
+          <span class="loginlables">Plateforme d'optimisation opérationnelle.</span>
+        </div>
       </div>
-    </div><br>
-    <div class="col-lg-1">
     </div>
+
   </div>
 </div>

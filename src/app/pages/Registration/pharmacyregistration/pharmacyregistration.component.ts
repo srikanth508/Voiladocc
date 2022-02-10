@@ -144,6 +144,16 @@ export class PharmacyregistrationComponent implements OnInit {
   }
 
 
+  taxidentification: any;
+  businessid: any;
+  commercialcity: any;
+  taxprofessional: any;
+  socialseccurityfundno: any;
+  nameofbank: any;
+  accountName: any;
+  accountNumber: any;
+  subscriptiontype: any;
+
   public insertdetails() {
 
 
@@ -202,7 +212,16 @@ export class PharmacyregistrationComponent implements OnInit {
         'Hospitalfulltimebit': this.hospitalfulltimebit,
         'ContartStartDate': this.contractstartdate,
         'ContractEndDate': this.contractenddate,
-        'EveningTimings': this.evngtimings
+        'EveningTimings': this.evngtimings,
+        'TaxIdentification': this.taxidentification,
+        'BusinessID': this.businessid,
+        'CommercialRegCity': this.commercialcity,
+        'TaxProfessional': this.taxprofessional,
+        'SocialSeccurityNo': this.socialseccurityfundno,
+        'Nameofthebank': this.nameofbank,
+        'AccountName': this.accountName,
+        'AccountNumber': this.accountNumber,
+        'VAT': 0
       }
       this.docservice.InsertPharmacyRegistration(entity).subscribe(data => {
         debugger

@@ -125,7 +125,15 @@ export class EditPharmacyRegComponent implements OnInit {
           this.countryid = this.details.countryID,
           this.homedelivery = this.details.homeDelivery,
           this.nightpharmacy = this.details.nightPharmacy,
-          this.eveningtimings = this.details.eveningTimings
+          this.eveningtimings = this.details.eveningTimings,
+          this.taxidentification = this.details.taxIdentification
+          this.businessid = this.details.businessID
+          this.commercialcity = this.details.commercialRegCity
+          this.taxprofessional = this.details.taxProfessional
+          this.socialseccurityfundno = this.details.socialSeccurityNo
+          this.nameofbank = this.details.nameofthebank
+          this.accountName = this.details.accountName
+          this.accountNumber = this.details.accountNumber
         this.GetCountryMaster();
         this.getcitymaster();
         this.getareamasterbyid()
@@ -158,6 +166,16 @@ export class EditPharmacyRegComponent implements OnInit {
   }
 
   eveningtimings: any;
+  
+  taxidentification: any;
+  businessid: any;
+  commercialcity: any;
+  taxprofessional: any;
+  socialseccurityfundno: any;
+  nameofbank: any;
+  accountName: any;
+  accountNumber: any;
+  subscriptiontype: any;
 
   public GetCountryID(even) {
 
@@ -185,7 +203,17 @@ export class EditPharmacyRegComponent implements OnInit {
       'CountryID': this.countryid,
       'NightPharmacy': this.nightpharmacy,
       'HomeDelivery': this.homedelivery,
-      'EveningTimings': this.eveningtimings
+      'EveningTimings': this.eveningtimings,
+      'TaxIdentification': this.taxidentification,
+      'BusinessID': this.businessid,
+      'CommercialRegCity': this.commercialcity,
+      'TaxProfessional': this.taxprofessional,
+      'SocialSeccurityNo': this.socialseccurityfundno,
+      'Nameofthebank': this.nameofbank,
+      'AccountName': this.accountName,
+      'AccountNumber': this.accountNumber,
+      'VAT': 0
+    
     }
     this.docservice.UpdatePharmacyProfile(entity).subscribe(res => {
       debugger

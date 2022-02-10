@@ -2331,7 +2331,13 @@ export class VediocallComponent implements OnInit {
   }
 
   public closewindow() {
-    window.close();
+    this.docservice.UpdateAlertBitsBack(this.appointmentid).subscribe(
+      data => {
+        window.close();
+      }, error => {
+      }
+    )
+
   }
 
 
@@ -2576,7 +2582,7 @@ export class VediocallComponent implements OnInit {
     this.DiaenterArray.push(entity);
     this.diagnostictestname = "";
     debugger
-    this.diagnostictestname=""
+    this.diagnostictestname = ""
     // var test = this.testslist.findIndex(x => x.id == code.id);
     // this.testsslist = this.testslist.slice(test, 1, this.testslist.length);
 
@@ -2674,8 +2680,8 @@ export class VediocallComponent implements OnInit {
             this.diagnostictestname = ""
             this.DiaenterArray.length = 0;
             this.DiaenterArray = []
-            this.tablecount5=1
-           
+            this.tablecount5 = 1
+
 
 
 
@@ -2696,7 +2702,7 @@ export class VediocallComponent implements OnInit {
             this.diagnostictestname = ""
             this.DiaenterArray.length = 0;
             this.DiaenterArray = []
-            this.tablecount5=1
+            this.tablecount5 = 1
 
 
 

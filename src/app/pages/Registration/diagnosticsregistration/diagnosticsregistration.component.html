@@ -370,24 +370,141 @@
                 onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode==32||event.charCode>=48&&event.charCode<=57'></textarea>
             </div>
           </div>
+        </div>
           <br>
           <br>
-          <div class="row" >
-            <div class="col-lg-5">
-            </div>
-            <div class="col-lg-2">
-              <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
-                [disabled]="diagnosticForm.form.invalid||validEmail==false" (click)="insertdetails()">{{labels[0].save}}
-              </button>
-            </div>
-            <div class="col-lg-5">
-            </div>
-          </div>
+          
           <button type="button" style="background-color: #f18235;color: white;" class="btn nextbtncolor"
             awPreviousStep>{{labels[0].previous}}</button>
+
+            <button type="button" style="float: right" class="btn dashbtn nextbtncolor" awNextStep>Next</button>
+     
+        <br>
+        <br>
+   
+      </aw-wizard-step>
+
+      <aw-wizard-step stepTitle="Financial">
+        <hr size="30">
+        <div class="row">
+          <div class="col-lg-3">
+
+          </div>
+          <div class="col-lg-9">
+            <h4 class="mainheader" *ngIf="languageid=='1'">Business registration and invoicing</h4>
+            <h4 class="mainheader" *ngIf="languageid=='6'">Enregistrement et facturation des entreprises</h4>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="Address_label">Tax Identification :</label>
+
+          </div>
+          <div class="col-lg-4">
+
+            <input type="text" class="form-control" required placeholder="Tax Identification"
+              [(ngModel)]="taxidentification" name="taxidentification">
+          </div>
         </div>
         <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="Address_label">Business ID :</label>
+
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" required placeholder="Business ID" [(ngModel)]="businessid"
+              name="businessid">
+          </div>
+        </div>
+
         <br>
+
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="Address_label">Commercial Registration & City :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" required placeholder="Commercial Registration & City"
+              [(ngModel)]="commercialcity" name="commercialcity">
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="Address_label">Tax Professional :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" required placeholder="Tax Professional"
+              [(ngModel)]="taxprofessional" name="taxprofessional">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="Address_label">Social security fund no :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" required placeholder="Social security fund no"
+              [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+          </div>
+          <div class="col-lg-9">
+            <h4 class="mainheader" *ngIf="languageid=='1'">Bank details</h4>
+            <h4 class="mainheader" *ngIf="languageid=='6'">Coordonnées bancaires</h4>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="Address_label">Name of the bank :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" required placeholder="Name of the bank" [(ngModel)]="nameofbank"
+              name="nameofbank">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="Address_label">Account name :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" required placeholder="Account name" [(ngModel)]="accountName"
+              name="accountName">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="Address_label">Account number :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" required placeholder="Account number" maxlength="24"
+              [(ngModel)]="accountNumber" name="accountNumber">
+          </div>
+        </div>
+        <br>
+
+        <div class="row" >
+          <div class="col-lg-5">
+          </div>
+          <div class="col-lg-2">
+            <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+              [disabled]="diagnosticForm.form.invalid||validEmail==false" (click)="insertdetails()">{{labels[0].save}}
+            </button>
+          </div>
+          <div class="col-lg-5">
+          </div>
+        </div>
+      
+
+        <button type="button" style="float: left" class="btn btncolor " awPreviousStep>{{labels[0].previous}}</button>
       </aw-wizard-step>
     </aw-wizard>
     <br>

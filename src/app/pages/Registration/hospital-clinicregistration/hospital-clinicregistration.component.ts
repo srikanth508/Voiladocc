@@ -224,6 +224,15 @@ export class HospitalClinicregistrationComponent implements OnInit {
   }
 
 
+  taxidentification: any;
+  businessid: any;
+  commercialcity: any;
+  taxprofessional: any;
+  socialseccurityfundno: any;
+  nameofbank: any;
+  accountName: any;
+  accountNumber: any;
+
   public insertdetails() {
 
 
@@ -276,7 +285,16 @@ export class HospitalClinicregistrationComponent implements OnInit {
         'MonthlySubscription': this.monthlysubription,
         'Hospitalfulltimebit': 0,
         'SubscriptionTypeID': this.subscriptiontype,
-        'AppointmentPercentage': this.appointmentpercentage
+        'AppointmentPercentage': this.appointmentpercentage,
+        'TaxIdentification': this.taxidentification,
+        'BusinessID': this.businessid,
+        'CommercialRegCity': this.commercialcity,
+        'TaxProfessional': this.taxprofessional,
+        'SocialSeccurityNo': this.socialseccurityfundno,
+        'Nameofthebank': this.nameofbank,
+        'AccountName': this.accountName,
+        'AccountNumber': this.accountNumber,
+        'VAT': 0
       }
       this.docservice.InsertHospitalClinicDetailsMaster(entity).subscribe(data => {
 

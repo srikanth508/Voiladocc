@@ -4162,6 +4162,11 @@ export class HelloDoctorService {
     return this.http.get<any[]>(this.host + '/Doctor/UpdateAlertbit?AppointmentID=' + aid);
   }
 
+  public UpdateAlertBitsBack(aid) {
+
+    return this.http.get<any[]>(this.host + '/Doctor/UpdateAlertBitsBack?AppointmentID=' + aid);
+  }
+
 
   public UpdateSupportForWebResolvedbit(data) {
     this.url = this.host + '/Doctor/UpdateSupportForWebResolvedbit';
