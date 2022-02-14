@@ -6,6 +6,9 @@ import * as XLSX from 'xlsx';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 import * as FileSaver from 'file-saver';
+import { formatDate } from '@angular/common';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-all-provider-payments',
@@ -24,7 +27,12 @@ export class AllProviderPaymentsComponent implements OnInit {
   term: any;
   dropzonelable: any;
   comments: any;
+  todaydate: any;
   ngOnInit() {
+    const format = 'yyyy-MM-dd';
+    const myDate = new Date();
+    const locale = 'en-US';
+    this.todaydate = formatDate(myDate, format, locale);
     this.spinner.show();
     this.languageid = localStorage.getItem('LanguageID');
     var date = new Date();
@@ -66,7 +74,7 @@ export class AllProviderPaymentsComponent implements OnInit {
     })
   }
 
-  monthname: any;
+  monthName: any;
 
   public GetYear(even) {
     this.spinner.show();
@@ -135,13 +143,43 @@ export class AllProviderPaymentsComponent implements OnInit {
   public totalcommission: any;
   public paymentdue: any;
   public userid: any;
-
+  hospitalname: any;
+  phoneNo: any;
+  address: any;
+  emailid: any;
+  invoicenumber: any;
+  businessid: any;
+  nameofthebank: any;
+  socialSeccurityNo: any;
+  accountName: any;
+  accountNumber: any;
+  monthlyStatement: any;
+  pincode:any;
 
   public GetList(details) {
+    this.spinner.show();
     this.totrevenue = details.grandTotalAmount
     this.totalcommission = details.totalCommissionsAmount,
       this.paymentdue = Number(details.grandTotalAmount) - Number(details.totalCommissionsAmount),
-      this.userid = details.id
+      this.userid = details.id,
+      this.hospitalname = details.providername
+    this.phoneNo = details.contactPersonPhNo
+    this.address = details.address
+    this.emailid = details.emailID
+    this.monthName = details.month
+    this.socialSeccurityNo = details.socialSeccurityNo
+    this.businessid = details.businessID
+    this.nameofthebank = details.nameofthebank
+    this.accountName = details.accountName,
+    this.pincode = details.pincode
+    this.accountNumber = details.accountNumber
+    this.invoicenumber = Math.floor(100000 + Math.random() * 900000);
+    debugger
+    this.docservice.GetDoctorsMonthlyStatement(details.id, this.month, this.year, this.languageid, this.typeid).subscribe(data => {
+      debugger
+      this.monthlyStatement = data;
+      this.spinner.hide();
+    })
   }
 
 
@@ -215,13 +253,88 @@ export class AllProviderPaymentsComponent implements OnInit {
       'TransctionID': this.transctionid,
       'ChequeNo': this.chequeno,
       'PaymentType': this.paymenttypeid,
-      'TransctionPhoto': this.attachmentsurl[0],
+      'TransctionPhoto': this.invoiceurl,
       'TotalRevenue': this.totrevenue,
       'VoiladocRevenue': this.totalcommission,
       'PaidAmount': this.paymentdue
     }
     this.docservice.InsertProviderPaidPayments(entity).subscribe(data => {
       Swal.fire("Payment Paid Successfully");
+      this.spinner.hide();
+      this.GetAllRevenue()
     })
   }
+
+
+
+  invoiceurl: any;
+
+  public SavePDF() {
+    ;
+    this.spinner.show()
+    let pdfContent = window.document.getElementById("content");
+    var doc = new jsPDF('p', 'mm', "a4");
+
+    html2canvas(pdfContent).then(canvas => {
+      ;
+      var imgData = canvas.toDataURL('image/jpeg', 1.0);
+
+      doc.setFontSize(3);
+
+      doc.addImage(imgData, 'JPEG', 10, 10, 180, 150);
+      var pdf = doc.output('blob');
+
+      var file = new File([pdf], "Invoice" + ".pdf");
+
+      let body = new FormData();
+
+      body.append('Dan', file);
+     
+  
+      this.docservice.UploadInvoicePDF(file).subscribe(res => {
+          ;
+
+          this.invoiceurl = res;
+          this.InsertPayments()
+        
+          doc.save(this.hospitalname + this.month + this.year + '.pdf');
+      });
+    });
+
+  }
+
+
+  public Downlod() {
+    debugger
+    this.spinner.show()
+    // parentdiv is the html element which has to be converted to PDF
+    html2canvas(document.querySelector("#content")).then(canvas => {
+      debugger
+      var pdf = new jsPDF('p', 'pt', [canvas.width, canvas.height]);
+      debugger
+      var imgData = canvas.toDataURL("image/jpeg", 1.0);
+      pdf.addImage(imgData, 0, 0, canvas.width, canvas.height);
+      debugger
+      // var pdf1 = pdf.output('blob');
+      // var file = new File([pdf1], "PO" + ".pdf");
+
+      // let body = new FormData();
+      // debugger
+      // body.append('Dan', file);
+      // this.pomservice.UploadPO(file).subscribe(res => {
+      //   ;
+      //   this.emailattchementurl.push(res);
+      //   this.sendmail1()
+      //   debugger
+      // });
+      pdf.save(this.hospitalname + this.month + this.year + '.pdf');
+
+      document.getElementById('Close').click();
+      this.spinner.hide();
+
+    });
+  }
+
+
+
 }

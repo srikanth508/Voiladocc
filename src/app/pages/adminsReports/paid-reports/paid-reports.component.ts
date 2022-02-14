@@ -36,6 +36,7 @@ export class PaidReportsComponent implements OnInit {
   public GetType(even) {
     this.type = even.target.value;
     this.show=1;
+    this.GetPaidPayments()
   }
 
   
@@ -55,4 +56,8 @@ public GetMonth(even) {
   this.GetPaidPayments()
 }
 
+openwindow(transctionPhoto)
+{
+  window.open(transctionPhoto,"_blank")
+}
 }

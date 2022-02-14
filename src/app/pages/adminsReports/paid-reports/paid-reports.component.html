@@ -5,6 +5,15 @@
     <div class="col-lg-3">
       <h5>Paid Invoices</h5>
     </div>
+
+  </div>
+  <br>
+</div><br>
+<div class="container-fluid card card:hover ">
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-lg-3">
+      <input type="text" class="form-control" [(ngModel)]="term" name="term" placeholder="Search">
+    </div>
     <div class="col-lg-3">
       <select class="form-control" (change)="GetType($event)">
         <option selected value="">Select</option>
@@ -45,14 +54,6 @@
         <option value="12">December</option>
       </select>
     </div>
-  </div>
-  <br>
-</div><br>
-<div class="container-fluid card card:hover ">
-  <div class="row" style="margin-top: 20px;">
-    <div class="col-lg-3">
-      <input type="text" class="form-control" [(ngModel)]="term" name="term" placeholder="Search">
-    </div>
   </div><br>
   <div class="row" *ngIf="show==1">
     <div class="col-lg-12" style="overflow: auto;">
@@ -68,7 +69,7 @@
             <th *ngIf="type=='8'">Diagnostic Center</th>
             <th *ngIf="type=='1'||type=='2'">Contact Person</th>
             <th>Phone No</th>
-            <th>Payment Type</th>
+            <!-- <th>Payment Type</th> -->
             <th>Paid Amount</th>
             <th>Transction Photo</th>
           </tr>
@@ -76,11 +77,11 @@
             <td>{{list.hospital_ClinicName}}</td>
             <td *ngIf="type=='1'||type=='2'">{{list.contactPersonName}}</td>
             <td>{{list.phoneNo}}</td>
-            <td>{{list.paymentName}}</td>
+            <!-- <td>{{list.paymentName}}</td> -->
             <td>{{list.paidAmount}}</td>
             <td>
             
-                <img src="{{list.transctionPhoto}}" style="width:5%;">
+                <img src="assets/Images/pdf.png" style="width:10%;" (click)="openwindow(list.transctionPhoto)">
             
             </td>
           </tr>

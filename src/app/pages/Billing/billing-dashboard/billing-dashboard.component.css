@@ -36,3 +36,8 @@ th::first-letter {
 th {
     text-transform: lowercase;
 }
+
+.h4tag
+{
+    color:#2e2d6e;
+}

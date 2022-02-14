@@ -14,6 +14,10 @@ export class HelloDoctorService {
   private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
 
 
+  //   public host = "https://maroc.voiladoc.org/marocAPI";
+
+  //  private host1 = "https://maroc.voiladoc.org/marocAPI";
+
 
   //test1
 
@@ -6242,6 +6246,13 @@ export class HelloDoctorService {
   public GetSendivoicesCount(lid,typeid,year,month) {
     debugger
     return this.http.get<any[]>(this.host + '/Doctor/GetSendivoicesCount?LanguageID=' + lid +'&Type='+typeid+'&Year='+year+'&Month='+month);
+  }
+
+
+  
+  public GetDoctorsMonthlyStatement(doctorid,Month,year,lid,tyepid) {
+    debugger
+    return this.http.get<any[]>("http://localhost:4199/" + '/Doctor/GetDoctorsMonthlyStatement?DoctorID=' + doctorid +'&Month='+Month+'&Year='+year+'&LanguageID='+lid+'&TypeID='+tyepid);
   }
 
 }
