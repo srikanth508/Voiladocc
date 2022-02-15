@@ -6255,4 +6255,10 @@ export class HelloDoctorService {
     return this.http.get<any[]>("http://localhost:4199/" + '/Doctor/GetDoctorsMonthlyStatement?DoctorID=' + doctorid + '&Month=' + Month + '&Year=' + year + '&LanguageID=' + lid + '&TypeID=' + tyepid);
   }
 
+
+  public UpodateSentInvoice(data) {
+    this.url = "http://localhost:4199/" + '/Admin/UpodateSentInvoice';
+    return this.http.post(this.url, data)
+  }
+
 }

@@ -903,6 +903,10 @@
                 <img src="assets/Images/profile.png" style="width: 15px;">&nbsp; &nbsp; Subscription Billing
             </a>
 
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='22'" routerLink="/SubscriptionpaidReports">
+                <img src="assets/Images/profile.png" style="width: 15px;">&nbsp; &nbsp; Subscription Reports
+            </a>
+
             <!-- <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='22'" routerLink="/Providerpay">
                 <img src="assets/Images/profile.png" style="width: 15px;">&nbsp; &nbsp; Provider Pay
             </a>

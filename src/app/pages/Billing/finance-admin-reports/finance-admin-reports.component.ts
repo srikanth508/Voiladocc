@@ -38,19 +38,19 @@ export class FinanceAdminReportsComponent implements OnInit {
   getsentInvoice() {
     debugger
     this.docservice.GetSentInvoice(this.typeid, this.year, this.Month, this.languageid).subscribe(data => {
-      this.reportList = data;
+      // this.reportList = data;
       debugger
-      if (this.filterid == 1||3) {
-        this.reportList = this.reportList.filter(x => x.paid == 0 && x.type == this.typeid)
+      if (this.filterid == 1) {
+        this.reportList = data.filter(x => x.paid == 0 && x.type == this.typeid)
       }
       if (this.filterid == 2) {
-        this.reportList = this.reportList.filter(x => x.paid == 1 && x.type == this.typeid)
+        this.reportList = data.filter(x => x.paid == 1 && x.type == this.typeid)
+      }
+      if (this.filterid == 3) {
+        this.reportList = data.filter(x => x.paid == 1 && x.type == this.typeid)
       }
       if (this.filterid == 4) {
-        this.reportList = this.reportList.filter(x => x.paid == 1 && x.type == this.typeid)
-      }
-      if (this.filterid == 4) {
-        this.reportList = this.reportList.filter(x => x.paid == 0 && x.type == this.typeid)
+        this.reportList = data.filter(x => x.paid == 0 && x.type == this.typeid)
       }
     })
 
