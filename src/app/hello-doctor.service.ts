@@ -4313,7 +4313,7 @@ export class HelloDoctorService {
   }
 
   public sendemail(data) {
-
+    debugger
     this.url = this.host + '/Doctor/sendemail';
     return this.http.post(this.url, data)
   }
@@ -5075,8 +5075,8 @@ export class HelloDoctorService {
     formdata.append('file_upload', files, files.name);
     return this.http.post(this.host + '/Master/UploadInvoicePDF/', formdata);
   }
-  public GetSentInvoice(type,year,month,lid) {
-    return this.http.get<any[]>(this.host + '/Master/GetSentInvoice?Type=' + type+'&Year='+year+'&Month='+month+'&LanguageID='+lid);
+  public GetSentInvoice(type, year, month, lid) {
+    return this.http.get<any[]>(this.host + '/Master/GetSentInvoice?Type=' + type + '&Year=' + year + '&Month=' + month + '&LanguageID=' + lid);
   }
 
   public MakePaymentPaid(id, paiddate) {
@@ -6202,8 +6202,8 @@ export class HelloDoctorService {
   }
 
 
-  
-  public DoctorReports(files,foldername) {
+
+  public DoctorReports(files, foldername) {
 
     let formdata: FormData = new FormData();
     formdata.append('file_upload', files, files.name);
@@ -6219,40 +6219,40 @@ export class HelloDoctorService {
     return this.http.get<any[]>(this.host + '/Doctor/GetSub_Folders_Attachemnts?SubFolders_ID=' + folderid + '&LanguageID=' + lid);
   }
 
-  
+
   public InsertSub_Folders_Attachemnts(data) {
     this.url = this.host + '/Doctor/InsertSub_Folders_Attachemnts';
     return this.http.post(this.url, data)
   }
 
 
-  public GetAllCountryManagerReports(sdate, edtae,typeid,lid) {
+  public GetAllCountryManagerReports(sdate, edtae, typeid, lid) {
     debugger
-    return this.http.get<any[]>(this.host+ '/Doctor/GetAllCountryManagerReports?Sdate=' + sdate + '&Edate=' + edtae+'&TypeID='+typeid+'&LanguageID='+lid);
+    return this.http.get<any[]>(this.host + '/Doctor/GetAllCountryManagerReports?Sdate=' + sdate + '&Edate=' + edtae + '&TypeID=' + typeid + '&LanguageID=' + lid);
   }
 
   public GetAllProvidersMontlySubscriptions(lid) {
     debugger
-    return this.http.get<any[]>(this.host + '/Doctor/GetAllProvidersMontlySubscriptions?LanguageID=' + lid );
+    return this.http.get<any[]>(this.host + '/Doctor/GetAllProvidersMontlySubscriptions?LanguageID=' + lid);
   }
 
 
-  public GetAllProviderSubscriptions(lid,year,month,typeid) {
+  public GetAllProviderSubscriptions(lid, year, month, typeid) {
     debugger
-    return this.http.get<any[]>(this.host + '/Doctor/GetAllProviderSubscriptions?LanguageID=' + lid +'&Year='+year+'&Month='+month+'&TypeID='+typeid);
+    return this.http.get<any[]>(this.host + '/Doctor/GetAllProviderSubscriptions?LanguageID=' + lid + '&Year=' + year + '&Month=' + month + '&TypeID=' + typeid);
   }
 
 
-  public GetSendivoicesCount(lid,typeid,year,month) {
+  public GetSendivoicesCount(lid, typeid, year, month) {
     debugger
-    return this.http.get<any[]>(this.host + '/Doctor/GetSendivoicesCount?LanguageID=' + lid +'&Type='+typeid+'&Year='+year+'&Month='+month);
+    return this.http.get<any[]>(this.host + '/Doctor/GetSendivoicesCount?LanguageID=' + lid + '&Type=' + typeid + '&Year=' + year + '&Month=' + month);
   }
 
 
-  
-  public GetDoctorsMonthlyStatement(doctorid,Month,year,lid,tyepid) {
+
+  public GetDoctorsMonthlyStatement(doctorid, Month, year, lid, tyepid) {
     debugger
-    return this.http.get<any[]>("http://localhost:4199/" + '/Doctor/GetDoctorsMonthlyStatement?DoctorID=' + doctorid +'&Month='+Month+'&Year='+year+'&LanguageID='+lid+'&TypeID='+tyepid);
+    return this.http.get<any[]>("http://localhost:4199/" + '/Doctor/GetDoctorsMonthlyStatement?DoctorID=' + doctorid + '&Month=' + Month + '&Year=' + year + '&LanguageID=' + lid + '&TypeID=' + tyepid);
   }
 
 }

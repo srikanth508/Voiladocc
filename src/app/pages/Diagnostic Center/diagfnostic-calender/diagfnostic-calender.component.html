@@ -246,7 +246,7 @@
 
         <input *ngIf="languageid==6" type="text" class="form-control" placeholder="Sélectionner une date"
           [bsConfig]="{ showWeekNumbers:false }" [minDate]="today" 
-          (bsValueChange)="GetDoctorDates($event)" [(bsValue)]="myDateValue" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" bsDatepicker>
+          (bsValueChange)="GetDoctorDates($event)"  [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" bsDatepicker>
       </div>
       <div class="col-lg-2" *ngIf="typeidss=='1'">
         <span style="margin-left: 56px;">{{labelsss[0].changeSchedule}} </span>

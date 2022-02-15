@@ -315,14 +315,14 @@
           <div class="col-lg-6">
             <input *ngIf="languageid==1" type="text" class="form-control" placeholder="MM/DD/YYYY"
               [bsConfig]="{ showWeekNumbers:false }" [(ngModel)]="daychangedate"
-              (ngModelChange)="GetdaychangeDate($event)" [minDate]="today" bsDatepicker [(bsValue)]="myDateValue"
+              (ngModelChange)="GetdaychangeDate($event)" [minDate]="today" bsDatepicker 
               [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
 
 
             <input type="text" *ngIf="languageid==6" placeholder="jj/mm/aa" [bsConfig]="{ showWeekNumbers:false }"
               class="form-control" [minDate]="today" #dp="bsDatepicker"  [(ngModel)]="daychangedate" (ngModelChange)="GetdaychangeDate($event)"
               bsDatepicker  [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
-              <!-- [(bsValue)]="myDateValue" -->
+              <!--  -->
           </div>
         </div><br>
         <div class="row">

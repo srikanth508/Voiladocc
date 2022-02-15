@@ -7,7 +7,7 @@
     <div class="col-lg-7">
     </div>
     <div class="col-lg-4">
-      <br> <br><br>
+      <br><br><br>
       <div style="background-color: #FFFF;padding: 8%;border-radius: 20px;">
         <div class="row">
           <div class="col-lg-4">
@@ -17,54 +17,46 @@
           </div>
         </div>
         <form #loginForm="ngForm">
-          <div>
+          <div class="floating-label">
             <!-- <span class="loginlable">LOGIN TO YOUR ACCOUNT</span><br><br> -->
-            <select class="form-control" style="height:40px;" (change)="GetLanguageID($event)">
+            <select class="floating-input" style="height:40px;" (change)="GetLanguageID($event)">
               <option value="" selected>Select Language</option>
               <option *ngFor="let lang of languagelist" value={{lang.id}}>{{lang.languageName}}</option>
             </select>
           </div>
-          <br>
           <!-- *ngIf="LanguageID!=null" -->
           <div *ngIf="LanguageID!=null">
-            <select class="form-control" style="height:40px;" (change)="onchangeFunction($event)">
+            <div class="floating-label">
+            <select style="height:40px;" (change)="onchangeFunction($event)" class="floating-input">
               <option value="" selected>{{labels[0].selectRole}}</option>
               <option *ngFor="let role of rolelist" value={{role.id}}>{{role.short}}</option>
             </select>
-            <br>
-            <input type="text" [(ngModel)]="pinno" style="height:40px;" name="pinno" required
-              placeholder="{{labels[0].pinno}}" class="form-control"
-              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
-            <br>
-            <input type="text" [(ngModel)]="uname" style="height:40px;" name="uname" required
-              placeholder="{{labels[0].userName}}" class="form-control">
-            <br>
-
-            <input type="password" [(ngModel)]="pwd" *ngIf="Showpass=='1'" style="height:40px;" name="pwd" required
-            placeholder="{{labels[0].pass}}" class="form-control">
-          <span style="position:absolute;right: 72px;margin-top: -5%;" *ngIf="Showpass=='1'" (click)="hidepassord()"
-            class="fa fa-eye-slash"></span>
-
-          <input type="text" [(ngModel)]="pwd" *ngIf="Showpass=='0'" style="height:40px;" name="pwd" required
-            placeholder="{{labels[0].pass}}" class="form-control">
-          <span style="position:absolute;right: 72px;margin-top: -5%;" *ngIf="Showpass=='0'" (click)="showpassword()"
-            class="fa fa-eye"></span>
-            <!-- *ngIf="Showpass=='1'" -->
-            <!-- <input type="password" [(ngModel)]="pwd" style="height:40px;" name="pwd" required
-              placeholder="{{labels[0].pass}}" class="form-control"> -->
-            <!-- <span style="position:absolute;right: 83px;top: 531px;" *ngIf="Showpass=='1'" (click)="hidepassord()"
-              class="fa fa-eye-slash"></span>
- -->
-            <!-- <input type="text" [(ngModel)]="pwd" *ngIf="Showpass=='0'" style="height:40px;" name="pwd" required
-              placeholder="{{labels[0].pass}}" class="form-control"> -->
-            <!-- <span style="position:absolute;right: 83px;top: 531px;" *ngIf="Showpass=='0'" (click)="showpassword()"
-              class="fa fa-eye"></span> -->
-
-
-            <label style="color:#f18235;float: right;cursor: pointer;"
-              routerLink="/ForgotPassword">{{labels[0].forgotpassword}}</label><br>
-
-
+            
+          </div>
+            <div class="floating-label">
+              <input type="text" [(ngModel)]="pinno" style="height:40px;" class="floating-input" name="pinno" required placeholder=" "
+                onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              <label>{{labels[0].pinno}}</label>
+            </div>
+            <div class="floating-label">
+              <input type="text" [(ngModel)]="uname" style="height:40px;" class="floating-input" placeholder=" " name="uname" required>
+              <label>{{labels[0].userName}}</label>
+            </div>
+            <div class="floating-label">
+              <input type="password" [(ngModel)]="pwd" *ngIf="Showpass=='1'"  class="floating-input" placeholder=" "  style="height:40px;" name="pwd" required>
+              <span   *ngIf="Showpass=='1'" (click)="hidepassord()"
+                class="fa fa-eye-slash forgotpassword"></span>
+              <label *ngIf="Showpass=='1'" >{{labels[0].pass}}</label>
+           
+            </div>
+            <div class="floating-label">
+              <input type="text" [(ngModel)]="pwd" *ngIf="Showpass=='0'" class="floating-input" placeholder=" " style="height:40px;" name="pwd" required>
+              <span  *ngIf="Showpass=='0'"
+                (click)="showpassword()" class="fa fa-eye forgotpassword"></span>
+              <label *ngIf="Showpass=='0'">{{labels[0].pass}}</label>
+            </div>
+            <span style="color:#f18235;float: right;cursor: pointer;"
+              routerLink="/ForgotPassword">{{labels[0].forgotpassword}}</span>
             <button type="submit" class="login" (click)="login()"
               [disabled]="loginForm.form.invalid">{{labels[0].login}}</button>
 

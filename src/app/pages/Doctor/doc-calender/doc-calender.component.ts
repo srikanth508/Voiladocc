@@ -35,7 +35,7 @@ export class DocCalenderComponent implements OnInit {
   public daychangedate1: any;
   public timechangedate1: any;
   term: any;
-
+  todaydatess:any;
   ngOnInit() {
    
     this.doctorid = localStorage.getItem('userid');

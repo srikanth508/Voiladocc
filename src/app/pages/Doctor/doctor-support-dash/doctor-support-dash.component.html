@@ -24,7 +24,7 @@
           class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" bsDaterangepicker>
 
         <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }"
-          class="form-control" [(ngModel)]="value"  (bsValueChange)="selectedDate($event)" [(bsValue)]="myDateValue" bsDaterangepicker>
+          class="form-control" [(ngModel)]="value"  (bsValueChange)="selectedDate($event)"  bsDaterangepicker>
       </div>
 
       <div class="col-lg-3">

@@ -376,6 +376,7 @@ import { GroupofdocdashComponent } from './pages/Registration/groupofdocdash/gro
 import { CountryRevenueComponent } from './pages/AdminDashboard/country-revenue/country-revenue.component';
 import { AllMonthlysubscrptionsComponent } from './pages/AdminDashboard/all-monthlysubscrptions/all-monthlysubscrptions.component';
 import { FinanceAdminReportsComponent } from './pages/Billing/finance-admin-reports/finance-admin-reports.component';
+import { SubscriptionpaidReportsComponent } from './pages/Billing/subscriptionpaid-reports/subscriptionpaid-reports.component';
 
 
 
@@ -750,7 +751,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     GroupofdocdashComponent,
     CountryRevenueComponent,
     AllMonthlysubscrptionsComponent,
-    FinanceAdminReportsComponent
+    FinanceAdminReportsComponent,
+    SubscriptionpaidReportsComponent
     
    
   ],

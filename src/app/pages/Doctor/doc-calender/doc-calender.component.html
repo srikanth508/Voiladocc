@@ -133,7 +133,7 @@
               <td>{{details.slotname}}</td>
               <td [style.background-color]="details.day1color" style="color:white">{{details.day1}}<br>
                 <span
-                  *ngIf="details.day1AppointmentTypeID!=6&&details.day1AppointmentTypeID!=4">{{details.mondayFees| number:'1.2-2'}} DH </span>
+                  *ngIf="details.day1AppointmentTypeID!=6&&details.day1AppointmentTypeID!=4">{{details.mondayFees| number:'2.2-2'}} DH </span>
                 <br>
                 {{details.day1Availabilty}}<br>
                 <table>
@@ -149,7 +149,7 @@
               </td>
               <td [style.background-color]="details.day2color" style="color:white">{{details.day2}}<br>
                 <span *ngIf="details.day2AppointmentTypeID!=6&&details.day2AppointmentTypeID!=4">
-                  {{details.tuesdayFees| number:'1.2-2'}} DH</span> <br>
+                  {{details.tuesdayFees| number:'2.2-2'}} DH</span> <br>
                 {{details.day2Availabilty}}<br>
                 <table>
                   <tr *ngFor="let det of details.day2patientdetails|filter:term">
@@ -311,7 +311,7 @@
             <div class="col-lg-6">
               <input *ngIf="languageid==1" type="text" class="form-control" placeholder="MM/DD/YYYY"
                 [bsConfig]="{ showWeekNumbers:false }" [(ngModel)]="daychangedate"
-                (ngModelChange)="GetdaychangeDate($event)" [minDate]="today" [(bsValue)]="myDateValue"
+                (ngModelChange)="GetdaychangeDate($event)" [minDate]="today" 
                 [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" bsDatepicker>
 
               <input *ngIf="languageid==6" type="text" class="form-control" placeholder="jj/mm/aa"

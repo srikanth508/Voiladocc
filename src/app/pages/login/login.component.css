@@ -212,3 +212,80 @@ border-radius: 20px;
   }
   
 }
+
+
+
+
+
+
+
+
+
+
+
+.floating-form {
+  width:320px;
+}
+
+/****  floating-Lable style start ****/
+.floating-label { 
+  position:relative; 
+  margin-bottom:20px; 
+}
+.floating-input , .floating-select {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.floating-input:focus , .floating-select:focus {
+  border:2px solid #f07e2e;
+}
+
+label {
+  color:black; 
+  font-size:14px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:5px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+.floating-input:focus ~ label, .floating-input:not(:placeholder-shown) ~ label {
+  top:-18px;
+  font-size:14px;
+  color:#f07e2e;
+}
+
+.floating-select:focus ~ label , .floating-select:not([value=""]):valid ~ label {
+  top:-18px;
+  font-size:14px;
+  color:#f07e2e;
+}
+
+/* active state */
+.floating-input:focus ~ .bar:before, .floating-input:focus ~ .bar:after, .floating-select:focus ~ .bar:before, .floating-select:focus ~ .bar:after {
+  width:50%;
+}
+
+
+.forgotpassword
+{
+  position: absolute;
+  right: 12px;
+  margin-top: -6%;
+}
+
