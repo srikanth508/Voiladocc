@@ -49,7 +49,7 @@
         <b>{{address}}</b>
       </label>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-6">
       <label>
         <img src="assets/Images/age.png" title="Age" style="height:20px;width:20px"> :
         <!-- Age : -->
@@ -95,7 +95,7 @@
             <td>{{app.mobileNumber}}</td>
             <!-- <td>{{soap.reasonForVisit}}</td> -->
             <td>
-              <a [ngbTooltip]="tipcontent10">
+              <a >
                 <img src="assets/Images/medicalquestion.png" (click)="showmedicalquestionare(app)" data-toggle="modal"
                   data-target="#Medicalquestionare" style="margin: 2%;width: 20px;"  />
               </a>
@@ -212,7 +212,7 @@
             <td>{{pre.doctorName}}</td>
             <td>{{pre.pMobileNo}}</td>
             <td>
-              <a [ngbTooltip]="tipcontent19">
+              <a >
                 <img src="assets/Images/view.png" style="margin: 2%;width: 20px;" data-toggle="modal"
                   (click)="GetprscriptionID(pre.appointmentID)" data-target="#exampleModalCenter" />
               </a>
@@ -245,7 +245,7 @@
             <td>{{dia.doctorName}}</td>
             <td>{{dia.departmentname}}</td>
             <td>
-              <a [ngbTooltip]="tipcontent19">
+              <a >
                 <img src="assets/Images/view.png" style="margin: 2%;width: 20px;" (click)="getDiaTests(dia.appointmentID)" data-toggle="modal"  data-target="#diagnosticTest"
                     />
               </a>
@@ -270,17 +270,17 @@
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="width:1000px">
-      <div class="modal-header modal-lg">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content" >
+      <div class="modal-header modal-xl">
         <h5 class="modal-title" id="exampleModalLongTitle">{{labels1[0].previousPrescription}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" stylw="width:1100px">
+      <div class="modal-body">
         <div class="container-fluid">
-          <div class="row" style="overflow: auto;">
+          <div class="row" style="overflow: auto;height: 367px;">
             <div class="col-lg-12">
               <table>
                 <thead>
@@ -298,10 +298,11 @@
                     <!-- <th>{{labels1[0].diagnosis}}</th> -->
                     <th [style.background-color]="color">{{labels1[0].howmanyRefills}}</th>
 
-                    <th>Substitute Medicine Name</th>
-                    <th>Sig</th>
-                    <th>Quantity</th>
-  
+                    <th *ngIf="languageid==1">Substitute Medicine Name</th>
+                    <th *ngIf="languageid==6">Nom du médicament de substitution</th>
+                    <th>{{labels1[0].sig}}</th>
+                    <th *ngIf="languageid==1">Quantity</th>
+                    <th *ngIf="languageid==6">Quantité distribuée</th>
                     <!-- <th>Total</th>
                     <th>Actions</th> -->
                   </tr>
@@ -314,11 +315,11 @@
                     <!-- <td>{{presciption.duration}}</td> -->
                     <td [ngClass]="{'textstrike':presciption.substituteBit==true}">{{presciption.sig}}</td>
                     <td [ngClass]="{'textstrike':presciption.substituteBit==true}">{{presciption.dispenseQuantity}}</td>
+                    <td>{{presciption.noteToPharmasist}}</td>
                     <td>
                       <span *ngIf="presciption.substainablenotPermitted=='1'">{{labels[0].yes}}</span>
                       <span *ngIf="presciption.substainablenotPermitted=='2'"> {{labels[0].no}}</span>
                     </td>
-                    <td>{{presciption.noteToPharmasist}}</td>
                     <!-- <td>{{presciption.diagnosis}}</td> -->
                     <td>{{presciption.howmanyRefills}}</td>
                     <td [ngClass]="{'substiutecolor':presciption.substituteBit==true}">{{presciption.subMedicineName}}</td>
@@ -439,7 +440,7 @@
             <td>{{soap.mobileNumber}}</td>
             <!-- <td>{{soap.reasonForVisit}}</td> -->
             <td>
-              <a [ngbTooltip]="tipcontent10">
+              <a >
                 <img src="assets/Images/pmr.png" (click)="GetSoapID(soap.soapID)" data-toggle="modal"
                   data-target="#exampleModal1" style="margin: 2%;width: 20px;" />
               </a>
@@ -543,7 +544,7 @@
             <td>{{soap.phoneNo}}</td>
             <!-- <td>{{soap.reasonForVisit}}</td> -->
             <td>
-              <a [ngbTooltip]="tipcontent10">
+              <a>
                 <img src="assets/Images/pmr.png" (click)="GetSoapHomeCarelist(soap.soapID)" data-toggle="modal"
                   data-target="#exampleModal1" style="margin: 2%;width: 20px;" />
               </a>

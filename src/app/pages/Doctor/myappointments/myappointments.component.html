@@ -2358,10 +2358,11 @@
                   <th>{{labels[0].substistude}} </th>
                   <th>{{labels[0].howmanyRefills}}</th>
                   <th>{{labels[0].noteToPharmasist}}</th>
-                  <th>Substitute Medicine Name</th>
-                  <th>Sig</th>
-                  <th>Quantity</th>
-
+                  <th *ngIf="languageid==1">Substitute Medicine Name</th>
+                  <th *ngIf="languageid==6">Nom du médicament de substitution</th>
+                  <th>{{labels[0].sig}}</th>
+                  <th *ngIf="languageid==1">Quantity</th>
+                  <th *ngIf="languageid==6">Quantité distribuée</th>
                   <!-- <th>Actions</th> -->
                 </tr>
                 <tr *ngFor="let presciption of prescrptionlist">

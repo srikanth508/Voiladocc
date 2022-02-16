@@ -37,7 +37,7 @@ export class DocCalenderComponent implements OnInit {
   term: any;
   todaydatess:any;
   ngOnInit() {
-   
+   this.spinner.show()
     this.doctorid = localStorage.getItem('userid');
     this.languageid = localStorage.getItem('LanguageID');
     const format = 'yyyy-MM-dd';
