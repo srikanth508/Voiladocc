@@ -37,7 +37,7 @@
             <td>{{list.name}}</td>
             <td>{{list.serviceName}}</td>
             <!-- <td>{{list.serviceDescription}}</td> -->
-            <td>{{list.serviceCharges}}</td>
+            <td>{{list.serviceCharges|number:'1.2-2'}} DH</td>
             <td>
               <ng-template #tipcontent1>{{labels[0].edit}}</ng-template>
               <a [ngbTooltip]="tipcontent1" [routerLink]="['/PhysioServices',list.id]" style="color:black">

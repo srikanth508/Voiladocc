@@ -80,16 +80,16 @@ export class DocCalenderComponent implements OnInit {
 
 
   public GetMyDoctorWorkingDetails() {
- 
     this.docservice.GetDoctorcalenderSlotsByDoctorID(this.doctorid, this.slottypeid, this.todaydate, this.languageid).subscribe(
       data => {
-
+        this.spinner.hide();
         //this.workingdetails = data;
         this.DayDatelist = data[0];
         this.workingdetails = data[1];
 
-        this.spinner.hide();
+      
       }, error => {
+        this.spinner.hide();
       }
     )
   }
@@ -251,14 +251,14 @@ export class DocCalenderComponent implements OnInit {
       this.docservice.InsertDoctorSlots_DateWiseAvailable(entity).subscribe(data => {
         debugger
         this.insertbookappointmenttype();
-        this.GetMyDoctorWorkingDetails();
+       
         if (this.languageid == 1) {
           Swal.fire('Updated Successfully');
         }
         else {
           Swal.fire('Mis à jour avec succès !');
         }
-     
+        this.GetMyDoctorWorkingDetails();
       })
 
 

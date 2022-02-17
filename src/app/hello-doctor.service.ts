@@ -6252,13 +6252,31 @@ export class HelloDoctorService {
 
   public GetDoctorsMonthlyStatement(doctorid, Month, year, lid, tyepid) {
     debugger
-    return this.http.get<any[]>("http://localhost:4199/" + '/Doctor/GetDoctorsMonthlyStatement?DoctorID=' + doctorid + '&Month=' + Month + '&Year=' + year + '&LanguageID=' + lid + '&TypeID=' + tyepid);
+    return this.http.get<any[]>(this.host + '/Doctor/GetDoctorsMonthlyStatement?DoctorID=' + doctorid + '&Month=' + Month + '&Year=' + year + '&LanguageID=' + lid + '&TypeID=' + tyepid);
   }
 
 
   public UpodateSentInvoice(data) {
-    this.url = "http://localhost:4199/" + '/Admin/UpodateSentInvoice';
+    this.url = this.host + '/Admin/UpodateSentInvoice';
     return this.http.post(this.url, data)
   }
 
+
+  public InsertProvidersAuditReport(data) {
+    this.url = "http://localhost:4199/" + '/Doctor/InsertProvidersAuditReport';
+    return this.http.post(this.url, data)
+  }
+
+
+  public UpdateProvidersAuditReport(id) {
+    debugger
+    return this.http.get<any[]>("http://localhost:4199/"+ '/Doctor/UpdateProvidersAuditReport?ID=' + id);
+  }
+
+
+  
+  public GetProvidersAuditReport(id,sdate,edate) {
+    debugger
+    return this.http.get<any[]>("http://localhost:4199/"+ '/Doctor/GetProvidersAuditReport?TypeID=' + id+'&Sdate='+sdate+'&Edate='+edate);
+  }
 }

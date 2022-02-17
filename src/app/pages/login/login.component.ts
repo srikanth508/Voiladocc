@@ -3,7 +3,7 @@ import { HelloDoctorService } from '../../hello-doctor.service';
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
-import { TotalHospitalApointmentsComponent } from '../Hospital/total-hospital-apointments/total-hospital-apointments.component';
+
 
 @Component({
   selector: 'app-login',
@@ -213,7 +213,7 @@ export class LoginComponent implements OnInit {
       }
     }
     if (this.roleid == "2") {
-
+      this.spinner.show()
       var entity = {
         'username': 'HelloDoc@gmail.com',
         'Password': 'HelloDoc',
@@ -241,8 +241,10 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('Password', this.pwd);
                 localStorage.setItem('hospitalClinicID', this.result[0].hospitalClinicID)
                 localStorage.setItem('departmentid', this.result[0].departmentID)
-                location.href = '#/Myappointments';
-                location.reload();
+                this.insertProvidersAuditReport(this.result[0].doctorID, 1)
+
+
+
               }
               else {
                 if (this.LanguageID == 1) {
@@ -285,9 +287,8 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('Pinno', this.result[0].pinno);
                 localStorage.setItem('Password', this.pwd);
                 sessionStorage.setItem('temp', '1');
+                this.insertProvidersAuditReport(this.result[0].hospital_ClinicID, 5)
 
-                location.href = '#/HospitalRevenue';
-                location.reload();
 
               }
               else {
@@ -329,8 +330,8 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('Pinno', this.result[0].pinno);
                 localStorage.setItem('Password', this.pwd);
                 sessionStorage.setItem('temp', '1');
-                location.href = '#/Orders';
-                location.reload();
+                this.insertProvidersAuditReport(this.result[0].diagnosticCenterID, 6)
+
               }
               else {
                 if (this.LanguageID == 1) {
@@ -352,7 +353,6 @@ export class LoginComponent implements OnInit {
       })
     }
     if (this.roleid == "5") {
-
       var entity = {
         'username': 'HelloDoc@gmail.com',
         'Password': 'HelloDoc',
@@ -374,8 +374,8 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('Pinno', this.result[0].pinno);
                 localStorage.setItem('Password', this.pwd);
                 sessionStorage.setItem('temp', '1');
-                location.href = '#/DoctorPrescription';
-                location.reload();
+                this.insertProvidersAuditReport(this.result[0].pharmacyID, 7)
+              
               }
               else {
                 if (this.LanguageID == 1) {
@@ -397,9 +397,7 @@ export class LoginComponent implements OnInit {
 
     }
     if (this.roleid == "7") {
-
-
-
+      this.spinner.show()
       var entity = {
         'username': 'HelloDoc@gmail.com',
         'Password': 'HelloDoc',
@@ -423,8 +421,9 @@ export class LoginComponent implements OnInit {
 
                 localStorage.setItem('Password', this.pwd);
                 sessionStorage.setItem('temp', '1');
-                location.href = '#/NurseAppointments';
-                location.reload();
+
+                this.insertProvidersAuditReport(this.result[0].nurseID, 2)
+
               }
               else {
                 if (this.LanguageID == 1) {
@@ -445,6 +444,7 @@ export class LoginComponent implements OnInit {
       })
     }
     if (this.roleid == "8") {
+      this.spinner.show()
       var entity = {
         'username': 'HelloDoc@gmail.com',
         'Password': 'HelloDoc',
@@ -467,8 +467,8 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('Pinno', this.result[0].pinno);
                 localStorage.setItem('Password', this.pwd);
                 sessionStorage.setItem('temp', '1');
-                location.href = '#/PhysiotherapistAppointments';
-                location.reload();
+                this.insertProvidersAuditReport(this.result[0].physiotherapistID, 3)
+
               }
               else {
                 if (this.LanguageID == 1) {
@@ -491,6 +491,7 @@ export class LoginComponent implements OnInit {
 
     }
     if (this.roleid == "9") {
+      this.spinner.show()
       var entity = {
         'username': 'HelloDoc@gmail.com',
         'Password': 'HelloDoc',
@@ -513,8 +514,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('hospitalid', this.result[0].hospitalClinicID);
                 localStorage.setItem('Password', this.pwd);
                 sessionStorage.setItem('temp', '1');
-                location.href = '#/MidwifeAppointments';
-                location.reload();
+                this.insertProvidersAuditReport(this.result[0].midWiveID, 4)
               }
               else {
                 if (this.LanguageID == 1) {
@@ -1163,4 +1163,56 @@ export class LoginComponent implements OnInit {
   public showpassword() {
     this.Showpass = 1;
   }
+
+  loginid
+
+
+  insertProvidersAuditReport(userid, typeid) {
+    var entity = {
+      'TypeID': typeid,
+      'ProviderID': userid
+    }
+    this.docservice.InsertProvidersAuditReport(entity).subscribe(data => {
+      this.loginid = data;
+      localStorage.setItem("loginid", this.loginid)
+      if (this.loginid != 0) {
+        if (typeid == 1) {
+          location.href = '#/Myappointments';
+          location.reload();
+        }
+        else if (typeid == 2) {
+
+          location.href = '#/NurseAppointments';
+          location.reload();
+        }
+        else if (typeid == 3) {
+          location.href = '#/PhysiotherapistAppointments';
+          location.reload();
+        }
+        else if (typeid == 4) {
+          location.href = '#/MidwifeAppointments';
+          location.reload();
+
+        }
+        else if (typeid == 5) {
+          location.href = '#/HospitalRevenue';
+          location.reload();
+
+        }
+        else if (typeid == 6) {
+          location.href = '#/Orders';
+          location.reload();
+        }
+        else if (typeid == 7) {
+          location.href = '#/DoctorPrescription';
+          location.reload();
+        }
+
+        this.spinner.hide();
+      }
+    })
+  }
 }
+
+
+

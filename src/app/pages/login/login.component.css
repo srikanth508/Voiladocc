@@ -206,9 +206,8 @@ border-radius: 20px;
   .loginlables{
     color: white;
     font-weight: 600;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
+    font-size: 12px;
+    margin-inline: 43px;
   }
   
 }

@@ -41,7 +41,7 @@
             <th>{{labels[0].enable}}</th> -->
             <th>Actions</th>
           </tr>
-          <tr *ngFor="let details of midwifelist|filter:term| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}">
+          <tr *ngFor="let details of midwifelist|filter:term| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}" [style.background-color]="details.hidden==1?'rgb(255 147 147)':'rgb(69 156 69)'">
             <td>{{details.name}}</td>
             <td>{{details.userName}}</td>
             <td>{{details.encryptPassword}}</td>

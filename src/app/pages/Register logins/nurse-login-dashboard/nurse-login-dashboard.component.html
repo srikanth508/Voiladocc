@@ -39,17 +39,17 @@
             <th>Actions</th>
           </tr>
           <tr
-            *ngFor="let details of nurseloginlist|filter:term| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}">
+            *ngFor="let details of nurseloginlist|filter:term| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}" [style.background-color]="details.hidden==1?'rgb(255 147 147)':'rgb(69 156 69)'">
             <td>{{details.nurseName}}</td>
             <td>{{details.userName}}</td>
             <td>{{details.encryptpassword}}</td>
             <td>
               <!-- <ng-template #tipcontent3>{{labels[0].disable}}</ng-template> -->
-              <button type="button" [ngbTooltip]="tipcontent3" *ngIf="details.hidden=='0'"
+              <button type="button"  *ngIf="details.hidden=='0'"
                 (click)="DisableNurseLogin(details.nurseID)"
                 style="background-color: green;color: aliceblue;border: none;">{{labels[0].disable}}</button>
 
-                <button type="button" [ngbTooltip]="tipcontent2" *ngIf="details.hidden=='1'"
+                <button type="button"  *ngIf="details.hidden=='1'"
                 (click)="EnableNurseLogin(details.nurseID)"
                 style="background-color: red;color: aliceblue;border: none;">{{labels[0].enable}}</button> &nbsp;
 

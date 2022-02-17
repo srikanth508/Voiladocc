@@ -34,7 +34,7 @@
             <th>Actions</th>
           </tr>
           <tr
-            *ngFor="let details of hsopitalloginlist|filter:term| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}">
+            *ngFor="let details of hsopitalloginlist|filter:term| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}" [style.background-color]="details.hidden==1?'rgb(255 147 147)':'rgb(69 156 69)'"> 
             <td>{{details.hospital_ClinicName}}</td>
             <td>{{details.userName}}</td>
             <td>l3fs2NeQspUktW32ROvdu8A37DJ54zahx10MWAVq96M=</td>
@@ -43,7 +43,7 @@
                 <button (click)="disablehospital(details.hospital_ClinicID)"
                   style="background-color: green;color: aliceblue;border: none;">{{labels[0].disable}}</button>
               </a>
-              <a [ngbTooltip]="tipcontent2" *ngIf="details.hidden=='1'&&sowadd=='1'">
+              <a  *ngIf="details.hidden=='1'&&sowadd=='1'">
                 <button (click)="enablehospital(details.hospital_ClinicID)"
                   style="background-color: red;color: aliceblue;border: none;">{{labels[0].enable}}</button>
               </a>

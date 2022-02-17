@@ -186,12 +186,21 @@
                 <li class="active">
                     <a href="#MeridionalMenus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Menus</a>
                     <ul class="collapse list-unstyled" id="MeridionalMenus">
+
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/AuditReport">
+                                Rapport d'utilisation
+                            </a>
+                        </li>
+
                         <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/SupportRegDash">
                                 {{labels[0].supportReg}}
 
                             </a>
                         </li>
+
+
                         <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/MergePatientdata">
                                 Merge Patient Data

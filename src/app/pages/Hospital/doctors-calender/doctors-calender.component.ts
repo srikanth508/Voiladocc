@@ -16,6 +16,7 @@ export class DoctorsCalenderComponent implements OnInit {
   public TodatDate: any;
   public doctorid: any;
   public languageid: any;
+  todaydatess:any;
   public workingdetails: any;
   showmonth: any;
   month: any;

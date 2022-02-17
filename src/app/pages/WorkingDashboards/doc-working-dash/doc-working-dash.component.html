@@ -68,7 +68,7 @@
           <tr *ngFor="let details of Timings|filter:term">
             <td>{{details.slotname}}</td>
             <td [style.background-color]="details.mondayColor" style="color:white">{{details.monday}}<br>
-              <span *ngIf="details.mondayappointmentID!=6&&details.mondayappointmentID!=4">{{details.mondayFees}}</span>
+              <span *ngIf="details.mondayappointmentID!=6&&details.mondayappointmentID!=4">{{details.mondayFees|number:'1.2-2'}} DH</span>
               <br>
               <ng-template #tipcontent9503>{{labels[0].edit}}</ng-template>
               <a [ngbTooltip]="tipcontent9503" style="color:black">
@@ -78,7 +78,7 @@
             </td>
             <td [style.background-color]="details.tuesdayColor" style="color:white">{{details.tuesday}}<br>
               <label *ngIf="details.tuesdayAppointmentID!=6&&details.tuesdayAppointmentID!=4">
-                {{details.tuesdayFees}}</label> <br>
+                {{details.tuesdayFees|number:'1.2-2'}} DH</label> <br>
               <a [ngbTooltip]="tipcontent9503" style="color:black">
                 <img src="assets/Images/edit.png" data-toggle="modal" data-target="#edittest" style="width: 18px"
                   (click)="GetDay2List(details)">
@@ -86,15 +86,14 @@
             </td>
             <td [style.background-color]="details.wednesdayColor" style="color:white">{{details.wednesday}}<br>
               <label *ngIf="details.wednesdayAppointmentID!=6&&details.wednesdayAppointmentID!=4">
-                {{details.wednessdayFees}}</label> <br>
+                {{details.wednessdayFees|number:'1.2-2'}} DH</label> <br>
               <a [ngbTooltip]="tipcontent9503" style="color:rgb(221, 15, 15)">
                 <img src="assets/Images/edit.png" data-toggle="modal" data-target="#edittest" style="width: 18px"
                   (click)="GetDay3List(details)">
               </a>
             </td>
             <td [style.background-color]="details.thursdayColor" style="color:white">{{details.thursday}}<br>
-              <label *ngIf="details.thursdayAppointmentID!=6&&details.thursdayAppointmentID!=4">{{details.thursdayFees
-                }}</label>
+              <label *ngIf="details.thursdayAppointmentID!=6&&details.thursdayAppointmentID!=4">{{details.thursdayFees|number:'1.2-2'}} DH</label>
               <br>
               <a [ngbTooltip]="tipcontent9503" style="color:black">
                 <img src="assets/Images/edit.png" data-toggle="modal" data-target="#edittest" style="width: 18px"
@@ -103,7 +102,7 @@
             </td>
             <td [style.background-color]="details.fridayColor" style="color:white">{{details.friday}}<br>
               <label
-                *ngIf="details.fridayAppointmentID!=6&&details.fridayAppointmentID!=4">{{details.fridayFees}}</label>
+                *ngIf="details.fridayAppointmentID!=6&&details.fridayAppointmentID!=4">{{details.fridayFees|number:'1.2-2'}} DH</label>
               <br>
               <a [ngbTooltip]="tipcontent9503" style="color:black">
                 <img src="assets/Images/edit.png" data-toggle="modal" data-target="#edittest" style="width: 18px"
@@ -112,7 +111,7 @@
             </td>
             <td [style.background-color]="details.saturdayColor" style="color:white">{{details.saturday}}<br>
               <label
-                *ngIf="details.saturdayAppintmentID!=6&&details.saturdayAppintmentID!=4">{{details.satdayFees}}</label>
+                *ngIf="details.saturdayAppintmentID!=6&&details.saturdayAppintmentID!=4">{{details.satdayFees|number:'1.2-2'}} DH</label>
               <br>
               <a [ngbTooltip]="tipcontent9503" style="color:black">
                 <img src="assets/Images/edit.png" data-toggle="modal" data-target="#edittest" style="width: 18px"
@@ -120,8 +119,7 @@
               </a>
             </td>
             <td [style.background-color]="details.sundayColor" style="color:white">{{details.sunday}}<br>
-              <label *ngIf="details.sundayAppointmentID!=6&&details.sundayAppointmentID!=4"> {{details.sundayFees
-                }}</label> <br>
+              <label *ngIf="details.sundayAppointmentID!=6&&details.sundayAppointmentID!=4"> {{details.sundayFees|number:'1.2-2'}} DH</label> <br>
               <a [ngbTooltip]="tipcontent9503" style="color:black">
                 <img src="assets/Images/edit.png" data-toggle="modal" data-target="#edittest" style="width: 18px"
                   (click)="GetDay7List(details)">

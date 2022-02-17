@@ -394,12 +394,36 @@ export class AppComponent {
   }
 
   public clear() {
-    sessionStorage.clear();
-    localStorage.clear();
-    location.href = "#/login";
-    location.reload();
-    this.setCookie("doc_id", "")
+    let loginid = localStorage.getItem('loginid');
+    if (loginid != undefined || loginid != null) {
+      this.updateProvidersAuditReport()
+    }
+    else {
+      sessionStorage.clear();
+      localStorage.clear();
+      location.href = "#/login";
+      location.reload();
+      this.setCookie("doc_id", "")
+    }
   }
+
+
+  updateProvidersAuditReport() {
+    this.docservice.UpdateProvidersAuditReport(localStorage.getItem('loginid')).subscribe(data => {
+      sessionStorage.clear();
+      localStorage.clear();
+      location.href = "#/login";
+      location.reload();
+      this.setCookie("doc_id", "")
+    })
+  }
+
+
+
+
+
+
+
 
   public setCookie(cname, cvalue) {
 
