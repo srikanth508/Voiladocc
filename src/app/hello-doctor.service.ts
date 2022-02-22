@@ -4178,7 +4178,8 @@ export class HelloDoctorService {
   }
 
   public InsertDrugNameMaster(data) {
-    this.url = this.host + '/Doctor/InsertDrugNameMaster';
+    debugger
+    this.url = "http://localhost:4199/" + '/Doctor/InsertDrugNameMaster';
     return this.http.post(this.url, data)
   }
 

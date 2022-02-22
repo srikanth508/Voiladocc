@@ -339,7 +339,7 @@ export class AppointmentsreportComponent implements OnInit {
   contactdata: any;
   arrayBuffer: any;
   incomingfile(event) {
-
+    debugger
     this.file = event.target.files[0];
     let a = this.file.name;
     var characters = a.substr(a.length - 5);
@@ -368,7 +368,7 @@ export class AppointmentsreportComponent implements OnInit {
   }
 
   public Upload_file() {
-
+    debugger
     this.docservice.InsertDrugNameMaster(this.contactdata).subscribe(data => {
 
       if (data != undefined || data != null) {

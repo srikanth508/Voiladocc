@@ -375,6 +375,8 @@ import { FinanceAdminReportsComponent } from './pages/Billing/finance-admin-repo
 import { SubscriptionpaidReportsComponent } from './pages/Billing/subscriptionpaid-reports/subscriptionpaid-reports.component';
 import { AuditReportComponent } from './pages/AdminDashboard/audit-report/audit-report.component';
 import { CreditChargesMasterComponent } from './pages/Masters/credit-charges-master/credit-charges-master.component';
+import{NoCommaPipe} from '../app/no-comma-pipe'
+
 
 
 
@@ -748,7 +750,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     FinanceAdminReportsComponent,
     SubscriptionpaidReportsComponent,
     AuditReportComponent,
-    CreditChargesMasterComponent
+    CreditChargesMasterComponent,
+    NoCommaPipe
     
    
   ],

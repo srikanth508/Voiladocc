@@ -503,12 +503,7 @@
                               
                             </a>
                         </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/MedicineTypeMasterDash">
-                                {{labels[0].medicineTypeMaster}}
-                              
-                            </a>
-                        </li>
+                       
                         <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/DiagnosticTestTypeDash">
                                 {{labels[0].diagnosticTestType}}
@@ -521,18 +516,18 @@
                               
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/BloodGroupMasterDash">
                                 {{labels[0].bloodGroupMaster}}
                               
                             </a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/DegreeMasterDash">
                                 {{labels[0].degreeMaster}}
                               
                             </a>
-                        </li><br><br>
+                        </li><br><br> -->
                     </ul>
                 </li>
             </ul>
@@ -540,7 +535,8 @@
             <!-- DOCTOR -->
 
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Myappointments">
-                <img src="assets/Images/app.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].myAppointments}}
+                <img src="assets/Images/app.png" style="width: 15px;">&nbsp; &nbsp; 
+                {{labels[0].myAppointments}}
             </a>
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/DoctorDashboard">
                 <img src="assets/Images/dash.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].dashboard}}
@@ -580,6 +576,11 @@
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
                 {{labels[0].changepassword}}
             </a>
+
+            <!-- <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Appointmentsreport">
+                <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
+                Appointment report
+            </a> -->
 
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/DoctorNotifications">
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
@@ -1531,11 +1532,7 @@
                         &nbsp; &nbsp; Agenda
                     </a>
                 </div>
-                <a class="tablinks" (click)="highlight($event)" routerLink="/Independentsubdash"
-                    *ngIf="subscriptions=='1'">
-                    <!-- <img src="assets/Images/phareg.png" style="width: 15px;">&nbsp; &nbsp;  -->
-                    {{labels[0].subscriptions}}
-                </a>
+         
 
             </div>
         </ul>
@@ -1922,7 +1919,7 @@
 
                         <li *ngIf="homedeliveryfees=='1'">
                             <a class="tablinks" (click)="highlight($event)"  routerLink="/HomedeliveryFees" >
-                                {{labels[0].approved}}
+                                {{labels[0].homedeiliveryfees}}
                                 
                             </a>
                         </li>
