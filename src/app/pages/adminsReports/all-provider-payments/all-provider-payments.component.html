@@ -125,9 +125,9 @@
                 data-target="#errorServer">Pay</button>
             </td>
             <td>{{details.providername}}</td>
-            <td>{{details.grandTotalAmount| number:'1.2-2'}} DH</td>
-            <td>{{details.totalCommissionsAmount| number:'1.2-2'}} DH</td>
-            <td>{{details.grandTotalAmount - details.totalCommissionsAmount|number:'1.2-2' }} DH</td>
+            <td>{{details.grandTotalAmount| number:'1.2-2'|noComma}} DH</td>
+            <td>{{details.totalCommissionsAmount| number:'1.2-2'|noComma}} DH</td>
+            <td>{{details.grandTotalAmount - details.totalCommissionsAmount|number:'1.2-2'|noComma}} DH</td>
 
             <td *ngIf="typeid=='1'||typeid=='2'">{{details.contactPersonName}}</td>
             <td>{{details.contactPersonPhNo}}</td>
@@ -136,22 +136,22 @@
             <!-- <td>{{details.subscription}}</td> -->
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.inClinicAppointmentCount}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.inclincRevenue}}</td>
-            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.inclinicCommissionAmount| number:'1.2-2'}}</td>
+            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.inclinicCommissionAmount| number:'1.2-2'|noComma}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.videoCallAppointmentsCount}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.totalVideoCallRevenue}}</td>
-            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.videoCallCommissionAmount| number:'1.2-2'}}</td>
+            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.videoCallCommissionAmount| number:'1.2-2'|noComma}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.homeVisitAppointmentCount}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.homeVisitRevenue}}</td>
-            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.homeVisitCommissionAmount| number:'1.2-2'}}</td>
+            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='3'">{{details.homeVisitCommissionAmount| number:'1.2-2'|noComma}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='4'">{{details.nurseAppintmentCount}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='4'">{{details.totalNurseAmount}}</td>
-            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='4'">{{details.nurseCommissionAmount| number:'1.2-2'}}</td>
+            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='4'">{{details.nurseCommissionAmount| number:'1.2-2'|noComma}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='5'">{{details.physioAppointmentCount}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='5'">{{details.totalPhysioAmount}}</td>
-            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='5'">{{details.physioCommissionAmount| number:'1.2-2'}}</td>
+            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='5'">{{details.physioCommissionAmount| number:'1.2-2'|noComma}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='6'">{{details.midwifeAppointmentCount}}</td>
             <td *ngIf="typeid=='1'||typeid=='2'||typeid=='6'">{{details.totalMidwifeAmount}}</td>
-            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='6'">{{details.midwifeCommissionAmount| number:'1.2-2'}}</td>
+            <td *ngIf="typeid=='1'||typeid=='2'||typeid=='6'">{{details.midwifeCommissionAmount| number:'1.2-2'|noComma}}</td>
             <td *ngIf="typeid=='7'||typeid=='8'">{{details.totalOrders}}</td>
             <td *ngIf="typeid=='7'||typeid=='8'">{{details.totalAmount}}</td>
             <td *ngIf="typeid=='7'||typeid=='8'">{{details.voiladocCommission}}</td>
@@ -233,9 +233,9 @@
                     <td></td>
                     <td></td>
                     <td>Grand Total</td>
-                    <td>{{totrevenue|number:'1.2-2'}} DH</td>
-                    <td>{{totalcommission|number:'1.2-2'}} DH</td>
-                    <td>{{paymentdue|number:'1.2-2'}} DH</td>
+                    <td>{{totrevenue|number:'1.2-2'|noComma}} DH</td>
+                    <td>{{totalcommission|number:'1.2-2'|noComma}} DH</td>
+                    <td>{{paymentdue|number:'1.2-2'|noComma}} DH</td>
                    
                     </tr>
                 </table>
@@ -264,10 +264,10 @@
                 </table>
               </div><br>
               <div class="col-lg-4 text-alignments">
-                <span>Amount : {{totrevenue|number:'1.2-2'}} DH</span><br>
-                <span>Voiladoc Commission : {{totalcommission|number:'1.2-2'}} DH</span><br>
+                <span>Amount : {{totrevenue|number:'1.2-2'|noComma}} DH</span><br>
+                <span>Voiladoc Commission : {{totalcommission|number:'1.2-2'|noComma}} DH</span><br>
                 <span>TVA : </span><br>
-                <span>Net Total : {{paymentdue|number:'1.2-2'}} DH</span><br>
+                <span>Net Total : {{paymentdue|number:'1.2-2'|noComma}} DH</span><br>
               </div>
             </div>
 

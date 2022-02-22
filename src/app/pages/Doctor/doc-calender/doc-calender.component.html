@@ -179,7 +179,7 @@
               </td>
               <td [style.background-color]="details.day4color" style="color:white">{{details.day4}}<br>
                 <span *ngIf="details.day4AppointmentTypeID!=6&&details.day4AppointmentTypeID!=4">{{details.thursdayFees|
-                  number:'1.2-2'}} DH</span><br>
+                  number:'1.2-2'|noComma}} DH</span><br>
                 {{details.day4Availabilty}}<br>
                 <table>
                   <tr *ngFor="let det of details.day4patientdetails|filter:term">

@@ -103,7 +103,7 @@ export class AppComponent {
     this.user = localStorage.getItem('user');
     this.getlanguage();
     this.getlanguage2();
-    this.getserverdateandtime();
+  
     this.GetDoctorNotifications();
     this.GetDocnoti()
     this.obserbaletimedocnoti()
@@ -122,21 +122,8 @@ export class AppComponent {
 
 
     setInterval(() => {
-
-      var time = new Date();
-
-      this.time = time.toLocaleString('en-US', { hour: '2-digit', minute: 'numeric', hour12: true });
-
-      let temp: any = this.time.split(':');
-
-      this.hh = temp[0];
-
-      let temp1: any = this.time.split(':')[1].split(" ");
-
-      this.mm = temp1[0];
-
-      this.ampm = temp1[1];
-
+      this.getserverdateandtime();
+  
     }, 1000);
 
 
@@ -173,6 +160,7 @@ export class AppComponent {
     const source = timer(1000, 2000);
     const abc = source.subscribe(val => {
       if (this.doctorid != null && this.doctorid != undefined) {
+     
         this.GetDoctorNotifications();
         this.GetChatnotificationslist();
         this.docservice.GetNotifications_DoctorByDoctorID(this.doctorid).subscribe(data => {
@@ -680,6 +668,7 @@ export class AppComponent {
 
   serverdateandtime: any;
   public serverdate: any;
+  formatTime:any;
 
 
   public getserverdateandtime() {
@@ -689,7 +678,8 @@ export class AppComponent {
 
         this.serverdateandtime = data;
         this.servertime = this.serverdateandtime.presentTime,
-          this.serverdate = this.serverdateandtime.todaydate
+          this.serverdate = this.serverdateandtime.todaydate,
+          this.formatTime=this.serverdateandtime.formatPresentTime
       }, error => {
       }
     )

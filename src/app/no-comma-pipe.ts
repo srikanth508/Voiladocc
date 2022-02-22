@@ -11,7 +11,7 @@ export class NoCommaPipe implements PipeTransform {
             // here we just remove the commas from value
             return val.toString().replace(/,/g, "");
         } else {
-            return "";
+            return "0.00";
         }
     }
 

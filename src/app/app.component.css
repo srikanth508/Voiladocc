@@ -254,3 +254,12 @@ box-sizing: border-box;
 border-radius: 4px;
 
 }
+
+.square {
+  height: 37px;
+  width: 50px;
+  border-radius: 8px;
+  font-size: 40px;
+  padding: 5px;
+  color: #322b6b;
+}

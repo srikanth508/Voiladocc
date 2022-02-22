@@ -80,7 +80,7 @@
                     <td>{{details.phoneNo}}</td>
                     <td>{{details.emailID}}</td>
                     <td>{{details.monthName}}</td>
-                    <td>{{details.invoiceAmount|number:'1.2-2'}} DH</td>
+                    <td>{{details.invoiceAmount|number:'1.2-2'|noComma}} DH</td>
                     <td>
                         <button *ngIf="details.paid=='0'" data-toggle="modal" data-target="#invoiceModal"
                             (click)="amountPaid(details)" class="btn btn-primary">Paid</button>
