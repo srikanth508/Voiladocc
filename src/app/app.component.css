@@ -234,3 +234,23 @@ box-shadow: 0px 0px 53px 0px rgba(0,0,0,0.24);
   transition: 0.3s;
   background-color: #f1f1f1;
 }
+
+.time {
+  height: 65%;
+  background: #FFFFFF;
+  border: 1px solid #DBDBDB;
+  box-sizing: border-box;
+  border-radius: 4px;
+  width: 19%;
+  margin-top: 4px;
+  margin-right: 10px;
+  left: 20.50%;
+  right: 75.28%;
+  top: 25.71%;
+  bottom: 24.29%;
+background: #FFFFFF;
+border: 1px solid #DBDBDB;
+box-sizing: border-box;
+border-radius: 4px;
+
+}

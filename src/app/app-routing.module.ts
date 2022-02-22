@@ -217,8 +217,6 @@ import { PhysioMonthWiseSchComponent } from './pages/Hospital/physio-month-wise-
 import { TotalHospitalApointmentsComponent } from './pages/Hospital/total-hospital-apointments/total-hospital-apointments.component';
 import { PharmacyOrdersComponent } from './pages/DeliveryPartner/pharmacy-orders/pharmacy-orders.component';
 import { PharmacyReturnordersComponent } from './pages/DeliveryPartner/pharmacy-returnorders/pharmacy-returnorders.component';
-import { HospitalDocCommissionComponent } from './pages/Registration/hospital-doc-commission/hospital-doc-commission.component';
-import { HospitalDocDashComponent } from './pages/Registration/hospital-doc-dash/hospital-doc-dash.component';
 import { DoctorSupportComponent } from './pages/Doctor/doctor-support/doctor-support.component';
 import { DoctorSupportDashComponent } from './pages/Doctor/doctor-support-dash/doctor-support-dash.component';
 import { NurseSupportComponent } from './pages/Nurse/nurse-support/nurse-support.component';
@@ -255,8 +253,6 @@ import { ApprovedUsersComponent } from './pages/Sales/approved-users/approved-us
 import { RejectedusersComponent } from './pages/Sales/rejectedusers/rejectedusers.component';
 import { HomeCareAppointmentsComponent } from './pages/Home care/home-care-appointments/home-care-appointments.component';
 import { HomecareAppdashComponent } from './pages/Home care/homecare-appdash/homecare-appdash.component';
-import { IndependentSubscriptionsComponent } from './pages/HomeVisitsFees/independent-subscriptions/independent-subscriptions.component';
-import { IndependentsubdashComponent } from './pages/HomeVisitsFees/independentsubdash/independentsubdash.component';
 import { CancelationTimingsComponent } from './pages/Masters/cancelation-timings/cancelation-timings.component';
 import { NurseCancelledAppComponent } from './pages/Nurse/nurse-cancelled-app/nurse-cancelled-app.component';
 import { CancelledmidwifeAppsComponent } from './pages/Midewife/cancelledmidwife-apps/cancelledmidwife-apps.component';
@@ -353,6 +349,7 @@ import { AllMonthlysubscrptionsComponent } from './pages/AdminDashboard/all-mont
 import { FinanceAdminReportsComponent } from './pages/Billing/finance-admin-reports/finance-admin-reports.component';
 import { SubscriptionpaidReportsComponent } from './pages/Billing/subscriptionpaid-reports/subscriptionpaid-reports.component';
 import { AuditReportComponent } from './pages/AdminDashboard/audit-report/audit-report.component';
+import { CreditChargesMasterComponent } from './pages/Masters/credit-charges-master/credit-charges-master.component';
 
 
 
@@ -621,9 +618,6 @@ const routes: Routes = [
   { path: 'TotalHospitalApointments/:id', component: TotalHospitalApointmentsComponent },
   { path: 'PharmacyOrders', component: PharmacyOrdersComponent },
   { path: 'PharmacyReturnorders', component: PharmacyReturnordersComponent },
-  { path: 'HospitalDocCommission', component: HospitalDocCommissionComponent },
-  { path: 'HospitalDocDash', component: HospitalDocDashComponent },
-  { path: 'HospitalDocCommission/:id/:hospital_ClinicName', component: HospitalDocCommissionComponent },
   { path: 'DoctorSupport', component: DoctorSupportComponent },
   { path: 'DoctorSupportDash', component: DoctorSupportDashComponent },
   { path: 'NurseSupport', component: NurseSupportComponent },
@@ -663,8 +657,6 @@ const routes: Routes = [
   { path: 'Rejectedusers', component: RejectedusersComponent },
   { path: 'HomeCareAppointments', component: HomeCareAppointmentsComponent },
   { path: 'HomecareAppdash', component: HomecareAppdashComponent },
-  { path: 'IndependentSubscriptions', component: IndependentSubscriptionsComponent },
-  { path: 'Independentsubdash', component: IndependentsubdashComponent },
   { path: 'CancelationTimings', component: CancelationTimingsComponent },
   { path: 'CancelationTimings', component: CancelationTimingsComponent },
   { path: 'NurseCancelledApp', component: NurseCancelledAppComponent },
@@ -770,6 +762,7 @@ const routes: Routes = [
   { path: 'FinanceAdminReports/:year/:Month/:typeid/:filterid', component:  FinanceAdminReportsComponent},
   { path: 'SubscriptionpaidReports', component:  SubscriptionpaidReportsComponent},
   { path: 'AuditReport', component:  AuditReportComponent},
+  { path: 'CreditChargesMaster', component:  CreditChargesMasterComponent},
 ];
 
 @NgModule({

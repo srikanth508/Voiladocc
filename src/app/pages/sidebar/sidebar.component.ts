@@ -132,6 +132,7 @@ export class SidebarComponent implements OnInit {
   userrole: any;
   patientrefaral: any;
   importpatients: any;
+  auditReports:any;
   ngOnInit() {
 
     
@@ -488,6 +489,9 @@ export class SidebarComponent implements OnInit {
             }
             if (this.menulist[s].subMenuName == 'Import Patients') {
               this.importpatients = 1;
+            }
+            if (this.menulist[s].subMenuName == 'Audit Reports') {
+              this.auditReports = 1;
             }
           }
 

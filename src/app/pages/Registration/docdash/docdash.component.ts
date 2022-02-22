@@ -502,4 +502,24 @@ export class DocdashComponent implements OnInit {
 
   // }
 
+  typeid: any;
+
+  getTypeID(even) {
+    this.typeid = even.target.value;
+    debugger
+    if (even.target.value != '590' && even.target.value != '0') {
+      this.doctorlist = this.dummlist.filter(x => x.typeID == this.typeid&&x.hospitalClinicID!='590')
+      debugger
+    }
+    else if (even.target.value == '590') {
+      this.doctorlist = this.dummlist.filter(x => x.hospitalClinicID == this.typeid)
+      debugger
+    }
+    else {
+      this.getdoctorforadmin()
+    }
+  }
+
+
+
 }

@@ -1,0 +1,81 @@
+<br>
+<div class="container-fluid card card:hover">
+  <br>
+  <div class="row ">
+    <div class="col-lg-3">
+      <h5>Credit Card Charges Master </h5>
+    </div>
+    <div class="col-lg-6">
+    </div>
+    <!-- <div class="col-lg-3">
+      <button type="button" routerLink="/CityMaster"
+        style="float: right;background-color:  #f18235;width: 49%;color: white;" class="btn btncolor">{{labels[0].add}}</button>
+    </div> -->
+  </div>
+  <br>
+</div><br>
+<div class="container-fluid card card:hover ">
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-lg-3">
+      <input type="text" class="form-control" [(ngModel)]="term" name="term" placeholder="Search">
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-lg-12" style="overflow: auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Charges</th>
+            <th>Actions</th>
+          </tr>
+          <tr *ngFor="let credit of creditChargesList">
+            <td>Credit Card</td>
+            <td>{{credit.charges}}</td>
+            <td>
+              <img src="assets/Images/edit.png" data-toggle="modal" data-target="#exampleModal"
+                (click)="getid(credit.id)">
+            </td>
+          </tr>
+
+        </thead>
+      </table>
+    </div><br><br>
+  </div><br><br>
+  <br>
+</div><br>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Credit Card Master</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Charges :</label>
+          </div>
+          <div class="col-lg-5">
+            <input type="text" class="form-control" [(ngModel)]="charges" name="charges" placeholder="Charges">
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-3"></div>
+          <div class="col-lg-2">
+            <button class="btn btncolor" (click)="update()">Update</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      
+      </div>
+    </div>
+  </div>
+</div>

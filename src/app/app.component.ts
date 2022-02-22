@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HelloDoctorService } from '../app/hello-doctor.service';
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
-import { timer } from 'rxjs';
+import { interval, timer } from 'rxjs';
 import { NgxSpinnerService } from "ngx-spinner";
 import { UserIdleService } from 'angular-user-idle';
 
@@ -59,8 +59,11 @@ export class AppComponent {
   countrymanagersid: any;
   countrynotifications: any;
   recpid: any;
+  time: any;
   diagnosticcenterid: any;
-
+  hh: any;
+  mm: any;
+  ampm: any;
   ngOnInit() {
     this.show = 1;
     this.showsidebar = 0;
@@ -115,6 +118,30 @@ export class AppComponent {
     this.GetChatnotificationslist();
     this.getlanguageprescription();
     this.obseravablepharmacyno();
+
+
+
+    setInterval(() => {
+
+      var time = new Date();
+
+      this.time = time.toLocaleString('en-US', { hour: '2-digit', minute: 'numeric', hour12: true });
+
+      let temp: any = this.time.split(':');
+
+      this.hh = temp[0];
+
+      let temp1: any = this.time.split(':')[1].split(" ");
+
+      this.mm = temp1[0];
+
+      this.ampm = temp1[1];
+
+    }, 1000);
+
+
+
+
   }
 
 

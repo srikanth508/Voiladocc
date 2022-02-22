@@ -257,8 +257,10 @@ export class LoginComponent implements OnInit {
                   this.uname = "";
                   this.pwd = "";
                 }
+                this.spinner.hide()
               }
             }, error => {
+              this.spinner.hide()
             }
           )
         }
@@ -302,8 +304,10 @@ export class LoginComponent implements OnInit {
                   this.uname = "";
                   this.pwd = "";
                 }
+                this.spinner.hide()
               }
             }, error => {
+              this.spinner.hide()
             }
           )
         }
@@ -344,6 +348,7 @@ export class LoginComponent implements OnInit {
                   this.uname = "";
                   this.pwd = "";
                 }
+                this.spinner.hide()
 
               }
             }, error => {
@@ -388,6 +393,7 @@ export class LoginComponent implements OnInit {
                   this.uname = "";
                   this.pwd = "";
                 }
+                this.spinner.hide()
               }
             }, error => {
             }
@@ -436,6 +442,7 @@ export class LoginComponent implements OnInit {
                   this.uname = "";
                   this.pwd = "";
                 }
+                this.spinner.hide()
               }
             }, error => {
             }
@@ -481,8 +488,10 @@ export class LoginComponent implements OnInit {
                   this.uname = "";
                   this.pwd = "";
                 }
+                this.spinner.hide()
               }
             }, error => {
+              this.spinner.hide()
             }
           )
         }
@@ -527,6 +536,7 @@ export class LoginComponent implements OnInit {
                   this.uname = "";
                   this.pwd = "";
                 }
+                this.spinner.hide()
               }
             }, error => {
             }
@@ -574,6 +584,7 @@ export class LoginComponent implements OnInit {
                   this.uname = "";
                   this.pwd = "";
                 }
+                this.spinner.hide()
               }
             }, error => {
             }

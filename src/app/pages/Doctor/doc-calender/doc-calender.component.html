@@ -2,8 +2,10 @@
   [fullScreen]="true">
   <p style="color: white"> Loading... </p>
 </ngx-spinner>
+
+<app-loader *ngIf="loader==1"></app-loader>
 <div class="container-fluid card card:hover headerspace">
- 
+
   <div class="row headerspace">
     <div class="col-lg-8">
       <h5>Agenda</h5>
@@ -132,8 +134,8 @@
             <tr *ngFor="let details of workingdetails|filter:term" style="overflow: auto;height: 70px;">
               <td>{{details.slotname}}</td>
               <td [style.background-color]="details.day1color" style="color:white">{{details.day1}}<br>
-                <span
-                  *ngIf="details.day1AppointmentTypeID!=6&&details.day1AppointmentTypeID!=4">{{details.mondayFees| number:'2.2-2'}} DH </span>
+                <span *ngIf="details.day1AppointmentTypeID!=6&&details.day1AppointmentTypeID!=4">{{details.mondayFees|
+                  number:'2.2-2'}} DH </span>
                 <br>
                 {{details.day1Availabilty}}<br>
                 <table>
@@ -176,7 +178,8 @@
                 </a>
               </td>
               <td [style.background-color]="details.day4color" style="color:white">{{details.day4}}<br>
-                <span *ngIf="details.day4AppointmentTypeID!=6&&details.day4AppointmentTypeID!=4">{{details.thursdayFees| number:'1.2-2'}} DH</span><br>
+                <span *ngIf="details.day4AppointmentTypeID!=6&&details.day4AppointmentTypeID!=4">{{details.thursdayFees|
+                  number:'1.2-2'}} DH</span><br>
                 {{details.day4Availabilty}}<br>
                 <table>
                   <tr *ngFor="let det of details.day4patientdetails|filter:term">
@@ -189,8 +192,8 @@
                 </a>
               </td>
               <td [style.background-color]="details.day5color" style="color:white">{{details.day5}}<br>
-                <span
-                  *ngIf="details.day5AppointmentTypeID!=6&&details.day5AppointmentTypeID!=4">{{details.fridayFees| number:'1.2-2'}} DH</span>
+                <span *ngIf="details.day5AppointmentTypeID!=6&&details.day5AppointmentTypeID!=4">{{details.fridayFees|
+                  number:'1.2-2'}} DH</span>
                 <br>
 
                 {{details.day5Availabilty}}<br>
@@ -205,8 +208,8 @@
                 </a>
               </td>
               <td [style.background-color]="details.day6color" style="color:white">{{details.day6}}<br>
-                <span
-                  *ngIf="details.day6AppointmentTypeID!=6&&details.day6AppointmentTypeID!=4">{{details.satdayFees| number:'1.2-2'}} DH</span>
+                <span *ngIf="details.day6AppointmentTypeID!=6&&details.day6AppointmentTypeID!=4">{{details.satdayFees|
+                  number:'1.2-2'}} DH</span>
                 <br>
                 {{details.day6Availabilty}}<br>
                 <table>
@@ -311,12 +314,12 @@
             <div class="col-lg-6">
               <input *ngIf="languageid==1" type="text" class="form-control" placeholder="MM/DD/YYYY"
                 [bsConfig]="{ showWeekNumbers:false }" [(ngModel)]="daychangedate"
-                (ngModelChange)="GetdaychangeDate($event)" [minDate]="today" 
+                (ngModelChange)="GetdaychangeDate($event)" [minDate]="today"
                 [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" bsDatepicker>
 
               <input *ngIf="languageid==6" type="text" class="form-control" placeholder="jj/mm/aa"
-                [bsConfig]="{ showWeekNumbers:false }" [minDate]="today" [(ngModel)]="daychangedate1" (ngModelChange)="GetdaychangeDate($event)"
-                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" bsDatepicker>
+                [bsConfig]="{ showWeekNumbers:false }" [minDate]="today" [(ngModel)]="daychangedate1"
+                (ngModelChange)="GetdaychangeDate($event)" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" bsDatepicker>
               <!-- [(ngModel)]="daychangedate1" -->
               <!-- [(bsValue)]="myDateValue" -->
             </div>
@@ -394,22 +397,28 @@
                 [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" bsDatepicker>
 
               <input *ngIf="languageid==6" type="text" class="form-control" placeholder="jj/mm/aa"
-                [bsConfig]="{ showWeekNumbers:false }" [minDate]="today" [(ngModel)]="timechangedate1" (ngModelChange)="GetTimewisechangedate($event)"
-                [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" bsDatepicker>
+                [bsConfig]="{ showWeekNumbers:false }" [minDate]="today" [(ngModel)]="timechangedate1"
+                (ngModelChange)="GetTimewisechangedate($event)" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+                bsDatepicker>
               <!-- [(ngModel)]="timechangedate1" -->
             </div>
           </div><br>
           <div class="row">
             <div class="col-lg-12">
-              <input type="radio" [(ngModel)]="timewiseappointmentid" name="timewiseappointmentid" value="1" (click)="gettimechange($event)"> &nbsp;
+              <input type="radio" [(ngModel)]="timewiseappointmentid" name="timewiseappointmentid" value="1"
+                (click)="gettimechange($event)"> &nbsp;
               {{labels[0].inclinic}} &nbsp;
-              <input type="radio" [(ngModel)]="timewiseappointmentid" name="timewiseappointmentid" value="2" (click)="gettimechange($event)"> &nbsp;
+              <input type="radio" [(ngModel)]="timewiseappointmentid" name="timewiseappointmentid" value="2"
+                (click)="gettimechange($event)"> &nbsp;
               {{labels[0].video}} &nbsp;
-              <input type="radio" [(ngModel)]="timewiseappointmentid" name="timewiseappointmentid" value="5" (click)="gettimechange($event)"> &nbsp;
+              <input type="radio" [(ngModel)]="timewiseappointmentid" name="timewiseappointmentid" value="5"
+                (click)="gettimechange($event)"> &nbsp;
               {{labels[0].homeVisit}}&nbsp;
-              <input type="radio" [(ngModel)]="timewiseappointmentid" name="timewiseappointmentid" value="4" (click)="gettimechange($event)"> &nbsp;
+              <input type="radio" [(ngModel)]="timewiseappointmentid" name="timewiseappointmentid" value="4"
+                (click)="gettimechange($event)"> &nbsp;
               {{labels[0].notAvailable}}&nbsp;
-              <input type="radio" [(ngModel)]="timewiseappointmentid" name="timewiseappointmentid" value="6" (click)="gettimechange($event)"> &nbsp;
+              <input type="radio" [(ngModel)]="timewiseappointmentid" name="timewiseappointmentid" value="6"
+                (click)="gettimechange($event)"> &nbsp;
               {{labels[0].meeting}}
             </div>
           </div>

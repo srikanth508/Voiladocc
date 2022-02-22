@@ -320,4 +320,26 @@ export class MidwifeDashboardComponent implements OnInit {
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
+
+
+
+
+
+  typeid: any;
+
+  getTypeID(even) {
+    this.typeid = even.target.value;
+    debugger
+    if (even.target.value != '614' && even.target.value != '0') {
+      this.midwifelist = this.dummlist.filter(x => x.typeID == this.typeid&&x.hospitalClinicID!='614')
+      debugger
+    }
+    else if (even.target.value == '614') {
+      this.midwifelist = this.dummlist.filter(x => x.hospitalClinicID == this.typeid)
+      debugger
+    }
+    else {
+      this.GetMidWivesRegistration()
+    }
+  }
 }

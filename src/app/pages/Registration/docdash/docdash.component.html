@@ -34,6 +34,14 @@
       </select>
     </div>
     <div class="col-lg-3">
+
+      <select class="form-control" (change)="getTypeID($event)">
+        <option value="0">Type </option>
+        <option value="1">Hôpitaux</option>
+        <option value="2">Cliniques</option>
+        <option value="590">Médecins indépendants</option>
+        <option value="4">Cabinet de Groupe</option>
+      </select>
       <!-- <select class="form-control" (chnge)="GetDoctorRating($event)">
         <option>Select Doctor Rating</option>
         <option value="1">1</option>
@@ -73,8 +81,7 @@
             <th *ngIf="languageid=='6'">Code Postal</th>
             <th>{{labels[0].actions}}</th>
           </tr>
-          <tr
-            *ngFor="let details of doctorlist|filter:term|filter:departmentname">
+          <tr *ngFor="let details of doctorlist|filter:term|filter:departmentname">
             <!-- | paginate: { id: 'foo', itemsPerPage: 10, currentPage: p} -->
             <td><img src="{{details.photoURL}}" style="height: 50px;width: 50px;" /></td>
             <td>{{details.doctorName}}</td>

@@ -29,7 +29,7 @@
         </div>
 
     </div>
-    
+
     <div class="row" style="height: 20vh;" *ngIf="isMobileResolution==true">
         <div class="col-lg-12">
             <img src="assets/Images/logo.png" style="width: 62px;">
@@ -43,7 +43,8 @@
                 style="float: right;padding: 2%;cursor: pointer;height: 50px;margin-top: 4%;" (click)="clear()"><br>
             <span class="badge" style="float: right;cursor: pointer;background-color: green;color: aliceblue;
             margin-left: 0%;">{{notificationcount}}</span>
-            <img src="assets/icons/bell.png" data-toggle="modal" data-target="#notification" style="cursor: pointer;width: 30px;float: right;">
+            <img src="assets/icons/bell.png" data-toggle="modal" data-target="#notification"
+                style="cursor: pointer;width: 30px;float: right;">
             <label style="float: left;padding: 1%;cursor: pointer;height:80px;">{{labels[0].welcome}},
                 <b>{{user}}</b></label>
         </div>

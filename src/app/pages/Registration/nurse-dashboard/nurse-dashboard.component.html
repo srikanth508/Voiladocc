@@ -5,7 +5,7 @@
       <h5 *ngIf="languageid=='6'">INFIRMIER(E)S </h5>
     </div>
     <div class="col-lg-1" style="text-align: end;margin-top: -12px;">
-      <button class="btn btncolor" *ngIf="showexportbutton=='1'"  (click)="getglmasterexcel()">
+      <button class="btn btncolor" *ngIf="showexportbutton=='1'" (click)="getglmasterexcel()">
         {{labels1[0].exportExcel}}</button>
     </div>
     <div class="col-lg-2" style="text-align: end;margin-top: -12px;">
@@ -21,7 +21,16 @@
     <div class="col-lg-3">
       <input type="text" class="form-control" placeholder="{{labels[0].search}}" [(ngModel)]="term">
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-3">
+      <select class="form-control" (change)="getTypeID($event)">
+        <option value="0">Type </option>
+        <option value="1">Hôpitaux</option>
+        <option value="2">Cliniques</option>
+        <option value="612">Infirmières indépendantes</option>
+        <option value="4">Cabinet de Groupe</option>
+      </select>
+    </div>
+    <div class="col-lg-3">
 
     </div>
     <!-- <div class="col-lg-3">
@@ -78,18 +87,18 @@
             <td>
               <ng-template #tipcontent2>{{labels[0].delete}}</ng-template>
               <a [ngbTooltip]="tipcontent2">
-                <img src="assets/Images/dell.png" *ngIf="showdelete=='1'" style="width:18px" (click)="deletenurse(nurse.id)"></a>
+                <img src="assets/Images/dell.png" *ngIf="showdelete=='1'" style="width:18px"
+                  (click)="deletenurse(nurse.id)"></a>
               &nbsp;
               <ng-template #tipcontent3>{{labels[0].edit}}</ng-template>
               <a [ngbTooltip]="tipcontent3">
-                <img src="assets/Images/edit.png" 
-                *ngIf="nurse.editiconShow=='0'&&showeditbutton=='1'" style="width:18px"
-                  [routerLink]="['/EditNurseComponent',nurse.id]"></a>
+                <img src="assets/Images/edit.png" *ngIf="nurse.editiconShow=='0'&&showeditbutton=='1'"
+                  style="width:18px" [routerLink]="['/EditNurseComponent',nurse.id]"></a>
 
-                  <ng-template #tipcontent3>{{labels[0].edit}}</ng-template>
-                  <a [ngbTooltip]="tipcontent3">
-                    <img src="assets/Images/edit.png" *ngIf="showeditbutton=='0'"  style="width:18px"
-                      [routerLink]="['/EditNurseComponent',nurse.id]"></a>
+              <ng-template #tipcontent3>{{labels[0].edit}}</ng-template>
+              <a [ngbTooltip]="tipcontent3">
+                <img src="assets/Images/edit.png" *ngIf="showeditbutton=='0'" style="width:18px"
+                  [routerLink]="['/EditNurseComponent',nurse.id]"></a>
             </td>
           </tr>
         </thead>

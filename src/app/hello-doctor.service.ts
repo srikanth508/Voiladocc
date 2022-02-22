@@ -14,9 +14,9 @@ export class HelloDoctorService {
   private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
 
 
-  //   public host = "https://maroc.voiladoc.org/marocAPI";
+  //  public host = "https://maroc.voiladoc.org/marocAPI";
 
-  //  private host1 = "https://maroc.voiladoc.org/marocAPI";
+  // private host1 = "https://maroc.voiladoc.org/marocAPI";
 
 
   //test1
@@ -6263,20 +6263,35 @@ export class HelloDoctorService {
 
 
   public InsertProvidersAuditReport(data) {
-    this.url = "http://localhost:4199/" + '/Doctor/InsertProvidersAuditReport';
+    this.url = this.host + '/Doctor/InsertProvidersAuditReport';
     return this.http.post(this.url, data)
   }
 
 
   public UpdateProvidersAuditReport(id) {
     debugger
-    return this.http.get<any[]>("http://localhost:4199/"+ '/Doctor/UpdateProvidersAuditReport?ID=' + id);
+    return this.http.get<any[]>(this.host + '/Doctor/UpdateProvidersAuditReport?ID=' + id);
   }
 
 
-  
-  public GetProvidersAuditReport(id,sdate,edate) {
+
+  public GetProvidersAuditReport(id, sdate, edate) {
     debugger
-    return this.http.get<any[]>("http://localhost:4199/"+ '/Doctor/GetProvidersAuditReport?TypeID=' + id+'&Sdate='+sdate+'&Edate='+edate);
+    return this.http.get<any[]>(this.host + '/Doctor/GetProvidersAuditReport?TypeID=' + id + '&Sdate=' + sdate + '&Edate=' + edate);
+  }
+
+  public GetHomeCountryVisitDeliveryChargesMaster(lid) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/GetHomeCountryVisitDeliveryChargesMaster?LanguageID=' + lid);
+  }
+
+  public GetCreditCardChargesMaster(lid) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/GetCreditCardChargesMaster?LanguageID=' + lid);
+  }
+
+  public UpdateCreditCardChargesMaster(id, charges) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/UpdateCreditCardChargesMaster?ID=' + id + '&Charges=' + charges);
   }
 }

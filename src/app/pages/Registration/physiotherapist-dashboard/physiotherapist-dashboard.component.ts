@@ -86,7 +86,7 @@ export class PhysiotherapistDashboardComponent implements OnInit {
     if (this.hospitalclinicid != undefined) {
       this.docservice.GetPhysiotherapyRegistrationAdminByLanguageID(this.languageid).subscribe(
         data => {
-
+          this.dummlist=data;
           this.dummlistphysiolist = data;
           this.physioist = this.dummlistphysiolist.filter(x => x.hospitalClinicID == this.hospitalclinicid)
           this.count = this.physioist.length
@@ -325,4 +325,31 @@ export class PhysiotherapistDashboardComponent implements OnInit {
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
+
+
+
+
+
+  typeid: any;
+
+  getTypeID(even) {
+    this.typeid = even.target.value;
+    debugger
+    if (even.target.value != '613' && even.target.value != '0') {
+      this.physioist = this.dummlist.filter(x => x.typeID == this.typeid&&x.hospitalClinicID!='613')
+      debugger
+    }
+    else if (even.target.value == '613') {
+      this.physioist = this.dummlist.filter(x => x.hospitalClinicID == this.typeid)
+      debugger
+    }
+    else {
+      this.getphysiolist()
+    }
+  }
+
+
+
+
+  
 }

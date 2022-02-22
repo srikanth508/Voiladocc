@@ -56,11 +56,22 @@
 
     <div class="row">
       <div class="col-lg-2">
+        <label class="REGISTRATION NO:">Master Setting :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="radio"  [(ngModel)]="masterSetup" name="masterSetup" value="2" (click)="getMastersetup(masterSetup)">&nbsp;Yes
+        <input type="radio" [(ngModel)]="masterSetup" name="masterSetup" value="1" (click)="getMastersetup(masterSetup)">&nbsp;No
+      </div>
+    </div><br>
+
+    <div class="row">
+      <div class="col-lg-2">
         <label class="REGISTRATION NO:">Delivery Charges :</label>
         <span class="required">*</span>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" required [(ngModel)]="deliverycharges" name="deliverycharges"
+        <input type="text" class="form-control" [disabled]="masterSetup==2" required [(ngModel)]="deliverycharges" name="deliverycharges"
           placeholder="Delivery Charges">
       </div>
     </div><br>
@@ -70,7 +81,7 @@
         <span class="required">*</span>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" required [(ngModel)]="meridionalcommission" name="meridionalcommission"
+        <input type="text" class="form-control" [disabled]="masterSetup==2" required [(ngModel)]="meridionalcommission" name="meridionalcommission"
           placeholder="Meridional Commission" >
       </div>
     </div><br>
@@ -81,7 +92,7 @@
         <span class="required">*</span>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" required [(ngModel)]="deliverypatnerfees" name="deliverypatnerfees"
+        <input type="text" class="form-control" [disabled]="masterSetup==2"  required [(ngModel)]="deliverypatnerfees" name="deliverypatnerfees"
           placeholder="Delivery Patner Fees">
       </div>
     </div><br>

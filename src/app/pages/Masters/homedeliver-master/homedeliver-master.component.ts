@@ -18,6 +18,8 @@ export class HomedeliverMasterComponent implements OnInit {
   pharmacydd = {};
   search: any;
   diagnosticlist: any;
+  SelectLabel: any;
+  masterSetup: any;
   diadd = {}
 
   ngOnInit() {
@@ -119,9 +121,27 @@ export class HomedeliverMasterComponent implements OnInit {
     this.docservice.InsertHomeVisitDeliveryChargesMaster(entity).subscribe(data => {
       if (data != 0) {
         Swal.fire("Saved Successfully");
-        location.href="#/HomedeliveryFees"
+        location.href = "#/HomedeliveryFees"
       }
 
     })
+  }
+
+
+  getMastersetup(even) {
+    debugger
+    if (even == 1) {
+      this.docservice.GetHomeCountryVisitDeliveryChargesMaster(this.languageid).subscribe(data => {
+        this.deliverycharges = data[0].deliveryCharges,
+          this.meridionalcommission = data[0].meridionalCommision,
+          this.deliverypatnerfees = data[0].deliveryPatnerFees
+
+      })
+    }
+    else {
+       this.deliverycharges="";
+       this.meridionalcommission="";
+       this.deliverypatnerfees="";
+    }
   }
 }

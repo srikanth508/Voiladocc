@@ -407,7 +407,7 @@
                                 <td style="border: 2px solid black;">
                                   <input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
                                     [(ngModel)]="medicinelist.amount" name="medicinelist.amount" [disabled]="medicinelist.substituteBit==true"
-                                    onkeypress='return(event.charCode>=48&&event.charCode<=57)'><br>
+                                    onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'><br>
 
                                     <input type="text" class="form-control"  *ngIf="medicinelist.substituteBit==true" [ngModelOptions]="{standalone: true}"
                                     [(ngModel)]="medicinelist.subAmount" name="medicinelist.subAmount" 
@@ -494,7 +494,7 @@
           </div>
           <div class="col-lg-4">
             <input type="text" class="form-control" placeholder="{{labels[0].amountToPay}}" [(ngModel)]="amounttopay"
-              name="amounttopay">
+              name="amounttopay"  onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
           </div>
         </div><br>
         <div class="row" *ngIf="showedit=='0'">
@@ -577,7 +577,7 @@
           </div>
           <div class="col-lg-4">
             <input type="text" class="form-control" placeholder="{{labels[0].amountToPay}}" [(ngModel)]="amounttopay"
-              name="amounttopay">
+              name="amounttopay"  onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
           </div>
         </div><br>
 
@@ -639,7 +639,7 @@
           </div>
           <div class="col-lg-5">
             <input type="text" class="form-control" placeholder="{{labels[0].amountToPay}}" [(ngModel)]="amounttopay"
-              name="amounttopay">
+              name="amounttopay"  onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
           </div>
         </div><br>
         <div class="row">

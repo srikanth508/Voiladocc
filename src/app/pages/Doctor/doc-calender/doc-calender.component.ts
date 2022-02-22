@@ -36,8 +36,10 @@ export class DocCalenderComponent implements OnInit {
   public timechangedate1: any;
   term: any;
   todaydatess:any;
+  loader:any;
   ngOnInit() {
-   this.spinner.show()
+   this.spinner.show();
+   this.loader=true;
     this.doctorid = localStorage.getItem('userid');
     this.languageid = localStorage.getItem('LanguageID');
     const format = 'yyyy-MM-dd';
@@ -58,6 +60,7 @@ export class DocCalenderComponent implements OnInit {
 
 
       }, error => {
+        console.log("GetMyDoctorWorkingDetails",error)
       }
     )
 
@@ -87,7 +90,7 @@ export class DocCalenderComponent implements OnInit {
         this.DayDatelist = data[0];
         this.workingdetails = data[1];
 
-      
+      this.loader=false;
       }, error => {
         this.spinner.hide();
       }
@@ -258,11 +261,12 @@ export class DocCalenderComponent implements OnInit {
         else {
           Swal.fire('Mis à jour avec succès !');
         }
-        this.GetMyDoctorWorkingDetails();
       })
 
 
     })
+
+    this.GetMyDoctorWorkingDetails();
   }
 
 

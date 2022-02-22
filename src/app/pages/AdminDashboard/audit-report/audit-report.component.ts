@@ -43,7 +43,7 @@ export class AuditReportComponent implements OnInit {
   }
 
   GetProvidersAuditReport() {
-    this.docservice.GetProvidersAuditReport(1,this.startdate,this.enddate).subscribe(data => {
+    this.docservice.GetProvidersAuditReport(1,this.startdate,this.enddate).subscribe(async data => {
       this.auditReportList = data;
       this.dummauditReportList = data;
     })
@@ -99,8 +99,9 @@ export class AuditReportComponent implements OnInit {
 
 
   selectedDate(data) {
-    this.startdate = this.docservice.GetDates(data[0])
-    this.enddate = this.docservice.GetDates(data[1])
+    this.startdate = this.docservice.GetDates(data[0]);
+    this.enddate = this.docservice.GetDates(data[1]);
+    this.GetProvidersAuditReport()
   }
 
 }

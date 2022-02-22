@@ -32,13 +32,14 @@ export class HomedeliveryFeesComponent implements OnInit {
     )
   }
 
-
+  dummChargesList: any;
 
   public gethomedeliveycharges() {
     this.docservice.GetHomeVisitDeliveryChargesMaster(this.languageid).subscribe(
       data => {
 
         this.charges = data;
+        this.dummChargesList = data;
       }, error => {
       }
     )
@@ -58,12 +59,12 @@ export class HomedeliveryFeesComponent implements OnInit {
 
   public GetCommission(even) {
     if (even > this.deliverycharges) {
-      
+
       this.meridionalcommission = 0;
       this.deliveryPatnerFees = 0
     }
     else {
-      
+
       this.deliveryPatnerFees = Number(this.deliverycharges) - Number(this.meridionalcommission);
     }
   }
@@ -78,14 +79,12 @@ export class HomedeliveryFeesComponent implements OnInit {
       'DeliveryPatnerFees': this.deliveryPatnerFees
     }
     this.docservice.UpdateHomeVisitDeliveryChargesMaster(entity).subscribe(data => {
-      if(this.languageid==1)
-      {
+      if (this.languageid == 1) {
         Swal.fire("Updated Successfully");
         this.gethomedeliveycharges()
         document.getElementById("close").click();
       }
-      else
-      {
+      else {
         Swal.fire("Ajouté avec succès");
         this.gethomedeliveycharges()
         document.getElementById("close").click();
@@ -98,63 +97,75 @@ export class HomedeliveryFeesComponent implements OnInit {
 
 
   public GetDisableFess(id) {
-   
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You Want to Disable This Fees!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Disable it!'
-      }).then((result) => {
-        if (result.value) {
-          this.docservice.UpdateEnableDisableHomeVisitDeliveryChargesMaster(id,1).subscribe(res => {
-            let test = res;
-            this.gethomedeliveycharges()
-          })
-          Swal.fire(
-            'Disabled!',
-            'Home Delivery Charges has been Disabled.',
-            'success'
-          )
-        }
-        else {
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You Want to Disable This Fees!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Disable it!'
+    }).then((result) => {
+      if (result.value) {
+        this.docservice.UpdateEnableDisableHomeVisitDeliveryChargesMaster(id, 1).subscribe(res => {
+          let test = res;
           this.gethomedeliveycharges()
-        }
-      })
-    
+        })
+        Swal.fire(
+          'Disabled!',
+          'Home Delivery Charges has been Disabled.',
+          'success'
+        )
+      }
+      else {
+        this.gethomedeliveycharges()
+      }
+    })
+
   }
 
 
 
 
   public EnableFess(id) {
-    
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You Want to Enable This Fees!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Disable it!'
-      }).then((result) => {
-        if (result.value) {
-          this.docservice.UpdateEnableDisableHomeVisitDeliveryChargesMaster(id,2).subscribe(res => {
-            let test = res;
-            this.gethomedeliveycharges()
-          })
-          Swal.fire(
-            'Enabled!',
-            'Home Delivery Charges has been Enabled.',
-            'success'
-          )
-        }
-        else {
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You Want to Enable This Fees!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Disable it!'
+    }).then((result) => {
+      if (result.value) {
+        this.docservice.UpdateEnableDisableHomeVisitDeliveryChargesMaster(id, 2).subscribe(res => {
+          let test = res;
           this.gethomedeliveycharges()
-        }
-      })
-    
+        })
+        Swal.fire(
+          'Enabled!',
+          'Home Delivery Charges has been Enabled.',
+          'success'
+        )
+      }
+      else {
+        this.gethomedeliveycharges()
+      }
+    })
+
+  }
+  typeid: any;
+
+  getTypeID(even) {
+    this.typeid = even.target.value;
+    if (even.target.value != 0) {
+      this.charges = this.dummChargesList.filter(x => x.typeID == this.typeid);
+    }
+    else {
+      this.gethomedeliveycharges();
+    }
+
   }
 }

@@ -23,7 +23,16 @@
     <div class="col-lg-3">
       <input type="text" class="form-control" [(ngModel)]="term" name="term" placeholder="{{labels[0].search}}">
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-3">
+      <select class="form-control" (change)="getTypeID($event)">
+        <option value="0">Type </option>
+        <option value="1">Hôpitaux</option>
+        <option value="2">Cliniques</option>
+        <option value="613">soignants indépendants</option>
+        <option value="4">Cabinet de Groupe</option>
+      </select>
+    </div>
+    <div class="col-lg-3">
 
     </div>
     <div class="col-lg-3" style="text-align: end;">
