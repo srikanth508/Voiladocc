@@ -29,7 +29,7 @@
     </div>
     <div class="col-lg-3" *ngIf="notshowdrop=='1'">
       <select class="form-control" (change)="GetHospitalID($event)">
-        <option value="0">Select Hospital/ Clinic</option>
+        <option value="0">{{labels[0].selecthospitalclinic}}</option>
         <option *ngFor="let hos of hospitallist" value="{{hos.id}}">{{hos.hospital_ClinicName}}</option>
       </select>
     </div>
@@ -53,8 +53,8 @@
         <thead>
           <tr>
             <th id="imp">{{labels[0].appointmentyDate}}</th>
-            <th id="imp"  *ngIf="notshowdrop=='1'">Nurse Name</th>
-            <th *ngIf="notshowdrop=='1'">Hospital / Clinic Name</th>
+            <th id="imp"  *ngIf="notshowdrop=='1'">{{labels[0].nurseName}}</th>
+            <th *ngIf="notshowdrop=='1'">{{labels[0].hospitalclinique}}</th>
             <th>{{labels[0].patientname}}</th>
             <th>{{labels[0].phoneNo}}</th>
             <th>{{labels[0].email}}</th>

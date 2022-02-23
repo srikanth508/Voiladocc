@@ -58,8 +58,8 @@
           <tr>
             <th id="imp">{{labels[0].appointmentdate}}</th>
             <th>{{labels[0].appointmentID}}</th>
-            <th  *ngIf="showdrop=='1'">Physiotherapist Name</th>
-            <th  *ngIf="showdrop=='1'">Hospital / Clinic Name</th>
+            <th  *ngIf="showdrop=='1'">{{labels[0].physiotherapistname}}</th>
+            <th  *ngIf="showdrop=='1'">{{labels[0].hospitalOrClinic}}</th>
             <th>{{labels[0].patientName}}</th>
             <th>{{labels[0].phoneno}}</th>
             <th>{{labels[0].email}}</th>

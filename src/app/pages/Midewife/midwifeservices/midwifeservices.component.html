@@ -16,7 +16,7 @@
       </div>
       <div class="col-lg-4">
         <div *ngIf="showDropdown=='1'">
-          <select class="form-control" (change)="GetPhysioID($event)" [(ngModel)]="midWifeID" name="midWifeID">
+          <select class="form-control" (change)="GetPhysioID($event)" [(ngModel)]="midwifeid" name="midwifeid">
             <option value="0">{{labels1[0].select}}</option>
             <option *ngFor="let phsio of nurselist" value="{{phsio.id}}">{{phsio.name}}</option>
 
@@ -44,7 +44,7 @@
         <span class="required">*</span>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels1[0].charges}}" [(ngModel)]="charges" name="charges">
+        <input type="text" class="form-control" placeholder="{{labels1[0].charges}}" [(ngModel)]="charges" name="charges" onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
       </div>
     </div><br>
     <div class="row" style="margin-top: 20px;">

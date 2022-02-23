@@ -317,3 +317,12 @@ button:disabled {
 .h5{
   color: #f18235;
 }
+
+@media only screen and (max-width:600px)
+{
+  .headerspace {
+    padding-top: 8px;
+    height: 70px;
+    color: #251156;
+}
+}

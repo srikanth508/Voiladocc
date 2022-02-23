@@ -173,8 +173,17 @@ export class PhysioServicesComponent implements OnInit {
     }
     this.docservice.UpdatePhysioServicesMobileWeb(entity).subscribe(data => {
 
-      Swal.fire("Updated Successfully");
-      location.href = "#/PhysioServicesDash"
+      if(this.languageid==1)
+      {
+        Swal.fire("Updated Successfully");
+        location.href = "#/PhysioServicesDash"
+      }
+      else
+      {
+        Swal.fire("Mis à jour");
+        location.href = "#/PhysioServicesDash"
+      }
+     
     })
 
 

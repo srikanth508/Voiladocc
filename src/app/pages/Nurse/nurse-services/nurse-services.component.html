@@ -44,7 +44,7 @@
         <span class="required">*</span>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels1[0].charges}}" [(ngModel)]="charges" name="charges">
+        <input type="text" class="form-control" placeholder="{{labels1[0].charges}}" [(ngModel)]="charges" name="charges" onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
       </div>
     </div><br>
     <div class="row" style="margin-top: 20px;">

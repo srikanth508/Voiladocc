@@ -144,7 +144,7 @@ export class NurseComponent implements OnInit {
     this.docservice.GetHospital_ClinicForAdminByAdmin(this.languageid).subscribe(
       data => {
 
-        this.hospitalcliniclist = data;
+        this.hospitalcliniclist = data.filter(x => x.id != '590' && x.id != '613' && x.id != '614');
         this.hospitadd = {
           singleSelection: true,
           idField: 'id',

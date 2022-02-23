@@ -6295,4 +6295,9 @@ export class HelloDoctorService {
     debugger
     return this.http.get<any[]>(this.host + '/Doctor/UpdateCreditCardChargesMaster?ID=' + id + '&Charges=' + charges);
   }
+
+  public UpdateMidWifeServicesRegistrationEnableDisable(typeid, lid) {
+
+    return this.http.get<any[]>(this.host + '/Doctor/UpdateMidWifeServicesRegistrationEnableDisable?TypeID=' + typeid + '&ID=' + lid);
+  }
 }

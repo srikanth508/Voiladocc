@@ -8,7 +8,7 @@
                 <!-- Meridional Login -->
             <ul class="list-unstyled components" *ngIf="roleid=='12'">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Rapports</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/AdminDash">
@@ -184,7 +184,7 @@
 
             <ul class="list-unstyled components" *ngIf="roleid=='12'">
                 <li class="active">
-                    <a href="#MeridionalMenus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Menus</a>
+                    <a href="#MeridionalMenus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{labels[0].menus}}</a>
                     <ul class="collapse list-unstyled" id="MeridionalMenus">
 
                         <li>
@@ -384,7 +384,7 @@
 
             <ul class="list-unstyled components" *ngIf="roleid=='13'||roleid=='12'">
                 <li class="active">
-                    <a href="#WebsupportticetsReports" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports</a>
+                    <a href="#WebsupportticetsReports" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Rapports</a>
                     <ul class="collapse list-unstyled" id="WebsupportticetsReports">
                         
                      
@@ -1314,7 +1314,7 @@
             <!-- management -->        
             <ul class="list-unstyled components" *ngIf="revenue=='1'" >
                 <li class="active">
-                    <a href="#adminReportss" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports</a>
+                    <a href="#adminReportss" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Rapports</a>
                     <ul class="collapse list-unstyled" id="adminReportss">
                         <li *ngIf="regentityes=='1'">
                             <a routerLink="/AdminDash"  class="tablinks" (click)="highlight($event)" *ngIf="regentityes=='1'" >{{labels[0].registerentity}}</a>
@@ -1611,7 +1611,7 @@
 
             <ul class="list-unstyled components" *ngIf="mergepatientdata=='1'">
                 <li class="active">
-                    <a href="#managedetails" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Menus</a>
+                    <a href="#managedetails" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{labels[0].menus}}</a>
                     <ul class="collapse list-unstyled" id="managedetails">
                         <li *ngIf="mergepatientdata=='1'">
                             <a class="tablinks" (click)="highlight($event)" routerLink="/MergePatientdata">

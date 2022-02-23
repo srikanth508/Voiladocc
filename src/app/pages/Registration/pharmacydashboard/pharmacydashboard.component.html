@@ -1,10 +1,9 @@
 <div class="container-fluid card card:hover headerspace">
   <div class="row headerspace">
-    <div class="col-lg-9" style="margin-top: -2px;">
+    <div class="col-lg-12" style="margin-top: -2px;">
       <h5>{{labels[0].pharmacyDashboard}}</h5>
-    </div>
-    <div class="col-lg-3" style="text-align: end;margin-top: -12px;">
-      <button class="btn btncolor" *ngIf="showexportbutton=='1'" (click)="getglmasterexcel()">
+
+      <button class="btn btncolor" *ngIf="showexportbutton=='1'"  (click)="getglmasterexcel()">
         {{labels1[0].exportExcel}}</button>
       <button style="margin-left: 10px;" *ngIf="languageid==1" type="button" routerLink="/Pharmacyregistration"
         class="btn btncolor">
@@ -15,6 +14,9 @@
         Ajouter
       </button>
     </div>
+    <!-- <div class="col-lg-3" style="text-align: end;margin-top: -12px;">
+    
+    </div> -->
   </div>
 </div>
 <br>
