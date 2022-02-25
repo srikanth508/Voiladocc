@@ -135,7 +135,7 @@ export class PatientPdfsComponent implements OnInit {
         this.sendattchmenturl.push(res);
         let a = this.sendattchmenturl[0].slice(2);
 
-        let b = 'https://maroc.voiladoc.org' + a;
+        let b = 'https://madagascar.voiladoc.org' + a;
         this.emailurl = b;
 
         this.SendMailReport()

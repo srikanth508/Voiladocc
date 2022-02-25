@@ -140,7 +140,7 @@ export class SendemailsComponent implements OnInit {
       this.attchementurl.push(res);
       this.identityattachmentsurlssss.push(res);
       let a = this.identityattachmentsurlssss[0].slice(2);
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showidentityproof.push(b)
 
       this.attchement.length = 0;

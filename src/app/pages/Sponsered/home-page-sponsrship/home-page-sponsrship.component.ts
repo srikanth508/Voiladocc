@@ -106,7 +106,7 @@ export class HomePageSponsrshipComponent implements OnInit {
 
       let a = this.PhotoURL.slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showPhotoURL.push(b)
     
 

@@ -51,9 +51,9 @@ export class LoginComponent implements OnInit {
       }
     )
 
-    // localStorage.setItem('WebUrl', 'https://maroc.voiladoc.org/MarocAPI');
+    // localStorage.setItem('WebUrl', 'https://madagascar.voiladoc.org/MarocAPI');
 
-    // localStorage.setItem('WebUrl', 'https://maroc.voiladoc.org/MadagascarWebAPI');
+    // localStorage.setItem('WebUrl', 'https://madagascar.voiladoc.org/MadagascarWebAPI');
 
     // this.docservice.GetLanguageMaster().subscribe(
     //   data => {

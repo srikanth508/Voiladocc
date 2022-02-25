@@ -37,7 +37,7 @@
             <td *ngIf="showdropdown=='1'">{{list.nurseName}}</td>
             <td>{{list.serviceName}}</td>
             <!-- <td>{{list.serviceDescription }}</td> -->
-            <td>{{list.serviceCharges|number:'1.2-2'|noComma}} DH</td>
+            <td>{{list.serviceCharges|number:'1.2-2'|noComma}} Ar</td>
             <td>
               <ng-template #tipcontent1>{{labels[0].edit}}</ng-template>
               <a [ngbTooltip]="tipcontent1" [routerLink]="['/NurseServices',list.id]" style="color:black">

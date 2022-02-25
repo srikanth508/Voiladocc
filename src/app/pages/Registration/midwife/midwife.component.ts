@@ -215,7 +215,7 @@ export class MidwifeComponent implements OnInit {
       this.attachmentsurl.push(res);
       this.dummphotourl.push(res);
       let a = this.dummphotourl[0].slice(2);
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       this.showphoto.push(b)
       this.attachments.length = 0;
@@ -249,7 +249,7 @@ export class MidwifeComponent implements OnInit {
       this.dummidentityphotourl.push(res);
       let a = this.dummidentityphotourl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showidproof.push(b)
       this.idproof.length = 0;
 

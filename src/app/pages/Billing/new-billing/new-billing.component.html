@@ -90,7 +90,7 @@
                     <td>{{details.phoneNo}}</td>
                     <td>{{details.emailID}}</td>
                     <td>{{details.name}}</td>
-                    <td>{{details.monthlySubscription|number:'1.2-2'|noComma}} DH</td>
+                    <td>{{details.monthlySubscription|number:'1.2-2'|noComma}} Ar</td>
 
                     <td><button (click)="GetList(details)" class="btncolor" data-toggle="modal" data-target="#errorServer">View
                             Invoice</button></td>
@@ -180,8 +180,8 @@
                                         <td>{{hospitalname}}</td>
                                         <td>{{phoneNo}}</td>
                                         <td>Service Voiladoc </td>
-                                        <td>{{totalamount|number:'1.2-2'|noComma}} DH</td>
-                                        <td>{{totalamount|number:'1.2-2'|noComma}} DH</td>
+                                        <td>{{totalamount|number:'1.2-2'|noComma}} Ar</td>
+                                        <td>{{totalamount|number:'1.2-2'|noComma}} Ar</td>
                                     </tr>
                                 </table>
                             </div>
@@ -200,9 +200,9 @@
                                 </table>
                             </div>
                             <div class="col-lg-4 text-alignments">
-                                <span>Net Total : {{totalamount|number:'1.2-2'|noComma}} DH</span><br>
+                                <span>Net Total : {{totalamount|number:'1.2-2'|noComma}} Ar</span><br>
                                 <span>TVA : </span><br>
-                                <span>TOTAL TTC MAD : {{totalamount|number:'1.2-2'|noComma}} DH</span><br>
+                                <span>TOTAL TTC MAD : {{totalamount|number:'1.2-2'|noComma}} Ar</span><br>
                             </div>
                         </div>
 

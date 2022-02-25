@@ -105,7 +105,7 @@ export class WritearticleComponent implements OnInit {
 
       let a = this.attachmentsurl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showphoto.push(b)
       this.attachments.length = 0;
 
@@ -149,7 +149,7 @@ export class WritearticleComponent implements OnInit {
       
       let a = this.subattachmentsurl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.subshowphoto.push(b)
       this.attachments.length = 0;
 

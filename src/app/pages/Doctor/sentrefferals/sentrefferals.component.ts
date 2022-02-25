@@ -490,7 +490,7 @@ export class SentrefferalsComponent implements OnInit {
       this.attachmentsurl1.push(res);
       let a = this.attachmentsurl1[0].slice(2);
       
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       this.showdocphoto.push(b)
 

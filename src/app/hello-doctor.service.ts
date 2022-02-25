@@ -9,21 +9,21 @@ import { pipeDef } from '@angular/core/src/view';
 
 export class HelloDoctorService {
   //live
-  public host = "https://maroc.voiladoc.org/VoilaDocTestAPI";
+  // public host = "https://madagascar.voiladoc.org/VoilaDocTestAPI";
 
-  private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
+  // private host1 = "https://madagascar.voiladoc.org/VoilaDocTestAPI";
 
 
-  //  public host = "https://maroc.voiladoc.org/marocAPI";
+  //  public host = "https://madagascar.voiladoc.org/marocAPI";
 
-  // private host1 = "https://maroc.voiladoc.org/marocAPI";
+  // private host1 = "https://madagascar.voiladoc.org/marocAPI";
 
 
   //test1
 
-  //public host = "https://madagascar.voiladoc.org/MadagascarWebAPI";
+  public host = "https://madagascar.voiladoc.org/MadagascarWebAPI";
 
-  //private host1 = "https://madagascar.voiladoc.org/MadagascarWebAPI";
+  private host1 = "https://madagascar.voiladoc.org/MadagascarWebAPI";
 
 
   private host2 = "https://voiladoc.org/VoiladocRegistrationsWebApi";
@@ -89,9 +89,9 @@ export class HelloDoctorService {
 
     return this.http.get<any[]>(this.host + '/Pharmacy/GetPharmacyLoginForDash?LanguageID=' + lid);
   }
-  public GetSponsoredHospitalsForAdmin() {
+  public GetSponsoreArospitalsForAdmin() {
 
-    return this.http.get<any[]>(this.host + '/Hospital/GetSponsoredHospitalsForAdmin');
+    return this.http.get<any[]>(this.host + '/Hospital/GetSponsoreArospitalsForAdmin');
   }
   public GetSponsoredDiagnosticCenterForAdmin() {
 
@@ -133,8 +133,8 @@ export class HelloDoctorService {
     this.url = this.host + '/Pharmacy/InsertPharmacyAdminRegistration';
     return this.http.post(this.url, data)
   }
-  public InsertSponsoredHospitals(data) {
-    this.url = this.host + '/Hospital/InsertSponsoredHospitals';
+  public InsertSponsoreArospitals(data) {
+    this.url = this.host + '/Hospital/InsertSponsoreArospitals';
     return this.http.post(this.url, data)
   }
   public InsertSponsoredDiagnosticCenter(data) {
@@ -210,13 +210,13 @@ export class HelloDoctorService {
 
     return this.http.get<any[]>(this.host + '/Hospital/DisableHospital_ClinicLogin?Hospital_ClinicID=' + hosid);
   }
-  public DisableSponsoredHospitals(hosid) {
+  public DisableSponsoreArospitals(hosid) {
 
-    return this.http.get<any[]>(this.host + '/Hospital/DisableSponsoredHospitals?Hospital_ClinicID=' + hosid);
+    return this.http.get<any[]>(this.host + '/Hospital/DisableSponsoreArospitals?Hospital_ClinicID=' + hosid);
   }
-  public EnableSponsoredHospitals(hosid) {
+  public EnableSponsoreArospitals(hosid) {
 
-    return this.http.get<any[]>(this.host + '/Hospital/EnableSponsoredHospitals?Hospital_ClinicID=' + hosid);
+    return this.http.get<any[]>(this.host + '/Hospital/EnableSponsoreArospitals?Hospital_ClinicID=' + hosid);
   }
   public EnableSponsoredDiagnosticCenter(id) {
 
@@ -1301,9 +1301,9 @@ export class HelloDoctorService {
 
     return this.http.get<any[]>(this.host + '/Doctor/GetNotifications_DoctorByDoctorID?DoctorID=' + did);
   }
-  public Update_AppointmentForOnDemandVideoConferenceForDoctor(dhd, did, aid, nid) {
+  public Update_AppointmentForOnDemandVideoConferenceForDoctor(Ard, did, aid, nid) {
 
-    return this.http.get<any[]>(this.host + '/Doctor/Update_AppointmentForOnDemandVideoConferenceForDoctor?DoctorHospitalDetailsID=' + dhd + '&DoctorID=' + did + '&AppointmentID=' + aid + '&NotificationID=' + nid);
+    return this.http.get<any[]>(this.host + '/Doctor/Update_AppointmentForOnDemandVideoConferenceForDoctor?DoctorHospitalDetailsID=' + Ard + '&DoctorID=' + did + '&AppointmentID=' + aid + '&NotificationID=' + nid);
   }
   public GetMyAppointments_OnDemandVideoConferenceByDoctorID(did) {
 
@@ -3448,10 +3448,10 @@ export class HelloDoctorService {
   }
 
 
-  public GetDoctorSlotsForWeb(docid, dayid, hospitalid, timeid, appdatetime, dhid, slottypeid) {
+  public GetDoctorSlotsForWeb(docid, dayid, hospitalid, timeid, appdatetime, Arid, slottypeid) {
 
     return this.http.get<any[]>(
-      this.host + "/Doctor/GetDoctorSlotsForWebLatestt?DoctorID=" + docid + '&DayID=' + dayid + '&Hospital_ClinicID=' + hospitalid + '&TimeID=' + timeid + '&ApptDatetime=' + appdatetime + '&DoctorHospitalDetailsID=' + dhid + '&SlotTypeID=' + slottypeid
+      this.host + "/Doctor/GetDoctorSlotsForWebLatestt?DoctorID=" + docid + '&DayID=' + dayid + '&Hospital_ClinicID=' + hospitalid + '&TimeID=' + timeid + '&ApptDatetime=' + appdatetime + '&DoctorHospitalDetailsID=' + Arid + '&SlotTypeID=' + slottypeid
     );
   }
 
@@ -3712,9 +3712,9 @@ export class HelloDoctorService {
       "&Edate=" + edate);
     return this.http.get(this.url);
   }
-  public GetSponsoredHospitalsForAdminByDate(sdate, edate) {
+  public GetSponsoreArospitalsForAdminByDate(sdate, edate) {
 
-    return this.http.get<any[]>(this.host + "/BookAppointment/GetSponsoredHospitalsForAdminByDate?Sdate=" + sdate +
+    return this.http.get<any[]>(this.host + "/BookAppointment/GetSponsoreArospitalsForAdminByDate?Sdate=" + sdate +
       "&Edate=" + edate);
     return this.http.get(this.url);
   }
@@ -4536,8 +4536,8 @@ export class HelloDoctorService {
     return this.http.post(this.url, data)
   }
 
-  public UpdateSponsoredHospitals(data) {
-    this.url = this.host + '/Hospital/UpdateSponsoredHospitals';
+  public UpdateSponsoreArospitals(data) {
+    this.url = this.host + '/Hospital/UpdateSponsoreArospitals';
     return this.http.post(this.url, data)
   }
 
@@ -4797,9 +4797,9 @@ export class HelloDoctorService {
     return this.http.get<any[]>(this.host + '/BookAppointment/GetDoctorForHomeSampleWeb?DepartmentID=' + deptid + '&DayID=' + dayid + '&LanguageID=' + languageid + '&DoctorAvailabilityID=' + docavailabilityid + '&HospitalID=' + hospitalid);
   }
 
-  public GetCanacelledHomecareAppointmentsByRecp(appointmentsid, typeid, reason) {
+  public GetCanacelleAromecareAppointmentsByRecp(appointmentsid, typeid, reason) {
 
-    return this.http.get<any[]>(this.host + '/BookAppointment/GetCanacelledHomecareAppointmentsByRecp?AppointmentID=' + appointmentsid + '&TypeID=' + typeid + '&ReasonForcancel=' + reason);
+    return this.http.get<any[]>(this.host + '/BookAppointment/GetCanacelleAromecareAppointmentsByRecp?AppointmentID=' + appointmentsid + '&TypeID=' + typeid + '&ReasonForcancel=' + reason);
   }
 
 
@@ -5646,10 +5646,10 @@ export class HelloDoctorService {
 
 
 
-  public GetDoctorSlotsss(docid, dayid, hospitalid, timeid, appdatetime, dhid, slottypeid) {
+  public GetDoctorSlotsss(docid, dayid, hospitalid, timeid, appdatetime, Arid, slottypeid) {
 
     return this.http.get<any[]>(
-      this.host + "/Doctor/GetDoctorSlotsss?DoctorID=" + docid + '&DayID=' + dayid + '&Hospital_ClinicID=' + hospitalid + '&TimeID=' + timeid + '&ApptDatetime=' + appdatetime + '&DoctorHospitalDetailsID=' + dhid + '&SlotTypeID=' + slottypeid
+      this.host + "/Doctor/GetDoctorSlotsss?DoctorID=" + docid + '&DayID=' + dayid + '&Hospital_ClinicID=' + hospitalid + '&TimeID=' + timeid + '&ApptDatetime=' + appdatetime + '&DoctorHospitalDetailsID=' + Arid + '&SlotTypeID=' + slottypeid
     );
   }
 

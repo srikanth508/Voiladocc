@@ -122,7 +122,7 @@ export class PharmacySupportComponent implements OnInit {
       this.dummisuuphotourl.push(res);
       let a = this.dummisuuphotourl[0].slice(2);
       
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showphoto.push(b);
     })
     // this.sendattachment();

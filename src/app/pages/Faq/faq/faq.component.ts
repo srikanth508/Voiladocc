@@ -168,7 +168,7 @@ export class FaqComponent implements OnInit {
       this.attachmentsurl.push(res);
       this.dummshowsignatureurl.push(res);
       let a = this.dummshowsignatureurl[0].slice(2);
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showphoto.push(b)
       this.attachments.length = 0;
 

@@ -193,7 +193,7 @@ export class LocalDoctorRegistrationComponent implements OnInit {
       this.attachmentsurl1.push(res);
       let a = this.attachmentsurl1[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       this.showdocphoto.push(b)
 
@@ -265,7 +265,7 @@ export class LocalDoctorRegistrationComponent implements OnInit {
     var entity = {
       'emailto': this.email,
       'emailsubject': "Voiladoc",
-      'emailbody': 'Dear ' + this.doctorname + ',' + "<br><br>" + 'Thank You For Registering Voiladoc Plaform. Please use the below link to  login Voiladoc Platform ' + "<br><br>" + 'Link : https://maroc.voiladoc.org/' + "<br>" + 'Pin : ' + this.pinno + "<br>" + 'UserName :' + this.username + "<br>" + 'Password : ' + this.password + "<br><br>" + 'Dont Share Your Passwords to Anyone. For any further help. Please contact our support clients' + "<br><br>" + 'Regards,' + "<br>" + 'Voiladoc Team',
+      'emailbody': 'Dear ' + this.doctorname + ',' + "<br><br>" + 'Thank You For Registering Voiladoc Plaform. Please use the below link to  login Voiladoc Platform ' + "<br><br>" + 'Link : https://madagascar.voiladoc.org/' + "<br>" + 'Pin : ' + this.pinno + "<br>" + 'UserName :' + this.username + "<br>" + 'Password : ' + this.password + "<br><br>" + 'Dont Share Your Passwords to Anyone. For any further help. Please contact our support clients' + "<br><br>" + 'Regards,' + "<br>" + 'Voiladoc Team',
       'attachmenturl': this.emailattchementurl,
       'cclist': 0,
       'bcclist': 0

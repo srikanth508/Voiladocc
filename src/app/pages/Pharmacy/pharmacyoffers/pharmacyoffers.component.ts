@@ -247,7 +247,7 @@ export class PharmacyoffersComponent implements OnInit {
 
       let a = this.dummattachmenturl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       this.photodetail.push(b)
       this.attachments.length = 0;

@@ -130,7 +130,7 @@
               <td>{{details.slotname}}</td>
               <td [style.background-color]="details.day1color" style="color:white">{{details.day1}}<br>
                 <span
-                  *ngIf="details.day1AppointmentTypeID!=6&&details.day1AppointmentTypeID!=4">{{details.mondayFees|number:'1.2-2'|noComma}} DH</span>
+                  *ngIf="details.day1AppointmentTypeID!=6&&details.day1AppointmentTypeID!=4">{{details.mondayFees|number:'1.2-2'|noComma}} Ar</span>
                 <br>
                 {{details.day1Availabilty}}<br>
                 <table>
@@ -146,7 +146,7 @@
               </td>
               <td [style.background-color]="details.day2color" style="color:white">{{details.day2}}<br>
                 <label *ngIf="details.day2AppointmentTypeID!=6&&details.day2AppointmentTypeID!=4">
-                  {{details.tuesdayFees|number:'1.2-2'|noComma}} DH</label> <br>
+                  {{details.tuesdayFees|number:'1.2-2'|noComma}} Ar</label> <br>
                 {{details.day2Availabilty}}<br>
                 <table>
                   <tr *ngFor="let det of details.day2patientdetails">
@@ -161,7 +161,7 @@
               </td>
               <td [style.background-color]="details.day3color" style="color:white">{{details.day3}}<br>
                 <label *ngIf="details.day3AppointmentTypeID!=6&&details.day3AppointmentTypeID!=4">
-                  {{details.wednessdayFees|number:'1.2-2'|noComma}} DH</label> <br>
+                  {{details.wednessdayFees|number:'1.2-2'|noComma}} Ar</label> <br>
                 {{details.day3Availabilty}}<br>
                 <table>
                   <tr *ngFor="let det of details.day3patientdetails">
@@ -175,7 +175,7 @@
                 </a>
               </td>
               <td [style.background-color]="details.day4color" style="color:white">{{details.day4}}<br>
-                <label *ngIf="details.day4AppointmentTypeID!=6&&details.day4AppointmentTypeID!=4">{{details.thursdayFees|number:'1.2-2'|noComma}} DH</label><br>
+                <label *ngIf="details.day4AppointmentTypeID!=6&&details.day4AppointmentTypeID!=4">{{details.thursdayFees|number:'1.2-2'|noComma}} Ar</label><br>
                 {{details.day4Availabilty}}<br>
                 <table>
                   <tr *ngFor="let det of details.day4patientdetails">
@@ -190,7 +190,7 @@
               </td>
               <td [style.background-color]="details.day5color" style="color:white">{{details.day5}}<br>
                 <label
-                  *ngIf="details.day5AppointmentTypeID!=6&&details.day5AppointmentTypeID!=4">{{details.fridayFees|number:'1.2-2'|noComma}} DH</label>
+                  *ngIf="details.day5AppointmentTypeID!=6&&details.day5AppointmentTypeID!=4">{{details.fridayFees|number:'1.2-2'|noComma}} Ar</label>
                 <br>
                 {{details.day5Availabilty}}<br>
                 <table>
@@ -206,7 +206,7 @@
               </td>
               <td [style.background-color]="details.day6color" style="color:white">{{details.day6}}<br>
                 <label
-                  *ngIf="details.day6AppointmentTypeID!=6&&details.day6AppointmentTypeID!=4">{{details.satdayFees|number:'1.2-2'|noComma}} DH</label>
+                  *ngIf="details.day6AppointmentTypeID!=6&&details.day6AppointmentTypeID!=4">{{details.satdayFees|number:'1.2-2'|noComma}} Ar</label>
                 <br>
                 {{details.day6Availabilty}}<br>
                 <table>
@@ -221,7 +221,7 @@
                 </a>
               </td>
               <td [style.background-color]="details.day7color" style="color:white">{{details.day7}}<br>
-                <label *ngIf="details.day7AppointmentTypeID!=6&&details.day7AppointmentTypeID!=4"> {{details.sundayFees|number:'1.2-2'|noComma}} DH</label> <br>
+                <label *ngIf="details.day7AppointmentTypeID!=6&&details.day7AppointmentTypeID!=4"> {{details.sundayFees|number:'1.2-2'|noComma}} Ar</label> <br>
                 {{details.day7Availabilty}}<br>
                 <table>
                   <tr *ngFor="let det of details.day7patientdetails">

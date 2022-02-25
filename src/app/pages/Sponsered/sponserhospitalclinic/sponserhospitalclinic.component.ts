@@ -54,7 +54,7 @@ export class SponserhospitalclinicComponent implements OnInit {
     this.CurrentTime = new Date().getHours() + ':' + new Date().getMinutes();
 
 
-    // this.docservice.GetSponsoredHospitalsForAdmin().subscribe(
+    // this.docservice.GetSponsoreArospitalsForAdmin().subscribe(
     //   data => {
     //    
     //     this.hospitallist = data;
@@ -141,7 +141,7 @@ export class SponserhospitalclinicComponent implements OnInit {
         'EDate': edate,
         'Fees': this.fees
       }
-      this.docservice.InsertSponsoredHospitals(entity).subscribe(data => {
+      this.docservice.InsertSponsoreArospitals(entity).subscribe(data => {
 
         if (data != 0) {
           if(this.languageid==1)
@@ -171,7 +171,7 @@ export class SponserhospitalclinicComponent implements OnInit {
 
   public getsponserhospitalforadmin() {
     if (this.languageid == 1) {
-      this.docservice.GetSponsoredHospitalsForAdmin().subscribe(
+      this.docservice.GetSponsoreArospitalsForAdmin().subscribe(
         data => {
           
           this.sponserhospitalist = data;
@@ -186,7 +186,7 @@ export class SponserhospitalclinicComponent implements OnInit {
       )
     }
     else if (this.languageid == 6) {
-      this.docservice.GetSponsoredHospitalsForAdmin().subscribe(
+      this.docservice.GetSponsoreArospitalsForAdmin().subscribe(
         data => {
           
           this.sponserhospitalist = data;
@@ -218,7 +218,7 @@ export class SponserhospitalclinicComponent implements OnInit {
       'EDate': this.enddate,
       'Fees': this.fees
     }
-    this.docservice.UpdateSponsoredHospitals(entity1).subscribe(data => {
+    this.docservice.UpdateSponsoreArospitals(entity1).subscribe(data => {
       if (this.languageid == 1) {
         Swal.fire('Completed', 'Updated Successfully', 'success');
         location.href = "#/Hspclidash";

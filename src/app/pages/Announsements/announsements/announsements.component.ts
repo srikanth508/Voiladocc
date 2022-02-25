@@ -188,7 +188,7 @@ export class AnnounsementsComponent implements OnInit {
       
       let a = this.attachmentsurl1[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       this.showdocphoto.push(b)
 

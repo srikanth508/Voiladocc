@@ -242,7 +242,7 @@
       if (getCookie("doc_id") != "") {
         // localStorage.getItem('WebUrl')
         var client = new httpClient();
-        client.get( "https://maroc.voiladoc.org/MarocAPI"+ '/Doctor/GetNotifications_DoctorByDoctorIDWebSide?DoctorID=' + getCookie("doc_id"), function (response) {
+        client.get( "https://madagascar.voiladoc.org/MarocAPI"+ '/Doctor/GetNotifications_DoctorByDoctorIDWebSide?DoctorID=' + getCookie("doc_id"), function (response) {
           ;
           var res = JSON.parse(response);
           

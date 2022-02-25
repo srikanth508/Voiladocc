@@ -230,7 +230,7 @@ export class HomecareAppdashComponent implements OnInit {
   }
 
   public cancelledappointment() {
-    this.docservice.GetCanacelledHomecareAppointmentsByRecp(this.appointmentid, this.typeid, this.reasonforcancel).subscribe(data => {
+    this.docservice.GetCanacelleAromecareAppointmentsByRecp(this.appointmentid, this.typeid, this.reasonforcancel).subscribe(data => {
       if(this.languageid==1)
       {
         Swal.fire('Appointment Cancelled Successfully');

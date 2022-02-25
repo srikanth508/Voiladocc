@@ -244,7 +244,7 @@ export class ProfileComponent implements OnInit {
       this.dummshowphotossss.push(res);
       let a = this.dummshowphotossss[0].slice(2);
       
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showphotosss.push(b);
       
       this.attachments.length = 0;
@@ -344,7 +344,7 @@ export class ProfileComponent implements OnInit {
   public showphotoss = []
 
 
-  public onattachmentUploadhospitals(abcd) {
+  public onattachmentUploaArospitals(abcd) {
     this.dummshowsignatureurl = []
     // for (let i = 0; i < abcd.length; i++) {
     this.attachments5.push(abcd.addedFiles[0]);
@@ -369,7 +369,7 @@ export class ProfileComponent implements OnInit {
       this.dummshowsignatureurl.push(res);
       let a = this.dummshowsignatureurl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showphotoss.push(b)
       this.attachments5.length = 0;
 

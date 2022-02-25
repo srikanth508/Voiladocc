@@ -923,7 +923,7 @@ export class DocRecpAppointmentsComponent implements OnInit {
       this.dummprescriptionphotourl.push(res);
       let a = this.attachmentsurl1[0].slice(2);
       
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       if (this.attachments1[0].type == 'image/jpeg') {
         
         this.shoprescphoto.push(b)
@@ -1052,7 +1052,7 @@ export class DocRecpAppointmentsComponent implements OnInit {
         this.sendattchmenturl.push(res);
         let a = this.sendattchmenturl[0].slice(2);
 
-        let b = 'https://maroc.voiladoc.org' + a;
+        let b = 'https://madagascar.voiladoc.org' + a;
         this.emailurl = b;
 
         this.SendMailReport()

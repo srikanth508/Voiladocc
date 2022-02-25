@@ -298,7 +298,7 @@ export class EditHospitalClinicComponent implements OnInit {
       this.attachmentsurl.push(res);
       let a = this.attachmentsurl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       this.showphoto.push(b);
 

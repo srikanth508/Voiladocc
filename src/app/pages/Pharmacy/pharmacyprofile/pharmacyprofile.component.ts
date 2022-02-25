@@ -221,7 +221,7 @@ export class PharmacyprofileComponent implements OnInit {
       this.attachmentsurl.push(res);
       this.dummattachmenturl.push(res);
       let a = this.dummattachmenturl[0].slice(2);
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       this.showphoto.push(b)
       this.attachments.length = 0;

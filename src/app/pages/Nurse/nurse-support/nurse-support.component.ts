@@ -114,7 +114,7 @@ export class NurseSupportComponent implements OnInit {
      
       this.issuephotourl.push(res);
       let a = this.issuephotourl[0].slice(2);
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showphoto.push(b);
 
      

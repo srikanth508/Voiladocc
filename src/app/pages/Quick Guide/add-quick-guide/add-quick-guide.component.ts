@@ -89,7 +89,7 @@ export class AddQuickGuideComponent implements OnInit {
       this.dummshowsignatureurl.push(res);
 
       let a = this.dummshowsignatureurl[0].slice(2);
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showphoto = b;
       this.attachments.length = 0;
     })
@@ -140,7 +140,7 @@ export class AddQuickGuideComponent implements OnInit {
 
       let a = this.dummshowsignatureurl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showvideo = b;
       this.videoattachmentsss.length = 0;
       this.spinner.hide();

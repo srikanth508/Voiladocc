@@ -382,12 +382,12 @@ import{NoCommaPipe} from '../app/no-comma-pipe'
 
 // const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 
-//   url: 'https://maroc.voiladoc.org/RMSAPI/Master/UploadZIP/',
+//   url: 'https://madagascar.voiladoc.org/RMSAPI/Master/UploadZIP/',
 //   maxFilesize: 50,
 // };
 
 // const DEFAULT_VAMSI_DROPZONE_CONFIG: DropzoneConfigInterface = {
-//   url: 'https://maroc.voiladoc.org/RMSAPI/Master/UploadZIP/',
+//   url: 'https://madagascar.voiladoc.org/RMSAPI/Master/UploadZIP/',
 //   maxFilesize: 50,
 // };
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {

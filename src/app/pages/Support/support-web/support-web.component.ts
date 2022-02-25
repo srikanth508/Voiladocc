@@ -391,7 +391,7 @@ export class SupportWebComponent implements OnInit {
       this.identityattachmentsurlssss.push(res);
       let a = this.identityattachmentsurlssss[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       if (this.issuephoto[0].type == 'image/jpeg') {
 

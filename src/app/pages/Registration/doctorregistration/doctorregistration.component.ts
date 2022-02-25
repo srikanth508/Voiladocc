@@ -619,7 +619,7 @@ export class DoctorregistrationComponent implements OnInit {
       this.idproofurl.push(res);
       let a = this.idproofurl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showidproof.push('assets/Images/pdf.png');
       this.idproof.length = 0;
 
@@ -768,7 +768,7 @@ export class DoctorregistrationComponent implements OnInit {
 
       let a = this.dummshowsignatureurl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       this.showsignaturephoto.push(b)
       this.signatureattachmentssss.length = 0;
@@ -809,7 +809,7 @@ export class DoctorregistrationComponent implements OnInit {
 
       let a = this.identityattachmentsurlssss[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.showidentityproof.push(b)
       this.attachments.length = 0;
 
@@ -846,7 +846,7 @@ export class DoctorregistrationComponent implements OnInit {
       this.dummsttchmentursl.push(res);
       let a = this.dummsttchmentursl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       this.showdocphoto.push(b)
 
@@ -887,7 +887,7 @@ export class DoctorregistrationComponent implements OnInit {
 
       let a = this.identityshowphoto[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
 
       this.photodetail.push(b)
 

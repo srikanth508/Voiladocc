@@ -90,7 +90,7 @@ export class PartnerRegistrationComponent implements OnInit {
       this.attachmentsurl.push(res);
       let a = this.attachmentsurl[0].slice(2);
      
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.photo = 1;
       this.showphoto = b;
       this.attachments.length = 0;
@@ -123,7 +123,7 @@ export class PartnerRegistrationComponent implements OnInit {
       this.idproofurl.push(res);
       let a = this.idproofurl[0].slice(2);
      
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://madagascar.voiladoc.org' + a;
       this.idprof = 1;
       this.showidproof = b;
       this.idproof.length = 0;

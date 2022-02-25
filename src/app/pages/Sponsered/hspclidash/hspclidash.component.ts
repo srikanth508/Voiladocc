@@ -47,7 +47,7 @@ export class HspclidashComponent implements OnInit {
 
   public getsponserhospitalforadmin() {
 
-    this.docservice.GetSponsoredHospitalsForAdmin().subscribe(
+    this.docservice.GetSponsoreArospitalsForAdmin().subscribe(
       data => {
 
         this.diagnosticlist = data;
@@ -77,7 +77,7 @@ export class HspclidashComponent implements OnInit {
         confirmButtonText: 'Yes, disable it!'
       }).then((result) => {
         if (result.value) {
-          this.docservice.DisableSponsoredHospitals(id).subscribe(res => {
+          this.docservice.DisableSponsoreArospitals(id).subscribe(res => {
             let test = res;
             this.getsponserhospitalforadmin();
           })
@@ -101,7 +101,7 @@ export class HspclidashComponent implements OnInit {
         cancelButtonText: 'Annuler'
       }).then((result) => {
         if (result.value) {
-          this.docservice.DisableSponsoredHospitals(id).subscribe(res => {
+          this.docservice.DisableSponsoreArospitals(id).subscribe(res => {
             let test = res;
             this.getsponserhospitalforadmin();
           })
@@ -125,7 +125,7 @@ export class HspclidashComponent implements OnInit {
 
 
   // public disablehospital(hosid) {
-  //   this.docservice.DisableSponsoredHospitals(hosid).subscribe(
+  //   this.docservice.DisableSponsoreArospitals(hosid).subscribe(
   //     data => {
 
   //       Swal.fire('Disabled', 'Hospital/Clinic has been Disabled');
@@ -155,7 +155,7 @@ export class HspclidashComponent implements OnInit {
         confirmButtonText: 'Yes, Enable it!'
       }).then((result) => {
         if (result.value) {
-          this.docservice.EnableSponsoredHospitals(id).subscribe(res => {
+          this.docservice.EnableSponsoreArospitals(id).subscribe(res => {
             let test = res;
             this.getsponserhospitalforadmin();
           })
@@ -179,7 +179,7 @@ export class HspclidashComponent implements OnInit {
         cancelButtonText: 'Annuler'
       }).then((result) => {
         if (result.value) {
-          this.docservice.EnableSponsoredHospitals(id).subscribe(res => {
+          this.docservice.EnableSponsoreArospitals(id).subscribe(res => {
             let test = res;
             this.getsponserhospitalforadmin();
           })
@@ -200,7 +200,7 @@ export class HspclidashComponent implements OnInit {
 
 
   // public enablehospital(hosid) {
-  //   this.docservice.EnableSponsoredHospitals(hosid).subscribe(
+  //   this.docservice.EnableSponsoreArospitals(hosid).subscribe(
   //     data => {
 
   //       Swal.fire('Enabled', 'Hospital/Clinic has been Enabled');
@@ -225,7 +225,7 @@ export class HspclidashComponent implements OnInit {
     this.startdate = this.docservice.GetDates(data[0])
     this.enddate = this.docservice.GetDates(data[1])
 
-    this.docservice.GetSponsoredHospitalsForAdminByDate(this.startdate, this.enddate).subscribe(
+    this.docservice.GetSponsoreArospitalsForAdminByDate(this.startdate, this.enddate).subscribe(
       data => {
 
         this.diagnosticlist = data;
