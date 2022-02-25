@@ -42,7 +42,7 @@
 
           </tr>
           <tr
-            *ngFor="let details of doctorloginlist|filter:term| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}" [style.background-color]="details.hidden==1?'rgb(255 147 147)':'rgb(69 156 69)'">
+            *ngFor="let details of doctorloginlist|filter:term| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}" [style.background-color]="details.hidden==1?'rgb(255 147 147)':'#9df19df5'">
             <td>{{details.doctorName}}</td>
             <td>{{details.userName}}</td>
             <td>{{details.encryptPassword}}</td>
