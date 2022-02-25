@@ -370,23 +370,23 @@
         </div><br>
         <div class="row">
           <div class="col-lg-3">
-            <label class="Address_label">Tax Identification :</label>
+            <label class="Address_label">{{labels[0].taxidentification}} :</label>
 
           </div>
           <div class="col-lg-4">
 
-            <input type="text" class="form-control"  placeholder="Tax Identification"
+            <input type="text" class="form-control"  placeholder="{{labels[0].taxidentification}}"
               [(ngModel)]="taxidentification" name="taxidentification">
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col-lg-3">
-            <label class="Address_label">Business ID :</label>
+            <label class="Address_label">{{labels[0].businessid}} :</label>
 
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="Business ID" [(ngModel)]="businessid"
+            <input type="text" class="form-control"  placeholder="{{labels[0].businessid}}" [(ngModel)]="businessid"
               name="businessid">
           </div>
         </div>
@@ -395,10 +395,10 @@
 
         <div class="row">
           <div class="col-lg-3">
-            <label class="Address_label">Commercial Registration & City :</label>
+            <label class="Address_label">{{labels[0].commercial}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="Commercial Registration & City"
+            <input type="text" class="form-control"  placeholder="{{labels[0].commercial}}"
               [(ngModel)]="commercialcity" name="commercialcity">
           </div>
         </div>
@@ -407,20 +407,20 @@
 
         <div class="row">
           <div class="col-lg-3">
-            <label class="Address_label">Tax Professional :</label>
+            <label class="Address_label">{{labels[0].taxprofessional}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="Tax Professional"
+            <input type="text" class="form-control"  placeholder="{{labels[0].taxprofessional}}"
               [(ngModel)]="taxprofessional" name="taxprofessional">
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col-lg-3">
-            <label class="Address_label">Social security fund no :</label>
+            <label class="Address_label">{{labels[0].seccuritysocialfundno}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="Social security fund no"
+            <input type="text" class="form-control"  placeholder="{{labels[0].seccuritysocialfundno}}"
               [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
           </div>
         </div>
@@ -435,30 +435,30 @@
         </div><br>
         <div class="row">
           <div class="col-lg-3">
-            <label class="Address_label">Name of the bank :</label>
+            <label class="Address_label">{{labels[0].nameofthebank}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="Name of the bank" [(ngModel)]="nameofbank"
+            <input type="text" class="form-control"  placeholder="{{labels[0].nameofthebank}}" [(ngModel)]="nameofbank"
               name="nameofbank">
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col-lg-3">
-            <label class="Address_label">Account name :</label>
+            <label class="Address_label">{{labels[0].accountname}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="Account name" [(ngModel)]="accountName"
+            <input type="text" class="form-control"  placeholder="{{labels[0].accountname}}" [(ngModel)]="accountName"
               name="accountName">
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col-lg-3">
-            <label class="Address_label">Account number :</label>
+            <label class="Address_label">{{labels[0].accountnumber}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="Account number" maxlength="24"
+            <input type="text" class="form-control"  placeholder="{{labels[0].accountnumber}}" maxlength="24"
               [(ngModel)]="accountNumber" name="accountNumber">
           </div>
         </div>

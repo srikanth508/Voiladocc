@@ -34,7 +34,7 @@
             <th>Actions</th>
           </tr>
           <tr
-            *ngFor="let details of hsopitalloginlist|filter:term| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}" [style.background-color]="details.hidden==1?'rgb(255 147 147)':'rgb(69 156 69)'"> 
+            *ngFor="let details of hsopitalloginlist|filter:term| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}" [style.background-color]="details.hidden==1?'rgb(255 147 147)':'#9df19df5'"> 
             <td>{{details.hospital_ClinicName}}</td>
             <td>{{details.userName}}</td>
             <td>l3fs2NeQspUktW32ROvdu8A37DJ54zahx10MWAVq96M=</td>
