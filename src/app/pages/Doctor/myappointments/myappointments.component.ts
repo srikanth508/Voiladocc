@@ -231,6 +231,7 @@ export class MyappointmentsComponent implements OnInit {
 
   public followupvisit: any;
   public todaydatess: any;
+  sendMailPrescriptions: any;
 
   ngOnInit() {
     this.spinner.show();
@@ -453,6 +454,8 @@ export class MyappointmentsComponent implements OnInit {
         this.appointmentlist = this.dummappointmentlist.filter(x => x.noShow != 1 && x.docCancelled != 1 && x.cancelled != 1)
         this.count = this.appointmentlist.length
         this.dummlist = this.appointmentlist;
+        console.log("AppointmentList", this.appointmentlist)
+
         if (this.appointmentlist.length == 0) {
           this.apppppp = 1;
         }
@@ -1072,15 +1075,17 @@ export class MyappointmentsComponent implements OnInit {
   hospitaladdrees: any;
 
   public GetEarlyprescription(details) {
+    this.spinner.hide()
     this.patientiddd = details.patientID,
       this.preappointmentid = details.appointmentID;
+    this.appointmentid = details.appointmentID;
     this.apptypeid = details.appointmentTypeID;
     this.countryid = details.countryID;
     this.cityid = details.cityID;
     this.areaid = details.areaID
     this.preslots = details.slots
     this.appdate = details.appdate
-    this.prepatientemail = details.pemail;
+    this.prepatientemail = details.pEmail;
     this.smsmobileno = details.smsmobileno;
     debugger
     this.patientiddd = details.patientID,
@@ -1093,12 +1098,10 @@ export class MyappointmentsComponent implements OnInit {
     this.appdate = details.appdate
     this.departmentname = details.departmentname,
       this.doctoremail = details.docemailid,
-
       this.hospitalEmail = details.hospitalEmail
     this.hopsitalPhoneno = details.hopsitalPhoneno,
       this.hospitaladdrees = details.hospitaladdrees,
       this.patientName = details.patientName
-
 
 
     this.medicinename = "";
@@ -1112,23 +1115,34 @@ export class MyappointmentsComponent implements OnInit {
     this.howmanyrefills = '';
     this.medicinetemplatename = "",
       this.medicinetemplate = 2;
-
     this.hospital_ClinicName = details.hospital_ClinicName,
       this.doctorName = details.doctorName,
       this.docaddres = details.docaddress,
 
+      this.sendMailPrescriptions = 1;
 
+    this.docservice.GetBooApointmnetByAppIDPatientDetails(this.languageid, this.appointmentid, 1).subscribe(data => {
+      this.pdfprslist = data;
+      this.spinner.hide()
       this.display = "block";
-    this.docservice.GetLocalDoctorRegistrationByCityID(0, this.cityid, 0).subscribe(
-      data => {
 
-        this.localdoclist = data;
+    })
 
-        this.localdocid = this.localdoclist[0].id
 
-      }, error => {
-      }
-    )
+
+    //  
+    // this.docservice.GetLocalDoctorRegistrationByCityID(0, this.cityid, 0).subscribe(
+    //   data => {
+
+    //     this.localdoclist = data;
+
+    //     this.localdocid = this.localdoclist[0].id
+
+    //   }, error => {
+    //   }
+    // )
+
+    // this.GenaratePdf();
   }
 
   departmentname: any;
@@ -1136,7 +1150,7 @@ export class MyappointmentsComponent implements OnInit {
 
 
   public GetPatientid(details) {
-
+    debugger
     this.patientiddd = details.patientID,
       this.preappointmentid = details.appointmentID;
     this.apptypeid = details.appointmentTypeID;
@@ -1145,7 +1159,7 @@ export class MyappointmentsComponent implements OnInit {
     this.areaid = details.areaID
     this.preslots = details.slots
     this.appdate = details.appdate
-    this.prepatientemail = details.pemail;
+    this.prepatientemail = details.pEmail;
     this.smsmobileno = details.smsmobileno;
     this.hospital_ClinicName = details.hospital_ClinicName,
       this.doctorName = details.doctorName,
@@ -1156,6 +1170,7 @@ export class MyappointmentsComponent implements OnInit {
       this.hospitaladdrees = details.hospitaladdrees,
       this.patientName = details.patientName
     debugger
+    this.sendMailPrescriptions = 1;
     this.getserverdateandtime();
     if (this.apptypeid == 1) {
       this.patientiddd = details.patientID,
@@ -1178,15 +1193,21 @@ export class MyappointmentsComponent implements OnInit {
       this.medicinetemplatename = "",
         this.medicinetemplate = 2;
       this.display = "block";
-      this.docservice.GetLocalDoctorRegistrationByCityID(0, this.cityid, 0).subscribe(
-        data => {
+      // this.docservice.GetLocalDoctorRegistrationByCityID(0, this.cityid, 0).subscribe(
+      //   data => {
 
-          this.localdoclist = data;
+      //     this.localdoclist = data;
 
-          this.localdocid = this.localdoclist[0].id
-        }, error => {
-        }
-      )
+      //     this.localdocid = this.localdoclist[0].id
+      //   }, error => {
+      //   }
+      // )
+      this.docservice.GetBooApointmnetByAppIDPatientDetails(this.languageid, this.appointmentid, 1).subscribe(data => {
+        this.pdfprslist = data;
+        this.spinner.hide()
+        this.display = "block";
+
+      })
     }
     else {
 
@@ -1214,15 +1235,21 @@ export class MyappointmentsComponent implements OnInit {
           this.medicinetemplatename = "",
             this.medicinetemplate = 2;
           this.display = "block";
-          this.docservice.GetLocalDoctorRegistrationByCityID(0, this.cityid, 0).subscribe(
-            data => {
+          // this.docservice.GetLocalDoctorRegistrationByCityID(0, this.cityid, 0).subscribe(
+          //   data => {
 
-              this.localdoclist = data;
+          //     this.localdoclist = data;
 
-              this.localdocid = this.localdoclist[0].id
-            }, error => {
-            }
-          )
+          //     this.localdocid = this.localdoclist[0].id
+          //   }, error => {
+          //   }
+          // )
+          this.docservice.GetBooApointmnetByAppIDPatientDetails(this.languageid, this.appointmentid, 1).subscribe(data => {
+            this.pdfprslist = data;
+            this.spinner.hide()
+            this.display = "block";
+
+          })
         }
         else {
           if (this.languageid == 1) {
@@ -1505,16 +1532,16 @@ export class MyappointmentsComponent implements OnInit {
 
 
   public insertdetails() {
-
-    if (this.apptypeid == '1' || this.localdocid == '0') {
-      this.endorse = 1;
-    }
-    if (this.apptypeid == '2' && this.localdocid != '0') {
-      this.endorse = 0;
-    }
-    if (this.apptypeid == '2' && this.localdocid == '0') {
-      this.endorse = 1;
-    }
+    this.spinner.show()
+    // if (this.apptypeid == '1' || this.localdocid == '0') {
+    //   this.endorse = 1;
+    // }
+    // if (this.apptypeid == '2' && this.localdocid != '0') {
+    //   this.endorse = 0;
+    // }
+    // if (this.apptypeid == '2' && this.localdocid == '0') {
+    //   this.endorse = 1;
+    // }
     for (let i = 0; this.qwerty2.length; i++) {
       debugger
       var entity = {
@@ -1554,7 +1581,7 @@ export class MyappointmentsComponent implements OnInit {
             // this.InsertPrscriptionNotifications()
             // this.InsertNotificationPrescription()
             this.GetDoctorPrescrptionTemplates();
-            document.getElementById('PrecsriptionPdfFormat').click();
+
             // this.qwerty2 = []
             this.display = "none";
             if (this.followupvisit == 1) {
@@ -1573,7 +1600,7 @@ export class MyappointmentsComponent implements OnInit {
             this.SendTwiliSms(smsdesc, this.smsmobileno)
             debugger
             debugger
-            document.getElementById('PrecsriptionPdfFormat').click();
+
             this.GetDoctorPrescrptionTemplates()
             // this.qwerty2 = []
             this.display = "none";
@@ -1587,10 +1614,10 @@ export class MyappointmentsComponent implements OnInit {
         }
       })
     }
-    this.InsertPrscriptionNotifications()
-    this.InsertNotificationPrescription()
-
-
+    this.InsertPrscriptionNotifications();
+    this.InsertNotificationPrescription();
+    document.getElementById('PrecsriptionPdfFormat').click();
+    this.spinner.hide();
   }
 
   public InsertNotificationPrescription() {
@@ -1743,6 +1770,8 @@ export class MyappointmentsComponent implements OnInit {
   //getearlyprescription
 
 
+
+
   public GetEarlyDiaTest(patientID, appointmentID, appdate, slots, pemail, smsmobileno) {
     this.diapatientid = patientID;
     this.diaappointmentID = appointmentID;
@@ -1751,11 +1780,21 @@ export class MyappointmentsComponent implements OnInit {
       this.testpatientemail = pemail
     this.testdisplay = "block";
     this.diapatientid = patientID;
+    this.sendMailPrescriptions = 2;
+    this.prepatientemail = pemail;
 
     this.diaappointmentID = appointmentID;
     this.appdate = appdate
     this.slots = slots
     this.smsmobileno = smsmobileno
+
+    this.docservice.GetBooApointmnetByAppIDPatientDetails(this.languageid, this.appointmentid, 1).subscribe(data => {
+      this.pdfprslist = data;
+      this.spinner.hide()
+
+
+    })
+
     this.GetDiagnpsticDoctorTemplates();
   }
 
@@ -1771,8 +1810,9 @@ export class MyappointmentsComponent implements OnInit {
     this.diaappointmentID = appointmentID;
     this.appdate = appdate
     this.slots = slots,
-      this.testpatientemail = pemail
-
+      this.testpatientemail = pemail;
+    this.prepatientemail = pemail;
+    this.sendMailPrescriptions = 2;
     if (appointmentTypeID == 1) {
       this.testdisplay = "block";
       this.diapatientid = patientID;
@@ -1782,12 +1822,14 @@ export class MyappointmentsComponent implements OnInit {
       this.smsmobileno = smsmobileno
 
       this.GetDiagnpsticDoctorTemplates()
+
+      this.docservice.GetBooApointmnetByAppIDPatientDetails(this.languageid, this.appointmentid, 1).subscribe(data => {
+        this.pdfprslist = data;
+
+
+      })
     }
     else {
-
-
-
-
       if (this.serverdate == this.appdate) {
         if (this.servertime > this.slots) {
           this.testdisplay = "block";
@@ -1796,8 +1838,11 @@ export class MyappointmentsComponent implements OnInit {
           this.appdate = appdate
           this.slots = slots
           this.smsmobileno = smsmobileno
-
           this.GetDiagnpsticDoctorTemplates()
+          this.docservice.GetBooApointmnetByAppIDPatientDetails(this.languageid, this.appointmentid, 1).subscribe(data => {
+            this.pdfprslist = data;
+
+          })
         }
         else {
           if (this.languageid == 1) {
@@ -2074,12 +2119,13 @@ export class MyappointmentsComponent implements OnInit {
         'ClinicalInfo': 0
       }
       this.docservice.InsertDoctor_PatientDiagnostics(entity).subscribe(data => {
-
+        debugger
         if (data != 0) {
           if (this.languageid == 1) {
             Swal.fire('Completed', 'Diagnostic Tests Added successfully', 'success');
             this.testdisplay = "none";
-            document.getElementById("close").click();
+            // document.getElementById("close").click();
+            document.getElementById('PrecsriptionPdfFormat').click();
             this.getdiagnostictests();
             this.SerachtestOn = 0;
             this.testsname = "";
@@ -2101,7 +2147,8 @@ export class MyappointmentsComponent implements OnInit {
           else if (this.languageid == 6) {
             Swal.fire('Détails enregistrés', 'Test de laboratoire', 'success');
             this.testdisplay = "none";
-            document.getElementById("close").click();
+            // document.getElementById("close").click();
+            document.getElementById('PrecsriptionPdfFormat').click();
             this.qwerty = [];
             this.qwerty.length = 0;
             this.getdiagnostictests();
@@ -2114,7 +2161,6 @@ export class MyappointmentsComponent implements OnInit {
             this.tsetssslist = 0;
             this.testssid = 0;
             this.SerachtestOn = 0;
-
 
             if (this.followupvisit == 1) {
               this.docservice.UpdateBookAppointmentFollowupVisit(this.diaappointmentID).subscribe(data => {
@@ -2137,6 +2183,8 @@ export class MyappointmentsComponent implements OnInit {
       var smsdesc = "Suite à votre consultation avec le Dr " + this.user + ", votre ordonnance pour vos examens médicaux est maintant disponible dans Accueil."
       this.SendTwiliSms(smsdesc, this.smsmobileno)
     }
+
+    document.getElementById('PrecsriptionPdfFormat').click();
   }
 
   public Insertnotificationtestazure() {
@@ -6284,23 +6332,9 @@ export class MyappointmentsComponent implements OnInit {
 
   public prescriptionuel = []
   public SendPrescrriptionEmail() {
-    this.spinner.show()
-      ;
-    // debugger
-    //     let pdfContent = window.document.getElementById("content");
-    //     var doc = new jsPDF('p', 'mm', "a4");
-
-    //     html2canvas(pdfContent).then(canvas => {
-    //       ;
-    //       var imgData = canvas.toDataURL('image/jpeg', 1.0);
-
-    //       doc.setFontSize(2);
-
-    //       doc.addImage(imgData, 'JPEG', 10, 10, 180, 150);
-
-
+    this.spinner.show();
     var data = document.getElementById('content');
-   
+
     html2canvas(data).then(canvas => {
       this.spinner.show()
       var imgWidth = 208;
@@ -6330,11 +6364,9 @@ export class MyappointmentsComponent implements OnInit {
       body.append('Dan', file);
 
       let foldername = this.patientiddd + '/' + 'Prescriptions'
-      this.spinner.show()
+
       this.docservice.DoctorReports(file, foldername).subscribe(res => {
-        ;
         debugger
-        this.spinner.show()
         this.prescriptionuel.push(res);
         this.sendprescripyionEmail()
 
@@ -6347,7 +6379,6 @@ export class MyappointmentsComponent implements OnInit {
 
   public sendprescripyionEmail() {
     debugger
-    this.spinner.show()
     var entity = {
       'emailto': this.prepatientemail,
       'emailsubject': this.doctorName + " has written prescription for you. please check",
@@ -6357,22 +6388,28 @@ export class MyappointmentsComponent implements OnInit {
       'bcclist': 0
     }
     debugger
-    this.docservice.sendemail(entity).subscribe(data => {
+    this.docservice.sendemail(entity).subscribe(async data => {
       debugger
+      if (data == 'Success') {
+        if (this.languageid == 1) {
+          Swal.fire('Mail sent successfully.');
+          this.qwerty2 = [];
+          this.spinner.hide()
+        }
+        else if (this.languageid == 6) {
+          Swal.fire('Email envoyé avec succès');
+          this.spinner.hide()
+        }
 
-      if (this.languageid == 1) {
-        Swal.fire('Mail sent successfully.');
-        this.qwerty2 = []
-      }
-      else if (this.languageid == 6) {
-        Swal.fire('Email envoyé avec succès');
       }
 
       this.leavefor = "";
       this.ailment = "";
       this.qwerty2 = []
-    
-      this.spinner.hide()
+
+
+    }, error => {
+      this.spinner.hide();
     })
   }
 

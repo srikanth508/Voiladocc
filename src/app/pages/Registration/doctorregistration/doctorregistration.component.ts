@@ -92,6 +92,7 @@ export class DoctorregistrationComponent implements OnInit {
   dropzonelable: any;
   search: any;
   meridionalid: any;
+  labels4:any;
   ngOnInit() {
     this.dummid = localStorage.getItem('hospitalid');
     this.hospitalclinicid = localStorage.getItem('hospitalid');
@@ -135,6 +136,15 @@ export class DoctorregistrationComponent implements OnInit {
         this.SelectLabel = this.labels[0].select;
         this.search = this.labels[0].search
 
+      }, error => {
+      }
+    )
+
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+       
       }, error => {
       }
     )

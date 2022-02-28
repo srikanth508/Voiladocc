@@ -6300,4 +6300,11 @@ export class HelloDoctorService {
 
     return this.http.get<any[]>(this.host + '/Doctor/UpdateMidWifeServicesRegistrationEnableDisable?TypeID=' + typeid + '&ID=' + lid);
   }
+
+
+
+  public GetBooApointmnetByAppIDPatientDetails(lid, appid, typeid) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/GetBooApointmnetByAppIDPatientDetails?LanguageID=' + lid + '&AppointmentID=' + appid + '&TypeID=' + typeid);
+  }
 }
