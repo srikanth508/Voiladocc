@@ -326,3 +326,25 @@ button:disabled {
     color: #251156;
 }
 }
+
+
+.headertext{
+  font-size: 16px;
+}
+
+.Hederbutton{
+  float: right;
+  border-radius: 15px;
+ }
+
+@media only screen and (max-width: 600px) {
+  .headertext{
+    font-size: 13px;
+  }
+  .Hederbutton{
+    float: right;
+    border-radius: 15px;
+    margin-top: -42px;
+   }
+  
+}

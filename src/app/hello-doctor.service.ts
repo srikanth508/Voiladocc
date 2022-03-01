@@ -6307,4 +6307,11 @@ export class HelloDoctorService {
     debugger
     return this.http.get<any[]>(this.host + '/Doctor/GetBooApointmnetByAppIDPatientDetails?LanguageID=' + lid + '&AppointmentID=' + appid + '&TypeID=' + typeid);
   }
+
+
+  
+  public UpdateHomeCountryVisitDeliveryChargesMaster(data) {
+    this.url = "http://localhost:4199/" + '/Doctor/UpdateHomeCountryVisitDeliveryChargesMaster';
+    return this.http.post(this.url, data)
+  }
 }

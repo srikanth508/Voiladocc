@@ -86,6 +86,7 @@ export class HomedeliverMasterComponent implements OnInit {
 
         this.labels = data;
         this.search = this.labels[0].search
+        this.SelectLabel=this.labels[0].select
       }, error => {
       }
     )

@@ -8,3 +8,29 @@
     height:70px;
     margin-top:20px;
 }
+.count{
+  float: right;
+}
+
+
+.headertext{
+  font-size: 16px;
+}
+
+.Hederbutton{
+  float: right;
+  border-radius: 15px;
+ }
+
+@media only screen and (max-width: 600px) {
+  .headertext{
+    font-size: 13px !important;
+    width: 100px;
+  }
+  .Hederbutton{
+    float: right;
+    border-radius: 15px;
+    margin-top: -42px;
+   }
+  
+}

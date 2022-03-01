@@ -350,6 +350,7 @@ import { FinanceAdminReportsComponent } from './pages/Billing/finance-admin-repo
 import { SubscriptionpaidReportsComponent } from './pages/Billing/subscriptionpaid-reports/subscriptionpaid-reports.component';
 import { AuditReportComponent } from './pages/AdminDashboard/audit-report/audit-report.component';
 import { CreditChargesMasterComponent } from './pages/Masters/credit-charges-master/credit-charges-master.component';
+import { HomeChargesMasterComponent } from './pages/Masters/home-charges-master/home-charges-master.component';
 
 
 
@@ -763,6 +764,7 @@ const routes: Routes = [
   { path: 'SubscriptionpaidReports', component:  SubscriptionpaidReportsComponent},
   { path: 'AuditReport', component:  AuditReportComponent},
   { path: 'CreditChargesMaster', component:  CreditChargesMasterComponent},
+  { path: 'HomeChargesMaster', component:  HomeChargesMasterComponent},
 ];
 
 @NgModule({

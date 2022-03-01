@@ -476,109 +476,7 @@
                 </li>
             </ul>
 
-            <ul class="list-unstyled components" *ngIf="roleid=='12'">
-                <li class="active">
-                    <a href="#Masters" data-toggle="collapse" aria-expanded="false"
-                        class="dropdown-toggle">{{labels[0].masters}}</a>
-                    <ul class="collapse list-unstyled" id="Masters">
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/CancelationTimings">
-                                <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;Cancellation Settings
-
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/HomedeliveryFees">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].homedeiliveryfees}}
-
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/CreditChargesMaster">
-                                <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;Credit Card Master
-
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/CountryDash">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].countryMaster}}
-
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/Provincedash">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].provinceMaster}}
-
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/CityMasterDash">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].cityMaster}}
-
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/DepartmentDash">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].departmentMaster}}
-
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/CompaintDash">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].complaintMaster}}
-
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/SpecilizationDash">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].specilizationMaster}}
-
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/ServiceMasterDash">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].serviceMaster}}
-
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/DiagnosticTestTypeDash">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].diagnosticTestType}}
-
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/DiaTestDash">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].diagnosticTests}}
-
-                            </a>
-                        </li>
-                        <!-- <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/BloodGroupMasterDash">
-                                {{labels[0].bloodGroupMaster}}
-                              
-                            </a>
-                        </li> -->
-                        <!-- <li>
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/DegreeMasterDash">
-                                {{labels[0].degreeMaster}}
-                              
-                            </a>
-                        </li><br><br> -->
-                    </ul>
-                </li>
-            </ul>
+  
 
             <!-- DOCTOR -->
 
@@ -2174,6 +2072,123 @@
                     </ul>
                 </li>
             </ul>
+
+
+
+            <ul class="list-unstyled components" *ngIf="roleid=='12'">
+                <li class="active">
+                    <a href="#Masters" data-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle">{{labels[0].masters}}</a>
+
+                    <ul class="collapse list-unstyled" id="Masters">
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/CancelationTimings">
+                                <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;Cancellation Settings
+
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/HomedeliveryFees">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].homedeiliveryfees}}
+
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/CreditChargesMaster">
+                                <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;Credit Card Master
+
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/HomeChargesMaster">
+                                <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;Home Charges Master
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/CountryDash">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].countryMaster}}
+
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/Provincedash">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].provinceMaster}}
+
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/CityMasterDash">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].cityMaster}}
+
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/DepartmentDash">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].departmentMaster}}
+
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/CompaintDash">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].complaintMaster}}
+
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/SpecilizationDash">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].specilizationMaster}}
+
+                            </a>
+                        </li><br><br>
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/ServiceMasterDash">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].serviceMaster}}
+
+                            </a>
+                        </li><br><br>
+
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/DiagnosticTestTypeDash">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].diagnosticTestType}}
+
+                            </a>
+                        </li><br><br>
+                        <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/DiaTestDash">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].diagnosticTests}}
+
+                            </a>
+                        </li><br><br><br><br>
+                        <!-- <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/BloodGroupMasterDash">
+                                {{labels[0].bloodGroupMaster}}
+                              
+                            </a>
+                        </li> -->
+                        <!-- <li>
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/DegreeMasterDash">
+                                {{labels[0].degreeMaster}}
+                              
+                            </a>
+                        </li><br><br> -->
+                    </ul>
+                </li>
+            </ul><br><br>
+
+
+
         </div>
     </div>
 </div>

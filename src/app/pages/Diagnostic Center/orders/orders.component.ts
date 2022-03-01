@@ -26,6 +26,8 @@ export class OrdersComponent implements OnInit {
   startdate: any;
   enddate: any;
   value: any;
+  patientphoto: any;
+  docphoto: any;
   public showphoto = [];
   public attachments = [];
   public attachmentsurl = [];
@@ -510,6 +512,7 @@ export class OrdersComponent implements OnInit {
     }
 
   }
+  showPdf:any;
 
   public uploadattachments() {
     debugger
@@ -519,8 +522,9 @@ export class OrdersComponent implements OnInit {
       this.dummattchmenturl.push(res);
       let a = this.dummattchmenturl[0].slice(2);
 
-      // let b = 'https://maroc.voiladoc.org' + a;
-      this.showphoto.push('assets/Images/pdf.png')
+       let b = 'https://maroc.voiladoc.org' + a;
+      this.showphoto.push('assets/Images/pdf.png');
+      this.showPdf=b;
       this.attachments.length = 0;
 
     })
@@ -1308,6 +1312,12 @@ export class OrdersComponent implements OnInit {
     }
     this.docservice.sendemail(entity).subscribe(data => {
     })
+  }
+
+
+  open(photo)
+  {
+    window.open(this.showPdf,"_blank")
   }
 }
 

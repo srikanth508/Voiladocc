@@ -49,6 +49,7 @@ export class DoctorPrescriptionComponent implements OnInit {
   dropzonelable: any;
   labels4: any;
   user: any;
+  p: number = 1;
   ngOnInit() {
     this.pharmacyid = localStorage.getItem('pharmacyid');
     this.languageid = localStorage.getItem('LanguageID');
@@ -729,6 +730,7 @@ export class DoctorPrescriptionComponent implements OnInit {
     this.prescriptionurl = url;
     this.showedit = details.showUpdate,
       this.id = details.id
+      this.pharmcyUpdatedPhoto=details.subPhotoUrl
     this.filetype = details.filetype
 
 
@@ -740,11 +742,13 @@ export class DoctorPrescriptionComponent implements OnInit {
 
   uploadephotos: any;
   typeid: number;
+  pharmcyUpdatedPhoto:any;
 
   public async getPrescriptionsdetails(details) {
 
     this.showedit = details.showUpdate,
-      this.id = details.id
+      this.id = details.id;
+      this.pharmcyUpdatedPhoto=details.subPhotoUrl
     this.docservice.GetPharmacyAppointmentPhotos(this.id).subscribe(data => {
 
       this.uploadephotos = data;
@@ -1371,6 +1375,7 @@ export class DoctorPrescriptionComponent implements OnInit {
             this.Notification()
             
             this.GetPharmacyOrders();
+            document.getElementById("close").click();
             this.spinner.hide();
           },error=>{
             this.spinner.hide();
@@ -1531,6 +1536,14 @@ export class DoctorPrescriptionComponent implements OnInit {
 
     window.open(photo, "_blank");
   }
+
+
+  public pageChanged(even) {
+
+    let fgdgfgd = even;
+    this.p = even;
+  }
+
 }
 
 

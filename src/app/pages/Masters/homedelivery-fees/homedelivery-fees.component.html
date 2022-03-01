@@ -1,7 +1,6 @@
-<br>
-<div class="container-fluid card card:hover">
-  <br>
-  <div class="row ">
+
+<div class="container-fluid card card:hover headerspace" >
+  <div class="row headerspace">
     <div class="col-lg-3">
       <h5 *ngIf="languageid=='1'">HOME DELIVERY FEES</h5>
       <h5 *ngIf="languageid=='6'">FRAIS DE TRANSACTION </h5>
@@ -99,9 +98,9 @@
     <div class="modal-content" style="    width: 700px;">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Edit</h5>
-        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'&&id=='1'">Modifications des frais de
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'&&typeid=='1'">Modifications des frais de
           livraison en pharmacie </h5>
-        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'&&id=='2'">Modifications des frais de
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'&&typeid=='2'">Modifications des frais de
           analyses et Imagerie </h5>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -141,7 +140,7 @@
             </div>
           </div><br>
           <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-7">
             </div>
             <div class="col-lg-2">
               <button type="button" *ngIf="languageid=='1'" class="btn allbtns btncolor" (click)="updatedetails()"
@@ -198,7 +197,7 @@
             </div>
           </div><br>
           <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-4">
             </div>
             <div class="col-lg-2">
               <button type="button" *ngIf="languageid=='1'" class="btn allbtns btncolor" (click)="updatedetails()"
