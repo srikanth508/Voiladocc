@@ -1,0 +1,52 @@
+/* video call */
+
+
+.OT_subscriber{
+    height: 350px !important;
+  }
+
+
+
+
+
+
+
+
+
+.maincol2
+{
+    background: wheat;
+    height: 89vh;
+    width: 100%;
+    
+}
+.sidePatientDetails
+{
+    display: flex;
+    display: vertical;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+.hide {
+    display: none;
+  }
+      
+  .myDIV:hover + .hide {
+    display: block;
+    color: red;
+  }
+
+
+  .files{
+      display: inline;
+  }
+  .imgwidth{
+      width: 20px;
+  }
+
+  .maintitles{
+      line-height: 28px;
+      font-size: 16px;
+  }

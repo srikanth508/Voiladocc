@@ -376,7 +376,8 @@ import { SubscriptionpaidReportsComponent } from './pages/Billing/subscriptionpa
 import { AuditReportComponent } from './pages/AdminDashboard/audit-report/audit-report.component';
 import { CreditChargesMasterComponent } from './pages/Masters/credit-charges-master/credit-charges-master.component';
 import{NoCommaPipe} from '../app/no-comma-pipe';
-import { HomeChargesMasterComponent } from './pages/Masters/home-charges-master/home-charges-master.component'
+import { HomeChargesMasterComponent } from './pages/Masters/home-charges-master/home-charges-master.component';
+import { VideoCallV2Component } from './pages/Doctor/video-call-v2/video-call-v2.component'
 
 
 
@@ -753,7 +754,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     AuditReportComponent,
     CreditChargesMasterComponent,
     NoCommaPipe,
-    HomeChargesMasterComponent
+    HomeChargesMasterComponent,
+    VideoCallV2Component
     
    
   ],

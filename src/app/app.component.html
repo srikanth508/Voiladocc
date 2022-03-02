@@ -1,14 +1,13 @@
 <div class="container-fluid" *ngIf="temp=='1'" style="height:100vh;overflow: hidden;">
     <!-- *ngIf="isDescktopResolution==true" -->
     <div class="row" style="height: 10vh;" *ngIf="isDescktopResolution==true">
-        <div class="col-lg-2">
+        <div class="col-lg-2" >
             <img src="assets/Images/logo1.png">
             
         </div>
         <div class="col-lg-6">
-            <marquee *ngFor="let noti of docnoti" style="margin-top:18px;color:red">{{noti.description}}</marquee>
             <p class="square">{{formatTime}}</p>
-           
+            <marquee *ngFor="let noti of docnoti" style="margin-top:18px;color:red">{{noti.description}}</marquee>
         </div>
         <div class="col-lg-4" id="vidpagehead">
             <img src="assets/Images/logout.png" title="{{labels[0].logout}}"

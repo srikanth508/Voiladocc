@@ -351,6 +351,7 @@ import { SubscriptionpaidReportsComponent } from './pages/Billing/subscriptionpa
 import { AuditReportComponent } from './pages/AdminDashboard/audit-report/audit-report.component';
 import { CreditChargesMasterComponent } from './pages/Masters/credit-charges-master/credit-charges-master.component';
 import { HomeChargesMasterComponent } from './pages/Masters/home-charges-master/home-charges-master.component';
+import { VideoCallV2Component } from './pages/Doctor/video-call-v2/video-call-v2.component';
 
 
 
@@ -419,7 +420,7 @@ const routes: Routes = [
   { path: 'EditPharmacyReg/:id', component: EditPharmacyRegComponent },
   { path: 'DiagnosticTestDash', component: DiagnosticTestDashComponent },
   { path: 'DiagnosticPackageDash', component: DiagnosticPackageDashComponent },
-  { path: 'Vediocall', component: VediocallComponent },
+  // { path: 'Vediocall', component: VediocallComponent },
   { path: 'Nurse', component: NurseComponent },
   { path: 'NurseDashboard', component: NurseDashboardComponent },
   { path: 'NurseDashboard/:id', component: NurseDashboardComponent },
@@ -765,6 +766,7 @@ const routes: Routes = [
   { path: 'AuditReport', component:  AuditReportComponent},
   { path: 'CreditChargesMaster', component:  CreditChargesMasterComponent},
   { path: 'HomeChargesMaster', component:  HomeChargesMasterComponent},
+  { path: 'Vediocall', component:  VideoCallV2Component},
 ];
 
 @NgModule({

@@ -56,13 +56,11 @@
               <label *ngIf="Showpass=='0'">{{labels[0].pass}}</label>
             </div>
             <span style="color:#f18235;float: right;cursor: pointer;"
-              routerLink="/ForgotPassword">{{labels[0].forgotpassword}}</span>
+              routerLink="/VideoCallV2">{{labels[0].forgotpassword}}</span>
             <button type="submit" class="login" (click)="login()"
               [disabled]="loginForm.form.invalid">{{labels[0].login}}</button>
-
           </div>
         </form>
-
       </div><br>
 
       <div class="row">
