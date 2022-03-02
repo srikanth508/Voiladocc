@@ -28,6 +28,7 @@ export class VediocallComponent implements OnInit {
   notetopharmacist: any;
   diagnosis: any;
   howmanyrefills: any;
+  testsname: any;
   // showModal: boolean;
 
   constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute, private ref: ChangeDetectorRef, public opentokService: OpentokService) {
