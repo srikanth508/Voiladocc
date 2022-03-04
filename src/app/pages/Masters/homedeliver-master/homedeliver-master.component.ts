@@ -86,6 +86,7 @@ export class HomedeliverMasterComponent implements OnInit {
 
         this.labels = data;
         this.search = this.labels[0].search
+        this.SelectLabel = this.labels[0].select
       }, error => {
       }
     )
@@ -132,16 +133,16 @@ export class HomedeliverMasterComponent implements OnInit {
     debugger
     if (even == 1) {
       this.docservice.GetHomeCountryVisitDeliveryChargesMaster(this.languageid).subscribe(data => {
-        this.deliverycharges = data[0].deliveryCharges,
-          this.meridionalcommission = data[0].meridionalCommision,
-          this.deliverypatnerfees = data[0].deliveryPatnerFees
-
+        var list = data.filter(x => x.typeID == this.typeid)
+        this.deliverycharges = list[0].deliveryCharges,
+          this.meridionalcommission = list[0].meridionalCommision,
+          this.deliverypatnerfees = list[0].deliveryPatnerFees
       })
     }
     else {
-       this.deliverycharges="";
-       this.meridionalcommission="";
-       this.deliverypatnerfees="";
+      this.deliverycharges = "";
+      this.meridionalcommission = "";
+      this.deliverypatnerfees = "";
     }
   }
 }

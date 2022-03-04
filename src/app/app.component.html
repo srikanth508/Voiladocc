@@ -5,9 +5,13 @@
             <img src="assets/Images/logo1.png">
             
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-2">
             <p class="square">{{formatTime}}</p>
+        </div>
+        <div class="col-lg-4">
             <marquee *ngFor="let noti of docnoti" style="margin-top:18px;color:red">{{noti.description}}</marquee>
+        
+           
         </div>
         <div class="col-lg-4" id="vidpagehead">
             <img src="assets/Images/logout.png" title="{{labels[0].logout}}"
@@ -145,8 +149,8 @@
                             <i class="fa fa-plus fa-2x" *ngIf="phanoti.show=='1'"
                                 style="margin-left: 5px; margin-top: 3px;" aria-hidden="true"
                                 (click)="ViewMedicines(phanoti)"></i> -->
-                            <button class="chatnow1" data-toggle="modal" data-target="#Medicines"
-                                (click)="ViewMedicines(phanoti)">{{labels[0].viewMedicines}}</button>
+                            <button  data-toggle="modal" data-target="#Medicines"
+                             class="viewmedicines"   (click)="ViewMedicines(phanoti)" data-dismiss="modal">{{labels[0].viewMedicines}}</button>
                         </div>
                     </div><br>
                 </div><br>
@@ -162,7 +166,7 @@
 <div class="modal fade" id="Medicines" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
-        <div class="modal-content" style="width:898px;margin-left: 186px;">
+        <div class="modal-content">
             <div class="modal-header modal-xl">
                 <h5 class="modal-title" id="exampleModalLongTitle">{{labels10[0].medicines}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -172,7 +176,7 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 tableoverflow">
                             <table>
                                 <tr>
                                     <th>{{labels10[0].medicines}}</th>
@@ -193,19 +197,21 @@
                         </div>
                     </div><br><br>
                     <div class="row">
-                        <div class="col-lg-6">
-                            <button class="chatnow" data-dismiss="modal" style="float: right;"
+                        <div class="col-lg-12">
+                            <button class="AcceptMedicines" data-dismiss="modal" 
                                 (click)="AcceptPharmacyOrder()">{{labels[0].accept}}</button>
+
+                                <button class="RejectMedicines" data-dismiss="modal" 
+                                (click)="RejectPhrmacyOrder()" data-dismiss="modal">{{labels[0].reject}}</button>
                         </div>
                         <div class="col-lg-6">
-                            <button class="chatnow" data-dismiss="modal" style="float: left;"
-                                (click)="RejectPhrmacyOrder()" data-dismiss="modal">{{labels[0].reject}}</button>
+                          
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" style="background-color: #f18235;color: white;" class="btn btn-default"
+                <button type="button" class="btn btn-default closebutton"
                     data-dismiss="modal">{{labels[0].close}}</button>
             </div>
         </div>

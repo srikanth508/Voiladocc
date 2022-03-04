@@ -27,29 +27,29 @@ export class DiagnosticTestDashComponent implements OnInit {
   public labels2: any;
   diagnosticenterid: any;
   diagnosticlist: any;
-  dummdiid:any;
-  showDrop:any;
-  search:any;
-  dia={};
-  SelectLabel:any;
+  dummdiid: any;
+  showDrop: any;
+  search: any;
+  dia = {};
+  SelectLabel: any;
   ngOnInit() {
+    debugger
     this.languageid = localStorage.getItem('LanguageID');
     this.diagnosticenterid = localStorage.getItem('diagnosticid');
     this.dummdiid = localStorage.getItem('diagnosticid');
-    if(this.dummdiid==undefined)
-    {
-      this.showDrop=1;
+    if (this.dummdiid == undefined) {
+      this.showDrop = 1;
     }
-    else{
-      this.showDrop=2;
+    else {
+      this.showDrop = 2;
     }
 
     this.docservice.GetAdmin_Masters_labels(this.languageid).subscribe(
       data => {
 
         this.labels1 = data;
-        this.SelectLabel=this.labels1[0].select;
-        this.search=this.labels1[0].search;
+        this.SelectLabel = this.labels1[0].select;
+        this.search = this.labels1[0].search;
       },
 
       error => { }
@@ -62,7 +62,7 @@ export class DiagnosticTestDashComponent implements OnInit {
       }, error => {
       }
     )
-
+    this.getlanguage();
     this.docservice.GetDiagnosticForAdminByLanguageID(this.languageid).subscribe(
       data => {
 
@@ -84,10 +84,10 @@ export class DiagnosticTestDashComponent implements OnInit {
     )
     this.GetDiagnosticServices();
 
-    this.getlanguage();
-
     this.countryid = 0
     this.cityid = 0
+
+ 
   }
 
   public getlanguage() {
@@ -102,11 +102,6 @@ export class DiagnosticTestDashComponent implements OnInit {
   }
 
 
-  public GetDiagnosticcenterID(item:any) {
-debugger
-    this.diagnosticenterid = item.id
-    this.GetDiagnosticServices();debugger
-  }
 
   public GetDiagnosticServices() {
 
@@ -115,6 +110,7 @@ debugger
         data => {
           debugger
           this.dummlist = data;
+          console.table("Servicelist",this.dummlist)
 
           this.servicelist = this.dummlist.filter(x => x.diagnosticCenterID == this.diagnosticenterid)
           this.count = this.servicelist.length
@@ -126,6 +122,7 @@ debugger
       this.docservice.GetDiagnosticCenterTestsForDash(this.languageid).subscribe(
         data => {
           this.servicelist = data;
+          console.table("Servicelist",data)
           this.dummlist = this.servicelist
           this.count = this.servicelist.length
 
@@ -135,6 +132,13 @@ debugger
     }
 
   }
+
+  public GetDiagnosticcenterID(item: any) {
+    debugger
+    this.diagnosticenterid = item.id
+    this.GetDiagnosticServices(); debugger
+  }
+
   public DeleteDiagnostocServces(id) {
 
     this.docservice.DeleteDiagnosticCenterTestsForDash(id).subscribe(

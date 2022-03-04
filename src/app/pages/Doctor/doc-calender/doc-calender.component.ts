@@ -38,7 +38,7 @@ export class DocCalenderComponent implements OnInit {
   todaydatess:any;
   loader:any;
   ngOnInit() {
-   this.spinner.show();
+
    this.loader=true;
     this.doctorid = localStorage.getItem('userid');
     this.languageid = localStorage.getItem('LanguageID');
@@ -84,21 +84,21 @@ export class DocCalenderComponent implements OnInit {
 
   public GetMyDoctorWorkingDetails() {
     this.docservice.GetDoctorcalenderSlotsByDoctorID(this.doctorid, this.slottypeid, this.todaydate, this.languageid).subscribe(
-      data => {
-        this.spinner.hide();
+     async data => {
+      
         //this.workingdetails = data;
         this.DayDatelist = data[0];
         this.workingdetails = data[1];
-
+        this.spinner.hide();
       this.loader=false;
       }, error => {
-        this.spinner.hide();
+        // this.spinner.hide();
       }
     )
   }
 
   public getlanguage() {
-    this.spinner.show();
+   this.loader=true;
     this.docservice.GetAdmin_DoctorLoginFeedbackWorkingDetails_Label(this.languageid).subscribe(
       data => {
 
@@ -120,7 +120,7 @@ export class DocCalenderComponent implements OnInit {
 
 
   public GetDoctorDates(newDate: Date) {
-    this.spinner.show();
+   this.loader=true;
 
     // this.todaydate = even.toLocaleString().split(',')[0];
 
@@ -219,7 +219,7 @@ export class DocCalenderComponent implements OnInit {
 
 
   public insertdetails() {
-    this.spinner.show();
+   this.loader=true;
     this.docservice.GetDoctorAppointmentByDateBySlot(this.doctorid, this.slotID, this.appointmentdate).subscribe(data1 => {
 
       if (data1.length != 0) {
@@ -536,7 +536,7 @@ export class DocCalenderComponent implements OnInit {
 
 
   public InsertDayWiseSlots() {
-    this.spinner.show();
+   this.loader=true;
     if (this.daychangedate == undefined || this.daychangedate == null) {
       Swal.fire('Please Select Date')
     }
@@ -884,7 +884,7 @@ export class DocCalenderComponent implements OnInit {
 
       this.insertbookappointmenttype();
       this.GetMyDoctorWorkingDetails();
-      this.spinner.show();
+     this.loader=true;
       if (this.languageid == 1) {
         Swal.fire('Updated Successfully');
       }

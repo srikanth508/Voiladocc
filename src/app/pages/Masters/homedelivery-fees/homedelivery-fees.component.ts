@@ -54,6 +54,7 @@ export class HomedeliveryFeesComponent implements OnInit {
       this.meridionalcommission = list.meridionalCommision,
       this.deliveryPatnerFees = list.deliveryPatnerFees,
       this.id = list.id
+      this.typeid=list.typeID;
   }
 
 

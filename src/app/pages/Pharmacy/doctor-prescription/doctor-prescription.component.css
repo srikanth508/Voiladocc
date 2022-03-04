@@ -308,3 +308,18 @@
     /* border-bottom: 1px solid #ff7007; */
     cursor: pointer;
 }
+.imagewidth{
+  width: 95%;
+}
+
+.medicineWidth
+{
+  overflow: auto;
+  width: 100%;
+  height: 64px;
+}
+
+.tableOverflow{
+  overflow: auto;
+}
+

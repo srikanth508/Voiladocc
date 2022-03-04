@@ -28,6 +28,7 @@ export class VediocallComponent implements OnInit {
   notetopharmacist: any;
   diagnosis: any;
   howmanyrefills: any;
+  testsname: any;
   // showModal: boolean;
 
   constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute, private ref: ChangeDetectorRef, public opentokService: OpentokService) {
@@ -687,10 +688,10 @@ export class VediocallComponent implements OnInit {
   }
 
 
-  public SendTwiliSms(smsdesc, smsmobileno) {
+  public async SendTwiliSms(smsdesc, smsmobileno) {
 
-    this.docservice.SendTwillioSMS(smsmobileno, smsdesc).subscribe(data => {
-
+    this.docservice.SendTwillioSMS(smsmobileno, smsdesc).subscribe(async data => {
+      return true;
     })
   }
 
@@ -2333,7 +2334,18 @@ export class VediocallComponent implements OnInit {
   public closewindow() {
     this.docservice.UpdateAlertBitsBack(this.appointmentid).subscribe(
       data => {
-        window.close();
+        if (this.languageid == 1) {
+          var smsdesc = "Sorry ! The doctor waited over 5 minutes and ended the call. You will be charged for this call in accordance with our terms of service."
+          this.SendTwiliSms(smsdesc, this.smsmobileno);
+          this.stoparchive()
+          // window.close();
+        }
+        else {
+          var smsdesc = "Pardon ! Le médecin a attendu plus de 5 minutes et a mis fin à l'appel. Cet appel vous sera facturé conformément à nos conditions d'utilisation."
+          this.SendTwiliSms(smsdesc, this.smsmobileno);
+          this.stoparchive()
+          // window.close();
+        }
       }, error => {
       }
     )

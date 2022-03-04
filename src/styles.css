@@ -190,6 +190,7 @@ label{
       {
           background-color: #f18235;
           color:white;
+          border-radius: 15px;
           
       }
      .specforimg
@@ -325,4 +326,41 @@ button:disabled {
     height: 70px;
     color: #251156;
 }
+}
+
+
+.headertext{
+  font-size: 16px;
+}
+
+.Hederbutton{
+  float: right;
+  border-radius: 15px;
+ }
+
+@media only screen and (max-width: 600px) {
+  .headertext{
+    font-size: 13px;
+  }
+  .Hederbutton{
+    float: right;
+    border-radius: 15px;
+    margin-top: -42px;
+   }
+  
+}
+
+
+
+.MastersDashboardButtons
+{
+  text-align: end;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  background-color: #f18235;
+  border-radius: 10px;
 }

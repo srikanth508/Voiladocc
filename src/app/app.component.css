@@ -263,3 +263,44 @@ border-radius: 4px;
   padding: 5px;
   color: #322b6b;
 }
+
+.viewmedicines{
+  padding: 10px;
+  background-color: #f18235;
+  color:white;
+  border-radius: 10px;
+}
+
+
+
+.AcceptMedicines
+{
+  float: right;
+  border-radius: 10px;
+  width: 105px;
+  padding: 7px;
+  background-color: #f18235;
+  color: white;
+  border: none;
+}
+
+.RejectMedicines
+{
+  float: left;
+  border-radius: 10px;
+  width: 105px;
+  padding: 7px;
+  background-color: #f18235;
+  color: white;
+  border: none;
+}
+
+
+.closebutton
+{
+  background-color: #f18235;
+  color: white;
+}
+.tableoverflow{
+  overflow: auto;
+}

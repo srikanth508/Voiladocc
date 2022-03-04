@@ -1,12 +1,11 @@
 <div class="container-fluid card card:hover headerspace">
   <div class="row headerspace">
     <div class="col-lg-10" style="margin-top: -2px;">
-      <h5>{{labels[0].pharmareports}} </h5>
+      <h5 class="headertext">{{labels[0].pharmareports}} </h5><br>
     </div>
-
-    <div class="col-lg-2" style="margin-top: -12px; text-align: end">
-      <button class="btn btncolor" *ngIf="languageid=='1'" (click)="getglmasterexcel()">Export Excel</button>
-      <button class="btn btncolor" *ngIf="languageid=='6'" (click)="getglmasterexcel()">Exporter vers Excel</button>
+    <div class="col-lg-2 col2_header">
+      <button class="btn btncolor Hederbutton" *ngIf="languageid=='1'" (click)="getglmasterexcel()">Export Excel</button>
+      <button class="btn btncolor Hederbutton" *ngIf="languageid=='6'" (click)="getglmasterexcel()">Exporter vers Excel</button>
     </div>
   </div>
 </div>
@@ -19,10 +18,10 @@
       <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
         class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)"  bsDaterangepicker>
       <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }"
-        class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)"  bsDaterangepicker>
+        class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)"  bsDaterangepicker><br>
     </div>
     <div class="col-lg-3">
-      <input type="text" class="form-control" [(ngModel)]="term" placeholder="{{labels[0].search}}">
+      <input type="text" class="form-control" [(ngModel)]="term" placeholder="{{labels[0].search}}"><br>
     </div>
     <div class="col-lg-3" *ngIf="showdrop=='1'">
       <select class="form-control" (change)="GetPharmacyID($event)">
@@ -46,13 +45,13 @@
     <div class="col-lg-8">
     </div>
     <div class="col-lg-2">
-      <label style="margin-left:69px;">
+      <label class="revenue">
         {{labels[0].totalRevenue}} :
         <b>{{totalamount}}</b>
       </label>
     </div>
     <div class="col-lg-2">
-      <label style="margin-left: 88px;">
+      <label class="revenue">
         {{labels[0].count}} :
         <b>{{count}}</b>
       </label>

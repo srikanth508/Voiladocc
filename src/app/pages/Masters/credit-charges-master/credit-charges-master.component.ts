@@ -11,10 +11,25 @@ export class CreditChargesMasterComponent implements OnInit {
   constructor(public docservice: HelloDoctorService) { }
   languageid: any;
   creditChargesList: any;
+  labels:any;
   ngOnInit() {
     this.languageid = localStorage.getItem('LanguageID');
     this.getCreditCardChargesMaster();
+    this.getlanguage()
   }
+
+  
+  public getlanguage() {
+    this.docservice.GetAdmin_Mastersss_Labels(this.languageid).subscribe(
+      data => {
+
+        this.labels = data;
+      }, error => {
+      }
+    )
+  }
+
+
 
   getCreditCardChargesMaster() {
     this.docservice.GetCreditCardChargesMaster(this.languageid).subscribe(data => {

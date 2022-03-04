@@ -1,9 +1,8 @@
-<br>
-<div class="container-fluid card card:hover">
-  <br>
-  <div class="row ">
-    <div class="col-lg-3">
-      <h5>Credit Card Charges Master </h5>
+<div class="container-fluid card card:hover headerspace">
+  <div class="row headerspace">
+    <div class="col-lg-6">
+      <h5 *ngIf="languageid=='1'">Credit Card Charges Master </h5>
+      <h5 *ngIf="languageid=='6'">MAITRE DE LA CARTE DE CRÉDIT</h5>
     </div>
     <div class="col-lg-6">
     </div>
@@ -17,7 +16,7 @@
 <div class="container-fluid card card:hover ">
   <div class="row" style="margin-top: 20px;">
     <div class="col-lg-3">
-      <input type="text" class="form-control" [(ngModel)]="term" name="term" placeholder="Search">
+      <input type="text" class="form-control" [(ngModel)]="term" name="term" placeholder="{{labels[0].search}}">
     </div>
   </div><br>
   <div class="row">
@@ -26,10 +25,11 @@
         <thead>
           <tr>
             <th>Type</th>
-            <th>Charges</th>
+            <th *ngIf="languageid=='1'">Charges</th>
+            <th *ngIf="languageid=='6'">Frais</th>
             <th>Actions</th>
           </tr>
-          <tr *ngFor="let credit of creditChargesList">
+          <tr *ngFor="let credit of creditChargesList|filter:term">
             <td>Credit Card</td>
             <td>{{credit.charges}}</td>
             <td>
@@ -51,7 +51,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Credit Card Master</h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Credit Card Master</h5>
+        <h5 *ngIf="languageid=='6'" class="modal-title" id="exampleModalLabel">MAITRE DE LA CARTE DE CRÉDIT</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -59,7 +60,8 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-lg-3">
-            <label>Charges :</label>
+            <label *ngIf="languageid=='1'">Charges :</label>
+            <label *ngIf="languageid=='6'">Frais :</label>
           </div>
           <div class="col-lg-5">
             <input type="text" class="form-control" [(ngModel)]="charges" name="charges" placeholder="Charges">
@@ -73,8 +75,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      
+        <button type="button" class="btn btn-secondary closeButtonColor" data-dismiss="modal">Close</button>
+
       </div>
     </div>
   </div>

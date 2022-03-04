@@ -16,11 +16,10 @@
         </ng-daterangepicker> -->
 
       <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
-        class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" 
-        bsDaterangepicker>
+        class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" bsDaterangepicker>
       <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }"
-        class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)" 
-        bsDaterangepicker>
+        class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)" bsDaterangepicker>
+        <br>
     </div>
     <div class="col-lg-3">
       <input type="text" class="form-control" [(ngModel)]="term" placeholder="{{labels[0].search}}">
@@ -53,7 +52,8 @@
             <th>{{labels[0].status}}</th>
             <th>{{labels[0].actions}}</th>
           </tr>
-          <tr [style.background-color]="details.appointmentColorCode" *ngFor="let details of orderlist|filter:term">
+          <tr [style.background-color]="details.appointmentColorCode"
+            *ngFor="let details of orderlist|filter:term| paginate: { id: 'foo', itemsPerPage: 5, currentPage: p}">
             <td>{{details.date|date:'dd-MM-yyyy'}}</td>
             <!-- <td>{{details.referenceNumber}}</td> -->
             <td>{{details.id}}</td>
@@ -86,7 +86,7 @@
             <td>
               <div class="txtorng">
                 <span placement="right" ngbTooltip=" {{details.address}}" role="button" data-toggle="tooltip">
-               <img src="assets/Images/info.png" style="width: 30px;">
+                  <img src="assets/Images/info.png" style="width: 30px;">
                 </span>
               </div>
 
@@ -252,6 +252,13 @@
         </thead>
       </table><br>
     </div><br>
+    <div class="col-lg-12" style="text-align: center">
+      <br>
+      <pagination-controls id="foo" (pageChange)="pageChanged($event)" maxSize="15" directionLinks="true"
+        autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next"
+        screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+      </pagination-controls>
+    </div>
   </div><br>
 </div><br><br><br>
 
@@ -260,7 +267,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content " >
+    <div class="modal-content ">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{labels[0].medicines}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -273,7 +280,7 @@
             <div class="row">
               <div class="col-lg-5">
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-6 text-center;">
                 <!-- <h5 style="color:#1dbfd2">{{labels[0].doctorDetails}}</h5> -->
                 <img src="assets/Images/voilalogo.jpg" style="width: 35%;">
 
@@ -336,9 +343,7 @@
               </div>
             </div><br>
             <div class="row">
-              <div class="col-lg-12">
-
-
+              <div class="col-lg-12 tableOverflow">
                 <aside id="info-block">
                   <section class="file-marker">
                     <div>
@@ -367,56 +372,65 @@
                                   {{labels[0].amount}}</th>
                                 <!-- <th style="border: 2px solid black;background-color:#FFD300; color:black;">
                                 {{labels[0].notetoPharmsict}}</th> -->
-                                <th style="border: 2px solid black;background-color:#FFD300; color:black;">Substistute</th>
+                                <th style="border: 2px solid black;background-color:#FFD300; color:black;">Substistute
+                                </th>
                                 <th style="border: 2px solid black;background-color:#FFD300; color:black;">Actions</th>
                               </tr>
                               <tr *ngFor="let medicinelist of orderedmedicinelist">
                                 <!-- <td>{{medicinelist.Medicinetype}}</td> -->
                                 <td style="border: 2px solid black;">
-                                  {{medicinelist.medicineName}}
-                                  <div>
-                                    <br>
-                                    <input type="text" class="form-control"  *ngIf="medicinelist.substituteBit==true"
-                                    [ngModelOptions]="{standalone: true}" 
-                                    [(ngModel)]="medicinelist.subMedicineName" name="medicinelist.subMedicineName" placeholder="{{labels[0].medicines}}">
+                                  <div class="medicineWidth">
+                                    <span> {{medicinelist.medicineName}}</span>
                                   </div>
-                                
+                                  <div>
+                                    <input type="text" class="form-control" *ngIf="medicinelist.substituteBit==true"
+                                      [ngModelOptions]="{standalone: true}" [(ngModel)]="medicinelist.subMedicineName"
+                                      name="medicinelist.subMedicineName" placeholder="{{labels[0].medicines}}">
+                                  </div>
+
                                 </td>
                                 <td style="border: 2px solid black;">
-                                  {{medicinelist.sig}}
+                                  <div class="medicineWidth">
+                                    {{medicinelist.sig}}
+                                  </div>
                                   <div>
-                                    <br>
-                                    <input type="text" class="form-control" placeholder="{{labels[0].sig}}" *ngIf="medicinelist.substituteBit==true" 
-                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="medicinelist.subPhysology"
-                                    name="medicinelist.subPhysology">
+
+                                    <input type="text" class="form-control" placeholder="{{labels[0].sig}}"
+                                      *ngIf="medicinelist.substituteBit==true" [ngModelOptions]="{standalone: true}"
+                                      [(ngModel)]="medicinelist.subPhysology" name="medicinelist.subPhysology">
                                   </div>
                                 </td>
                                 <td style="border: 2px solid black;">
-                                  {{medicinelist.quantity}}
-                                  <div>
-                                    <br>
-                                    <input type="text" [ngModelOptions]="{standalone: true}" *ngIf="medicinelist.substituteBit==true"
-                                    [(ngModel)]="medicinelist.subQuantity" name="medicinelist.subQuantity"
-                                    class="form-control" placeholder=" {{labels[0].quantity}}">
+                                  <div class="medicineWidth">
+                                    {{medicinelist.quantity}}
                                   </div>
-                    
+                                  <div>
+                                    <input type="text" [ngModelOptions]="{standalone: true}"
+                                      *ngIf="medicinelist.substituteBit==true" [(ngModel)]="medicinelist.subQuantity"
+                                      name="medicinelist.subQuantity" class="form-control"
+                                      placeholder=" {{labels[0].quantity}}">
+                                  </div>
+
                                 </td>
                                 <td style="border: 2px solid black;">{{medicinelist.refills}}</td>
                                 <td style="border: 2px solid black;">{{medicinelist.substistute}}</td>
                                 <td style="border: 2px solid black;">{{medicinelist.noteToPharmacist}}</td>
                                 <td style="border: 2px solid black;">
                                   <input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
-                                    [(ngModel)]="medicinelist.amount" name="medicinelist.amount" [disabled]="medicinelist.substituteBit==true"
+                                    [(ngModel)]="medicinelist.amount" name="medicinelist.amount"
+                                    [disabled]="medicinelist.substituteBit==true"
                                     onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'><br>
 
-                                    <input type="text" class="form-control"  *ngIf="medicinelist.substituteBit==true" [ngModelOptions]="{standalone: true}"
-                                    [(ngModel)]="medicinelist.subAmount" name="medicinelist.subAmount" 
+                                  <input type="text" class="form-control" *ngIf="medicinelist.substituteBit==true"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="medicinelist.subAmount"
+                                    name="medicinelist.subAmount"
                                     onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
                                   <!-- (ngModelChange)="onChange($event)" -->
                                 </td>
-                                <td  style="border: 2px solid black;">
-                                  <input type="checkbox" [disabled]="medicinelist.subtute=='2'" [ngModelOptions]="{standalone: true}"
-                                  [(ngModel)]="medicinelist.substituteBit" name="medicinelist.substituteBit">
+                                <td style="border: 2px solid black;">
+                                  <input type="checkbox" [disabled]="medicinelist.subtute=='2'"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="medicinelist.substituteBit"
+                                    name="medicinelist.substituteBit">
                                 </td>
                                 <td style="border: 2px solid black;">
                                   <input type="checkbox" [ngModelOptions]="{standalone: true}"
@@ -455,10 +469,10 @@
           </div>
         </form>
         <div class="modal-footer">
-          <button type="button" style="background-color: #322b6b; color: white;"
-            class="btn btn-default" data-dismiss="modal" (click)="SavePDF()">{{labels[0].download}}</button>
+          <button type="button" style="background-color: #322b6b; color: white;" class="btn btn-default"
+            (click)="SavePDF()">{{labels[0].download}}</button>
           <button type="button" style="background-color: #f18235; color: white;" class="btn btn-default"
-            data-dismiss="modal">{{labels[0].close}}</button>
+         id="close"   data-dismiss="modal">{{labels[0].close}}</button>
         </div>
 
       </div>
@@ -473,8 +487,8 @@
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width: 800px;
-      height: auto;">
+    <div class="modal-content" 
+    >
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Photo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -494,7 +508,7 @@
           </div>
           <div class="col-lg-4">
             <input type="text" class="form-control" placeholder="{{labels[0].amountToPay}}" [(ngModel)]="amounttopay"
-              name="amounttopay"  onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
+              name="amounttopay" onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
           </div>
         </div><br>
         <div class="row" *ngIf="showedit=='0'">
@@ -530,7 +544,12 @@
           <!-- <div class="col-lg-5">
           </div> -->
         </div>
-
+        <div class="row" *ngIf="showedit=='1'">
+          <h4>Pharmacy Updated Comments</h4>
+          <div class="col-lg-8">
+            <img src="{{pharmcyUpdatedPhoto}}" class="imagewidth">
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <!-- <button type="button" style="background-color: #f18235; color: white;" class="btn btn-default"
@@ -549,8 +568,7 @@
 <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content modal-lg" style="width: 755px;
-      height: auto;">
+    <div class="modal-content modal-lg" >
       <div class="modal-header">
         <!-- <h5 class="modal-title" id="exampleModalLabel"> {{labels[0].download}}</h5> -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -577,7 +595,7 @@
           </div>
           <div class="col-lg-4">
             <input type="text" class="form-control" placeholder="{{labels[0].amountToPay}}" [(ngModel)]="amounttopay"
-              name="amounttopay"  onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
+              name="amounttopay" onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
           </div>
         </div><br>
 
@@ -609,8 +627,14 @@
             <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
               *ngIf="showedit=='0'" (click)="updateamount()" data-dismiss="modal">{{labels[0].update}}</button>
           </div>
-
         </div>
+        <div class="row" *ngIf="showedit=='1'">
+          <h4>Pharmacy Updated Comments</h4>
+          <div class="col-lg-8">
+            <img src="{{pharmcyUpdatedPhoto}}" class="imagewidth">
+          </div>
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" style="background-color: #f18235; color: white;" class="btn btn-default"
@@ -623,8 +647,8 @@
 <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width: 600px;
-      height: auto;">
+    <div class="modal-content" 
+      >
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{labels[0].uploadpartialprescriptionphoto}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -639,7 +663,7 @@
           </div>
           <div class="col-lg-5">
             <input type="text" class="form-control" placeholder="{{labels[0].amountToPay}}" [(ngModel)]="amounttopay"
-              name="amounttopay"  onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
+              name="amounttopay" onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
           </div>
         </div><br>
         <div class="row">

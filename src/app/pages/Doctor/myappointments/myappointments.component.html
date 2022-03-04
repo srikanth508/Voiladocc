@@ -17,11 +17,9 @@
         </ng-daterangepicker> -->
 
       <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
-        class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" 
-        bsDaterangepicker>
+        class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" bsDaterangepicker>
       <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }"
-        class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)" 
-        bsDaterangepicker>
+        class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)" bsDaterangepicker>
     </div>
     <div class="col-lg-3">
       <input type="text" class="form-control" [(ngModel)]="term" placeholder="{{labels[0].search}}">
@@ -141,14 +139,10 @@
                   title="Diagnostic Report" (click)="GetReportsssss(details.illnesspdf)"></a>
 
 
-
               <!-- <ng-template #tipcontent2094>Vitals</ng-template>
               <a [ngbTooltip]="tipcontent2094">
                 <img src="assets/Images/heart.png" style="height:20px;" data-toggle="modal" data-target="#Vitaldetals"
                   title="Diagnostic Report" (click)="getvitaldetails(details.appointmentID)"></a> -->
-
-
-
             </td>
             <td>
               <table style="box-shadow:none">
@@ -202,8 +196,8 @@
                     <ng-template #tipcontent201>{{labels[0].followup}}</ng-template>
                     <a [ngbTooltip]="tipcontent201"
                       *ngIf="details.isVisited=='1'&&details.followUpVisit=='0'&&details.followApp=='0'">
-                      <img src="assets/Images/followup.png" style="height:25px;"
-                        (click)="GetFolloupVistID(details.appointmentID)" />
+                      <img src="assets/Images/followup.png" style="height:25px;" data-toggle="modal"
+                        data-target="#FollowUpVisit" (click)="GetFollowUpID(details.appointmentID)" />
                     </a>
                   </td>
                   <td style="border:none">
@@ -247,8 +241,7 @@
                     <a [ngbTooltip]="tipcontent5"
                       *ngIf="details.accepted=='1'&&details.cancelled=='0'&&details.categoryID=='1'&&details.docCancelled=='0'&&details.noShow=='0'&&details.disableall=='1'&&details.earlycall=='2'">
                       <img src="assets/Images/pre.png" data-toggle="modal" data-target="#exampleModalLong"
-                        style="height:25px;"
-                        (click)="GetEarlyprescription(details)" />
+                        style="height:25px;" (click)="GetEarlyprescription(details)" />
                     </a>
 
                     <!-- normal precsription -->
@@ -257,8 +250,7 @@
                     <a [ngbTooltip]="tipcontent5345"
                       *ngIf="details.accepted=='1'&&details.cancelled=='0'&&details.docCancelled=='0'&&details.noShow=='0'&&details.disableall=='1'&&details.earlycall=='0'&&details.categoryID=='1'||details.earlycall=='1'||details.earlycall=='3'">
                       <img src="assets/Images/pre.png" data-toggle="modal" data-target="#exampleModalLong"
-                        style="height:25px;"
-                        (click)="GetPatientid(details)" />
+                        style="height:25px;" (click)="GetPatientid(details)" />
                     </a>
                   </td>
                   <td style="border:none">
@@ -452,6 +444,58 @@
 <br>
 <br>
 <br>
+
+
+
+
+
+
+
+<div class="modal fade" id="FollowUpVisit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Refund</h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'"> Remboursement au patient</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <input type="radio" value="1" [(ngModel)]="followupAppointmentTypeID"
+                name="followupAppointmentTypeID">&nbsp;{{labels[0].inClinic}} &nbsp; &nbsp;
+              <input type="radio" value="2" [(ngModel)]="followupAppointmentTypeID"
+                name="followupAppointmentTypeID">&nbsp;{{labels[0].vedioConference}} &nbsp; &nbsp;
+              <input type="radio" value="5" [(ngModel)]="followupAppointmentTypeID"
+                name="followupAppointmentTypeID">&nbsp;{{labels[0].homeVisit}} &nbsp; &nbsp;
+            </div>
+
+          </div><br>
+          <div class="row">
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-3">
+              <button type="button" class="btn btncolor" (click)="GetFolloupVistID()" data-dismiss="modal">Sauvegarder </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <p class="paracolor"> {{labels[0].followupNote}}</p>
+        <button type="button" class="btn btn-secondary" *ngIf="languageid=='1'" id="close"
+          style="background-color: #f18235;color: white;" data-dismiss="modal">{{labels[0].close}}</button>
+        <button type="button" class="btn btn-secondary" *ngIf="languageid=='6'" id="close"
+          style="background-color: #f18235;color: white;" data-dismiss="modal">Fermer </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -1592,7 +1636,8 @@
               </div>
               <div class="col-lg-2">
                 <button type="button" style="background-color: #f18235;color: white;" class="btn btn-default"
-                  (click)="insertdetails()" data-toggle="modal" data-target="#PrecsriptionPdfFormat">{{labels[0].save}}</button>
+                  (click)="insertdetails()" data-toggle="modal"
+                  data-target="#PrecsriptionPdfFormat">{{labels[0].save}}</button>
               </div>
               <div class="col-lg-5">
               </div>
@@ -1612,95 +1657,6 @@
 </div>
 
 
-
-
-<div class="modal fade" id="PrecsriptionPdfFormat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content card">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Prescription</h5>
-        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'"> Prescription</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid " id="content">
-        <div class="row">
-          <div class="col-lg-12" style="text-align:center">
-            <img src="assets/Images/logo.png" style="width:80px">
-          </div>
-        </div>
-          <div class="row">
-            <div class="col-lg-8">
-              <h6><b>{{hospital_ClinicName}}</b></h6>
-              <label>Address : {{hospitaladdrees}}</label><br>
-              <label>Phone : {{hopsitalPhoneno}}</label><br>
-              <label>Email : {{hospitalEmail}}</label><br>
-            </div>
-            <div class="col-lg-4" style="float:right">
-              <h6 style="color:#303577"><b>{{doctorName}}</b></h6>
-              <label> {{doctoremail}}</label><br>
-              <label>{{docaddres}}</label><br>
-              <label>{{departmentname}}</label><br>
-            </div>
-          </div><br>
-          <div class="row" style="background: lightgray;padding: 6px;">
-            <div class="col-lg-8">
-              <label>Patient Name : {{patientName}}</label>
-            </div>
-            <div class="col-lg-4">
-              <label>Date : {{appdate}} </label>
-            </div>
-          </div><br>
-          <div class="row">
-            <div class="col-lg-12" >
-              <table>
-                <thead>
-                  <tr>
-                    <th>{{labels[0].drugName}}</th>
-                    <th>{{labels[0].sig}}</th>
-                    <th>{{labels[0].dispenseQuantity}}</th>
-                    <th>{{labels[0].howmanyRefills}}</th>
-                    <th>{{labels[0].substistude}} </th>
-                    <th>{{labels[0].noteToPharmasist}}</th>
-                  </tr>
-                  <tr *ngFor="let medicinelist of qwerty2">
-                    <td>{{medicinelist.MedicineName}}</td>
-                    <td>{{medicinelist.SIG}}</td>
-                    <td>{{medicinelist.DispenseQuantity}}</td>
-                    <td>{{medicinelist.HowmanyRefills}}</td>
-                    <td>
-                      <span *ngIf="medicinelist.SubstainablenotPermitted=='1'">{{labels[0].yes}}</span>
-                      <span *ngIf="medicinelist.SubstainablenotPermitted=='2'"> {{labels[0].no}}</span>
-                    </td>
-                    <td>{{medicinelist.NoteToPharmasist}}</td>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div><br><br><br><br>
-          <div class="row">
-            <div class="col-lg-12">
-              <!-- <label style="float: right;">Doctor</label><br> -->
-              <label style="float: right;">{{doctorName}}</label>
-            </div>
-          </div><br><br>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" *ngIf="languageid=='1'"
-          style="background-color: #f18235;color: white;" data-dismiss="modal">{{labels[0].close}}</button>
-        <button type="button" class="btn btn-secondary" *ngIf="languageid=='6'"
-          style="background-color: #f18235;color: white;" data-dismiss="modal">Annuler </button>
-
-          <button type="button" class="btn btn-secondary" (click)="SendPrescrriptionEmail()"
-          style="background-color: #f18235;color: white;" data-dismiss="modal">Send Email </button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- add test -->
 
@@ -2614,6 +2570,146 @@
     </div>
   </div>
 </div>
+
+
+
+<!-- send email prescription -->
+
+<div id="PrecsriptionPdfFormat" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="width: 900px;
+      height: auto;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="content">
+        <div class="container-fluid" *ngFor="let alldetails of pdfprslist">
+          <div>
+            <div class="row">
+              <div class="col-lg-5">
+                <img src="assets/Images/logo.png" style="width: 26%;">
+              </div>
+              <div class="col-lg-4">
+
+                <div *ngIf="sendMailPrescriptions=='1'">
+                  <h3 *ngIf="languageid=='1'">Prescription</h3>
+                  <h3 *ngIf="languageid=='6'">Ordonnance</h3>
+                </div>
+
+              </div>
+            </div>
+            <hr style="color:#333;background-color:#333;">
+            <div class="row">
+              <div class="col-lg-5">
+                <label><b>{{labels[0].patientName}}</b> : {{alldetails.patientName}}</label><br>
+                <label><b>{{labels[0].phoneNo}}</b> : {{alldetails.mobileNumber}}</label><br>
+                <label><b>{{labels[0].address}}</b> : {{alldetails.address}}</label><br>
+                <label><b> Email</b> : {{alldetails.emailID}}</label><br>
+                <label><b> {{labels[0].nationalIDNo}}</b> : {{alldetails.nationalidno}}</label><br>
+                <label><b>Age</b> : {{alldetails.age}}</label><br>
+                <label><b> {{labels[0].dateOfBirth}}</b> : {{alldetails.dateOfBirth}}</label><br>
+                <label><b> {{labels[0].gender}}</b> : {{alldetails.gender}}</label><br>
+                <label><b> {{labels[0].appointmentNumber}}</b> : {{appointmentid}}</label><br>
+              </div>
+              <div class="col-lg-3">
+                <h6 *ngIf="languageid==1"><b>Appointment Date</b></h6>
+                <h6 *ngIf="languageid==6"><b>Date de rendez-vous</b></h6>
+                <span><b style="margin-left: 20px;">{{alldetails.appointmentdate}}</b></span>
+              </div>
+              <div class="col-lg-4">
+                <label><b>{{labels[0].doctorName}}</b> : {{alldetails.doctorName}}</label>
+                <label><b>{{labels[0].registratinno}}</b> : {{alldetails.registrationNo}}</label>
+                <label><b>{{labels[0].phoneNo}}</b> : {{alldetails.doctorMobileNo}}</label>
+                <label><b>{{labels[0].department}}</b> : {{alldetails.departmentname}}</label>
+                <label><b>{{labels[0].address}}</b> : {{alldetails.doctorAddress}}</label>
+              </div>
+              <br>
+            </div><br><br>
+            <div class="row">
+              <div *ngIf="sendMailPrescriptions=='1'">
+                <div class="col-lg-12">
+                  <table>
+                    <thead>
+                      <tr>
+                        <!-- <th id="imp">{{labels[0].date}}</th> -->
+                        <th id="imp">{{labels[0].drugName}} </th>
+                        <th id="imp">{{labels[0].sig}} </th>
+                        <th id="imp">{{labels[0].dispenseQuantity}} </th>
+                        <th id="imp">{{labels[0].howmanyRefills}} </th>
+                        <th id="imp">{{labels[0].noteToPharmasist}} </th>
+                      </tr>
+                      <tr *ngFor="let medicines of qwerty2">
+                        <!-- <td style="    width: 13%;">{{medicines.date}}</td> -->
+                        <td>{{medicines.MedicineName}}</td>
+                        <td>{{medicines.SIG}}</td>
+                        <td>{{medicines.DispenseQuantity}}</td>
+                        <td>{{medicines.HowmanyRefills}}</td>
+                        <td>{{medicines.NoteToPharmasist}}</td>
+                      </tr>
+                    </thead>
+                  </table>
+                </div><br>
+              </div>
+              <div *ngIf="sendMailPrescriptions=='2'">
+                <div class="col-lg-12">
+                  <table>
+                    <thead>
+                      <tr>
+
+                        <th id="imp">{{labels[0].testType}} </th>
+                        <th id="imp">{{labels[0].testName}} </th>
+                        <th id="imp">{{labels[0].clinicalInfo}} </th>
+                      </tr>
+                      <tr *ngFor="let test of DiaenterArray">
+
+                        <td>{{test.DiagnosticTestTypeName}}</td>
+                        <td>{{test.TestName}}</td>
+                        <td>{{test.ClinicalInfo}}</td>
+                      </tr>
+                    </thead>
+                  </table>
+                </div><br>
+              </div>
+            </div><br><br><br><br>
+            <div class="row">
+              <div class="col-lg-12">
+              </div>
+            </div><br><br>
+            <div class="row">
+              <div class="col-lg-8">
+              </div>
+              <div class="col-lg-4">
+                <img src="assets/Images/sign.png" style="width: 39%;"><br>
+                <!-- <label>Prescription provided by doctor</label><br> -->
+                <b>Dr. {{alldetails.doctorName}}</b><br>
+                <label><b>{{labels[0].registratinno}} : {{alldetails.registrationNo}}</b></label>
+              </div>
+            </div><br>
+            <div class="col-lg-12">
+              <p class="text-center">
+                En cas d’urgence, appeler le 15<br>
+                Pour toute question, appelez le service client Voiladoc : +212 522446145
+
+              </p>
+            </div>
+          </div>
+          <!-- soapnotes -->
+        </div>
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+      </div>
+      <div class="modal-footer" style="margin-top: -24px;">
+        <button type="button" class="btn btn-default" style="background-color: #f18235;color: white;"
+          data-dismiss="modal" id="sendprescription" (click)="SendPrescrriptionEmail()">send mail</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 
 

@@ -56,7 +56,7 @@ export class NurseComponent implements OnInit {
   dropzonelable: any;
   public search: any;
   public dummapecilizationlist: any;
-
+  labels4:any;
   ngOnInit() {
 
     this.dummid = localStorage.getItem('hospitalid');
@@ -69,6 +69,14 @@ export class NurseComponent implements OnInit {
         this.labels = data;
         this.SelectLabel = this.labels[0].select;
         this.search = this.labels[0].search
+      }, error => {
+      }
+    )
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+       
       }, error => {
       }
     )
