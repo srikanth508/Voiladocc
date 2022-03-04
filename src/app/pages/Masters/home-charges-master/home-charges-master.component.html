@@ -1,8 +1,8 @@
-
 <div class="container-fluid card card:hover headerspace">
   <div class="row headerspace">
     <div class="col-lg-3">
-      <h5>Home Charges Master </h5>
+      <h5 *ngIf="languageid==1">Home Charges Master </h5>
+      <h5 *ngIf="languageid==6">Maître de service à domicile</h5>
     </div>
     <div class="col-lg-6">
     </div>
@@ -16,7 +16,7 @@
 <div class="container-fluid card card:hover ">
   <div class="row" style="margin-top: 20px;">
     <div class="col-lg-3">
-      <input type="text" class="form-control" [(ngModel)]="term" name="term" placeholder="Search">
+      <input type="text" class="form-control" [(ngModel)]="term" name="term" placeholder="{{labels[0].search}}">
     </div>
   </div><br>
   <div class="row">
@@ -24,28 +24,28 @@
       <table>
         <thead>
           <tr>
-            <tr *ngIf="languageid=='1'">
-             
-              <th>Delivery Charges </th>
-              <th>Meridional Commission</th>
-              <th>Delivery Patner Fees</th>
-              <th>Actions</th>
-            </tr>
-            <tr *ngIf="languageid=='6'">
-            
-              <th>Frais </th>
-              <th>Commission Voiladoc</th>
-              <th>Honoraires du partenaire</th>
-              <th>Actions</th>
-            </tr>
-        
+          <tr *ngIf="languageid=='1'">
+            <th>Type</th>
+            <th>Delivery Charges </th>
+            <th>Meridional Commission</th>
+            <th>Delivery Patner Fees</th>
+            <th>Actions</th>
+          </tr>
+          <tr *ngIf="languageid=='6'">
+            <th>Type</th>
+            <th>Frais </th>
+            <th>Commission Voiladoc</th>
+            <th>Honoraires du partenaire</th>
+            <th>Actions</th>
+          </tr>
+
           <tr *ngFor="let credit of homeChargesList|filter:term">
+            <td>{{credit.typeName}}</td>
             <td>{{credit.deliveryCharges}}</td>
             <td>{{credit.meridionalCommision}}</td>
             <td>{{credit.deliveryPatnerFees}}</td>
             <td>
-              <img src="assets/Images/edit.png" data-toggle="modal" data-target="#exampleModal"
-                (click)="getid(credit)">
+              <img src="assets/Images/edit.png" data-toggle="modal" data-target="#exampleModal" (click)="getid(credit)">
             </td>
           </tr>
 
@@ -62,13 +62,18 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Charges Master</h5>
+       
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Edit</h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'&&typeid=='1'">Modifications des frais de
+          livraison en pharmacie </h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'&&typeid=='2'">Modifications des frais de
+          analyses et Imagerie </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-       
+
 
         <div class="row">
           <div class="col-lg-4">
@@ -86,8 +91,8 @@
             <label *ngIf="languageid=='6'">Commission Voiladoc :</label>
           </div>
           <div class="col-lg-5">
-            <input type="text" class="form-control"  [(ngModel)]="meridionalcommission"
-              name="meridionalcommission" (ngModelChange)="GetCommission($event)" />
+            <input type="text" class="form-control" [(ngModel)]="meridionalcommission" name="meridionalcommission"
+              (ngModelChange)="GetCommission($event)" />
           </div>
         </div><br>
         <div class="row">
@@ -104,13 +109,16 @@
         <div class="row">
           <div class="col-lg-5"></div>
           <div class="col-lg-2">
-            <button class="btn btncolor" (click)="update()">Update</button>
+            <button class="btn btncolor" (click)="update()">{{labels[0].update}}</button>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btncolors" data-dismiss="modal">Close</button>
-      
+        <button type="button" class="btn btn-secondary btncolors" data-dismiss="modal"
+          *ngIf="languageid=='1'">Close</button>
+        <button type="button" class="btn btn-secondary btncolors" data-dismiss="modal"
+          *ngIf="languageid=='6'">Fermer</button>
+
       </div>
     </div>
   </div>

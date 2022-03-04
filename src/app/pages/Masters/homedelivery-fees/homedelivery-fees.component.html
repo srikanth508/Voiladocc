@@ -111,8 +111,8 @@
         <form #doctorForm="ngForm">
           <div class="row">
             <div class="col-lg-4">
-              <label *ngIf="languageid=='1'">Delivery Charges :</label>
-              <label *ngIf="languageid=='6'">Frais de livraison :</label>
+              <label *ngIf="languageid=='1'">Fees paid by patients :</label>
+              <label *ngIf="languageid=='6'">Frais payés par les patients :</label>
             </div>
             <div class="col-lg-5">
               <input type="text" required [(ngModel)]="deliverycharges" name="deliverycharges" class="form-control" />
@@ -132,7 +132,7 @@
           <div class="row">
             <div class="col-lg-4">
               <label *ngIf="languageid=='1'">Delivery Patner Fees :</label>
-              <label *ngIf="languageid=='6'">Frais de partenaire de livraison :</label>
+              <label *ngIf="languageid=='6'">Honoraires du partenaire :</label>
             </div>
             <div class="col-lg-5">
               <input type="text" class="form-control" disabled [(ngModel)]="deliveryPatnerFees"

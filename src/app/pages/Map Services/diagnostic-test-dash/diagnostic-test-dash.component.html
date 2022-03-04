@@ -22,7 +22,7 @@
       </select> -->
 
       <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="diagnosticlist" [settings]="dia"
-      (onSelect)="GetDiagnosticcenterID($event)">
+      (onSelect)="GetDiagnosticcenterID($event)" *ngIf="showDrop=='1'">
     </ng-multiselect-dropdown>
     </div>
     <div class="col-lg-6">

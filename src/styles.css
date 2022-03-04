@@ -190,6 +190,7 @@ label{
       {
           background-color: #f18235;
           color:white;
+          border-radius: 15px;
           
       }
      .specforimg
@@ -347,4 +348,19 @@ button:disabled {
     margin-top: -42px;
    }
   
+}
+
+
+
+.MastersDashboardButtons
+{
+  text-align: end;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  background-color: #f18235;
+  border-radius: 10px;
 }

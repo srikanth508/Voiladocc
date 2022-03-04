@@ -16,6 +16,7 @@ export class IndRecpdashComponent implements OnInit {
   labels: any;
   count: any;
   pinno: any;
+  pp: any;
   Showpassword: any;
   doctorid: any;
   recpid: any;
@@ -87,7 +88,7 @@ export class IndRecpdashComponent implements OnInit {
 
 
   public GetDeatsils(details) {
-    
+
     this.id = details.id,
       this.username = details.userName,
       this.oldpassword = details.password,
@@ -102,7 +103,7 @@ export class IndRecpdashComponent implements OnInit {
 
 
   public updatedetails() {
-    
+
     var entity = {
       'ID': this.id,
       'DoctorID': this.doctorid,
@@ -146,9 +147,9 @@ export class IndRecpdashComponent implements OnInit {
   public entercurrentpwd: any;
 
   public CheckPasswordvalidate() {
-    
+
     if (this.Enteredpinno == "" || this.entercurrentpwd == "") {
-      
+
       if (this.languageID == 1) {
         Swal.fire('Please Enter Your Pin No && Current password')
         this.entercurrentpwd = "";
@@ -163,14 +164,14 @@ export class IndRecpdashComponent implements OnInit {
 
     }
     else {
-      
+
       if (this.pinno == this.Enteredpinno && this.currentpwd == this.entercurrentpwd) {
         this.Showpassword = 1;
         this.Enteredpinno = ""
         this.entercurrentpwd = "";
       }
       else {
-        
+
         if (this.languageID == 1) {
           Swal.fire('Please enter valid Pinno and valid password')
           this.Enteredpinno = ""

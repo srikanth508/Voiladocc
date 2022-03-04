@@ -4019,9 +4019,9 @@ export class HelloDoctorService {
   }
 
 
-  public UpdateBookAppointmentFollowupVisit(appointmentid) {
+  public UpdateBookAppointmentFollowupVisit(appointmentid, followappid) {
 
-    return this.http.get<any[]>(this.host + '/Doctor/UpdateBookAppointmentFollowupVisit?AppointmentID=' + appointmentid);
+    return this.http.get<any[]>(this.host + '/Doctor/UpdateBookAppointmentFollowupVisit?AppointmentID=' + appointmentid + '&FollowUpAppointmentTypeID=' + followappid);
   }
 
   public GetDayID(day) {
@@ -6309,7 +6309,7 @@ export class HelloDoctorService {
   }
 
 
-  
+
   public UpdateHomeCountryVisitDeliveryChargesMaster(data) {
     this.url = "http://localhost:4199/" + '/Doctor/UpdateHomeCountryVisitDeliveryChargesMaster';
     return this.http.post(this.url, data)

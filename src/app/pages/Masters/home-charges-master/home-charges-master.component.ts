@@ -39,12 +39,14 @@ export class HomeChargesMasterComponent implements OnInit {
 
 
   id: any;
+  typeid:any;
 
   getid(credit) {
     this.id = credit.id
     this.deliverycharges=credit.deliveryCharges;
     this.meridionalcommission=credit.meridionalCommision;
     this.deliveryPatnerFees=credit.deliveryPatnerFees
+    this.typeid=credit.typeID
   }
 
 

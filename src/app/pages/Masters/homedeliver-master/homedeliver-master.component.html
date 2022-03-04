@@ -12,101 +12,128 @@
 <div class="container-fluid card card:hover ">
   <br>
   <form #facilityForm="ngForm">
-    <div class="row">
-      <div class="col-lg-3">
-        <label class="REGISTRATION NO:">Type :</label>
-        <span class="required">*</span>
-      </div>
-      <div class="col-lg-4">
-       <input type="radio" value="1" [(ngModel)]="typeid" name="typeid">&nbsp; {{labels[0].pharmacies}}
-       <input type="radio" value="2" [(ngModel)]="typeid" name="typeid"> {{labels[0].diagnosticcenter}}
-      </div>
-    </div>
-    <div class="row" *ngIf="typeid==1">
-      <div class="col-lg-3">
-        <label>{{labels[0].pharmacies}} :</label>
-        <span class="required">*</span>
-      </div>
-      <div class="col-lg-4">
-        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="pharmacylist" [settings]="pharmacydd"
-          (onSelect)="GetPharmacyID($event)">
-        </ng-multiselect-dropdown>
-      </div>
-    </div>
-    <div class="row" *ngIf="typeid==2">
-      <div class="col-lg-3">
-      <label>{{labels[0].diagnosticcenter}} :</label>
-        <span class="required">*</span>
-      </div>
-      <div class="col-lg-4">
-        <!--<input type="text" placeholder="Name" class="form-control"> -->
-        <!-- <select class="dropdown form-control" (change)="GetDiagnosticID($event)">
-          <option value="" selected>Select</option>
-          <option *ngFor="let diagnostic of diagnosticlist" value={{diagnostic.id}}>{{diagnostic.diagnosticCenterName}}
-          </option>
-        </select> -->
-
-        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="diagnosticlist" [settings]="diadd"
-          (onSelect)="GetDiagnosticID($event)">
-        </ng-multiselect-dropdown>
-      </div>
-    </div>
-    <br>
 
     <div class="row">
-      <div class="col-lg-3">
-        <label class="REGISTRATION NO:">{{labels[0].masterSetting}} :</label>
-        <span class="required">*</span>
-      </div>
-      <div class="col-lg-4">
-        <input type="radio"  [(ngModel)]="masterSetup" name="masterSetup" value="2" (click)="getMastersetup(masterSetup)">&nbsp;{{labels[0].yes}}
-        <input type="radio" [(ngModel)]="masterSetup" name="masterSetup" value="1" (click)="getMastersetup(masterSetup)">&nbsp;{{labels[0].no}}
-      </div>
-    </div><br>
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="REGISTRATION NO:">Type :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <input type="radio" value="1" [(ngModel)]="typeid" name="typeid">&nbsp; {{labels[0].pharmacies}}
+            <input type="radio" value="2" [(ngModel)]="typeid" name="typeid"> {{labels[0].diagnosticcenter}}
+          </div>
 
-    <div class="row">
-      <div class="col-lg-3">
-        <label class="REGISTRATION NO:">{{labels[0].deliverycharges}} :</label>
-        <span class="required">*</span>
-      </div>
-      <div class="col-lg-4">
-        <input type="text" class="form-control" [disabled]="masterSetup==2" required [(ngModel)]="deliverycharges" name="deliverycharges"
-          placeholder="{{labels[0].deliverycharges}}">
-      </div>
-    </div><br>
-    <div class="row">
-      <div class="col-lg-3">
-        <label class="REGISTRATION NO:">{{labels[0].voiladoccommission}} :</label>
-        <span class="required">*</span>
-      </div>
-      <div class="col-lg-4">
-        <input type="text" class="form-control" [disabled]="masterSetup==2" required [(ngModel)]="meridionalcommission" name="meridionalcommission"
-          placeholder="{{labels[0].voiladoccommission}}" >
-      </div>
-    </div><br>
 
-    <div class="row" *ngIf="typeid=='1'">
-      <div class="col-lg-3">
-        <label class="REGISTRATION NO:">{{labels[0].deliverypatnerfees}} :</label>
-        <span class="required">*</span>
-      </div>
-      <div class="col-lg-4">
-        <input type="text" class="form-control" [disabled]="masterSetup==2"  required [(ngModel)]="deliverypatnerfees" name="deliverypatnerfees"
-          placeholder="{{labels[0].deliverypatnerfees}}">
-      </div>
-    </div><br>
-    <div class="row">
-      <div class="col-lg-3">
-      </div>
-      <div class="col-lg-2">
-        <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
-          [disabled]="facilityForm.form.invalid" 
-          (click)="insertdetails()">{{labels[0].save}}</button>
-      
+        </div>
+        <div class="row" *ngIf="typeid==1">
+          <div class="col-lg-4">
+            <label>{{labels[0].pharmacies}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="pharmacylist" [settings]="pharmacydd"
+              (onSelect)="GetPharmacyID($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+        <div class="row" *ngIf="typeid==2">
+          <div class="col-lg-4">
+            <label>{{labels[0].diagnosticcenter}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <!--<input type="text" placeholder="Name" class="form-control"> -->
+            <!-- <select class="dropdown form-control" (change)="GetDiagnosticID($event)">
+              <option value="" selected>Select</option>
+              <option *ngFor="let diagnostic of diagnosticlist" value={{diagnostic.id}}>{{diagnostic.diagnosticCenterName}}
+              </option>
+            </select> -->
+
+            <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="diagnosticlist" [settings]="diadd"
+              (onSelect)="GetDiagnosticID($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="REGISTRATION NO:">{{labels[0].masterSetting}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <input type="radio" [(ngModel)]="masterSetup" name="masterSetup" value="2"
+              (click)="getMastersetup(masterSetup)">&nbsp;{{labels[0].yes}}
+            <input type="radio" [(ngModel)]="masterSetup" name="masterSetup" value="1"
+              (click)="getMastersetup(masterSetup)">&nbsp;{{labels[0].no}}
+          </div>
+        </div><br>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="REGISTRATION NO:">{{labels[0].deliverycharges}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" [disabled]="masterSetup==2" required [(ngModel)]="deliverycharges"
+              name="deliverycharges" placeholder="{{labels[0].deliverycharges}}">
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="REGISTRATION NO:">{{labels[0].voiladoccommission}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" [disabled]="masterSetup==2" required
+              [(ngModel)]="meridionalcommission" name="meridionalcommission"
+              placeholder="{{labels[0].voiladoccommission}}">
+          </div>
+        </div><br>
+
+        <div class="row" *ngIf="typeid=='1'">
+          <div class="col-lg-4">
+            <label class="REGISTRATION NO:">{{labels[0].deliverypatnerfees}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" [disabled]="masterSetup==2" required
+              [(ngModel)]="deliverypatnerfees" name="deliverypatnerfees" placeholder="{{labels[0].deliverypatnerfees}}">
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-4">
+          </div>
+          <div class="col-lg-4">
+            <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+              [disabled]="facilityForm.form.invalid" (click)="insertdetails()">{{labels[0].save}}</button>
+
+          </div>
+          <div class="col-lg-5">
+          </div>
+        </div>
       </div>
       <div class="col-lg-5">
+        <div *ngIf="languageid==1">
+          Note :
+          <ul class="licolor">
+            <li> - Fees for pharmacy means, "delivery service fees".</li>
+            <li> - Fees for Lab means, "home sample pickup service fees".</li>
+          </ul>
+        </div>
+
+        <div *ngIf="languageid==6">
+          Noter :
+          <ul class="licolor">
+            <li> - Frais de pharmacie signifie « frais de service de livraison ».</li>
+            <li> - Les frais de laboratoire signifient "frais de service de ramassage d'échantillons à domicile".</li>
+          </ul>
+        </div>
+
       </div>
     </div>
+
     <br>
   </form>
 </div>
