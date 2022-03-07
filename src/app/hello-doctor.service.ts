@@ -6311,7 +6311,12 @@ export class HelloDoctorService {
 
 
   public UpdateHomeCountryVisitDeliveryChargesMaster(data) {
-    this.url = "http://localhost:4199/" + '/Doctor/UpdateHomeCountryVisitDeliveryChargesMaster';
+    this.url = this.host + '/Doctor/UpdateHomeCountryVisitDeliveryChargesMaster';
+    return this.http.post(this.url, data)
+  }
+
+  public InsertImportCityMaster(data) {
+    this.url = "http://localhost:4199/" + '/Master/InsertImportCityMaster';
     return this.http.post(this.url, data)
   }
 }

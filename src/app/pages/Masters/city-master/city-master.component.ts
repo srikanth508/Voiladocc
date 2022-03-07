@@ -3,6 +3,7 @@ import { HelloDoctorService } from '../../../hello-doctor.service';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-city-master',
   templateUrl: './city-master.component.html',
@@ -125,4 +126,9 @@ export class CityMasterComponent implements OnInit {
       
     })
   }
+
+
+
+
+
 }
