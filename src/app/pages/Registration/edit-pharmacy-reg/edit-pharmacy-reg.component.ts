@@ -44,6 +44,7 @@ export class EditPharmacyRegComponent implements OnInit {
   public languageid: any;
   public labels: any;
   date=new Date();
+  labels4:any;
   ngOnInit() {
     this.activatedroute.params.subscribe(params => {
 
@@ -91,6 +92,15 @@ export class EditPharmacyRegComponent implements OnInit {
       data => {
 
         this.labels = data;
+      }, error => {
+      }
+    )
+    
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+       
       }, error => {
       }
     )

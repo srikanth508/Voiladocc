@@ -178,22 +178,22 @@
       <div class="row">
 
         <div class="col-lg-4">
-          <label class="Address_label">Tax Identification :</label>
+          <label class="Address_label">{{labels4[0].taxidentification}} :</label>
 
         </div>
         <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="Tax Identification" [(ngModel)]="taxidentification"
+          <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}" [(ngModel)]="taxidentification"
             name="taxidentification">
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-lg-4">
-          <label class="Address_label">Business ID :</label>
+          <label class="Address_label">{{labels4[0].businessid}} :</label>
 
         </div>
         <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="Business ID" [(ngModel)]="businessid"
+          <input type="text" class="form-control" placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid"
             name="businessid">
         </div>
       </div>
@@ -202,10 +202,10 @@
 
       <div class="row">
         <div class="col-lg-4">
-          <label class="Address_label">Commercial Registration & City :</label>
+          <label class="Address_label">{{labels4[0].commercial}} :</label>
         </div>
         <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="Commercial Registration & City"
+          <input type="text" class="form-control" placeholder="{{labels4[0].commercial}}y"
             [(ngModel)]="commercialcity" name="commercialcity">
         </div>
       </div>
@@ -214,78 +214,78 @@
 
       <div class="row">
         <div class="col-lg-4">
-          <label class="Address_label">Tax Professional :</label>
+          <label class="Address_label">{{labels4[0].taxprofessional}} :</label>
         </div>
         <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="Tax Professional" [(ngModel)]="taxprofessional"
+          <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}" [(ngModel)]="taxprofessional"
             name="taxprofessional">
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-lg-4">
-          <label class="Address_label">Social security fund no :</label>
+          <label class="Address_label">{{labels4[0].seccuritysocialfundno}} :</label>
         </div>
         <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="Social security fund no"
+          <input type="text" class="form-control" placeholder="{{labels4[0].seccuritysocialfundno}}"
             [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-lg-4">
-          <label class="Address_label">Name of the bank :</label>
+          <label class="Address_label">{{labels4[0].nameofthebank}} :</label>
         </div>
         <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="Name of the bank" [(ngModel)]="nameofbank"
+          <input type="text" class="form-control" placeholder="{{labels4[0].nameofthebank}}" [(ngModel)]="nameofbank"
             name="nameofbank">
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-lg-4">
-          <label class="Address_label">Account name :</label>
+          <label class="Address_label">{{labels4[0].accountname}} :</label>
         </div>
         <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="Account name" [(ngModel)]="accountName"
+          <input type="text" class="form-control" placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName"
             name="accountName">
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-lg-4">
-          <label class="Address_label">Account number :</label>
+          <label class="Address_label">{{labels4[0].accountnumber}} :</label>
         </div>
         <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="Account number" maxlength="24"
+          <input type="text" class="form-control" placeholder="{{labels4[0].accountnumber}}" maxlength="24"
             [(ngModel)]="accountNumber" name="accountNumber">
         </div>
       </div>
       <br>
       <div class="row" *ngIf="hospitalclinicid=='613'">
         <div class="col-lg-8">
-          <label>Subscription type :</label>
+          <label>{{labels4[0].subscriptiontype}} :</label>
           <span class="required">*</span>
         </div>
         <div class="col-md-6">
           <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-            (click)="Getsubscriptontype()" [value]="1">Monthly Subscription
+            (click)="Getsubscriptontype()" [value]="1">{{labels4[0].monthlySubscription}}
           &nbsp;
           <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-            (click)="Getsubscriptontype()" [value]="2"> Appointment Percentage
+            (click)="Getsubscriptontype()" [value]="2"> {{labels4[0].appointmentpercentage}}
           &nbsp;
           <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-            (click)="Getsubscriptontype()" [value]="3"> Both
+            (click)="Getsubscriptontype()" [value]="3"> {{labels4[0].both}}
         </div>
       </div><br>
       <div *ngIf="subscriptiontype=='1'">
         <div class="row">
           <div class="col-lg-4">
-            <label>Monthly Subscription :</label>
+            <label>{{labels4[0].monthlySubscription}} :</label>
             <span class="required">*</span>
           </div>
           <div class="col-lg-6">
-            <input type="text" placeholder="Monthly Subscription" name="monthlysubription"
+            <input type="text" placeholder="{{labels4[0].monthlySubscription}}" name="monthlysubription"
               [(ngModel)]="monthlysubription" class="form-control"
               onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
           </div>
@@ -295,11 +295,11 @@
       <div *ngIf="subscriptiontype=='2'">
         <div class="row">
           <div class="col-lg-4">
-            <label>Appointment percentage :</label>
+            <label>{{labels4[0].appointmentpercentage}} :</label>
             <span class="required">*</span>
           </div>
           <div class="col-lg-6">
-            <input type="text" placeholder="Appointment percentage" name="appointmentpercentage"
+            <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
               [(ngModel)]="appointmentpercentage" class="form-control"
               onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
           </div>
@@ -308,10 +308,10 @@
       <div *ngIf="subscriptiontype=='3'">
         <div class="row">
           <div class="col-lg-4">
-            <label>Appointment percentage :</label>
+            <label>{{labels4[0].appointmentpercentage}} :</label>
           </div>
           <div class="col-lg-6">
-            <input type="text" placeholder="Appointment Percentage" name="appointmentpercentage"
+            <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
               [(ngModel)]="appointmentpercentage" class="form-control"
               onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
           </div>
@@ -319,11 +319,11 @@
         <br />
         <div class="row">
           <div class="col-lg-4">
-            <label>Monthly Subscription :</label>
+            <label>{{labels4[0].monthlySubscription}} :</label>
             <span class="required">*</span>
           </div>
           <div class="col-lg-6">
-            <input type="text" placeholder="Monthly Subscription" name="monthlysubription"
+            <input type="text" placeholder="{{labels4[0].monthlySubscription}}" name="monthlysubription"
               [(ngModel)]="monthlysubription" class="form-control"
               onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
           </div>

@@ -39,8 +39,8 @@
             <td>{{details.offerName}}</td>
             <td>{{details.description}}</td>
             <td>{{details.offer}}</td>
-            <td>{{details.sdate}}</td>
-            <td>{{details.edate}}</td>
+            <td>{{details.sdate|date:'dd-MM-yyyy'}}</td>
+            <td>{{details.edate|date:'dd-MM-yyyy'}}</td>
             <td><img src="{{details.photoURL}}" style="height:50px;width:50px;" /></td>
             <td>
               <ng-template #tipcontent2>{{labels[0].delete}}</ng-template>

@@ -36,6 +36,7 @@ export class EditphysiotherapistComponent implements OnInit {
   public languageid: any;
   public labels: any;
   public dropzonelable: any;
+  labels4:any;
   ngOnInit() {
     this.activatedroute.params.subscribe(params => {
 
@@ -67,6 +68,15 @@ export class EditphysiotherapistComponent implements OnInit {
       data => {
 
         this.labels = data;
+      }, error => {
+      }
+    )
+    
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+       
       }, error => {
       }
     )

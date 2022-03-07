@@ -58,6 +58,7 @@ export class PharmacyregistrationComponent implements OnInit {
   evengtime1: any;
   evengtime2: any;
   evngtimings: any;
+  labels4:any;
 
   ngOnInit() {
     this.hospitalclinicid = localStorage.getItem('hospitalid');
@@ -78,6 +79,16 @@ export class PharmacyregistrationComponent implements OnInit {
         this.labels = data;
         this.SelectLabel = this.labels[0].selectt;
 
+      }, error => {
+      }
+    )
+
+    
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+       
       }, error => {
       }
     )
