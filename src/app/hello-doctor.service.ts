@@ -6316,7 +6316,7 @@ export class HelloDoctorService {
   }
 
   public InsertImportCityMaster(data) {
-    this.url = "http://localhost:4199/" + '/Master/InsertImportCityMaster';
+    this.url = this.host + '/Master/InsertImportCityMaster';
     return this.http.post(this.url, data)
   }
 }
