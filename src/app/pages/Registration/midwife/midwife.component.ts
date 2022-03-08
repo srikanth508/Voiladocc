@@ -49,6 +49,7 @@ export class MidwifeComponent implements OnInit {
   public dummdepartmentlist: any;
   public dropzonelable: any;
   public search: any;
+  labels4:any;
   ngOnInit() {
 
     this.dummid = localStorage.getItem('hospitalid');
@@ -125,6 +126,17 @@ export class MidwifeComponent implements OnInit {
 
         this.labels = data;
         this.SelectLabel = this.labels[0].select;
+
+
+      }, error => {
+      }
+    )
+
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+       
       }, error => {
       }
     )

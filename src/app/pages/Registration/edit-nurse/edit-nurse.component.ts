@@ -46,6 +46,7 @@ export class EditNurseComponent implements OnInit {
   public dropzonelable: any;
   hospitalname: any;
   hospitalclinicid:any;
+  labels4:any;
   ngOnInit() {
     this.activatedroute.params.subscribe(params => {
 
@@ -118,6 +119,14 @@ export class EditNurseComponent implements OnInit {
       data => {
 
         this.labels = data;
+      }, error => {
+      }
+    )
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+       
       }, error => {
       }
     )

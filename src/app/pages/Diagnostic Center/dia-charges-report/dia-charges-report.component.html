@@ -49,7 +49,7 @@
     <div class="col-lg-2">
       <b><label *ngIf="languageid=='1'">Amount</label>
         <label *ngIf="languageid=='6'">Montant total
-        </label> : {{GrandTotal}}</b>
+        </label> : {{GrandTotal|number:'1.2-2'|noComma}} DH</b>
     </div>
     <div class="col-lg-1">
       <b><label *ngIf="languageid=='1'">Count</label> <label *ngIf="languageid=='6'">Nombre</label>: {{count}}</b>
@@ -96,10 +96,10 @@
             <td>{{details.emailID}}</td>
             <!-- <td>{{details.diagnosticCenterName}}</td> -->
             <td>{{details.paymentType}}</td>
-            <td>{{details.paidAmount}}</td>
-            <td>{{details.meridionalCommission}}</td>
+            <td>{{details.paidAmount|number:'1.2-2'|noComma}} DH</td>
+            <td>{{details.meridionalCommission|number:'1.2-2'|noComma}} DH</td>
             <!-- <td>{{details.labpayement}}   </td> -->
-            <td>{{details.totalAmount}}</td>
+            <td>{{details.totalAmount|number:'1.2-2'|noComma}} DH</td>
             <!-- <td></td> -->
           </tr>
 

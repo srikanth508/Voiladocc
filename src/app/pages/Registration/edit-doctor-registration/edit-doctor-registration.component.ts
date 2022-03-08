@@ -66,7 +66,7 @@ export class EditDoctorRegistrationComponent implements OnInit {
   public serviceid: any;
   public servicelist: any;
   public docmedicalid: any;
-
+  labels4:any;
   public languageid: any;
   public labels: any;
   public speaklanguages: any;
@@ -130,6 +130,14 @@ export class EditDoctorRegistrationComponent implements OnInit {
       data => {
 
         this.labels = data;
+      }, error => {
+      }
+    )
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+       
       }, error => {
       }
     )

@@ -5,7 +5,8 @@
     </div>
     <div class="col-lg-3">
       <button type="button" routerLink="/ProvinceMaster"
-        style="float: right;background-color:  #f18235;width: 49%;color: white;" class="btn btncolor">{{labels[0].add}}</button>
+        style="float: right;background-color:  #f18235;width: 49%;color: white;"
+        class="btn btncolor">{{labels[0].add}}</button>
     </div>
   </div>
   <br>
@@ -13,15 +14,18 @@
 <div class="container-fluid card card:hover ">
   <div class="row" style="margin-top: 20px;">
     <div class="col-lg-3">
-      <input type="text" class="form-control"  placeholder="{{labels[0].search}}">
+      <input type="text" class="form-control" placeholder="{{labels[0].search}}" [(ngModel)]="term" name="term">
     </div>
     <div class="col-lg-3">
       <select class="form-control" (change)="GetCountryID($event)">
-          <option value="0">{{labels[0].selectCountry}}</option>
-          <option *ngFor="let couu of countrylist" value={{couu.id}}>{{couu.short}}</option>
+        <option value="0">{{labels[0].selectCountry}}</option>
+        <option *ngFor="let couu of countrylist" value={{couu.id}}>{{couu.short}}</option>
       </select>
-  </div>
-  <!-- <div class="col-lg-3">
+    </div>
+    <div class="col-lg-6"  style="text-align: end;">
+      <label>{{labels[0].count}} : {{count}}</label>
+    </div>
+    <!-- <div class="col-lg-3">
       <select class="form-control" *ngIf="countryid!='0'" (change)="GetCityID($event)">
           <option value="0">{{labels[0].selectProvince}}</option>
           <option *ngFor="let city of citylist" value={{city.id}}>{{city.short}}</option>

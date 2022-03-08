@@ -1,35 +1,47 @@
-
 <div class="container-fluid card card:hover headerspace">
   <div class="row headerspace">
     <div class="col-lg-3">
       <h5>{{labels[0].cityMasterDash}}</h5>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-5">
+
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-2">
+      <button style="height:35px;background-color: #f18235;color:white" class="btn btn-block btncolor"
+        data-toggle="modal" data-target="#importexcel">import excel</button>
+
+    </div>
+    <div class="col-lg-2">
       <button type="button" routerLink="/CityMaster"
-        style="float: right;background-color:  #f18235;width: 49%;color: white;" class="btn btncolor">{{labels[0].add}}</button>
+        style="float: right;background-color:  #f18235;width: 49%;color: white;"
+        class="btn btncolor">{{labels[0].add}}</button>
     </div>
+
   </div>
   <br>
 </div><br>
 <div class="container-fluid card card:hover ">
   <div class="row" style="margin-top: 20px;">
     <div class="col-lg-3">
-      <input type="text" class="form-control" [(ngModel)]="term" name="term"  placeholder="{{labels[0].search}}">
+      <input type="text" class="form-control" [(ngModel)]="term" name="term" placeholder="{{labels[0].search}}">
     </div>
     <div class="col-lg-3">
       <select class="form-control" (change)="GetCountryID($event)">
-          <option value="0">{{labels[0].selectCountry}}</option>
-          <option *ngFor="let couu of countrylist" value={{couu.id}}>{{couu.short}}</option>
+        <option value="0">{{labels[0].selectCountry}}</option>
+        <option *ngFor="let couu of countrylist" value={{couu.id}}>{{couu.short}}</option>
       </select>
-  </div>
-  <div class="col-lg-3">
+    </div>
+    <div class="col-lg-3">
       <select class="form-control" *ngIf="countryid!='0'" (change)="GetCityID($event)">
-          <option value="0">{{labels[0].selectProvince}}</option>
-          <option *ngFor="let city of citylist" value={{city.id}}>{{city.short}}</option>
+        <option value="0">{{labels[0].selectProvince}}</option>
+        <option *ngFor="let city of citylist" value={{city.id}}>{{city.short}}</option>
       </select>
-  </div>
+    </div>
+    <div class="col-lg-2" style="text-align: end;">
+
+      <label>{{labels[0].count}} : {{count}}</label>
+
+    </div>
   </div><br>
   <div class="row">
     <div class="col-lg-12" style="overflow: auto;">
@@ -57,7 +69,7 @@
                 <img src="assets/Images/dell.png" style="width: 20px;margin-left: 10px;"
                   (click)="DeleteAreaMaster(list.id)">
               </a>
-            
+
             </td>
           </tr>
         </thead>
@@ -66,3 +78,44 @@
   </div><br><br>
   <br>
 </div><br><br><br><br>
+
+
+
+
+
+<div id="importexcel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Import Excel</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <input type="file" accept=".xls,.xlsx" style="display: inline-block;" (change)="incomingfile($event)"
+              placeholder="Upload file" accept=".xlsx" />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-primary" (click)="Upload_file()" data-dismiss="modal">
+                Import Excel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

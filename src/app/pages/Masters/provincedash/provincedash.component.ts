@@ -49,6 +49,7 @@ export class ProvincedashComponent implements OnInit {
       this.countryid = even.target.value;
 
       this.provincelist = this.dummlist.filter(x => x.countryID == this.countryid)
+      this.count= this.provincelist.length;
       
       this.getcity();
     }
@@ -75,7 +76,7 @@ export class ProvincedashComponent implements OnInit {
       this.cityid = even.target.value;
 
       this.provincelist = this.dummlist.filter(x => x.cityID == this.cityid)
-   
+      this.count= this.provincelist.length;
     }
     else if (even.target.value == 0) {
       this.getcity()
@@ -83,14 +84,15 @@ export class ProvincedashComponent implements OnInit {
   }
 
 
-
+  count:any;
 
   public getprobincelist() {
     this.docservice.GetCityMasterByLangID(this.languageid).subscribe(
       data => {
        
         this.provincelist = data;
-        this.dummlist=this.provincelist
+        this.dummlist=this.provincelist;
+        this.count= this.provincelist.length;
       }, error => {
       }
     )
