@@ -191,6 +191,7 @@ label{
           background-color: #f18235;
           color:white;
           border-radius: 15px;
+        
           
       }
      .specforimg
@@ -338,15 +339,41 @@ button:disabled {
   border-radius: 15px;
  }
 
+ .h5tag
+ {
+   float: left;
+   font-size: 16px;
+ }
+
+ .Addbutton{
+   float:right;
+   margin-top: 5px;
+ }
+
+
 @media only screen and (max-width: 600px) {
   .headertext{
-    font-size: 13px;
+    font-size: 10px;
   }
   .Hederbutton{
     float: right;
     border-radius: 15px;
     margin-top: -42px;
    }
+
+   .h5tag
+   {
+     float: left;
+     font-size: 10px;
+   }
+   .btncolor
+   {
+       background-color: #f18235;
+       color:white;
+       border-radius: 15px;
+      
+   }
+
   
 }
 

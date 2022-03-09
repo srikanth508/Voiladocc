@@ -10,6 +10,8 @@ import * as OT from '@opentok/client';
 import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 
 
@@ -199,6 +201,7 @@ export class VediocallComponent implements OnInit {
   public chatIDlist: any;
   manuallydrug: any;
   user: any;
+  sendMailPrescriptions: any;
 
   public showclosebutton: any;
   ngOnInit() {
@@ -348,6 +351,7 @@ export class VediocallComponent implements OnInit {
     this.GetDiagnpsticDoctorTemplates();
     this.getdiagnostictests();
     this.getvitaldetails()
+    //  this.getPatientDetails()
   }
 
 
@@ -1492,7 +1496,7 @@ export class VediocallComponent implements OnInit {
   }
 
   public InsertPrescription() {
-
+debugger
     // if (this.appointmenttypeid == '2') {
     //   this.endorse = 0;
     // }
@@ -1537,7 +1541,7 @@ export class VediocallComponent implements OnInit {
         'SubstainablenotPermitted': this.qwerty2[i].SubstainablenotPermitted
       }
       this.docservice.InsertDoctor_PatientPrescription(entity).subscribe(data => {
-
+        debugger
         if (data != 0) {
           if (this.languageid == 1) {
             Swal.fire('Completed', 'Prescription saved successfully', 'success');
@@ -1545,12 +1549,16 @@ export class VediocallComponent implements OnInit {
           else {
             Swal.fire('Détails enregistrés', 'Ordonnance');
           }
-
+          debugger
+          this.sendMailPrescriptions = 1;
+          document.getElementById("PrecsriptionPdfFormat").click();
           this.tablecuont1 = 0;
-          this.qwerty2 = [];
+          debugger
+          // this.qwerty2 = [];
           this.getdoctorpatinetdetails();
           this.GetDoctorPrescrptionTemplates()
           this.InsertPrscriptionNotifications()
+      
         }
       })
     }
@@ -2813,6 +2821,101 @@ export class VediocallComponent implements OnInit {
       this.SendTwiliSms(smsdesc, this.smsmobileno)
     }
   }
+
+
+  // pdfprslist: any;
+  // getPatientDetails() {
+  //   this.docservice.GetBooApointmnetByAppIDPatientDetails(this.languageid, this.appointmentid, 1).subscribe(data => {
+  //     this.pdfprslist = data;
+  //   })
+  // }
+
+
+
+
+
+
+
+  // public prescriptionuel = []
+  // public SendPrescrriptionEmail() {
+
+  //   var data = document.getElementById('content');
+  //   html2canvas(data).then(canvas => {
+
+  //     var imgWidth = 208;
+  //     var pageHeight = 295;
+  //     var imgHeight = canvas.height * imgWidth / canvas.width;
+  //     var doc = new jsPDF("p", "mm", "a4");
+  //     var width = doc.internal.pageSize.getWidth();
+  //     var height = doc.internal.pageSize.getHeight();
+
+  //     var heightLeft = imgHeight;
+  //     var doc = new jsPDF('p', 'mm');
+  //     var position = 0;
+  //     while (heightLeft >= 0) {
+  //       const contentDataURL = canvas.toDataURL('image/png')
+  //       position = heightLeft - imgHeight;
+  //       doc.addPage();
+  //       doc.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+  //       heightLeft -= pageHeight;
+  //     }
+  //     doc.deletePage(1)
+  //     var pdf = doc.output('blob');
+
+  //     var file = new File([pdf], "Prescriptions" + ".pdf");
+
+  //     let body = new FormData();
+
+  //     body.append('Dan', file);
+
+  //     let foldername = this.patientiddd + '/' + 'Prescriptions'
+
+  //     this.docservice.DoctorReports(file, foldername).subscribe(res => {
+  //       debugger
+  //       this.prescriptionuel.push(res);
+  //       this.sendprescripyionEmail()
+
+  //     });
+  //   });
+  // }
+
+
+
+
+  // public sendprescripyionEmail() {
+  //   debugger
+  //   var entity = {
+  //     'emailto': this.email,
+  //     'emailsubject': this.user + " has written prescription for you. please check",
+  //     'emailbody': this.user + " has written prescription for you. please check",
+  //     'attachmenturl': this.prescriptionuel,
+  //     'cclist': 0,
+  //     'bcclist': 0
+  //   }
+  //   debugger
+  //   this.docservice.sendemail(entity).subscribe(async data => {
+  //     debugger
+  //     if (data == 'Success') {
+  //       if (this.languageid == 1) {
+  //         Swal.fire('Mail sent successfully.');
+  //         this.qwerty2 = [];
+
+  //       }
+  //       else if (this.languageid == 6) {
+  //         Swal.fire('Email envoyé avec succès');
+  //         this.qwerty2 = [];
+  //       }
+
+  //     }
+
+
+  //     this.qwerty2 = []
+
+  //   }, error => {
+
+  //   })
+  // }
+
 
 }
 
