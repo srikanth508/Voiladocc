@@ -515,38 +515,38 @@
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
               <input type="checkbox" value="1" [(ngModel)]="soappdf" name="soappdf">&nbsp;
               <label *ngIf="languageid=='1'">SOAP Notes</label>
               <label *ngIf="languageid=='6'">Notes SOAP </label>
 
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-7">
               <input type="checkbox" value="1" [(ngModel)]="referals" name="referals">&nbsp;
               <label>{{labels[0].refertodoctor}}</label>
 
             </div> <br>
-            <div class="col-lg-6">
+            <div class="col-lg-5">
 
               <input type="checkbox" value="1" [(ngModel)]="Prescription" name="Prescription">&nbsp;
               <label *ngIf="languageid=='1'">Prescription</label>
               <label *ngIf="languageid=='6'">Ordonnance </label>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-7">
               <input type="checkbox" value="1" [(ngModel)]="medicalcertificate" name="medicalcertificate">&nbsp;
               <label *ngIf="languageid=='1'">Medical Certificate</label>
               <label *ngIf="languageid=='6'">Certificat médical </label>
 
 
             </div><br>
-            <div class="col-lg-6">
+            <div class="col-lg-5">
               <input type="checkbox" value="1" [(ngModel)]="Test" name="Test">&nbsp;
               <label *ngIf="languageid=='1'">Diagnostic Test</label>
               <label *ngIf="languageid=='6'">Test de laboratoire</label>
             </div>
 
 
-            <div class="col-lg-6">
+            <div class="col-lg-7">
               <input type="checkbox" value="1" [(ngModel)]="medical" name="medical">&nbsp;
               <label *ngIf="languageid=='6'">Evaluation médicale</label>
               <label *ngIf="languageid=='1'">Medical questionnaire</label>
@@ -559,7 +559,7 @@
               <button type="button" class="btn btn-secondary" style="background-color: #f18235;color: white;"
                 data-toggle="modal" data-target="#mymodalss" (click)="GenaratePdf()">
                 <label *ngIf="languageid=='1'">View</label>
-                <label *ngIf="languageid=='6'">Voir
+                <label *ngIf="languageid=='6'">Générer
                 </label>
               </button>
             </div>

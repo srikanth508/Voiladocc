@@ -29,12 +29,12 @@
         <div class="col-lg-3">
             <select class="form-control" (change)="GetType($event)" [(ngModel)]="typeid" name="typeid">
                 <option selected value="">Select</option>
-                <option value="1">Hospital</option>
-                <option value="2"> Clinic</option>
-                <option value="3">Independent Doctor</option>
-                <option value="4">Independent Nurse</option>
-                <option value="5">Independent Physiotherapist</option>
-                <option value="6">Independent MidWife</option>
+                <option value="1">{{labels[0].hospital}}</option>
+                <option value="2"> {{labels[0].clinic}}</option>
+                <option value="3">{{labels[0].independentDoctor}}</option>
+                <option value="4">{{labels[0].independentNurse}}</option>
+                <option value="5">{{labels[0].independentPhysiotherapist}}</option>
+                <option value="6">{{labels[0].independentMidwife}}</option>
             </select>
         </div>
         <div class="col-lg-3">
@@ -70,19 +70,19 @@
             <table>
 
                 <tr>
-                    <th *ngIf="typeid==1">Hospital Name</th>
-                    <th *ngIf="typeid==2">Clinic</th>
-                    <th *ngIf="typeid==3">Doctor</th>
-                    <th *ngIf="typeid==4">Nurse</th>
-                    <th *ngIf="typeid==5">Physiotherapist</th>
-                    <th *ngIf="typeid==6">Midwife</th>
+                    <th *ngIf="typeid==1">{{labels[0].hospital}}</th>
+                    <th *ngIf="typeid==2">{{labels[0].clinic}}</th>
+                    <th *ngIf="typeid==3">{{labels[0].independentDoctor}}</th>
+                    <th *ngIf="typeid==4">{{labels[0].independentNurse}}</th>
+                    <th *ngIf="typeid==5">{{labels[0].independentPhysiotherapist}}</th>
+                    <th *ngIf="typeid==6">{{labels[0].independentMidwife}}</th>
 
-                    <th>Contact Person</th>
-                    <th>Phone No</th>
-                    <th>Email ID</th>
-                    <th>Month</th>
-                    <th>Monthly Subscription Fees</th>
-                    <th>Actions</th>
+                    <th>{{labels[0].contactPerson}}</th>
+                    <th>{{labels[0].phoneNo}}</th>
+                    <th>{{labels[0].emailID}}</th>
+                    <th>{{labels[0].month}}</th>
+                    <th>{{labels[0].monthlySuscriptionFees}}</th>
+                    <th>{{labels[0].actions}}</th>
                 </tr>
                 <tr *ngFor="let details of billinglist">
                     <td>{{details.providerName}}</td>
@@ -92,8 +92,8 @@
                     <td>{{details.name}}</td>
                     <td>{{details.monthlySubscription|number:'1.2-2'|noComma}} DH</td>
 
-                    <td><button (click)="GetList(details)" class="btncolor" data-toggle="modal" data-target="#errorServer">View
-                            Invoice</button></td>
+                    <td><button (click)="GetList(details)" class="btncolor" data-toggle="modal" data-target="#errorServer">{{labels[0].viewInvoice}}
+                            </button></td>
 
                 </tr>
 

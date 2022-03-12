@@ -27,6 +27,7 @@ export class DocRecpAppointmentsComponent implements OnInit {
   docaddres: any;
   nationaidno: any;
   regno: any;
+  medical: any;
   patientaddress: any;
   constructor(public docservice: HelloDoctorService,private spinner: NgxSpinnerService) { }
 
@@ -943,11 +944,11 @@ export class DocRecpAppointmentsComponent implements OnInit {
 
 
 
-  Prescription: boolean;
-  Test: boolean;
-  soappdf: boolean;
-  medicalcertificate: boolean;
-  referals: boolean;
+  Prescription: any;
+  Test: any;
+  soappdf: any;
+  medicalcertificate: any;
+  referals: any;
   pdfprslist: any;
 
   public GetAllPrescription(appointmentid, email) {

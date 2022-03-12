@@ -41,6 +41,7 @@ export class NewBillingComponent implements OnInit {
     blob: any;
     options: NgDateRangePickerOptions;
     typeid: any;
+    labels:any;
 
     ngOnInit() {
         ;
@@ -55,10 +56,15 @@ export class NewBillingComponent implements OnInit {
         this.month = date.getMonth() + 1;
         this.year = date.getFullYear();
         this.typeid = 1
-        this.GetBillingdetails()
+        this.GetBillingdetails();
+        this.getLanguage();
     }
 
-
+    getLanguage() {
+        this.docservice.GetAdmin_Mastersss_Labels(this.languageid).subscribe(data => {
+            this.labels = data;
+        })
+    }
 
 
 

@@ -45,7 +45,16 @@ export class SubscriptionpaidReportsComponent implements OnInit {
     else if (this.languageid == 6) {
       this.dropzonelable = "Télécharger des fichiers"
     }
+    this.getLanguage();
   }
+  labels:any;
+
+  getLanguage() {
+    this.docservice.GetAdmin_Mastersss_Labels(this.languageid).subscribe(data => {
+        this.labels = data;
+    })
+}
+
 
 
 

@@ -6315,4 +6315,10 @@ export class HelloDoctorService {
     this.url = this.host + '/Master/InsertImportCityMaster';
     return this.http.post(this.url, data)
   }
+
+  public Getlocation()
+  {
+    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=Someroad+64&key=AIzkeystuffjXDm6eU5mPP9Nczg')
+  }
+
 }

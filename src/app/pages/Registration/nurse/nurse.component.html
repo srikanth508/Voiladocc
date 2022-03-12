@@ -301,7 +301,7 @@
     <br>
     <div class="row">
       <div class="col-lg-8">
-        <h4 class="text-center">Financial</h4>
+        <h4 class="text-center">Financier</h4>
       </div>
     </div>
     <div class="row">
@@ -389,7 +389,56 @@
       </div>
     </div>
     <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">Exonerated :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="radio" value="1" [(ngModel)]="vatCheck" name="vatCheck"  (click)="checkVatvalue(1)">
+        &nbsp;{{labels[0].yes}}
+        <input type="radio" value="0" [(ngModel)]="vatCheck" name="vatCheck"  (click)="checkVatvalue(0)">
+        &nbsp;{{labels[0].no}}
+      </div>
+    </div>
+    <br>
+    <div>
+    <div class="row" >
+      <div class="col-lg-3">
+        <label class="Address_label">Vat Percentage :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" required
+          name="vatpercentage" placeholder="Vat Percentage">
+      </div>
+    </div>
+    <br>
+  </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <label *ngIf="languageid=='1'">Exoneration period from :</label>
+        <label *ngIf="languageid=='6'">Période d'exonération à partir de :</label>
+        <span class="required">*</span>
+      </div>
 
+      <div class="col-lg-4">
+        <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+          placeholder="{{labels[0].contractstratdate}}" [minDate]="today" name="contractstartdate" required
+          [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractstartdate" bsDatepicker>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-lg-3">
+        <label *ngIf="languageid=='1'">Exoneration period to :</label>
+        <label *ngIf="languageid=='6'">Période d'exonération à :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+          placeholder="{{labels[0].contractenddate}}" [minDate]="contractstartdate" name="contractenddate" required
+          [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractenddate" bsDatepicker>
+      </div>
+    </div><br>
     <div class="row" *ngIf="hospitalclinicid=='612'">
       <div class="col-lg-3">
         <label>{{labels4[0].subscriptiontype}} :</label>
@@ -427,7 +476,7 @@
         </div>
         <div class="col-lg-4">
           <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
-            [(ngModel)]="appointmentpercentage" class="form-control"
+          maxlength="3" [(ngModel)]="appointmentpercentage" class="form-control"
             onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
         </div>
       </div><br>
@@ -439,7 +488,7 @@
         </div>
         <div class="col-lg-4">
           <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
-            [(ngModel)]="appointmentpercentage" class="form-control"
+           maxlength="3" [(ngModel)]="appointmentpercentage" class="form-control"
             onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
         </div>
       </div>

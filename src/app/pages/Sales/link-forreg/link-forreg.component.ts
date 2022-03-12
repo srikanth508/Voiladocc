@@ -53,7 +53,7 @@ export class LinkForregComponent implements OnInit {
       var entity = {
         'emailto': this.email,
         'emailsubject': 'Inscriptions Voiladoc',
-        'emailbody': 'Chère / Cher  ' + this.username + ',' + "<br><br>" + "Merci de votre interêt pour Voiladoc. Veuillez cliquer sur le lien ci-dessous pour vous connecter à la page d’enregistrement. <br><br>" + "Lien : " + this.address + "<br><br>" + 'Nom d’utilisateur :' + this.username + "<br>" + 'Mot de passe  :' + this.password + "<br><br>" + "Pour votre sécurité, ne divulguez pas votre mot de passe. Si vous avez besoin d’aide veuillez contacter votre conseiller Voiladoc ou répondre à ce courriel." + "<br><br>" + 'Amicalement,' + "<br>" + 'L’équipe de Voiladoc'
+        'emailbody': 'Chère / Cher  ' + this.username + ',' + "<br><br>" + "Merci de votre interêt pour Voiladoc. Veuillez cliquer sur le lien ci-dessous pour vous connecter à la page d’enregistrement. <br><br>" + "Lien : " + this.address + "<br><br>" + 'Nom d’utilisateur : ' + this.username + "<br>" + 'Mot de passe  : ' + this.password + "<br><br>" + "Pour votre sécurité, ne divulguez pas votre mot de passe. Si vous avez besoin d’aide veuillez contacter votre conseiller Voiladoc ou répondre à ce courriel." + "<br><br>" + 'Amicalement,' + "<br>" + 'L’équipe de Voiladoc' + '<br>' + 'www.voiladoc.ma' + '<br>' + 'Support : +212522446145'
       }
       this.docservice.sendemailsForLinkRegistrations(entity).subscribe(data => {
 

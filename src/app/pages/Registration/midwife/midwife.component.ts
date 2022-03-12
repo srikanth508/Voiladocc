@@ -36,6 +36,7 @@ export class MidwifeComponent implements OnInit {
   public countrylist: any;
   public countrydd: any;
   public countryid: any;
+  today = new Date()
   public citydd: any;
   public areadd: any;
   public languageid: any;
@@ -49,7 +50,11 @@ export class MidwifeComponent implements OnInit {
   public dummdepartmentlist: any;
   public dropzonelable: any;
   public search: any;
-  labels4:any;
+  labels4: any;
+  vatCheck: any;
+  vatpercentage: any;
+contractstartdate:any;
+contractenddate:any;
   ngOnInit() {
 
     this.dummid = localStorage.getItem('hospitalid');
@@ -136,7 +141,7 @@ export class MidwifeComponent implements OnInit {
       data => {
 
         this.labels4 = data;
-       
+
       }, error => {
       }
     )
@@ -302,7 +307,7 @@ export class MidwifeComponent implements OnInit {
     }
   }
 
-  slotTypeID:any;
+  slotTypeID: any;
   GetSlotDurationID(even) {
     this.slotTypeID = even.target.value;
   }
@@ -325,7 +330,7 @@ export class MidwifeComponent implements OnInit {
     this.appointmentpercentage = 0;
     this.monthlysubription = 0;
   }
-  
+
 
   public InsertMidWives() {
     this.spinner.show();
@@ -348,7 +353,7 @@ export class MidwifeComponent implements OnInit {
       'HospitalClinicID': this.hospitalclinicid,
       'Education': this.education,
       'SpokenLanguages': this.spokenlanguages,
-      'SlotDurationID':this.slotTypeID,
+      'SlotDurationID': this.slotTypeID,
       'SubscriptionTypeID': this.subscriptiontype,
       'MonthlySubscription': this.monthlysubription,
       'AppointmentPercentage': this.appointmentpercentage,
@@ -360,7 +365,10 @@ export class MidwifeComponent implements OnInit {
       'Nameofthebank': this.nameofbank,
       'AccountName': this.accountName,
       'AccountNumber': this.accountNumber,
-      'VAT': 0
+      'VAT': this.vatCheck,
+      'VatPercentage': this.vatpercentage,
+      'ExonerationPeriodFromDate': this.contractstartdate,
+      'ExonerationPerioToDate': this.contractenddate
     }
     this.docservice.InsertMidWivesRegistration(entity).subscribe(data => {
       if (data != 0 && data != 1) {
@@ -405,5 +413,14 @@ export class MidwifeComponent implements OnInit {
       this.spinner.hide();
     })
   }
-
+  checkVatvalue(even) {
+    debugger
+    if (even == 1) {
+      this.vatpercentage = 0;
+    }
+    else {
+      this.vatpercentage = 20;
+    }
+  }
 }
+

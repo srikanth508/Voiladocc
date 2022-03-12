@@ -239,7 +239,8 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('userid', this.result[0].doctorID);
                 localStorage.setItem('Pinno', this.result[0].pinno);
                 localStorage.setItem('Password', this.pwd);
-                localStorage.setItem('hospitalClinicID', this.result[0].hospitalClinicID)
+                localStorage.setItem('hospitalClinicID', this.result[0].hospitalClinicID);
+                localStorage.setItem('hospitalType', this.result[0].hospital_ClinicID)
                 localStorage.setItem('departmentid', this.result[0].departmentID)
                 this.insertProvidersAuditReport(this.result[0].doctorID, 1)
 
