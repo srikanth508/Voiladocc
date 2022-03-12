@@ -47,6 +47,7 @@ export class PhysiotherapistComponent implements OnInit {
   public languageid: any;
   public labels: any;
   public hospitalclinicid: any;
+  today = new Date()
 
   public hospitalcliniclist: any;
   public hospitadd = {};
@@ -57,7 +58,11 @@ export class PhysiotherapistComponent implements OnInit {
   dropzonelable: any;
   public search: any;
   public dummapecilizationlist: any;
-  labels4:any;
+  labels4: any;
+  vatCheck: any;
+  vatpercentage: any;
+contractstartdate:any;
+contractenddate:any;
   ngOnInit() {
     this.dummid = localStorage.getItem('hospitalid');
     this.hospitalclinicid = localStorage.getItem('hospitalid');
@@ -147,7 +152,7 @@ export class PhysiotherapistComponent implements OnInit {
       data => {
 
         this.labels4 = data;
-       
+
       }, error => {
       }
     )
@@ -350,12 +355,12 @@ export class PhysiotherapistComponent implements OnInit {
     }
   }
 
-  slotTypeID:any;
+  slotTypeID: any;
   GetSlotDurationID(even) {
     this.slotTypeID = even.target.value;
   }
 
-  
+
   taxidentification: any;
   businessid: any;
   commercialcity: any;
@@ -369,13 +374,13 @@ export class PhysiotherapistComponent implements OnInit {
   appointmentpercentage: any;
   monthlysubription: any;
 
-  
+
   public Getsubscriptontype() {
 
     this.appointmentpercentage = 0;
     this.monthlysubription = 0;
   }
-  
+
 
 
   public insertphysiodetails() {
@@ -400,7 +405,7 @@ export class PhysiotherapistComponent implements OnInit {
       'HospitalClinicID': this.hospitalclinicid,
       'Education': this.education,
       'SpokenLanguages': this.spokenlanguages,
-      'SlotDurationID':this.slotTypeID,
+      'SlotDurationID': this.slotTypeID,
       'SubscriptionTypeID': this.subscriptiontype,
       'MonthlySubscription': this.monthlysubription,
       'AppointmentPercentage': this.appointmentpercentage,
@@ -412,7 +417,10 @@ export class PhysiotherapistComponent implements OnInit {
       'Nameofthebank': this.nameofbank,
       'AccountName': this.accountName,
       'AccountNumber': this.accountNumber,
-      'VAT': 0
+      'VAT': this.vatCheck,
+      'VatPercentage': this.vatpercentage,
+      'ExonerationPeriodFromDate': this.contractstartdate,
+      'ExonerationPerioToDate': this.contractenddate
     }
     this.docservice.InsertphysiotherapyRegistrationAdmin(entity).subscribe(data => {
       let physioid = data;
@@ -480,5 +488,13 @@ export class PhysiotherapistComponent implements OnInit {
 
   }
 
-
+  checkVatvalue(even) {
+    debugger
+    if (even == 1) {
+      this.vatpercentage = 0;
+    }
+    else {
+      this.vatpercentage = 20;
+    }
+  }
 }

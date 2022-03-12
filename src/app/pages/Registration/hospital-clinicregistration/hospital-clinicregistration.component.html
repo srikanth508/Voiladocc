@@ -33,8 +33,7 @@
               <input type="radio" name="hospitaclinic" required [(ngModel)]="hospitaclinic"
                 value="2">{{labels[0].clinic}}
 
-                <input type="radio" name="hospitaclinic" required [(ngModel)]="hospitaclinic"
-                value="3">Cabinet de groupe
+              <input type="radio" name="hospitaclinic" required [(ngModel)]="hospitaclinic" value="3">Cabinet de groupe
             </div>
           </div>
           <br>
@@ -44,8 +43,10 @@
               <span class="required">*</span>
             </div>
             <div class="col-lg-4">
-              <input type="text" class="textformat" placeholder="{{labels[0].hospitalClinicName}}" name="hospitalclinicname" required
-              onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||(event.charCode<=32)'    [(ngModel)]="hospitalclinicname" class="form-control">
+              <input type="text" class="textformat" placeholder="{{labels[0].hospitalClinicName}}"
+                name="hospitalclinicname" required
+                onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||(event.charCode<=32)'
+                [(ngModel)]="hospitalclinicname" class="form-control">
             </div>
           </div>
           <br />
@@ -56,7 +57,7 @@
             </div>
 
             <div class="col-lg-4">
-              <input type="text" placeholder="{{labels[0].hospitalPhoneNo}}"  maxlength="13" name="hospitalphno"
+              <input type="text" placeholder="{{labels[0].hospitalPhoneNo}}" maxlength="13" name="hospitalphno"
                 [(ngModel)]="hospitalphno" class="form-control" required
                 onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
             </div>
@@ -82,8 +83,8 @@
 
             <div class="col-lg-4">
               <input type="text" required placeholder="{{labels[0].contactPersonPhoneNumber}}" maxlength="13"
-              oncopy="return false" onpaste="return false" name="contactpersonphno" [(ngModel)]="contactpersonphno" class="form-control"
-                onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+                oncopy="return false" onpaste="return false" name="contactpersonphno" [(ngModel)]="contactpersonphno"
+                class="form-control" onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
             </div>
 
           </div>
@@ -95,7 +96,7 @@
             </div>
             <div class="col-lg-4">
               <input type="email" placeholder="{{labels[0].email}}" required name="email" [(ngModel)]="email"
-              oncopy="return false" onpaste="return false"  class="form-control" (ngModelChange)="onChange($event)">
+                oncopy="return false" onpaste="return false" class="form-control" (ngModelChange)="onChange($event)">
             </div>
           </div>
           <br />
@@ -166,11 +167,12 @@
             </div>
             <div class="col-lg-4">
               <input type="text" placeholder="{{labels[0].zipCode}}" maxlength="6" name="zipcode" [(ngModel)]="zipcode"
-              oncopy="return false" onpaste="return false"   class="form-control " onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+                oncopy="return false" onpaste="return false" class="form-control "
+                onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
             </div>
           </div>
           <br />
-      
+
           <!-- <div class="row">
             <div class="col-lg-3">
               <label>Open 24 hrs:</label>
@@ -231,8 +233,8 @@
 
             </div>
             <div class="col-lg-4">
-              <input type="text"  maxlength="4" placeholder="{{labels[0].yearEstablished}}"
-                name="yearestablished" [(ngModel)]="yearestablished" class="form-control"
+              <input type="text" maxlength="4" placeholder="{{labels[0].yearEstablished}}" name="yearestablished"
+                [(ngModel)]="yearestablished" class="form-control"
                 onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
             </div>
 
@@ -244,7 +246,8 @@
             </div>
             <div class="col-lg-4">
               <input type="text" placeholder="{{labels[0].noOfBeds}}" maxlength="4" name="noofbeds"
-                [(ngModel)]="noofbeds" oncopy="return false" onpaste="return false" class="form-control" onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+                [(ngModel)]="noofbeds" oncopy="return false" onpaste="return false" class="form-control"
+                onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
             </div>
           </div>
           <br />
@@ -293,7 +296,8 @@
 
             </div>
             <div class="col-lg-4">
-              <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
+              <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)"
+                class="dropzone_vendorinvoice h-100">
                 <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
               </ngx-dropzone>
             </div>
@@ -347,8 +351,8 @@
             </div>
           </div>
           <br>
-    
-   
+
+
         </div>
         <br>
         <button type="button" style="float: left" class="btn btncolor dashbtn nextbtncolor"
@@ -357,7 +361,7 @@
       </aw-wizard-step>
 
 
-      <aw-wizard-step stepTitle="Financial">
+      <aw-wizard-step stepTitle="FINANCIER">
         <hr size="30">
         <div class="row">
           <div class="col-lg-3">
@@ -375,7 +379,7 @@
           </div>
           <div class="col-lg-4">
 
-            <input type="text" class="form-control"  placeholder="{{labels[0].taxidentification}}"
+            <input type="text" class="form-control" placeholder="{{labels[0].taxidentification}}"
               [(ngModel)]="taxidentification" name="taxidentification">
           </div>
         </div>
@@ -386,7 +390,7 @@
 
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels[0].businessid}}" [(ngModel)]="businessid"
+            <input type="text" class="form-control" placeholder="{{labels[0].businessid}}" [(ngModel)]="businessid"
               name="businessid">
           </div>
         </div>
@@ -398,8 +402,8 @@
             <label class="Address_label">{{labels[0].commercial}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels[0].commercial}}"
-              [(ngModel)]="commercialcity" name="commercialcity">
+            <input type="text" class="form-control" placeholder="{{labels[0].commercial}}" [(ngModel)]="commercialcity"
+              name="commercialcity">
           </div>
         </div>
 
@@ -410,7 +414,7 @@
             <label class="Address_label">{{labels[0].taxprofessional}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels[0].taxprofessional}}"
+            <input type="text" class="form-control" placeholder="{{labels[0].taxprofessional}}"
               [(ngModel)]="taxprofessional" name="taxprofessional">
           </div>
         </div>
@@ -420,7 +424,7 @@
             <label class="Address_label">{{labels[0].seccuritysocialfundno}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels[0].seccuritysocialfundno}}"
+            <input type="text" class="form-control" placeholder="{{labels[0].seccuritysocialfundno}}"
               [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
           </div>
         </div>
@@ -438,7 +442,7 @@
             <label class="Address_label">{{labels[0].nameofthebank}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels[0].nameofthebank}}" [(ngModel)]="nameofbank"
+            <input type="text" class="form-control" placeholder="{{labels[0].nameofthebank}}" [(ngModel)]="nameofbank"
               name="nameofbank">
           </div>
         </div>
@@ -448,7 +452,7 @@
             <label class="Address_label">{{labels[0].accountname}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels[0].accountname}}" [(ngModel)]="accountName"
+            <input type="text" class="form-control" placeholder="{{labels[0].accountname}}" [(ngModel)]="accountName"
               name="accountName">
           </div>
         </div>
@@ -458,13 +462,63 @@
             <label class="Address_label">{{labels[0].accountnumber}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels[0].accountnumber}}" maxlength="24"
+            <input type="text" class="form-control" placeholder="{{labels[0].accountnumber}}" maxlength="24"
               [(ngModel)]="accountNumber" name="accountNumber">
           </div>
         </div>
         <br>
 
-        <div class="row" *ngIf="hospitalclinicid=='590'" >
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="Address_label">Exonerated :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="radio"  value="1" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(1)">
+            &nbsp;{{labels[0].yes}}
+            <input type="radio" value="0" [(ngModel)]="vatCheck" name="vatCheck"  (click)="checkVatvalue(0)">
+            &nbsp;{{labels[0].no}}
+          </div>
+        </div>
+        <br>
+        <div>
+        <div class="row" >
+          <div class="col-lg-3">
+            <label class="Address_label">Vat Percentage :</label>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" required
+              name="vatpercentage" placeholder="Vat Percentage">
+          </div>
+        </div>
+        <br>
+      </div>
+        <div class="row">
+          <div class="col-lg-3">
+            <label *ngIf="languageid=='1'">Exoneration period from :</label>
+            <label *ngIf="languageid=='6'">Période d'exonération à partir de :</label>
+            <span class="required">*</span>
+          </div>
+
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+              placeholder="{{labels[0].contractstratdate}}" [minDate]="today" name="contractstartdate" required
+              [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractstartdate" bsDatepicker>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-lg-3">
+            <label *ngIf="languageid=='1'">Exoneration period to :</label>
+            <label *ngIf="languageid=='6'">Période d'exonération à :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+              placeholder="{{labels[0].contractenddate}}" [minDate]="contractstartdate" name="contractenddate" required
+              [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractenddate" bsDatepicker>
+          </div>
+        </div><br>
+        <div class="row" *ngIf="hospitalclinicid=='590'">
           <div class="col-lg-3">
           </div>
           <div class="col-lg-9">
@@ -478,11 +532,14 @@
             <span class="required">*</span>
           </div>
           <div class="col-md-8">
-            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype" (click)="Getsubscriptontype()" value="1">{{labels[0].monthlySubscription}}
+            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+              (click)="Getsubscriptontype()" value="1">{{labels[0].monthlySubscription}}
             &nbsp;
-            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"  (click)="Getsubscriptontype()" value="2"> {{labels[0].appointmentpercentage}}
-             &nbsp;
-            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"   (click)="Getsubscriptontype()" value="3"> {{labels[0].both}}
+            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+              (click)="Getsubscriptontype()" value="2"> {{labels[0].appointmentpercentage}}
+            &nbsp;
+            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+              (click)="Getsubscriptontype()" value="3"> {{labels[0].both}}
           </div>
         </div><br>
         <div *ngIf="subscriptiontype=='1'">
@@ -492,7 +549,7 @@
               <span class="required">*</span>
             </div>
             <div class="col-lg-4">
-              <input type="text" placeholder="{{labels[0].monthlySubscription}}"  name="monthlysubription"
+              <input type="text" placeholder="{{labels[0].monthlySubscription}}" name="monthlysubription"
                 [(ngModel)]="monthlysubription" class="form-control"
                 onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
             </div>
@@ -534,7 +591,7 @@
             </div>
             <div class="col-lg-4">
               <input type="text" placeholder="{{labels[0].appointmentpercentage}}" name="appointmentpercentage"
-                [(ngModel)]="appointmentpercentage" class="form-control"
+                [(ngModel)]="appointmentpercentage" class="form-control" maxlength="3"
                 onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
             </div>
           </div><br>
@@ -571,7 +628,7 @@
             </div>
             <div class="col-lg-4">
               <input type="text" placeholder="Appointment Percentage" name="appointmentpercentage"
-                [(ngModel)]="appointmentpercentage" class="form-control"
+                [(ngModel)]="appointmentpercentage" class="form-control" maxlength="3"
                 onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
             </div>
           </div>

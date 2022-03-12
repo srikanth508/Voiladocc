@@ -27,7 +27,7 @@ export class ReceptionstloginComponent implements OnInit {
   public getlanguage() {
     this.docservice.GetAdmin_RegisterLogins_Label(this.languageID).subscribe(
       data => {
-       
+
         this.labels = data;
 
       }, error => {
@@ -48,24 +48,22 @@ export class ReceptionstloginComponent implements OnInit {
       'PhoneNo': this.phoneno
     }
     this.docservice.InsertReceiptionistLogin(entity).subscribe(data => {
-     
+
       if (data != 0) {
-        this.pinno=data;
+        this.pinno = data;
         // Swal.fire('Added Successfully.');
-        if(this.languageID==1)
-        {
+        if (this.languageID == 1) {
           this.sendmail()
           Swal.fire('Completed', 'Receptionist saved successfully', 'success');
           location.href = "#/ReceptionstloginDash"
         }
-        else{
+        else {
           this.sendmail()
           Swal.fire('', 'Mis à jour avec succés', 'success');
           location.href = "#/ReceptionstloginDash"
         }
       }
-      else
-      {
+      else {
         Swal.fire('Completed', 'User Name already exists', 'success');
         location.href = "#/ReceptionstloginDash"
       }
@@ -79,11 +77,19 @@ export class ReceptionstloginComponent implements OnInit {
   emailattchementurl = [];
 
   public sendmail() {
-    
+    if (this.languageID == 1) {
+      var subject = "Welcome to Voiladoc"
+      var desc = 'Dear ' + this.name + ',' + "<br><br>" + 'Thank You For Registering Voiladoc Plaform. Please use the below link to  login Voiladoc Platform ' + "<br><br>" + 'Link : https://maroc.voiladoc.org/' + "<br>" + 'Pin : ' + this.pinno + "<br>" + 'UserName :' + this.username + "<br>" + 'Password : ' + this.password + "<br><br>" + 'Please do not share the login credentials with anyone and regularly change it to prevent from any unauthorized persons to get access to patient data. Please feel free to contact our customer support at +212522446145 or email them us at support@voiladoc.ma' + "<br><br>" + 'Regards,' + "<br>" + 'Team Voiladoc' + "<br>" + 'www.voiladoc.ma'
+    }
+    else{
+      var subject = "Welcome to Voiladoc"
+      var desc = 'Dear ' + this.name + ',' + "<br><br>" + 'Merci de vous être inscrit sur Voiladoc. Voici vos identifiants de connexion.' + "<br><br>" + 'Lien web Voiladoc pro : https://maroc.voiladoc.org/' + "<br>" + 'Code PIN : ' + this.pinno + "<br>" + "Nom d'utilisateur : "+ this.username + "<br>" + 'Mot de passe : ' + this.password + "<br><br>" + 'Veuillez ne pas partager vos identifiants de connexion avec qui que ce soit. Contactez notre ligne d assistance au +212522446145 ou envoyez-nous un e-mail à support@voiladoc.ma' + "<br><br>" + 'Meilleures salutations,,' + "<br>" + 'Team Voiladoc' + "<br>" + 'www.voiladoc.ma'
+    }
+
     var entity = {
       'emailto': this.email,
-      'emailsubject': "Voiladoc",
-      'emailbody': 'Dear ' + this.name + ',' + "<br><br>" + 'Thank You For Registering Voiladoc Plaform. Please use the below link to  login Voiladoc Platform ' + "<br><br>" + 'Link : https://madagascar.voiladoc.org/' + "<br>" + 'Pin : ' + this.pinno + "<br>" + 'UserName :' + this.username + "<br>" + 'Password : ' + this.password + "<br><br>" + 'Dont Share Your Passwords to Anyone. For any further help. Please contact our support clients' + "<br><br>" + 'Regards,' + "<br>" + 'Voiladoc Team',
+      'emailsubject': subject,
+      'emailbody': desc,
       'attachmenturl': this.emailattchementurl,
       'cclist': 0,
       'bcclist': 0

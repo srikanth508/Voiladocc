@@ -79,7 +79,7 @@ export class DiagnosticsregistrationComponent implements OnInit {
     }
   }
   onChange(newValue) { const validEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; if (validEmailRegEx.test(newValue)) { this.validEmail = true; } else { this.validEmail = false; } }
-
+  labels4: any;
 
   public getlanguage() {
     this.docservice.GetAdmin_DiagnosticRegistration_LabelBYLanguageID(this.languageid).subscribe(
@@ -88,6 +88,14 @@ export class DiagnosticsregistrationComponent implements OnInit {
         this.labels = data;
         this.SelectLabel = this.labels[0].select;
         this.search = this.labels[0].search
+      }, error => {
+      }
+    )
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+
       }, error => {
       }
     )
@@ -262,7 +270,7 @@ export class DiagnosticsregistrationComponent implements OnInit {
         'ContractEndDate': this.contractenddate,
         'DiagnosticAppointmentPerSlot': this.diagnosticappointmentperslot,
         'HomeSampleOrdersPerSlot': this.homesampleordersperslot,
-        'EveningTimings':this.evngtimings,
+        'EveningTimings': this.evngtimings,
         'TaxIdentification': this.taxidentification,
         'BusinessID': this.businessid,
         'CommercialRegCity': this.commercialcity,

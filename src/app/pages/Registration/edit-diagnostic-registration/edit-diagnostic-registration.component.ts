@@ -121,11 +121,20 @@ export class EditDiagnosticRegistrationComponent implements OnInit {
       }
     )
   }
+  labels4:any;
   public getlanguage() {
     this.docservice.GetAdmin_DiagnosticRegistration_LabelBYLanguageID(this.languageid).subscribe(
       data => {
 
         this.labels = data;
+      }, error => {
+      }
+    )
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+
       }, error => {
       }
     )

@@ -1584,7 +1584,7 @@ export class MyappointmentsComponent implements OnInit {
 
             // this.qwerty2 = []
             this.display = "none";
-           
+
           }
           else if (this.languageid == 6) {
             Swal.fire('L’ordonnance a bien été sauvegardée');
@@ -1600,13 +1600,14 @@ export class MyappointmentsComponent implements OnInit {
             this.GetDoctorPrescrptionTemplates()
             // this.qwerty2 = []
             this.display = "none";
-       
+
           }
         }
       })
     }
     this.InsertPrscriptionNotifications();
     this.InsertNotificationPrescription();
+    this.sendMailPrescriptions = 1;
     document.getElementById('PrecsriptionPdfFormat').click();
     this.spinner.hide();
   }
@@ -2085,6 +2086,12 @@ export class MyappointmentsComponent implements OnInit {
 
 
   public insertDiagnostictestdetails() {
+
+    this.testdisplay = "none";
+    this.sendMailPrescriptions = 2;
+    debugger
+    document.getElementById('PrecsriptionPdfFormat').click();
+
     if (this.languageid == 1) {
       var smsdesc = "Following your consultation with Dr " + this.user + " your prescription for lab tests is now available in homepage."
       this.SendTwiliSms(smsdesc, this.smsmobileno)
@@ -2114,9 +2121,8 @@ export class MyappointmentsComponent implements OnInit {
         if (data != 0) {
           if (this.languageid == 1) {
             Swal.fire('Completed', 'Diagnostic Tests Added successfully', 'success');
-            this.testdisplay = "none";
-            // document.getElementById("close").click();
-            document.getElementById('PrecsriptionPdfFormat').click();
+          
+        
             this.getdiagnostictests();
             this.SerachtestOn = 0;
             this.testsname = "";
@@ -2133,9 +2139,9 @@ export class MyappointmentsComponent implements OnInit {
             Swal.fire('Détails enregistrés', 'Test de laboratoire', 'success');
             this.testdisplay = "none";
             // document.getElementById("close").click();
-            document.getElementById('PrecsriptionPdfFormat').click();
-            this.qwerty = [];
-            this.qwerty.length = 0;
+            // this.qwerty = [];
+            // this.qwerty.length = 0;
+            debugger
             this.getdiagnostictests();
             this.SerachtestOn = 0;
             this.testsname = "";
@@ -2146,9 +2152,8 @@ export class MyappointmentsComponent implements OnInit {
             this.tsetssslist = 0;
             this.testssid = 0;
             this.SerachtestOn = 0;
-
-          
             this.followupvisit = 0;
+            debugger
           }
 
         }
@@ -2165,7 +2170,7 @@ export class MyappointmentsComponent implements OnInit {
       this.SendTwiliSms(smsdesc, this.smsmobileno)
     }
 
-    document.getElementById('PrecsriptionPdfFormat').click();
+   
   }
 
   public Insertnotificationtestazure() {
@@ -4337,7 +4342,7 @@ export class MyappointmentsComponent implements OnInit {
         confirmButtonText: 'Yes, Follow Up!'
       }).then((result) => {
         if (result.value) {
-          this.docservice.UpdateBookAppointmentFollowupVisit(this.appointmentID,this.followupAppointmentTypeID).subscribe(res => {
+          this.docservice.UpdateBookAppointmentFollowupVisit(this.appointmentID, this.followupAppointmentTypeID).subscribe(res => {
             let test = res;
             this.getbookappointmentbydocid;
           })
@@ -4350,7 +4355,7 @@ export class MyappointmentsComponent implements OnInit {
         }
         else {
           this.getbookappointmentbydocid();
-          this.followupAppointmentTypeID=0;
+          this.followupAppointmentTypeID = 0;
         }
       })
     }
@@ -4366,7 +4371,7 @@ export class MyappointmentsComponent implements OnInit {
         cancelButtonText: 'Annuler'
       }).then((result) => {
         if (result.value) {
-          this.docservice.UpdateBookAppointmentFollowupVisit(this.appointmentID,this.followupAppointmentTypeID).subscribe(res => {
+          this.docservice.UpdateBookAppointmentFollowupVisit(this.appointmentID, this.followupAppointmentTypeID).subscribe(res => {
             let test = res;
             this.getbookappointmentbydocid;
           })
@@ -4375,7 +4380,7 @@ export class MyappointmentsComponent implements OnInit {
             'Visite de suivi', 'success'
           )
           this.getbookappointmentbydocid();
-          this.followupAppointmentTypeID=0;
+          this.followupAppointmentTypeID = 0;
         }
         else {
           this.getbookappointmentbydocid();

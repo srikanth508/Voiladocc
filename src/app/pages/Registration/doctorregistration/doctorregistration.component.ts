@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { HelloDoctorService } from '../../../hello-doctor.service';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-doctorregistration',
   templateUrl: './doctorregistration.component.html',
   styleUrls: ['./doctorregistration.component.css']
 })
 export class DoctorregistrationComponent implements OnInit {
+  private _http: any;
 
   constructor(public docservice: HelloDoctorService, private spinner: NgxSpinnerService) { }
 
@@ -92,7 +95,13 @@ export class DoctorregistrationComponent implements OnInit {
   dropzonelable: any;
   search: any;
   meridionalid: any;
-  labels4:any;
+  labels4: any;
+
+  vatCheck: any;
+  vatpercentage: any;
+  contractstartdate: any;
+  contractenddate: any;
+  today = new Date()
   ngOnInit() {
     this.dummid = localStorage.getItem('hospitalid');
     this.hospitalclinicid = localStorage.getItem('hospitalid');
@@ -124,6 +133,9 @@ export class DoctorregistrationComponent implements OnInit {
     else if (this.languageid == 6) {
       this.dropzonelable = "Télécharger des fichiers"
     }
+
+
+   this.getGeoLocation(this.address);
   }
 
 
@@ -144,7 +156,7 @@ export class DoctorregistrationComponent implements OnInit {
       data => {
 
         this.labels4 = data;
-       
+
       }, error => {
       }
     )
@@ -458,7 +470,10 @@ export class DoctorregistrationComponent implements OnInit {
         'Nameofthebank': this.nameofbank,
         'AccountName': this.accountName,
         'AccountNumber': this.accountNumber,
-        'VAT': 0
+        'VAT': this.vatCheck,
+        'VatPercentage': this.vatpercentage,
+        'ExonerationPeriodFromDate': this.contractstartdate,
+        'ExonerationPerioToDate': this.contractenddate
       }
       this.docservice.InsertDoctorRegistration(entity).subscribe(data => {
 
@@ -968,6 +983,56 @@ export class DoctorregistrationComponent implements OnInit {
     this.appointmentpercentage = 0;
     this.monthlysubription = 0;
   }
+
+
+
+  checkVatvalue(even) {
+
+    if (even == 1) {
+      this.vatpercentage = 0;
+    }
+    else {
+      this.vatpercentage = 20;
+    }
+  }
+
+
+  getGeoLocation(address: string) {
+    debugger
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': "1377 Parc industriel Sapino, Nouaceur 27182." }, function (results, status) {
+      debugger
+        if (status == google.maps.GeocoderStatus.OK) {
+          debugger
+          var latlng = google.maps.location.LatLng();
+        } else {
+          debugger
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
+
+
+//   getGeoLocation(address: string): Observable<any> {
+//     let map: google.maps.Map;
+//     let geocoder: google.maps.Geocoder;
+
+//     console.log('Getting address: ', address);
+//     // let geocoder = new google.maps.Geocode();
+//     return Observable.create(observer => {
+//         geocoder.geocode({
+//             'address': address
+//         }, (results, status) => {
+//             if (status == google.maps.GeocoderStatus.OK) {
+//                 observer.next(results[0].geometry.location);
+//                 observer.complete();
+//             } else {
+//                 console.log('Error: ', results, ' & Status: ', status);
+//                 observer.error();
+//             }
+//         });
+//     });
+// }
 
 
 }

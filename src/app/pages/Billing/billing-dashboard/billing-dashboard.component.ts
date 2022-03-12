@@ -23,6 +23,7 @@ export class BillingDashboardComponent implements OnInit {
     todaydate: any;
     languageid: any;
     typeid: any;
+    labels: any;
     ngOnInit() {
         this.spinner.show()
         const format = 'yyyy-MM-dd';
@@ -34,7 +35,8 @@ export class BillingDashboardComponent implements OnInit {
         this.month = date.getMonth() + 1;
         this.year = date.getFullYear();
         this.typeid = 1
-        this.GetCounts()
+        this.GetCounts();
+        this.getLanguage()
     }
     counts: any;
     public GetCounts() {
@@ -67,5 +69,12 @@ export class BillingDashboardComponent implements OnInit {
 
     gotoReports(value) {
         location.href = "#/FinanceAdminReports/" + this.year + "/" + this.month + "/" + this.typeid + "/" + value
+    }
+
+
+    getLanguage() {
+        this.docservice.GetAdmin_Mastersss_Labels(this.languageid).subscribe(data => {
+            this.labels = data;
+        })
     }
 }

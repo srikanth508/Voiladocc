@@ -417,8 +417,16 @@
                                     {{medicinelist.refills}}
                                   </div>
                                 </td>
-                                <td style="border: 2px solid black;">{{medicinelist.substistute}}</td>
-                                <td style="border: 2px solid black;">{{medicinelist.noteToPharmacist}}</td>
+                                <td style="border: 2px solid black;">
+                                  <div class="medicineWidth">
+                                    {{medicinelist.substistute}}
+                                  </div>
+                                </td>
+                                <td style="border: 2px solid black;">
+                                  <div class="medicineWidth">
+                                    {{medicinelist.noteToPharmacist}}
+                                  </div>
+                                </td>
                                 <td style="border: 2px solid black;">
                                   <input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
                                     [(ngModel)]="medicinelist.amount" name="medicinelist.amount"

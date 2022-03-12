@@ -151,7 +151,7 @@ export class PatientRegComponent implements OnInit {
           selectAllText: 'Select All',
           unSelectAllText: 'UnSelect All',
           //  itemsShowLimit: 3,
-          allowSearchFilter: false
+          allowSearchFilter: true
         };
       }, error => {
       }
@@ -176,7 +176,7 @@ export class PatientRegComponent implements OnInit {
           selectAllText: 'Select All',
           unSelectAllText: 'UnSelect All',
           //  itemsShowLimit: 3,
-          allowSearchFilter: false
+          allowSearchFilter: true
         };
       }, error => {
       }
@@ -205,7 +205,7 @@ export class PatientRegComponent implements OnInit {
           selectAllText: 'Select All',
           unSelectAllText: 'UnSelect All',
           //  itemsShowLimit: 3,
-          allowSearchFilter: false
+          allowSearchFilter: true
         };
       }, error => {
       }
@@ -337,6 +337,8 @@ export class PatientRegComponent implements OnInit {
       if (data != 0) {
         this.patientwalletdetails();
         this.Insertfamilytredetail();
+        this.sendmail();
+        this.sendSms();
 
         if (this.languageid == '1') {
           Swal.fire("Patient Registred Successfully")
@@ -359,6 +361,13 @@ export class PatientRegComponent implements OnInit {
       }
     })
   }
+
+
+
+
+
+
+
 
   public patientwalletdetails() {
     var entity = {
@@ -433,5 +442,47 @@ export class PatientRegComponent implements OnInit {
   }
 
 
+
+
+  pinno: any;
+  emailattchementurl = [];
+
+  public sendmail() {
+    if (this.languageid == 1) {
+      var subject = "Welcome to Voiladoc"
+      var desc = 'Welcome to Voiladoc, your digital health app. Your provider ' + this.patientname + ' has registered you on Voiladoc. Please login with your mobile number.'
+    }
+    else {
+      var subject = "Welcome to Voiladoc"
+      var desc = 'Bienvenue sur Voiladoc, l app de santé numérique. Votre prestataire ' + this.patientname + ' " vous a enregistré sur Voiladoc. Veuillez-vous connecter avec votre no de mobile.'
+    }
+    var entity = {
+      'emailto': this.email,
+      'emailsubject': subject,
+      'emailbody': desc,
+      'attachmenturl': this.emailattchementurl,
+      'cclist': 0,
+      'bcclist': 0
+    }
+    this.docservice.sendemail(entity).subscribe(data => {
+    })
+  }
+
+
+
+  sendSms() {
+    var smsno = "212" + this.mobileno
+    if (this.languageid == 1) {
+
+      var desc = 'Welcome to Voiladoc, your digital health app. Your provider ' + this.patientname + ' has registered you on Voiladoc. Please login with your mobile number.'
+    }
+    else {
+
+      var desc = 'Bienvenue sur Voiladoc, l app de santé numérique. Votre prestataire ' + this.patientname + ' " vous a enregistré sur Voiladoc. Veuillez-vous connecter avec votre no de mobile.'
+    }
+    this.docservice.SendTwillioSMS(smsno, desc).subscribe(data=>{
+
+    })
+  }
 
 }

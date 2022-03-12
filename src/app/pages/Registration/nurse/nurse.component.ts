@@ -57,6 +57,11 @@ export class NurseComponent implements OnInit {
   public search: any;
   public dummapecilizationlist: any;
   labels4:any;
+  vatCheck: any;
+  vatpercentage: any;
+contractstartdate:any;
+contractenddate:any;
+today = new Date()
   ngOnInit() {
 
     this.dummid = localStorage.getItem('hospitalid');
@@ -432,7 +437,11 @@ export class NurseComponent implements OnInit {
         'Nameofthebank': this.nameofbank,
         'AccountName': this.accountName,
         'AccountNumber': this.accountNumber,
-        'VAT': 0
+        'VAT': this.vatCheck,
+        'VatPercentage':this.vatpercentage,
+        'ExonerationPeriodFromDate':this.contractstartdate,
+        'ExonerationPerioToDate':this.contractenddate
+
       }
       this.docservice.InsertNurseRegistration(entity).subscribe(data => {
 
@@ -546,5 +555,13 @@ export class NurseComponent implements OnInit {
     this.docservice.sendemail(entity).subscribe(data => {
     })
   }
-
+  checkVatvalue(even) {
+    debugger
+    if (even == 1) {
+      this.vatpercentage = 0;
+    }
+    else {
+      this.vatpercentage = 20;
+    }
+  }
 }
