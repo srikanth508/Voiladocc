@@ -5,7 +5,7 @@ export default {
      SAMPLE_SERVER_BASE_URL:'https://voilodocopentokbox.herokuapp.com',
     //  Sessionurl:'https://madagascar.voiladoc.org/MarocAPI/Doctor/genratevideosessionID',
     //  Sessionurl:'https://madagascar.voiladoc.org/MarocAPI/Doctor/genratevideosessionID',
-    Sessionurl:'https://madagascar.voiladoc.org/MarocAPI/Doctor/genratevideosessionID',
+    Sessionurl:'https://maroc.voiladoc.org/MarocAPI/Doctor/genratevideosessionID',
 
    // Sessionurl:'https://14.192.17.225/MarocAPI/Doctor/genratevideosessionID',
 
