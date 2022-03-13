@@ -5,8 +5,8 @@
 <div class="container-fluid card card-hover headerspace">
     <div class="row headerspace1">
         <div class="col-lg-3">
-            <h5>InVoices</h5>
-
+            <h5 *ngIf="languageid=='1'">InVoices</h5>
+            <h5 *ngIf="languageid=='6'">FACTURES</h5>
         </div>
     </div>
     <br />
@@ -62,15 +62,15 @@
             <table>
 
                 <tr>
-                    <th *ngIf="typeid==1">Hospital Name</th>
-                    <th *ngIf="typeid==2">Clinic</th>
-                    <th *ngIf="typeid==3">Doctor</th>
-                    <th *ngIf="typeid==4">Nurse</th>
-                    <th *ngIf="typeid==5">Physiotherapist</th>
-                    <th *ngIf="typeid==6">Midwife</th>
-                    <th>Phone No</th>
-                    <th>Email ID</th>
-                    <th>Month</th>
+                    <th *ngIf="typeid==1">{{labels[0].hospital}}</th>
+                    <th *ngIf="typeid==2">{{labels[0].clinic}}</th>
+                    <th *ngIf="typeid==3">{{labels[0].independentDoctor}}</th>
+                    <th *ngIf="typeid==4">{{labels[0].independentNurse}}</th>
+                    <th *ngIf="typeid==5">{{labels[0].independentPhysiotherapist}}</th>
+                    <th *ngIf="typeid==6">{{labels[0].independentMidwife}}</th>
+                    <th>{{labels[0].phoneNo}}</th>
+                    <th>{{labels[0].emailID}}</th>
+                    <th>{{labels[0].month}}</th>
                     <th>Invoice Amount</th>
                     <th>Invoice</th>
                     <!-- <th>Actions</th> -->

@@ -65,6 +65,8 @@ export class HospitalClinicregistrationComponent implements OnInit {
   public contractstartdate: any;
   public contractenddate: any;
   public search: any;
+  vatCheck: any;
+  vatpercentage: any;
 
 
   ngOnInit() {
@@ -294,7 +296,11 @@ export class HospitalClinicregistrationComponent implements OnInit {
         'Nameofthebank': this.nameofbank,
         'AccountName': this.accountName,
         'AccountNumber': this.accountNumber,
-        'VAT': 0
+        'VAT': this.vatCheck,
+        'VatPercentage':this.vatpercentage,
+        'ExonerationPeriodFromDate':this.contractstartdate,
+        'ExonerationPerioToDate':this.contractenddate
+
       }
       this.docservice.InsertHospitalClinicDetailsMaster(entity).subscribe(data => {
 
@@ -451,16 +457,15 @@ export class HospitalClinicregistrationComponent implements OnInit {
     this.attachments.push(abcd.addedFiles[0]);
     this.uploadattachments();
 
-    if(this.languageid==1)
-    {
+    if (this.languageid == 1) {
       Swal.fire('Added Successfully');
       abcd.length = 0;
     }
-    else{
+    else {
       Swal.fire('Ajoutée !');
       abcd.length = 0;
     }
-   
+
   }
 
 
@@ -552,5 +557,15 @@ export class HospitalClinicregistrationComponent implements OnInit {
       }
     })
 
+  }
+
+  checkVatvalue(even) {
+    debugger
+    if (even == 1) {
+      this.vatpercentage = 0;
+    }
+    else {
+      this.vatpercentage = 20;
+    }
   }
 }

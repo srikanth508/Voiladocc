@@ -360,7 +360,7 @@
 
               </div>
               <div class="col-lg-5">
-                <input type="text" placeholder="registration council" [(ngModel)]="registrationcouncil"
+                <input type="text" placeholder="{{labels[0].registrationCouncil}}" [(ngModel)]="registrationcouncil"
                   name="registrationcouncil" class="form-control"
                   onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode==32'>
               </div>
@@ -596,7 +596,7 @@
     
     <div class="row">
       <div class="col-lg-3">
-        <label class="Address_label">Account name :</label>
+        <label class="Address_label">{{labels4[0].accountname}} :</label>
       </div>
       <div class="col-lg-4">
         <input type="text" class="form-control" placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName" name="accountName">

@@ -1,0 +1,16 @@
+.rowBitton{
+    padding: 10px;;
+}
+.headerContent{
+    display: flex;
+    justify-content: center;
+    align-content: flex-end;
+}
+
+@media screen and (max-width: 600px)
+{
+    .rowBitton{
+        padding: 0px;;
+    } 
+}
+

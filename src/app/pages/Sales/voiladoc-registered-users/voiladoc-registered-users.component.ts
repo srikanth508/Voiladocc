@@ -79,13 +79,13 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
 
   public dummreglist: any;
 
-  countlist:any;
+  countlist: any;
 
   public GetAllRegisteredUsersCount() {
     this.docservice.GetAllRegisteredUsersCount(this.startdate, this.enddate).subscribe(data => {
       // this.RegisteredList = data;
       this.countlist = data;
-    
+
 
     })
   }
@@ -400,7 +400,23 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
       'HospitalClinicID': list.hospitalID,
       'SpokenLanguages': list.speakLanguages,
       'SignatureURL': list.signaturePhoto,
-      'SlotDurationID': list.slotDurationID
+      'SlotDurationID': list.slotDurationID,
+      'CategoryID': 1,
+      'SubscriptionTypeID': 3,
+      'MonthlySubscription': 0,
+      'AppointmentPercentage': 0,
+      'TaxIdentification': 0,
+      'BusinessID': 0,
+      'CommercialRegCity': 0,
+      'TaxProfessional': 0,
+      'SocialSeccurityNo': 0,
+      'Nameofthebank': 0,
+      'AccountName': 0,
+      'AccountNumber': 0,
+      'VAT': 0,
+      'VatPercentage': 0,
+      'ExonerationPeriodFromDate': new Date(),
+      'ExonerationPerioToDate': new Date()
     }
     this.docservice.InsertDoctorRegistration(entity).subscribe(data => {
 
@@ -459,10 +475,13 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
           // location.href = "#/Docdash";
 
           this.GetRegistreedVoiladocusers()
-
         }
 
       }
+    }, error => {
+      console.log("error in Doctor", error);
+      Swal.fire("Error in Registration. Plase Contact Administration");
+      this.spinner.hide();
     })
   }
 
@@ -655,7 +674,23 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
       'CountryID': list.countryID,
       'HospitalClinicID': 612,
       'Education': list.education,
-      'SpokenLanguages': list.speakLanguages
+      'SpokenLanguages': list.speakLanguages,
+      'SlotDurationID': 1,
+      'SubscriptionTypeID': 3,
+      'MonthlySubscription': 0,
+      'AppointmentPercentage': 0,
+      'TaxIdentification': 0,
+      'BusinessID': 0,
+      'CommercialRegCity': 0,
+      'TaxProfessional': 0,
+      'SocialSeccurityNo': 0,
+      'Nameofthebank': 0,
+      'AccountName': 0,
+      'AccountNumber': 0,
+      'VAT': 0,
+      'VatPercentage': 0,
+      'ExonerationPeriodFromDate': 0,
+      'ExonerationPerioToDate': 0
     }
     this.docservice.InsertNurseRegistration(entity).subscribe(data => {
 
@@ -691,6 +726,10 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
         // location.href = '#/NurseDashboard';
         this.GetRegistreedVoiladocusers()
       }
+    }, error => {
+      console.log("error in Doctor", error);
+      Swal.fire("Error in Registration. Plase Contact Administration");
+      this.spinner.hide();
     })
   }
 
@@ -752,7 +791,23 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
       'CountryID': list.countryID,
       'HospitalClinicID': 613,
       'Education': list.education,
-      'SpokenLanguages': list.speakLanguages
+      'SpokenLanguages': list.speakLanguages,
+      'SlotDurationID': 1,
+      'SubscriptionTypeID': 3,
+      'MonthlySubscription': 0,
+      'AppointmentPercentage': 0,
+      'TaxIdentification': 0,
+      'BusinessID': 0,
+      'CommercialRegCity': 0,
+      'TaxProfessional': 0,
+      'SocialSeccurityNo': 0,
+      'Nameofthebank': 0,
+      'AccountName': 0,
+      'AccountNumber': 0,
+      'VAT': 0,
+      'VatPercentage': 0,
+      'ExonerationPeriodFromDate': new Date(),
+      'ExonerationPerioToDate': new Date()
     }
     this.docservice.InsertphysiotherapyRegistrationAdmin(entity).subscribe(data => {
       this.physioid = data;
@@ -788,6 +843,10 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
         // location.href = '#/PhysiotherapistDashboard';
         this.GetRegistreedVoiladocusers()
       }
+    }, error => {
+      console.log("error in Doctor", error);
+      Swal.fire("Error in Registration. Plase Contact Administration");
+      this.spinner.hide();
     })
   }
 
@@ -856,7 +915,23 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
       'CountryID': list.countryID,
       'HospitalClinicID': 614,
       'Education': list.education,
-      'SpokenLanguages': list.speakLanguages
+      'SpokenLanguages': list.speakLanguages,
+      'SlotDurationID': 1,
+      'SubscriptionTypeID': 3,
+      'MonthlySubscription': 0,
+      'AppointmentPercentage': 0,
+      'TaxIdentification': 0,
+      'BusinessID': 0,
+      'CommercialRegCity': 0,
+      'TaxProfessional': 0,
+      'SocialSeccurityNo': 0,
+      'Nameofthebank': 0,
+      'AccountName': 0,
+      'AccountNumber': 0,
+      'VAT': 0,
+      'VatPercentage': 0,
+      'ExonerationPeriodFromDate': new Date(),
+      'ExonerationPerioToDate': new Date()
     }
     this.docservice.InsertMidWivesRegistration(entity).subscribe(data => {
       this.midewifeid = data;
@@ -891,6 +966,10 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
         this.GetRegistreedVoiladocusers()
         // location.href = '#/MidwifeDashboard';
       }
+    }, error => {
+      console.log("error in Doctor", error);
+      Swal.fire("Error in Registration. Plase Contact Administration");
+      this.spinner.hide();
     })
   }
 
@@ -958,7 +1037,17 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
       'HospitalClinicID': 0,
       'Hospitalfulltimebit': 1,
       'ContartStartDate': new Date(),
-      'ContractEndDate': new Date()
+      'ContractEndDate': new Date(),
+      'EveningTimings': 0,
+      'TaxIdentification': 0,
+      'BusinessID': 0,
+      'CommercialRegCity': 0,
+      'TaxProfessional': 0,
+      'SocialSeccurityNo': 0,
+      'Nameofthebank': 0,
+      'AccountName': 0,
+      'AccountNumber': 0,
+      'VAT': 0
     }
     this.docservice.InsertPharmacyRegistration(entity).subscribe(data => {
 
@@ -992,6 +1081,10 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
         this.spinner.hide();
         this.GetRegistreedVoiladocusers()
       }
+    }, error => {
+      console.log("error in Doctor", error);
+      Swal.fire("Error in Registration. Plase Contact Administration");
+      this.spinner.hide();
     })
   }
 
@@ -1067,7 +1160,17 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
       'ContractStartDate': new Date(),
       'ContractEndDate': new Date(),
       'DiagnosticAppointmentPerSlot': 0,
-      'HomeSampleOrdersPerSlot': 0
+      'HomeSampleOrdersPerSlot': 0,
+      'EveningTimings': 0,
+      'TaxIdentification': 0,
+      'BusinessID': 0,
+      'CommercialRegCity': 0,
+      'TaxProfessional': 0,
+      'SocialSeccurityNo': 0,
+      'Nameofthebank': 0,
+      'AccountName': 0,
+      'AccountNumber': 0,
+      'VAT': 0
     }
     this.docservice.InsertDiagnosticCenterRegistration(entity).subscribe(data => {
 
@@ -1103,6 +1206,10 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
         Swal.fire('Diagnostic Center Name', 'Already Exists');
 
       }
+    }, error => {
+      console.log("error in Doctor", error);
+      Swal.fire("Error in Registration. Plase Contact Administration");
+      this.spinner.hide();
     })
 
 

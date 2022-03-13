@@ -133,6 +133,7 @@ export class SidebarComponent implements OnInit {
   patientrefaral: any;
   importpatients: any;
   auditReports:any;
+  hospitalType:any;
   ngOnInit() {
 
     
@@ -143,6 +144,7 @@ export class SidebarComponent implements OnInit {
     this.hospitalid = localStorage.getItem('hospitalClinicID');
 
     this.hospitalididd = localStorage.getItem('hospitalid');
+    this.hospitalType = localStorage.getItem('hospitalType');
 
     this.getlanguage()
 

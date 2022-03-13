@@ -121,7 +121,7 @@
                     &nbsp;
                   </td>
                   <td style="border: none;">  
-                    <ng-template #tipcontent93>Receipts</ng-template>
+                    <ng-template #tipcontent93>Receipts to  reçu</ng-template>
                     <a [ngbTooltip]="tipcontent93" *ngIf="app.isVisited=='1'">
                       <img src="assets/Images/Receipts.png" style="height:19px;"
                         (click)="GetRecept(app.id,app.bookedTime,app.appdate,app.nurseName,app.hospital_ClinicName,app.patientID,app.emailID,app)"
@@ -157,7 +157,7 @@
                     </a>&nbsp;
                   </td>
                   <td style="border: none;">
-                    <ng-template #tipcontent8>SOAP Notes</ng-template>
+                    <ng-template #tipcontent8>Notes SOAP</ng-template>
                     <a [ngbTooltip]="tipcontent8"
                       *ngIf="app.accepted=='1'&&app.isVisited=='0'&&app.notVisited=='0'&&app.nurseCancelled=='0'&&app.cancelled=='0'">
                       <img src="assets/Images/soap.png"  (click)="GetSoapID(app)"
@@ -309,7 +309,7 @@
                 <thead>
                   <tr>
                     <th>Service</th>
-                    <th>Amount</th>
+                    <th>Montant</th>
                   </tr>
                   <tr *ngFor="let ser of Services">
                     <td>{{ser.serviceName}}</td>
@@ -499,7 +499,8 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header modal-lg">
-        <h5 class="modal-title" id="exampleModalLongTitle">SOAP Notes</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle" *ngIf="languageid==1">SOAP Notes</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle" *ngIf="languageid==6">Notes SOAP</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -609,7 +610,7 @@
                   {{labels4[0].diagnposticCode}} :</label>
               </div>
               <div class="col-lg-7">
-                <textarea rows="4" class="form-control" [(ngModel)]="icddesc"
+                <textarea rows="4" class="form-control" disabled [(ngModel)]="icddesc"
                   placeholder="{{labels4[0].diagnposticCode}}" name="icddesc"
                   (ngModelChange)="SearchIcrCode()"></textarea>
 
@@ -694,7 +695,7 @@
             <br>
             <div class="row">
               <div class="col-lg-3">
-                <label for="" class="reglabel">Attachment :</label>
+                <label for="" class="reglabel">Attachement :</label>
               </div>
               <div class="col-lg-7">
                 <ngx-dropzone [multiple]="false" style="height: 50px;" (change)="UploadSoapAttchments($event)"
