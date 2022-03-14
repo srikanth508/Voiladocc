@@ -134,8 +134,8 @@ export class DoctorregistrationComponent implements OnInit {
       this.dropzonelable = "Télécharger des fichiers"
     }
 
-
-   this.getGeoLocation(this.address);
+this.geocode()
+  //  this.getGeoLocation(this.address);
   }
 
 
@@ -997,20 +997,20 @@ export class DoctorregistrationComponent implements OnInit {
   }
 
 
-  getGeoLocation(address: string) {
-    debugger
-    let geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': "1377 Parc industriel Sapino, Nouaceur 27182." }, function (results, status) {
-      debugger
-        if (status == google.maps.GeocoderStatus.OK) {
-          debugger
-          var latlng = google.maps.location.LatLng();
-        } else {
-          debugger
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
-}
+//   getGeoLocation(address: string) {
+//     debugger
+//     let geocoder = new google.maps.Geocoder();
+//     geocoder.geocode({ 'address': "1377 Parc industriel Sapino, Nouaceur 27182." }, function (results, status) {
+//       debugger
+//         if (status == google.maps.GeocoderStatus.OK) {
+//           debugger
+//           var latlng = google.maps.location.LatLng();
+//         } else {
+//           debugger
+//             alert('Geocode was not successful for the following reason: ' + status);
+//         }
+//     });
+// }
 
 
 //   getGeoLocation(address: string): Observable<any> {
@@ -1035,4 +1035,12 @@ export class DoctorregistrationComponent implements OnInit {
 // }
 
 
+
+geocode(){
+  debugger
+  this.docservice.Getlocation().subscribe(data=>{
+    debugger
+    console.log("arealist",data);
+  })
+}
 }
