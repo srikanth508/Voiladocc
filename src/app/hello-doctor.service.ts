@@ -6318,7 +6318,9 @@ export class HelloDoctorService {
 
   public Getlocation()
   {
-    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=Someroad+64&key=AIzkeystuffjXDm6eU5mPP9Nczg')
+    debugger
+    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=1377 Parc industriel Sapino, Nouaceur 27182.+64&key=AIzaSyCyQOGL0nIB0_iXKu4TQU5Fk0jk48NHJ8Y');
+    debugger
   }
 
 }
