@@ -6329,4 +6329,17 @@ export class HelloDoctorService {
   }
 
 
+  public InsertRegionMaster(data) {
+    this.url = this.host + '/Master/InsertRegionMaster';
+    return this.http.post(this.url, data)
+  }
+  public UpdateRegionMaster(data) {
+    this.url = this.host + '/Master/UpdateRegionMaster';
+    return this.http.post(this.url, data)
+  }
+
+  public GetRegionMasterWebDash() {
+    debugger
+    return this.http.get<any[]>(this.host + '/Master/GetRegionMasterWebDash');
+  }
 }
