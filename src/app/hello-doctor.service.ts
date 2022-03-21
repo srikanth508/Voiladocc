@@ -8,11 +8,10 @@ import { pipeDef } from '@angular/core/src/view';
 })
 
 export class HelloDoctorService {
+  
   //live
  public host = "https://maroc.voiladoc.org/VoilaDocTestAPI";
-
  private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
-
 
   //  public host = "https://maroc.voiladoc.org/marocAPI";
 
@@ -6338,8 +6337,13 @@ export class HelloDoctorService {
     return this.http.post(this.url, data)
   }
 
-  public GetRegionMasterWebDash() {
+  public GetRegionMasterWebDash(lid) {
     debugger
-    return this.http.get<any[]>(this.host + '/Master/GetRegionMasterWebDash');
+    return this.http.get<any[]>(this.host + '/Master/GetRegionMasterWebDash?LanguageID='+lid);
+  }
+
+    public DeleteRegionMaster(lid) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Master/DeleteRegionMaster?ID='+lid);
   }
 }

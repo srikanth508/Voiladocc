@@ -34,8 +34,10 @@ export class ProvinceMasterComponent implements OnInit {
     }
     )
     this.countryid = 0;
+    this.regionID=0;
     this.getlanguage();
     this.GetCountryMaster()
+    this.getRegionMaster()
   }
   public getlanguage() {
     this.docservice.GetAdmin_Masters_labels(this.languageid).subscribe(
@@ -48,6 +50,25 @@ export class ProvinceMasterComponent implements OnInit {
   }
 
 
+  regionlist:any;
+
+  public getRegionMaster() {
+    this.docservice.GetRegionMasterWebDash(this.languageid).subscribe(
+      data => {
+       
+        this.regionlist = data;
+       
+      }, error => {
+      }
+    )
+  }
+  regionID:any;
+
+  GetRegionID(even)
+  {
+    this.regionID=even.target.value;
+  }
+
 
   public getprobincelist() {
     this.docservice.GetCityMasterByLangID(this.languageid).subscribe(
@@ -56,7 +77,8 @@ export class ProvinceMasterComponent implements OnInit {
         this.provincelist = data;
         var list = this.provincelist.filter(x => x.id == this.id)
         this.countryid = list[0].countryID,
-          this.cityname = list[0].short
+          this.cityname = list[0].short,
+          this.regionID=list[0].regionMasterID
       }, error => {
       }
     )
@@ -88,7 +110,8 @@ export class ProvinceMasterComponent implements OnInit {
       var entity = {
         'CountryID': this.countryid,
         'Short': this.cityname,
-        'LanguageID': 1
+        'LanguageID': 1,
+        'RegionMasterID':this.regionID
       }
       this.docservice.InsertCityMaster(entity).subscribe(data => {
         if (data != 0) {
@@ -107,7 +130,8 @@ export class ProvinceMasterComponent implements OnInit {
       'ID': this.id,
       'CountryID': this.countryid,
       'Short': this.cityname,
-      'LanguageID':this.languageid
+      'LanguageID':this.languageid,
+      'RegionMasterID':this.regionID
     }
     this.docservice.UpdateCityMaster_Web(entity).subscribe(data => {
     let res=data;

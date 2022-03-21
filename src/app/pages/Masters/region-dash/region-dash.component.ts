@@ -30,7 +30,7 @@ export class RegionDashComponent implements OnInit {
     )
   }
   public GetCountryMaster() {
-    this.docservice.GetCountryMasterByLanguageID(this.languageid).subscribe(
+    this.docservice.GetRegionMasterWebDash(this.languageid).subscribe(
       data => {
        
         this.countrylist = data;
@@ -52,7 +52,7 @@ export class RegionDashComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        this.docservice.DeleteCountryMaster(id).subscribe(res => {
+        this.docservice.DeleteRegionMaster(id).subscribe(res => {
           let test = res;
           this.GetCountryMaster();
         })
