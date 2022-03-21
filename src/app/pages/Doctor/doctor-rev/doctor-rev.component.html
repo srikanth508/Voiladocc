@@ -18,6 +18,12 @@
     <div class="col-lg-3">
       <input type="text" placeholder="{{labels[0].search}}" [(ngModel)]="term1" class="form-control">
     </div>
+    <div class="col-lg-3">
+      <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
+      class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" bsDaterangepicker>
+    <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }"
+      class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)" bsDaterangepicker>
+    </div>
     <!-- <div class="col-lg-2">
           <label>{{labels[0].department}} :</label>
           <span class="required">*</span>
@@ -31,9 +37,9 @@
       </div> -->
   </div>
   <div class="row">
-    <div class="col-lg-10"></div>
-    <div class="col-lg-2">
-      <label style="margin-left: 37px;">{{labels[0].total_Revenue}} : {{GrandTotal}}</label>
+    <div class="col-lg-9"></div>
+    <div class="col-lg-3">
+      <label>{{labels[0].total_Revenue}} : {{GrandTotal}}</label>
     </div>
   </div>
   <br>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HelloDoctorService } from '../../../hello-doctor.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-edit-hospital-clinic',
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class EditHospitalClinicComponent implements OnInit {
 
-  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute) { }
+  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute, private spinner: NgxSpinnerService) { }
 
   public hospitalid: any;
   public details: any;
@@ -54,6 +55,10 @@ export class EditHospitalClinicComponent implements OnInit {
   public contractenddate: any;
   date = new Date();
 
+  formatAddress: any;
+  latitude: any;
+  longitude: any;
+  googleAddress: any;
 
 
   ngOnInit() {
@@ -112,7 +117,8 @@ export class EditHospitalClinicComponent implements OnInit {
   public GetCountryID(even) {
 
     this.countryid = even.target.value;
-    this.getcitymaster()
+    this.GetRegionMaster()
+   
 
   }
 
@@ -146,6 +152,7 @@ export class EditHospitalClinicComponent implements OnInit {
           this.contactpersonphno = this.details.contactPersonPhNo,
           this.address = this.details.address,
           this.emailid = this.details.emailID,
+          this.regionID=this.details.regionMasterID
           this.cityid = this.details.cityID,
           this.zipcode = this.details.zipCode,
           this.timings = this.details.timings
@@ -170,16 +177,68 @@ export class EditHospitalClinicComponent implements OnInit {
         this.socialseccurityfundno = this.details.socialSeccurityNo
         this.nameofbank = this.details.nameofthebank
         this.accountName = this.details.accountName
-        this.accountNumber = this.details.accountNumber
+        this.accountNumber = this.details.accountNumber,
+          this.latitude = this.details.lattitude,
+          this.longitude = this.details.longitude,
+          this.formatAddress = this.details.formatedAddress,
+         
         this.GetCountryMaster();
-        this.getcitymaster()
+        this.GetRegionMaster();
+        this.getcitymaster();
         this.getareamasterbyid();
+
 
       }, error => {
       }
     )
   }
 
+
+  regionList: any;
+
+  GetRegionMaster() {
+    this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
+      data => {
+
+        this.regionList = data;
+
+
+      }, error => {
+      }
+    )
+  }
+
+  regionID:any;
+
+  GetRegionID(even)
+{
+  this.regionID=even.target.value;
+  this.getcitymaster()
+}
+
+  geocode() {
+    debugger
+    this.spinner.show()
+    this.docservice.Getlocation(this.address).subscribe(data => {
+      debugger
+      console.log("google addressmain", data);
+      if (data["results"].length != 0) {
+        this.googleAddress = data["results"];
+        console.log("google address", this.googleAddress)
+        debugger
+        this.formatAddress = this.googleAddress[0]["formatted_address"];
+        this.latitude = this.googleAddress[0].geometry.location["lat"],
+          this.longitude = this.googleAddress[0].geometry.location["lng"];
+        Swal.fire("Emplacement récupéré avec succès");
+        this.spinner.hide();
+      }
+      else {
+        Swal.fire("Entrez l'adresse correcte");
+        this.spinner.hide();
+      }
+
+    })
+  }
 
 
   taxidentification: any;
@@ -194,7 +253,7 @@ export class EditHospitalClinicComponent implements OnInit {
 
 
   public updatedetails() {
-
+    debugger
     var entity = {
       'LanguageID': this.languageid,
       'Hospital_ClinicID': this.id,
@@ -224,7 +283,10 @@ export class EditHospitalClinicComponent implements OnInit {
       'Nameofthebank': this.nameofbank,
       'AccountName': this.accountName,
       'AccountNumber': this.accountNumber,
-      'VAT': 0
+      'VAT': 0,
+      'Lattitude': this.latitude,
+      'Longitude': this.longitude,
+      'FormatedAddress': this.formatAddress
     }
     this.docservice.UpdateHospitalClinicProfile(entity).subscribe(res => {
       let test = res;
@@ -461,6 +523,14 @@ export class EditHospitalClinicComponent implements OnInit {
 
     })
   }
+
+
+
+
+
+
+
+
 }
 
 

@@ -83,6 +83,9 @@
               <textarea class="form-control" rows="4" required name="address" required [(ngModel)]="address"
                 placeholder="{{labels[0].address}}"></textarea>
             </div>
+            <div class="col-lg-2">
+              <button  class="btn btncolor" (click)="geocode()">Get Location</button>
+            </div>
           </div>
           <br>
           <div class="row">
@@ -93,6 +96,19 @@
             <div class="col-lg-4">
               <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="countrylist" [settings]="countrydd"
                 (onSelect)="GetCountryID($event)">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <br>
+          
+          <div class="row">
+            <div class="col-lg-3">
+              <label>Régions : </label>
+              <span class="required">*</span>
+            </div>
+            <div class="col-lg-4">
+              <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="regionList" [settings]="regiondd"
+                (onSelect)="GetRegionID($event)" >
               </ng-multiselect-dropdown>
             </div>
           </div>
@@ -648,7 +664,7 @@
           </div>
           <div class="col-lg-4">
 
-            <input type="text" class="form-control"  placeholder="{{labels4[0].taxidentification}}"
+            <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}"
               [(ngModel)]="taxidentification" name="taxidentification">
           </div>
         </div>
@@ -659,7 +675,7 @@
 
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid"
+            <input type="text" class="form-control" placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid"
               name="businessid">
           </div>
         </div>
@@ -671,8 +687,8 @@
             <label class="Address_label">{{labels4[0].commercial}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels4[0].commercial}}"
-              [(ngModel)]="commercialcity" name="commercialcity">
+            <input type="text" class="form-control" placeholder="{{labels4[0].commercial}}" [(ngModel)]="commercialcity"
+              name="commercialcity">
           </div>
         </div>
 
@@ -683,7 +699,7 @@
             <label class="Address_label">{{labels4[0].taxprofessional}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels4[0].taxprofessional}}"
+            <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}"
               [(ngModel)]="taxprofessional" name="taxprofessional">
           </div>
         </div>
@@ -693,7 +709,7 @@
             <label class="Address_label">{{labels4[0].seccuritysocialfundno}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels4[0].seccuritysocialfundno}}"
+            <input type="text" class="form-control" placeholder="{{labels4[0].seccuritysocialfundno}}"
               [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
           </div>
         </div>
@@ -711,7 +727,7 @@
             <label class="Address_label">{{labels4[0].nameofthebank}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels4[0].nameofthebank}}" [(ngModel)]="nameofbank"
+            <input type="text" class="form-control" placeholder="{{labels4[0].nameofthebank}}" [(ngModel)]="nameofbank"
               name="nameofbank">
           </div>
         </div>
@@ -721,7 +737,7 @@
             <label class="Address_label">{{labels4[0].accountname}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName"
+            <input type="text" class="form-control" placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName"
               name="accountName">
           </div>
         </div>
@@ -731,7 +747,7 @@
             <label class="Address_label">{{labels4[0].accountnumber}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control"  placeholder="{{labels4[0].accountnumber}}" maxlength="24"
+            <input type="text" class="form-control" placeholder="{{labels4[0].accountnumber}}" maxlength="24"
               [(ngModel)]="accountNumber" name="accountNumber">
           </div>
         </div>
@@ -741,25 +757,25 @@
             <label class="Address_label">Exonerated :</label>
           </div>
           <div class="col-lg-4">
-            <input type="radio" value="1" [(ngModel)]="vatCheck" name="vatCheck"  (click)="checkVatvalue(1)">
+            <input type="radio" value="1" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(1)">
             &nbsp;{{labels[0].yes}}
-            <input type="radio" value="0" [(ngModel)]="vatCheck" name="vatCheck"  (click)="checkVatvalue(0)">
+            <input type="radio" value="0" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(0)">
             &nbsp;{{labels[0].no}}
           </div>
         </div>
         <br>
         <div>
-        <div class="row" >
-          <div class="col-lg-3">
-            <label class="Address_label">Vat Percentage :</label>
+          <div class="row">
+            <div class="col-lg-3">
+              <label class="Address_label">Vat Percentage :</label>
+            </div>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" required
+                name="vatpercentage" placeholder="Vat Percentage">
+            </div>
           </div>
-          <div class="col-lg-4">
-            <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" required
-              name="vatpercentage" placeholder="Vat Percentage">
-          </div>
+          <br>
         </div>
-        <br>
-      </div>
         <div class="row">
           <div class="col-lg-3">
             <label *ngIf="languageid=='1'">Exoneration period from :</label>
@@ -786,14 +802,14 @@
               [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractenddate" bsDatepicker>
           </div>
         </div>
-        <div class="row" *ngIf="hospitalclinicid=='590'" >
+        <div class="row" *ngIf="hospitalclinicid=='590'">
           <div class="col-lg-3">
           </div>
           <div class="col-lg-9">
             <h4 class="mainheader" *ngIf="languageid=='1'">Subscription setup</h4>
             <h4 class="mainheader" *ngIf="languageid=='6'">Configuration de l'abonnement</h4>
           </div>
-        </div><br>  
+        </div><br>
         <div class="row" *ngIf="hospitalclinicid=='590'">
           <div class="col-lg-3">
             <label>Subscription type :</label>
@@ -826,7 +842,7 @@
         </div>
 
 
-     
+
 
         <div *ngIf="subscriptiontype=='2'">
           <div class="row">

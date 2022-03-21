@@ -1,4 +1,7 @@
-<br>
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
 <div class="container-fluid card card:hover headerspace">
   <div class="row headerspace headercolor">
     <div class="col-lg-5">
@@ -11,107 +14,124 @@
 <div class="container-fluid card card:hover" style="margin-top:20px;">
   <br>
   <form #midwifeForm="ngForm">
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="dname_label">{{labels[0].name}} :</label>
-          <span class="required">*</span>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="dname_label">{{labels[0].name}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" placeholder="{{labels[0].name}}" required class="form-control" [(ngModel)]="name"
+              name="name"
+              onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode==32||event.charCode==46'>
+          </div>
         </div>
-        <div class="col-lg-6">
-          <input type="text" placeholder="{{labels[0].name}}" required class="form-control" [(ngModel)]="name"
-            name="name"
-            onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode==32||event.charCode==46'>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="dname_label">{{labels[0].phoneNo}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <input type="number" maxlength="10" placeholder="{{labels[0].phoneNo}}" name="phno" [(ngModel)]="phno"
+              required class="form-control">
+          </div>
         </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="dname_label">{{labels[0].phoneNo}} :</label>
-          <span class="required">*</span>
-        </div>
-        <div class="col-lg-6">
-          <input type="number" maxlength="10" placeholder="{{labels[0].phoneNo}}" name="phno" [(ngModel)]="phno"
-            required class="form-control">
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="dname_label">{{labels[0].emailID}} :</label>
-          <span class="required">*</span>
-        </div>
-        <div class="col-lg-6">
-          <input type="text" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"
-            name="email" [(ngModel)]="email" #emailref="ngModel" placeholder="{{labels[0].emailID}}">
-          <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="aler alert-danger">
-            <div [hidden]="!emailref.errors?.pattern">
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="dname_label">{{labels[0].emailID}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+              id="email" name="email" [(ngModel)]="email" #emailref="ngModel" placeholder="{{labels[0].emailID}}">
+            <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="aler alert-danger">
+              <div [hidden]="!emailref.errors?.pattern">
 
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label>{{labels[0].gender}} : </label>
-          <span class="requird">*</span>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label>{{labels[0].gender}} : </label>
+            <span class="requird">*</span>
+          </div>
+          <div class="col-lg-6">
+            <input type="radio" required [value]="1" name="genderid" [(ngModel)]="genderid">{{labels[0].male}}
+            &nbsp;&nbsp;
+            <input type="radio" required [value]="2" name="genderid" [(ngModel)]="genderid">{{labels[0].female}}
+          </div>
         </div>
-        <div class="col-lg-6">
-          <input type="radio" required [value]="1" name="genderid" [(ngModel)]="genderid">{{labels[0].male}} &nbsp;&nbsp;
-          <input type="radio" required [value]="2" name="genderid" [(ngModel)]="genderid">{{labels[0].female}}
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels[0].address}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <textarea class="form-control" rows="4" name="address" [(ngModel)]="address" required
+              placeholder="{{labels[0].address}}"></textarea>
+          </div>
+          <div class="col-lg-2">
+            <button class="btn btncolor" (click)="geocode()">Get Location</button>
+          </div>
         </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels[0].address}} :</label>
-          <span class="required">*</span>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label>{{labels[0].country}} : </label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control" required [(ngModel)]="countryid" name="countryid"
+              (change)="GetCountryID($event)">
+              <option value="">{{labels[0].select}}</option>
+              <option *ngFor="let cou of countrylist" value={{cou.id}}>{{cou.short}}</option>
+            </select>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label>Régions : </label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control" required (change)="GetRegionID($event)" [(ngModel)]="regionID" name="regionID">
+              <option value="" >{{labels[0].select}}</option>
+              <option *ngFor="let reg of regionList" value={{reg.id}}>{{reg.regionName}}</option>
+            </select>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label>{{labels[0].province}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <select class=" form-control" required [(ngModel)]="cityid" name="cityid" (change)="GetcityID($event)">
+              <option value="">{{labels[0].select}}</option>
+              <option *ngFor="let city of citylist" value={{city.id}}>{{city.short}}</option>
+            </select>
+          </div>
         </div>
-        <div class="col-lg-6">
-          <textarea class="form-control" rows="4" name="address" [(ngModel)]="address" required
-            placeholder="{{labels[0].address}}"></textarea>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label>{{labels[0].country}} : </label>
-          <span class="required">*</span>
-        </div>
-        <div class="col-lg-6">
-          <select class="form-control" required [(ngModel)]="countryid" name="countryid" (change)="GetCountryID($event)">
-            <option value="" >{{labels[0].select}}</option>
-            <option *ngFor="let cou of countrylist" value={{cou.id}}>{{cou.short}}</option>
-          </select>
-        </div>
-      </div><br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label>{{labels[0].province}} :</label>
-          <span class="required">*</span>
-        </div>
-        <div class="col-lg-6">
-          <select class=" form-control" required [(ngModel)]="cityid" name="cityid" (change)="GetcityID($event)">
-            <option value="" >{{labels[0].select}}</option>
-            <option *ngFor="let city of citylist" value={{city.id}}>{{city.short}}</option>
-          </select>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="City_label">{{labels[0].city}} :</label>
-          <span class="required">*</span>
-        </div>
-        <div class="col-lg-6">
-          <select class="form-control" required [(ngModel)]="areaid" name="areaid" (change)="GetAreaID($event)">
-            <option value="">{{labels[0].select}}</option>
-            <option *ngFor="let area of arealist" value={{area.id}}>{{area.areaName}}</option>
-          </select>
-        </div>
-      </div><br>
-      <!-- <div class="row">
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="City_label">{{labels[0].city}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control" required [(ngModel)]="areaid" name="areaid" (change)="GetAreaID($event)">
+              <option value="">{{labels[0].select}}</option>
+              <option *ngFor="let area of arealist" value={{area.id}}>{{area.areaName}}</option>
+            </select>
+          </div>
+        </div><br>
+        <!-- <div class="row">
         <div class="col-lg-4">
           <label class="DEPARTMENT_label">{{labels[0].department}}:</label>
           <span class="required">*</span>
@@ -125,245 +145,246 @@
         </div>
       </div>
       <br> -->
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Email_label">{{labels[0].homecare}} :</label>
-          <span class="required">*</span>
-        </div>
-        <div class="col-lg-6">
-          <input type="radio" name="homevisit" required [value]="true" [(ngModel)]="homevisit">{{labels[0].yes}} &nbsp;
-          <input type="radio" name="homevisit" required [value]="false" [(ngModel)]="homevisit">{{labels[0].no}}
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="dname_label">{{labels[0].experience}} :</label>
-          <span class="required">*</span>
-        </div>
-        <div class="col-lg-6">
-          <input type="number" placeholder="{{labels[0].experience}}" name="exp" [(ngModel)]="exp" required
-            class="form-control">
-        </div>
-      </div>
-      <br>
-      
-      <div class="row">
-        <div class="col-lg-4">
-          <label *ngIf="languageid=='1'">Hospital/Clinic : </label>
-          <label id="imp" *ngIf="languageid=='6'">Hôpital / Clinique : </label>
-        </div>
-        <div class="col-lg-6"> 
-          <input type="text" disabled  [(ngModel)]="hospitalname" name="hospitalname" class="form-control"
-           >
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels[0].description}} :</label>
-          <span class="required">*</span>
-        </div>
-        <div class="col-lg-6">
-          <textarea class="form-control" rows="4" name="description" required [(ngModel)]="description" required
-            placeholder="{{labels[0].description}}"></textarea>
-        </div>
-      </div>
-      <br>
-
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels[0].photo}} :</label>
-        </div>
-        <div class="col-lg-6">
-          <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
-            <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
-          </ngx-dropzone>
-          <span *ngFor="let hspphoto of showphoto">
-            <img src="{{hspphoto}}" style="height: 35px; width: auto;">
-          </span>
-        </div><br>
-      </div><br>
-
-
-
-      <div class="row">
-        <div class="col-lg-12">
-          <h4 class="text-center">Financier </h4>
-        </div>
-      </div>
-      <div class="row">
-
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels4[0].taxidentification}} :</label>
-
-        </div>
-        <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}" [(ngModel)]="taxidentification"
-            name="taxidentification">
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels4[0].businessid}} :</label>
-
-        </div>
-        <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid"
-            name="businessid">
-        </div>
-      </div>
-
-      <br>
-
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels4[0].commercial}} :</label>
-        </div>
-        <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="{{labels4[0].commercial}}"
-            [(ngModel)]="commercialcity" name="commercialcity">
-        </div>
-      </div>
-
-      <br>
-
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels4[0].taxprofessional}} :</label>
-        </div>
-        <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}" [(ngModel)]="taxprofessional"
-            name="taxprofessional">
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels4[0].seccuritysocialfundno}} :</label>
-        </div>
-        <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="{{labels4[0].seccuritysocialfundno}}"
-            [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels4[0].nameofthebank}} :</label>
-        </div>
-        <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="{{labels4[0].nameofthebank}}" [(ngModel)]="nameofbank"
-            name="nameofbank">
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels4[0].accountname}} :</label>
-        </div>
-        <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName"
-            name="accountName">
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-4">
-          <label class="Address_label">{{labels4[0].accountnumber}} :</label>
-        </div>
-        <div class="col-lg-6">
-          <input type="text" class="form-control" placeholder="{{labels4[0].accountnumber}}" maxlength="24"
-            [(ngModel)]="accountNumber" name="accountNumber">
-        </div>
-      </div>
-      <br>
-      <div class="row" *ngIf="hospitalclinicid=='614'">
-        <div class="col-lg-4">
-          <label>{{labels4[0].subscriptiontype}} :</label>
-          <span class="required">*</span>
-        </div>
-        <div class="col-md-8">
-          <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-            (click)="Getsubscriptontype()" [value]="1">{{labels4[0].monthlySubscription}}
-          &nbsp;
-          <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-            (click)="Getsubscriptontype()" [value]="2"> {{labels4[0].appointmentpercentage}}
-          &nbsp;
-          <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
-            (click)="Getsubscriptontype()" [value]="3"> {{labels4[0].both}}
-        </div>
-      </div><br>
-      <div *ngIf="subscriptiontype=='1'">
         <div class="row">
           <div class="col-lg-4">
-            <label>{{labels4[0].monthlySubscription}} :</label>
+            <label class="Email_label">{{labels[0].homecare}} :</label>
             <span class="required">*</span>
           </div>
           <div class="col-lg-6">
-            <input type="text" placeholder="{{labels4[0].monthlySubscription}}" name="monthlysubription"
-              [(ngModel)]="monthlysubription" class="form-control"
-              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+            <input type="radio" name="homevisit" required [value]="true" [(ngModel)]="homevisit">{{labels[0].yes}}
+            &nbsp;
+            <input type="radio" name="homevisit" required [value]="false" [(ngModel)]="homevisit">{{labels[0].no}}
           </div>
-        </div><br>
-
-      </div>
-      <div *ngIf="subscriptiontype=='2'">
+        </div>
+        <br>
         <div class="row">
           <div class="col-lg-4">
-            <label>{{labels4[0].appointmentpercentage}} :</label>
+            <label class="dname_label">{{labels[0].experience}} :</label>
             <span class="required">*</span>
           </div>
           <div class="col-lg-6">
-            <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
-              [(ngModel)]="appointmentpercentage" class="form-control"
-              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
-          </div>
-        </div><br>
-      </div>
-      <div *ngIf="subscriptiontype=='3'">
-        <div class="row">
-          <div class="col-lg-4">
-            <label>{{labels4[0].appointmentpercentage}} :</label>
-          </div>
-          <div class="col-lg-6">
-            <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
-              [(ngModel)]="appointmentpercentage" class="form-control"
-              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+            <input type="number" placeholder="{{labels[0].experience}}" name="exp" [(ngModel)]="exp" required
+              class="form-control">
           </div>
         </div>
-        <br />
+        <br>
+
         <div class="row">
           <div class="col-lg-4">
-            <label>{{labels4[0].monthlySubscription}} :</label>
+            <label *ngIf="languageid=='1'">Hospital/Clinic : </label>
+            <label id="imp" *ngIf="languageid=='6'">Hôpital / Clinique : </label>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" disabled [(ngModel)]="hospitalname" name="hospitalname" class="form-control">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels[0].description}} :</label>
             <span class="required">*</span>
           </div>
           <div class="col-lg-6">
-            <input type="text" placeholder="{{labels4[0].monthlySubscription}}" name="monthlysubription"
-              [(ngModel)]="monthlysubription" class="form-control"
-              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+            <textarea class="form-control" rows="4" name="description" required [(ngModel)]="description" required
+              placeholder="{{labels[0].description}}"></textarea>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels[0].photo}} :</label>
+          </div>
+          <div class="col-lg-6">
+            <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
+              <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
+            </ngx-dropzone>
+            <span *ngFor="let hspphoto of showphoto">
+              <img src="{{hspphoto}}" style="height: 35px; width: auto;">
+            </span>
+          </div><br>
+        </div><br>
+
+
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h4 class="text-center">Financier </h4>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels4[0].taxidentification}} :</label>
+
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}"
+              [(ngModel)]="taxidentification" name="taxidentification">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels4[0].businessid}} :</label>
+
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid"
+              name="businessid">
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels4[0].commercial}} :</label>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" placeholder="{{labels4[0].commercial}}" [(ngModel)]="commercialcity"
+              name="commercialcity">
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels4[0].taxprofessional}} :</label>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}"
+              [(ngModel)]="taxprofessional" name="taxprofessional">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels4[0].seccuritysocialfundno}} :</label>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" placeholder="{{labels4[0].seccuritysocialfundno}}"
+              [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels4[0].nameofthebank}} :</label>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" placeholder="{{labels4[0].nameofthebank}}" [(ngModel)]="nameofbank"
+              name="nameofbank">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels4[0].accountname}} :</label>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName"
+              name="accountName">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">{{labels4[0].accountnumber}} :</label>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" placeholder="{{labels4[0].accountnumber}}" maxlength="24"
+              [(ngModel)]="accountNumber" name="accountNumber">
+          </div>
+        </div>
+        <br>
+        <div class="row" *ngIf="hospitalclinicid=='614'">
+          <div class="col-lg-4">
+            <label>{{labels4[0].subscriptiontype}} :</label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-md-8">
+            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+              (click)="Getsubscriptontype()" [value]="1">{{labels4[0].monthlySubscription}}
+            &nbsp;
+            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+              (click)="Getsubscriptontype()" [value]="2"> {{labels4[0].appointmentpercentage}}
+            &nbsp;
+            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+              (click)="Getsubscriptontype()" [value]="3"> {{labels4[0].both}}
           </div>
         </div><br>
-      </div>
+        <div *ngIf="subscriptiontype=='1'">
+          <div class="row">
+            <div class="col-lg-4">
+              <label>{{labels4[0].monthlySubscription}} :</label>
+              <span class="required">*</span>
+            </div>
+            <div class="col-lg-6">
+              <input type="text" placeholder="{{labels4[0].monthlySubscription}}" name="monthlysubription"
+                [(ngModel)]="monthlysubription" class="form-control"
+                onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+            </div>
+          </div><br>
+
+        </div>
+        <div *ngIf="subscriptiontype=='2'">
+          <div class="row">
+            <div class="col-lg-4">
+              <label>{{labels4[0].appointmentpercentage}} :</label>
+              <span class="required">*</span>
+            </div>
+            <div class="col-lg-6">
+              <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
+                [(ngModel)]="appointmentpercentage" class="form-control"
+                onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+            </div>
+          </div><br>
+        </div>
+        <div *ngIf="subscriptiontype=='3'">
+          <div class="row">
+            <div class="col-lg-4">
+              <label>{{labels4[0].appointmentpercentage}} :</label>
+            </div>
+            <div class="col-lg-6">
+              <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
+                [(ngModel)]="appointmentpercentage" class="form-control"
+                onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-lg-4">
+              <label>{{labels4[0].monthlySubscription}} :</label>
+              <span class="required">*</span>
+            </div>
+            <div class="col-lg-6">
+              <input type="text" placeholder="{{labels4[0].monthlySubscription}}" name="monthlysubription"
+                [(ngModel)]="monthlysubription" class="form-control"
+                onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+            </div>
+          </div><br>
+        </div>
 
 
-      <div class="row">
-        <div class="col-lg-5">
+        <div class="row">
+          <div class="col-lg-5">
+          </div>
+          <div class="col-lg-2">
+            <button type="button" text_align="center" (click)="updatedetails()"
+              class="btn btn-block btn-md allbtns btncolor"
+              [disabled]="midwifeForm.form.invalid">{{labels[0].update}}</button>
+          </div>
+          <div class="col-lg-5">
+          </div>
         </div>
-        <div class="col-lg-2">
-          <button type="button" text_align="center" (click)="updatedetails()"
-            class="btn btn-block btn-md allbtns btncolor" [disabled]="midwifeForm.form.invalid">{{labels[0].update}}</button>
-        </div>
-        <div class="col-lg-5">
-        </div>
+        <br>
       </div>
-      <br>
-    </div>
-    <div class="col-lg-4">
-      <img src={{photourl}} style="width: 100%;height: 400px;" /><br><br>
-      <!-- <button class="btn  btncolor" (click)="GetEditPhoto()">{{labels[0].edit}}</button><br><br> -->
-      <!-- <div class="col-lg-8" *ngIf="editbit=='1'">
+      <div class="col-lg-4">
+        <img src={{photourl}} style="width: 100%;height: 400px;" /><br><br>
+        <!-- <button class="btn  btncolor" (click)="GetEditPhoto()">{{labels[0].edit}}</button><br><br> -->
+        <!-- <div class="col-lg-8" *ngIf="editbit=='1'">
         <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
           <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
         </ngx-dropzone>
@@ -371,12 +392,12 @@
           <img src="{{hspphoto}}" style="height: 35px; width: auto;">
         </span>
       </div><br> -->
-      <div class="col-lg-4" *ngIf="editbit=='1'">
-        <button class="btn  btncolor" (click)="updatephoto()"> {{labels[0].update}}</button>
-      </div><br>
-    </div>
+        <div class="col-lg-4" *ngIf="editbit=='1'">
+          <button class="btn  btncolor" (click)="updatephoto()"> {{labels[0].update}}</button>
+        </div><br>
+      </div>
 
-    <br><br><br>
-  </div>
-</form>
+      <br><br><br>
+    </div>
+  </form>
 </div>

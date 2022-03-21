@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HelloDoctorService } from '../../../hello-doctor.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-edit-nurse',
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class EditNurseComponent implements OnInit {
 
-  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute) { }
+  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute,private spinner: NgxSpinnerService) { }
 
   public id: any;
   public nursedetails: any;
@@ -47,6 +48,11 @@ export class EditNurseComponent implements OnInit {
   hospitalname: any;
   hospitalclinicid:any;
   labels4:any;
+
+  formatAddress: any;
+  latitude: any;
+  longitude: any;
+  googleAddress: any;
   ngOnInit() {
     this.activatedroute.params.subscribe(params => {
 
@@ -77,26 +83,28 @@ export class EditNurseComponent implements OnInit {
         this.attachmentsurl[0] = this.nursedetails[0].photoUrlPath;
         this.hospitalname = this.nursedetails[0].hospital_ClinicName
         this.subscriptiontype=this.nursedetails[0].subscriptionTypeID,
-
           this.monthlysubription=this.nursedetails[0].monthlySubscription
           this.appointmentpercentage=this.nursedetails[0].appointmentPercentage
            this.taxidentification=this.nursedetails[0].taxIdentification
            this.businessid=this.nursedetails[0].businessID
           this.commercialcity=this.nursedetails[0].commercialRegCity
            this.taxprofessional=this.nursedetails[0].taxProfessional
-
            this.socialseccurityfundno=this.nursedetails[0].socialSeccurityNo
            this.nameofbank=this.nursedetails[0].nameofthebank
             this.accountName=this.nursedetails[0].accountName
-            this.accountNumber=this.nursedetails[0].accountNumber
-
+            this.accountNumber=this.nursedetails[0].accountNumber,
+            this.latitude=this.nursedetails[0].lattitude,
+            this.longitude=this.nursedetails[0].longitude,
+            this.formatAddress=this.nursedetails[0].formatedAddress
+            this.regionID=this.nursedetails[0].regionMasterID
         this.GetCountryMaster();
+        this.GetRegionMaster()
         this.getcitymasterbyid();
         this.getareamasterbyid();
       }, error => {
       }
     )
-
+  
     this.GetCountryMaster();
     this.getdepartment();
     this.getlanguage()
@@ -146,6 +154,30 @@ export class EditNurseComponent implements OnInit {
     )
   }
 
+
+  regionList: any;
+
+  GetRegionMaster() {
+    this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
+      data => {
+
+        this.regionList = data;
+
+
+      }, error => {
+      }
+    )
+  }
+
+
+  regionID:any;
+
+  GetRegionID(even)
+{
+  this.regionID=even.target.value;
+  this.getcitymasterbyid()
+}
+
   public GetCountryMaster() {
     this.docservice.GetCountryMasterByLanguageID(this.languageid).subscribe(
       data => {
@@ -159,7 +191,7 @@ export class EditNurseComponent implements OnInit {
   public GetCountryID(even) {
 
     this.countryid = even.target.value;
-    this.getcitymasterbyid()
+    this.GetRegionMaster()
 
 
   }
@@ -215,6 +247,7 @@ export class EditNurseComponent implements OnInit {
   subscriptiontype:any;
 
   public updatedetails() {
+    debugger
     var entity = {
       'LanguageID': this.languageid,
       'ID': this.id,
@@ -242,7 +275,10 @@ export class EditNurseComponent implements OnInit {
       'Nameofthebank': this.nameofbank,
       'AccountName': this.accountName,
       'AccountNumber': this.accountNumber,
-      'VAT': 0
+      'VAT': 0,
+      'Lattitude': this.latitude,
+      'Longitude': this.longitude,
+      'FormatedAddress': this.formatAddress
     }
     this.docservice.UpdateNurseRegistration(entity).subscribe(data => {
       if (data != undefined) {
@@ -336,4 +372,29 @@ export class EditNurseComponent implements OnInit {
     this.monthlysubription = 0;
   }
 
+
+
+  geocode() {
+    debugger
+    this.spinner.show()
+    this.docservice.Getlocation(this.address).subscribe(data => {
+      debugger
+      console.log("google addressmain", data);
+      if (data["results"].length!=0) {
+        this.googleAddress = data["results"];
+        console.log("google address", this.googleAddress)
+        debugger
+        this.formatAddress = this.googleAddress[0]["formatted_address"];
+        this.latitude = this.googleAddress[0].geometry.location["lat"],
+          this.longitude = this.googleAddress[0].geometry.location["lng"];
+        Swal.fire("Emplacement récupéré avec succès");
+        this.spinner.hide();
+      }
+      else {
+        Swal.fire("Entrez l'adresse correcte");
+        this.spinner.hide();
+      }
+
+    })
+  }
 }

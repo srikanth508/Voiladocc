@@ -9,9 +9,9 @@ import { pipeDef } from '@angular/core/src/view';
 
 export class HelloDoctorService {
   //live
-  public host = "https://maroc.voiladoc.org/VoilaDocTestAPI";
+ public host = "https://maroc.voiladoc.org/VoilaDocTestAPI";
 
-  private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
+ private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
 
 
   //  public host = "https://maroc.voiladoc.org/marocAPI";
@@ -6316,11 +6316,17 @@ export class HelloDoctorService {
     return this.http.post(this.url, data)
   }
 
-  public Getlocation()
+  public Getlocation(address)
   {
     debugger
-    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=1377 Parc industriel Sapino, Nouaceur 27182.+64&key=AIzaSyCyQOGL0nIB0_iXKu4TQU5Fk0jk48NHJ8Y');
+    return this.http.get<any[]>(this.host + '/Doctor/Getlocation?Address=' + address );
     debugger
   }
+
+    public GetRegionMasterWeb(id) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/GetRegionMasterWeb?CountryID=' + id);
+  }
+
 
 }

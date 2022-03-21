@@ -932,7 +932,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-4">
-              <label class="DEPARTMENT_label"> {{labels1[0].amount}} (MAD) :</label>
+              <label class="DEPARTMENT_label"> {{labels1[0].amount}} (DH) :</label>
             </div>
             <div class="col-lg-6">
               <input type="text" [(ngModel)]="PaidAmount" id="Amount" name="PaidAmount" class="form-control">
@@ -946,16 +946,16 @@
             <div class="col-lg-6">
               <select class="form-control" [(ngModel)]="PaymentTypeID" (change)="GetPaymentTypeID($event)">
                 <option value="" selected>{{labels[0].payment_Type}}</option>
-                <option *ngIf="languageid=='1'" value="4">Cash / Credit card</option>
+                <option *ngIf="languageid=='1'" value="3">Cash / Credit card</option>
                 <!-- <option *ngIf="languageid=='1'"  value="2">Credit Card / Debit Card</option> -->
-                <option *ngIf="languageid=='6'" value="4">Cash / TPE</option>
+                <option *ngIf="languageid=='6'" value="3">Cash / TPE</option>
                 <!-- <option *ngIf="languageid=='6'"  value="2">Carte de débit/crédit’</option> -->
                 <!-- <option value="3">Debit Card</option> -->
               </select>
             </div>
           </div>
           <br>
-          <div *ngIf="PaymentTypeID=='2'||PaymentTypeID=='3'">
+          <!-- <div *ngIf="PaymentTypeID=='2'||PaymentTypeID=='3'">
             <div class="row">
               <div class="col-lg-4">
                 <label>Card No</label>
@@ -984,7 +984,7 @@
                 <input type="text" class="form-control" placeholder="CVV" id="CVV" name="CVV" maxlength=3 />
               </div>
             </div>
-          </div>
+          </div> -->
           <br>
           <div class="row">
             <div class="col-lg-5">
