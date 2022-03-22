@@ -38,11 +38,13 @@
         <thead>
           <tr>
             <th>{{labels[0].country}}</th>
+            <th>Region</th>
             <th>{{labels[0].province}}</th>
             <th>{{labels[0].actions}}</th>
           </tr>
           <tr *ngFor="let list of provincelist|filter:term">
             <td>{{list.country}}</td>
+            <td>{{list.regionName}}</td>
             <td>{{list.short}}</td>
             <td>
               <ng-template #tipcontent1>{{labels[0].edit}}</ng-template>

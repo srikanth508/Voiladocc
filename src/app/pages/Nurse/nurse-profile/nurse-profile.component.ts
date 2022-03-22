@@ -40,6 +40,7 @@ export class NurseProfileComponent implements OnInit {
   public areadd={};
   public languageid: any;
   public labels:any;
+  hospitalName:any;
 
   ngOnInit() {
     this.spinner.show();
@@ -68,6 +69,7 @@ this.id=localStorage.getItem('nurseid');
         this.cityid = this.nursedetails[0].cityID;
         this.areaid = this.nursedetails[0].areaID;
         this.pincode = this.nursedetails[0].pincode;
+        this.hospitalName=this.nursedetails[0].hospital_ClinicName
      this.GetCountryMaster();
      this.getcitymasterbyid();
      this.getareamasterbyid();

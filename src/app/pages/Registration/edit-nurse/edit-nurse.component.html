@@ -1,3 +1,7 @@
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
 <div class="container-fluid card card:hover headerspace">
   <div class="row headerspace headercolor">
     <div class="col-lg-3">
@@ -72,6 +76,9 @@
             <textarea class="form-control" rows="4" name="address" [(ngModel)]="address" required
               placeholder="{{labels[0].address}}"></textarea>
           </div>
+          <div class="col-lg-2">
+            <button class="btn btncolor" (click)="geocode()">Get Location</button>
+          </div>
         </div>
         <br>
         <div class="row">
@@ -87,6 +94,19 @@
             </select>
           </div>
         </div><br>
+        <div class="row">
+          <div class="col-lg-4">
+            <label>Régions : </label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control" required (change)="GetRegionID($event)" [(ngModel)]="regionID" name="regionID">
+              <option value="" >{{labels[0].select}}</option>
+              <option *ngFor="let reg of regionList" value={{reg.id}}>{{reg.regionName}}</option>
+            </select>
+          </div>
+        </div><br>
+
         <div class="row">
           <div class="col-lg-4">
             <label>{{labels[0].province}} :</label>
@@ -187,8 +207,8 @@
 
           </div>
           <div class="col-lg-6">
-            <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}" [(ngModel)]="taxidentification"
-              name="taxidentification">
+            <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}"
+              [(ngModel)]="taxidentification" name="taxidentification">
           </div>
         </div>
         <br>
@@ -210,8 +230,8 @@
             <label class="Address_label">{{labels4[0].commercial}} :</label>
           </div>
           <div class="col-lg-6">
-            <input type="text" class="form-control" placeholder="{{labels4[0].commercial}}"
-              [(ngModel)]="commercialcity" name="commercialcity">
+            <input type="text" class="form-control" placeholder="{{labels4[0].commercial}}" [(ngModel)]="commercialcity"
+              name="commercialcity">
           </div>
         </div>
 
@@ -222,8 +242,8 @@
             <label class="Address_label">{{labels4[0].taxprofessional}} :</label>
           </div>
           <div class="col-lg-6">
-            <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}" [(ngModel)]="taxprofessional"
-              name="taxprofessional">
+            <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}"
+              [(ngModel)]="taxprofessional" name="taxprofessional">
           </div>
         </div>
         <br>

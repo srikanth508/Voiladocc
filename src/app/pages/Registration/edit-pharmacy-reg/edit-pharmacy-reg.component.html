@@ -1,3 +1,7 @@
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
 <div class="container-fluid card card:hover headerrspace">
   <div class="row headerspace">
     <div class="col-lg-3">
@@ -78,8 +82,12 @@
                 <span class="required">*</span>
               </div>
               <div class="col-lg-6">
-                <textarea class="form-control" rows="4" required cols="30" [(ngModel)]="address" name="address"
-                 ></textarea>
+                <textarea class="form-control" rows="4" required cols="30" [(ngModel)]="address"
+                  name="address"></textarea>
+              </div>
+
+              <div class="col-lg-2">
+                <button class="btn btncolor" (click)="geocode()">Get Location</button>
               </div>
             </div><br>
             <div class="row">
@@ -88,9 +96,22 @@
                 <span class="required">*</span>
               </div>
               <div class="col-lg-6">
-                <select class="form-control" required [(ngModel)]="countryid" name="countryid" (change)="GetCountryID($event)">
-                  <option value="" >Select</option>
+                <select class="form-control" required [(ngModel)]="countryid" name="countryid"
+                  (change)="GetCountryID($event)">
+                  <option value="">Select</option>
                   <option *ngFor="let cou of countrylist" value={{cou.id}}>{{cou.short}}</option>
+                </select>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>Régions : </label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <select class="form-control" required (change)="GetRegionID($event)" [(ngModel)]="regionID" name="regionID">
+                  <option value="" >{{labels[0].select}}</option>
+                  <option *ngFor="let reg of regionList" value={{reg.id}}>{{reg.regionName}}</option>
                 </select>
               </div>
             </div><br>
@@ -167,10 +188,11 @@
             <div class="row">
               <div class="col-lg-4">
                 <label>{{labels[0].homeDelivery}} :</label>
-        
+
               </div>
               <div class="col-lg-6">
-                <input type="radio" name="homedelivery" [(ngModel)]="homedelivery" [value]="true">{{labels[0].yes}} &nbsp;
+                <input type="radio" name="homedelivery" [(ngModel)]="homedelivery" [value]="true">{{labels[0].yes}}
+                &nbsp;
                 <input type="radio" name="homedelivery" [(ngModel)]="homedelivery" [value]="false">{{labels[0].no}}
               </div>
             </div>
@@ -178,10 +200,11 @@
             <div class="row">
               <div class="col-lg-4">
                 <label>{{labels[0].nightPharmacy}} :</label>
-        
+
               </div>
               <div class="col-lg-6">
-                <input type="radio" name="nightpharmacy" [(ngModel)]="nightpharmacy" [value]="true">{{labels[0].yes}} &nbsp;
+                <input type="radio" name="nightpharmacy" [(ngModel)]="nightpharmacy" [value]="true">{{labels[0].yes}}
+                &nbsp;
                 <input type="radio" name="nightpharmacy" [(ngModel)]="nightpharmacy" [value]="false">{{labels[0].no}}
               </div>
             </div>
@@ -203,29 +226,30 @@
               </div>
             </div>
             <div class="row">
-        
+
               <div class="col-lg-4">
                 <label class="Address_label">{{labels4[0].taxidentification}} :</label>
-        
+
               </div>
               <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}" [(ngModel)]="taxidentification"
-                  name="taxidentification">
+                <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}"
+                  [(ngModel)]="taxidentification" name="taxidentification">
               </div>
             </div>
             <br>
             <div class="row">
               <div class="col-lg-4">
                 <label class="Address_label">{{labels4[0].businessid}} :</label>
-        
+
               </div>
               <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid" name="businessid">
+                <input type="text" class="form-control" placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid"
+                  name="businessid">
               </div>
             </div>
-        
+
             <br>
-        
+
             <div class="row">
               <div class="col-lg-4">
                 <label class="Address_label">{{labels4[0].commercial}} :</label>
@@ -235,16 +259,16 @@
                   [(ngModel)]="commercialcity" name="commercialcity">
               </div>
             </div>
-        
+
             <br>
-        
+
             <div class="row">
               <div class="col-lg-4">
                 <label class="Address_label">{{labels4[0].taxprofessional}} :</label>
               </div>
               <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}" [(ngModel)]="taxprofessional"
-                  name="taxprofessional">
+                <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}"
+                  [(ngModel)]="taxprofessional" name="taxprofessional">
               </div>
             </div>
             <br>
@@ -263,8 +287,8 @@
                 <label class="Address_label">{{labels4[0].nameofthebank}} :</label>
               </div>
               <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="{{labels4[0].nameofthebank}}" [(ngModel)]="nameofbank"
-                  name="nameofbank">
+                <input type="text" class="form-control" placeholder="{{labels4[0].nameofthebank}}"
+                  [(ngModel)]="nameofbank" name="nameofbank">
               </div>
             </div>
             <br>
@@ -273,7 +297,8 @@
                 <label class="Address_label">{{labels4[0].accountname}} :</label>
               </div>
               <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName" name="accountName">
+                <input type="text" class="form-control" placeholder="{{labels4[0].accountname}}"
+                  [(ngModel)]="accountName" name="accountName">
               </div>
             </div>
             <br>
@@ -282,8 +307,8 @@
                 <label class="Address_label">{{labels4[0].accountnumber}} :</label>
               </div>
               <div class="col-lg-6">
-                <input type="text" class="form-control" placeholder="{{labels4[0].accountnumber}}" maxlength="24" [(ngModel)]="accountNumber"
-                  name="accountNumber">
+                <input type="text" class="form-control" placeholder="{{labels4[0].accountnumber}}" maxlength="24"
+                  [(ngModel)]="accountNumber" name="accountNumber">
               </div>
             </div>
             <br>
@@ -311,7 +336,8 @@
         </div><br>
         <div class="row">
           <div class="col-lg-12">
-            <button type="button" style="float: right" class="btn dashbtn btncolor" awNextStep>{{labels[0].next}}</button><br>
+            <button type="button" style="float: right" class="btn dashbtn btncolor"
+              awNextStep>{{labels[0].next}}</button><br>
           </div>
         </div>
         <div class="row">
@@ -336,8 +362,8 @@
       </form>
     </div><br>
   </aw-wizard-step>
-  <aw-wizard-step  stepTitle="{{labels[0].subscripions}}">
-    
+  <aw-wizard-step stepTitle="{{labels[0].subscripions}}">
+
     <div class="container-fluid">
       <div class="row">
         <div class="container-fluid">
@@ -418,8 +444,9 @@
       </div>
     </div><br>
     <br>
-    <button type="button" style="float: left;margin-left: 26px;" class="btn btncolor dashbtn nextbtncolor" awPreviousStep>{{labels[0].previous}}</button>
-    <br>    <br>
+    <button type="button" style="float: left;margin-left: 26px;" class="btn btncolor dashbtn nextbtncolor"
+      awPreviousStep>{{labels[0].previous}}</button>
+    <br> <br>
   </aw-wizard-step><br>
 </aw-wizard><br>
 
@@ -455,8 +482,9 @@
             </div>
             <div class="col-lg-4">
               <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
-                placeholder="{{labels[0].contractstartdate}}"  [minDate]="date"
-                [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractstartdate" name="contractstartdate" bsDatepicker>
+                placeholder="{{labels[0].contractstartdate}}" [minDate]="date"
+                [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractstartdate" name="contractstartdate"
+                bsDatepicker>
             </div>
           </div>
           <br />
@@ -466,12 +494,12 @@
             </div>
             <div class="col-lg-4">
               <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
-                placeholder="{{labels[0].contractenddate}}"  [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+                placeholder="{{labels[0].contractenddate}}" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
                 [(ngModel)]="contractenddate" name="contractenddate" bsDatepicker>
             </div>
           </div>
           <br />
-       
+
           <div class="row">
             <div class="col-lg-5">
             </div>
@@ -488,10 +516,10 @@
       <br>
       <div class="modal-footer">
         <button id="close1" type="button" style="background-color: #f18235; color: white;" class="btn  btn-default"
-        *ngIf="languageid=='1'"  data-dismiss="modal">Close</button>
+          *ngIf="languageid=='1'" data-dismiss="modal">Close</button>
 
         <button id="close1" type="button" style="background-color: #f18235; color: white;" class="btn  btn-default"
-        *ngIf="languageid=='6'"  data-dismiss="modal">Fermer</button>
+          *ngIf="languageid=='6'" data-dismiss="modal">Fermer</button>
       </div>
     </div>
   </div>

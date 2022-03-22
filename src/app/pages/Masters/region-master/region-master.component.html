@@ -2,10 +2,10 @@
   [fullScreen]="true">
   <p style="color: white"> Loading... </p>
 </ngx-spinner>
-<div class="container-fluid card card:hover">
+<div class="container-fluid card card:hover headerspace">
   <div class="row headerspace">
     <div class="col-lg-3">
-      <h5>{{labels[0].provinceMaster}}</h5>
+      <h5>Region Master</h5>
     </div>
   </div>
 </div><br>
@@ -23,26 +23,14 @@
         <option *ngFor="let cou of countrylist" value="{{cou.id}}">{{cou.short}}</option>
       </select>
     </div>
-  </div><br>
-  <div class="row">
+  </div>
+  <div class="row" style="margin-top: 20px;">
     <div class="col-lg-2">
-      <label class="REGISTRATION NO:">Region :</label>
-      <span class="required">*</span>
-    </div>
-    <div class="col-lg-4">
-      <select class="form-control" (change)="GetRegionID($event)" required [(ngModel)]="regionID" name="regionID">
-        <option value="0">{{labels[0].select}}</option>
-        <option *ngFor="let cou of regionlist" value="{{cou.id}}">{{cou.regionName}}</option>
-      </select>
-    </div>
-  </div><br>
-  <div class="row" >
-    <div class="col-lg-2">
-      <label class="REGISTRATION NO:">{{labels[0].province}} :</label>
+      <label class="REGISTRATION NO:">Region name :</label>
 
     </div>
     <div class="col-lg-4">
-      <input type="text" class="form-control" required [(ngModel)]="cityname" name="cityname" placeholder="{{labels[0].province}}">
+      <input type="text" class="form-control" required [(ngModel)]="cityname" name="cityname" placeholder="Region name">
     </div>
   </div><br>
 
