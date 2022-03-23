@@ -52,7 +52,7 @@ export class RegionMasterComponent implements OnInit {
 
 
   public getprobincelist() {
-    this.docservice.GetRegionMasterWebDash().subscribe(
+    this.docservice.GetRegionMasterWebDash(this.languageid).subscribe(
       data => {
        
         this.provincelist = data;

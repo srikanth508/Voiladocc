@@ -225,8 +225,8 @@ export class DoctorregistrationComponent implements OnInit {
     )
   }
 
-  regionList:any;
-  regiondd={};
+  regionList: any;
+  regiondd = {};
 
   public GetCountryID(item: any) {
 
@@ -255,33 +255,32 @@ export class DoctorregistrationComponent implements OnInit {
 
 
 
-  
 
-regionID:any;
 
-GetRegionID(item:any)
-{
-  this.regionID=item.id
+  regionID: any;
 
-  this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
-    data => {
+  GetRegionID(item: any) {
+    this.regionID = item.id
 
-      this.citylist = data;
+    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
+      data => {
 
-      this.citydd = {
-        singleSelection: true,
-        idField: 'id',
-        textField: 'short',
-        selectAllText: 'Select All',
-        unSelectAllText: 'UnSelect All',
-        //  itemsShowLimit: 3,
-        allowSearchFilter: true,
-        searchPlaceholderText: this.search,
-      };
-    }, error => {
-    }
-  )
-}
+        this.citylist = data;
+
+        this.citydd = {
+          singleSelection: true,
+          idField: 'id',
+          textField: 'short',
+          selectAllText: 'Select All',
+          unSelectAllText: 'UnSelect All',
+          //  itemsShowLimit: 3,
+          allowSearchFilter: true,
+          searchPlaceholderText: this.search,
+        };
+      }, error => {
+      }
+    )
+  }
 
 
   public GetHospitalID(item: any) {
@@ -470,6 +469,11 @@ GetRegionID(item:any)
         this.attachmentsurl1[0] = 'C:\\MarocAPI\\Images\\DocPhoto\\doc1.png'
       }
       this.spinner.show();
+      if (this.contractstartdate = undefined || this.contractstartdate == null) {
+        this.contractstartdate=new Date();
+        this.contractenddate=new Date();
+      }
+
       // var doc = 'Dr.' + '' + this.doctorname
       var entity = {
         'DoctorName': this.doctorname,
@@ -1082,7 +1086,7 @@ GetRegionID(item:any)
 
 
 
-  
+
   formatAddress: any;
   latitude: any;
   longitude: any;
@@ -1093,7 +1097,7 @@ GetRegionID(item:any)
     this.docservice.Getlocation(this.address).subscribe(data => {
       debugger
       console.log("google addressmain", data);
-      if (data["results"].length!=0) {
+      if (data["results"].length != 0) {
         this.googleAddress = data["results"];
         console.log("google address", this.googleAddress)
         debugger

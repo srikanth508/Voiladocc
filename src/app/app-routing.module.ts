@@ -768,6 +768,7 @@ const routes: Routes = [
   { path: 'CreditChargesMaster', component:  CreditChargesMasterComponent},
   { path: 'HomeChargesMaster', component:  HomeChargesMasterComponent},
   { path: 'RegionMaster', component:  RegionMasterComponent},
+  { path: 'RegionMaster/:id', component:  RegionMasterComponent},
   { path: 'RegionDash', component:  RegionDashComponent},
   
 ];

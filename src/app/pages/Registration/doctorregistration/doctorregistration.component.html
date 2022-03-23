@@ -84,7 +84,7 @@
                 placeholder="{{labels[0].address}}"></textarea>
             </div>
             <div class="col-lg-2">
-              <button  class="btn btncolor" (click)="geocode()">Get Location</button>
+              <button  class="btn btncolor" (click)="geocode()">{{labels4[0].getLocation}}</button>
             </div>
           </div>
           <br>
@@ -776,7 +776,7 @@
           </div>
           <br>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="vatCheck=='1'">
           <div class="col-lg-3">
             <label *ngIf="languageid=='1'">Exoneration period from :</label>
             <label *ngIf="languageid=='6'">Période d'exonération à partir de :</label>
@@ -790,7 +790,7 @@
           </div>
         </div>
         <br />
-        <div class="row">
+        <div class="row"  *ngIf="vatCheck=='1'">
           <div class="col-lg-3">
             <label *ngIf="languageid=='1'">Exoneration period to :</label>
             <label *ngIf="languageid=='6'">Période d'exonération à :</label>
@@ -812,7 +812,7 @@
         </div><br>
         <div class="row" *ngIf="hospitalclinicid=='590'">
           <div class="col-lg-3">
-            <label>Subscription type :</label>
+            <label class="Address_label"> Subscription type :</label>
             <span class="required">*</span>
           </div>
           <div class="col-md-8">
@@ -829,8 +829,8 @@
         <div *ngIf="subscriptiontype=='1'">
           <div class="row">
             <div class="col-lg-3">
-              <label>{{labels4[0].monthlySubscription}} :</label>
-              <span class="required">*</span>
+              <label class="Address_label">{{labels4[0].monthlySubscription}} :</label>
+              <span class="required ">*</span>
             </div>
             <div class="col-lg-4">
               <input type="text" placeholder="{{labels4[0].monthlySubscription}}" name="monthlysubription"
@@ -847,8 +847,8 @@
         <div *ngIf="subscriptiontype=='2'">
           <div class="row">
             <div class="col-lg-3">
-              <label>{{labels4[0].appointmentpercentage}} :</label>
-              <span class="required">*</span>
+              <label class="Address_label">{{labels4[0].appointmentpercentage}} :</label>
+              <span class="required ">*</span>
             </div>
             <div class="col-lg-4">
               <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
@@ -860,7 +860,7 @@
         <div *ngIf="subscriptiontype=='3'">
           <div class="row">
             <div class="col-lg-3">
-              <label>{{labels4[0].appointmentpercentage}} :</label>
+              <label class="Address_label">{{labels4[0].appointmentpercentage}} :</label>
             </div>
             <div class="col-lg-4">
               <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
@@ -871,7 +871,7 @@
           <br />
           <div class="row">
             <div class="col-lg-3">
-              <label>{{labels4[0].monthlySubscription}} :</label>
+              <label class="Address_label">{{labels4[0].monthlySubscription}} :</label>
               <span class="required">*</span>
             </div>
             <div class="col-lg-4">

@@ -198,7 +198,7 @@ export class EditphysiotherapistComponent implements OnInit {
 }
 
   public getcitymaster() {
-    this.docservice.GetCityMasterBYIDandLanguageID(this.countryid, this.languageid).subscribe(
+    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
       data => {
 
         this.citylist = data;

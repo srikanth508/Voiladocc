@@ -6338,8 +6338,13 @@ export class HelloDoctorService {
     return this.http.post(this.url, data)
   }
 
-  public GetRegionMasterWebDash() {
+  public GetRegionMasterWebDash(lid) {
     debugger
-    return this.http.get<any[]>(this.host + '/Master/GetRegionMasterWebDash');
+    return this.http.get<any[]>(this.host + '/Master/GetRegionMasterWebDash?LanguageID='+lid);
+  }
+
+  public DeleteRegionMaster(id) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Master/DeleteRegionMaster?ID=' + id);
   }
 }
