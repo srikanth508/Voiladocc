@@ -769,6 +769,7 @@ const routes: Routes = [
   { path: 'HomeChargesMaster', component:  HomeChargesMasterComponent},
   { path: 'RegionMaster', component:  RegionMasterComponent},
   { path: 'RegionDash', component:  RegionDashComponent},
+  
 ];
 
 @NgModule({
