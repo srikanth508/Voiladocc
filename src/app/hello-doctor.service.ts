@@ -9,15 +9,9 @@ import { pipeDef } from '@angular/core/src/view';
 
 export class HelloDoctorService {
   //live
-<<<<<<< HEAD
   // public host = "https://madagascar.voiladoc.org/VoilaDocTestAPI";
 
   // private host1 = "https://madagascar.voiladoc.org/VoilaDocTestAPI";
-=======
- public host = "https://maroc.voiladoc.org/VoilaDocTestAPI";
-
- private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
->>>>>>> 341160663cfc97d9dc5b0a22e7af293c1e1f5b97
 
 
   //  public host = "https://madagascar.voiladoc.org/marocAPI";
