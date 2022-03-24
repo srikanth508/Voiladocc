@@ -135,7 +135,7 @@ export class DoctorregistrationComponent implements OnInit {
     }
 
 
-   this.getGeoLocation(this.address);
+    //  this.getGeoLocation(this.address);
   }
 
 
@@ -224,11 +224,45 @@ export class DoctorregistrationComponent implements OnInit {
       }
     )
   }
+
+  regionList: any;
+  regiondd = {};
+
   public GetCountryID(item: any) {
 
     this.countryid = item.id;
 
-    this.docservice.GetCityMasterBYIDandLanguageID(this.countryid, this.languageid).subscribe(
+    this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
+      data => {
+
+        this.regionList = data;
+
+        this.regiondd = {
+          singleSelection: true,
+          idField: 'id',
+          textField: 'regionName',
+          selectAllText: 'Select All',
+          unSelectAllText: 'UnSelect All',
+          //  itemsShowLimit: 3,
+          allowSearchFilter: true,
+          searchPlaceholderText: this.search,
+        };
+      }, error => {
+      }
+    )
+  }
+
+
+
+
+
+
+  regionID: any;
+
+  GetRegionID(item: any) {
+    this.regionID = item.id
+
+    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
       data => {
 
         this.citylist = data;
@@ -242,12 +276,12 @@ export class DoctorregistrationComponent implements OnInit {
           //  itemsShowLimit: 3,
           allowSearchFilter: true,
           searchPlaceholderText: this.search,
-
         };
       }, error => {
       }
     )
   }
+
 
   public GetHospitalID(item: any) {
 
@@ -387,6 +421,12 @@ export class DoctorregistrationComponent implements OnInit {
 
 
 
+
+
+
+
+
+
   public insertdoctorregistration() {
 
     // if (this.attachmentsurl1.length == 0 || this.attachmentsurl.length == 0 || this.attachmentsurl2.length == 0) {
@@ -429,6 +469,11 @@ export class DoctorregistrationComponent implements OnInit {
         this.attachmentsurl1[0] = 'C:\\MarocAPI\\Images\\DocPhoto\\doc1.png'
       }
       this.spinner.show();
+      if (this.contractstartdate = undefined || this.contractstartdate == null) {
+        this.contractstartdate=new Date();
+        this.contractenddate=new Date();
+      }
+
       // var doc = 'Dr.' + '' + this.doctorname
       var entity = {
         'DoctorName': this.doctorname,
@@ -473,7 +518,10 @@ export class DoctorregistrationComponent implements OnInit {
         'VAT': this.vatCheck,
         'VatPercentage': this.vatpercentage,
         'ExonerationPeriodFromDate': this.contractstartdate,
-        'ExonerationPerioToDate': this.contractenddate
+        'ExonerationPerioToDate': this.contractenddate,
+        'Lattitude': this.latitude,
+        'Longitude': this.longitude,
+        'FormatedAddress': this.formatAddress
       }
       this.docservice.InsertDoctorRegistration(entity).subscribe(data => {
 
@@ -997,42 +1045,74 @@ export class DoctorregistrationComponent implements OnInit {
   }
 
 
-  getGeoLocation(address: string) {
+  //   getGeoLocation(address: string) {
+  //     debugger
+  //     let geocoder = new google.maps.Geocoder();
+  //     geocoder.geocode({ 'address': "1377 Parc industriel Sapino, Nouaceur 27182." }, function (results, status) {
+  //       debugger
+  //         if (status == google.maps.GeocoderStatus.OK) {
+  //           debugger
+  //           var latlng = google.maps.location.LatLng();
+  //         } else {
+  //           debugger
+  //             alert('Geocode was not successful for the following reason: ' + status);
+  //         }
+  //     });
+  // }
+
+
+  //   getGeoLocation(address: string): Observable<any> {
+  //     let map: google.maps.Map;
+  //     let geocoder: google.maps.Geocoder;
+
+  //     console.log('Getting address: ', address);
+  //     // let geocoder = new google.maps.Geocode();
+  //     return Observable.create(observer => {
+  //         geocoder.geocode({
+  //             'address': address
+  //         }, (results, status) => {
+  //             if (status == google.maps.GeocoderStatus.OK) {
+  //                 observer.next(results[0].geometry.location);
+  //                 observer.complete();
+  //             } else {
+  //                 console.log('Error: ', results, ' & Status: ', status);
+  //                 observer.error();
+  //             }
+  //         });
+  //     });
+  // }
+
+
+
+
+
+
+  formatAddress: any;
+  latitude: any;
+  longitude: any;
+  googleAddress: any;
+  geocode() {
     debugger
-    let geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': "1377 Parc industriel Sapino, Nouaceur 27182." }, function (results, status) {
+    this.spinner.show()
+    this.docservice.Getlocation(this.address).subscribe(data => {
       debugger
-        if (status == google.maps.GeocoderStatus.OK) {
-          debugger
-          var latlng = google.maps.location.LatLng();
-        } else {
-          debugger
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
-}
+      console.log("google addressmain", data);
+      if (data["results"].length != 0) {
+        this.googleAddress = data["results"];
+        console.log("google address", this.googleAddress)
+        debugger
+        this.formatAddress = this.googleAddress[0]["formatted_address"];
+        this.latitude = this.googleAddress[0].geometry.location["lat"],
+          this.longitude = this.googleAddress[0].geometry.location["lng"];
+        Swal.fire("Emplacement récupéré avec succès");
+        this.spinner.hide();
+      }
+      else {
+        Swal.fire("Entrez l'adresse correcte");
+        this.spinner.hide();
+      }
 
-
-//   getGeoLocation(address: string): Observable<any> {
-//     let map: google.maps.Map;
-//     let geocoder: google.maps.Geocoder;
-
-//     console.log('Getting address: ', address);
-//     // let geocoder = new google.maps.Geocode();
-//     return Observable.create(observer => {
-//         geocoder.geocode({
-//             'address': address
-//         }, (results, status) => {
-//             if (status == google.maps.GeocoderStatus.OK) {
-//                 observer.next(results[0].geometry.location);
-//                 observer.complete();
-//             } else {
-//                 console.log('Error: ', results, ' & Status: ', status);
-//                 observer.error();
-//             }
-//         });
-//     });
-// }
-
+    })
+  }
 
 }

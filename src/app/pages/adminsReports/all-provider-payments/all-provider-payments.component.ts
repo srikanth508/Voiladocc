@@ -155,12 +155,15 @@ export class AllProviderPaymentsComponent implements OnInit {
   accountNumber: any;
   monthlyStatement: any;
   pincode:any;
+  vatAmount:any;
 
   public GetList(details) {
     this.spinner.show();
     this.totrevenue = details.grandTotalAmount
     this.totalcommission = details.totalCommissionsAmount,
-      this.paymentdue = Number(details.grandTotalAmount) - Number(details.totalCommissionsAmount),
+
+    this.vatAmount=Number(details.totalCommissionsAmount * details.vatPercentage/100)
+      this.paymentdue = Number(details.grandTotalAmount) - Number(details.totalCommissionsAmount) + this.vatAmount,
       this.userid = details.id,
       this.hospitalname = details.providername
     this.phoneNo = details.contactPersonPhNo

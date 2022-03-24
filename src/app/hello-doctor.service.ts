@@ -9,9 +9,15 @@ import { pipeDef } from '@angular/core/src/view';
 
 export class HelloDoctorService {
   //live
+<<<<<<< HEAD
   // public host = "https://madagascar.voiladoc.org/VoilaDocTestAPI";
 
   // private host1 = "https://madagascar.voiladoc.org/VoilaDocTestAPI";
+=======
+ public host = "https://maroc.voiladoc.org/VoilaDocTestAPI";
+
+ private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
+>>>>>>> 341160663cfc97d9dc5b0a22e7af293c1e1f5b97
 
 
   //  public host = "https://madagascar.voiladoc.org/marocAPI";
@@ -27,8 +33,6 @@ export class HelloDoctorService {
 
 
   private host2 = "https://voiladoc.org/VoiladocRegistrationsWebApi";
-
-
 
   private url: string = '';
   public showvid = 0;
@@ -6316,9 +6320,35 @@ export class HelloDoctorService {
     return this.http.post(this.url, data)
   }
 
-  public Getlocation()
+  public Getlocation(address)
   {
-    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=Someroad+64&key=AIzkeystuffjXDm6eU5mPP9Nczg')
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/Getlocation?Address=' + address );
+    debugger
   }
 
+    public GetRegionMasterWeb(id) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/GetRegionMasterWeb?CountryID=' + id);
+  }
+
+
+  public InsertRegionMaster(data) {
+    this.url = this.host + '/Master/InsertRegionMaster';
+    return this.http.post(this.url, data)
+  }
+  public UpdateRegionMaster(data) {
+    this.url = this.host + '/Master/UpdateRegionMaster';
+    return this.http.post(this.url, data)
+  }
+
+  public GetRegionMasterWebDash(lid) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Master/GetRegionMasterWebDash?LanguageID='+lid);
+  }
+
+  public DeleteRegionMaster(id) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Master/DeleteRegionMaster?ID=' + id);
+  }
 }

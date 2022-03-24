@@ -34,6 +34,7 @@ export class MidwifeProfileComponent implements OnInit {
   public languageid:any;
   public labels:any;
   public details:any;
+  hospitalName:any;
   ngOnInit() {
     this.id=localStorage.getItem('midwifeid');
     this.languageid=localStorage.getItem('LanguageID');
@@ -73,7 +74,8 @@ export class MidwifeProfileComponent implements OnInit {
       this.countryid=this.details.countryID,
       this.cityid=this.details.cityID,
       this.areaid=this.details.areaID,
-      this.pincode=this.details.pincode
+      this.pincode=this.details.pincode,
+      this.hospitalName=this.details.hospital_ClinicName
       this.GetDepartmentmaster();
       this.GetCountryMaster();
       this.getcitymaster();

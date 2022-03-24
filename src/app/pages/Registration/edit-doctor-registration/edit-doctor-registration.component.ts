@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HelloDoctorService } from '../../../hello-doctor.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-edit-doctor-registration',
   templateUrl: './edit-doctor-registration.component.html',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditDoctorRegistrationComponent implements OnInit {
 
-  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute) { }
+  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute, private spinner: NgxSpinnerService) { }
   public doctorid: any;
   public details: any;
   public doctorname: any;
@@ -71,6 +72,16 @@ export class EditDoctorRegistrationComponent implements OnInit {
   public labels: any;
   public speaklanguages: any;
   dropzonelable: any;
+   
+  formatAddress: any;
+  latitude: any;
+  longitude: any;
+  googleAddress: any;
+  vatCheck:any;
+  vatpercentage:any;
+  today=new Date()
+  contractstartdate:any;
+  contractenddate:any;
   ngOnInit() {
     this.activatedroute.params.subscribe(params => {
 
@@ -143,7 +154,7 @@ export class EditDoctorRegistrationComponent implements OnInit {
     )
   }
   public getcitymaster() {
-    this.docservice.GetCityMasterBYIDandLanguageID(this.countryid, this.languageid).subscribe(
+    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
       data => {
 
         this.citylist = data;
@@ -168,9 +179,16 @@ export class EditDoctorRegistrationComponent implements OnInit {
   public GetCountryID(even) {
 
     this.countryid = even.target.value;
-    this.getcitymaster()
+    this.GetRegionMaster()
   }
 
+  regionID:any;
+
+  GetRegionID(even)
+{
+  this.regionID=even.target.value;
+  this.getcitymaster()
+}
 
   public getdegreemaster() {
 
@@ -201,6 +219,7 @@ export class EditDoctorRegistrationComponent implements OnInit {
   }
   hospitalname: any;
   subscriptiontype: any;
+
   public getdoctordetailsbyid() {
 
     this.docservice.GetDoctorDetailsForAdminByLanguageID(this.id, this.languageid).subscribe(
@@ -249,11 +268,16 @@ export class EditDoctorRegistrationComponent implements OnInit {
         this.socialseccurityfundno = this.details.socialSeccurityNo
         this.nameofbank = this.details.nameofthebank
         this.accountName = this.details.accountName
-        this.accountNumber = this.details.accountNumber
+        this.accountNumber = this.details.accountNumber,
+        this.latitude=this.details.lattitude,
+        this.longitude=this.details.longitude,
+        this.formatAddress=this.details.formatedAddress,
+        this.regionID=this.details.regionMasterID
 
 
 
         this.GetCountryMaster()
+        this.GetRegionMaster()
         this.getcitymaster();
         this.getareamasterbyid();
         this.getservicemaster()
@@ -263,6 +287,24 @@ export class EditDoctorRegistrationComponent implements OnInit {
       }
     )
   }
+
+
+
+  regionList: any;
+
+  GetRegionMaster() {
+    this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
+      data => {
+
+        this.regionList = data;
+
+
+      }, error => {
+      }
+    )
+  }
+
+
   public GetcityID(even) {
 
     this.cityid = even.target.value;
@@ -352,7 +394,13 @@ export class EditDoctorRegistrationComponent implements OnInit {
       'Nameofthebank': this.nameofbank,
       'AccountName': this.accountName,
       'AccountNumber': this.accountNumber,
-      'VAT': 0
+      'VAT': 0,
+      'Lattitude': this.latitude,
+      'Longitude': this.longitude,
+      'FormatedAddress': this.formatAddress,
+      'VatPercentage': this.vatpercentage,
+      'ExonerationPeriodFromDate': this.contractstartdate,
+      'ExonerationPerioToDate': this.contractenddate,
     }
     this.docservice.UpdateDoctorPersonelInfo(entity).subscribe(res => {
       let test = res;
@@ -860,4 +908,43 @@ export class EditDoctorRegistrationComponent implements OnInit {
 
     this.gender = even.target.value;
   }
+
+
+
+  geocode() {
+    debugger
+    this.spinner.show()
+    this.docservice.Getlocation(this.address).subscribe(data => {
+      debugger
+      console.log("google addressmain", data);
+      if (data["results"].length!=0) {
+        this.googleAddress = data["results"];
+        console.log("google address", this.googleAddress)
+        debugger
+        this.formatAddress = this.googleAddress[0]["formatted_address"];
+        this.latitude = this.googleAddress[0].geometry.location["lat"],
+          this.longitude = this.googleAddress[0].geometry.location["lng"];
+        Swal.fire("Emplacement récupéré avec succès");
+        this.spinner.hide();
+      }
+      else {
+        Swal.fire("Entrez l'adresse correcte");
+        this.spinner.hide();
+      }
+
+    })
+  }
+
+
+
+  checkVatvalue(even) {
+
+    if (even == 1) {
+      this.vatpercentage = 0;
+    }
+    else {
+      this.vatpercentage = 20;
+    }
+  }
+
 }

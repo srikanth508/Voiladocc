@@ -27,8 +27,8 @@
             <span class="requird">*</span>
           </div>
           <div class="col-lg-4">
-            <input class="form-control" type="text" name="diagnosticcentername" required
-            oncopy="return false" onpaste="return false"  [(ngModel)]="diagnosticcentername" placeholder="{{labels[0].diacenter}}"  >
+            <input class="form-control" type="text" name="diagnosticcentername" required oncopy="return false"
+              onpaste="return false" [(ngModel)]="diagnosticcentername" placeholder="{{labels[0].diacenter}}">
           </div>
         </div>
         <br>
@@ -39,8 +39,8 @@
           </div>
           <div class="col-lg-4">
             <input class="form-control" type="text" maxlength="13" name="diagnosticphno" [(ngModel)]="diagnosticphno"
-            required  placeholder="{{labels[0].diagnosticCenterPhoneNo}}"
-            oncopy="return false" onpaste="return false"   onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              required placeholder="{{labels[0].diagnosticCenterPhoneNo}}" oncopy="return false" onpaste="return false"
+              onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
           </div>
         </div>
         <br>
@@ -51,7 +51,7 @@
           </div>
           <div class="col-lg-4">
             <input class="form-control" required type="text" name="contactpersonname" [(ngModel)]="contactpersonname"
-            oncopy="return false" onpaste="return false" placeholder="{{labels[0].contactPersonName}}">
+              oncopy="return false" onpaste="return false" placeholder="{{labels[0].contactPersonName}}">
           </div>
         </div>
         <br>
@@ -61,9 +61,9 @@
             <span class="requird">*</span>
           </div>
           <div class="col-lg-4">
-            <input class="form-control" type="text" maxlength="13" name="contactpersonphno"
-           required   [(ngModel)]="contactpersonphno" placeholder="{{labels[0].phno}}"
-           oncopy="return false" onpaste="return false"  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+            <input class="form-control" type="text" maxlength="13" name="contactpersonphno" required
+              [(ngModel)]="contactpersonphno" placeholder="{{labels[0].phno}}" oncopy="return false"
+              onpaste="return false" onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
           </div>
         </div>
         <br>
@@ -73,9 +73,9 @@
             <span class="requird">*</span>
           </div>
           <div class="col-lg-4">
-            <input class="form-control" maxlength="15" type="text" [(ngModel)]="licenseno" name="licenseno"
-            required  placeholder="{{labels[0].licenseNumber}}"
-            oncopy="return false" onpaste="return false"      onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode>=48&&event.charCode<=57'>
+            <input class="form-control" maxlength="15" type="text" [(ngModel)]="licenseno" name="licenseno" required
+              placeholder="{{labels[0].licenseNumber}}" oncopy="return false" onpaste="return false"
+              onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode>=48&&event.charCode<=57'>
           </div>
         </div>
         <br>
@@ -98,8 +98,8 @@
             <span class="requird">*</span>
           </div>
           <div class="col-lg-4">
-            <input class="form-control" type="email" required (ngModelChange)="onChange($event)" name="email" [(ngModel)]="email"
-            oncopy="return false" onpaste="return false"  placeholder="{{labels[0].email}}">
+            <input class="form-control" type="email" required (ngModelChange)="onChange($event)" name="email"
+              [(ngModel)]="email" oncopy="return false" onpaste="return false" placeholder="{{labels[0].email}}">
           </div>
         </div>
         <br>
@@ -111,6 +111,10 @@
           <div class="col-lg-4">
             <textarea class="form-control" required rows="4" name="address" [(ngModel)]="address"
               placeholder="{{labels[0].address}}"></textarea>
+          </div>
+
+          <div class="col-lg-2">
+            <button class="btn btncolor" (click)="geocode()">{{labels4[0].getLocation}}</button>
           </div>
         </div>
         <br>
@@ -126,6 +130,19 @@
           </div>
         </div>
         <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Régions : </label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-4">
+            <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="regionList" [settings]="regiondd"
+              (onSelect)="GetRegionID($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+        <br>
+
         <div class="row">
           <div class="col-lg-3">
             <label>{{labels[0].province}} : </label>
@@ -160,7 +177,8 @@
           </div>
           <div class="col-lg-4">
             <input class="form-control" type="text" maxlength="6" name="zipcode" [(ngModel)]="zipcode"
-            oncopy="return false" onpaste="return false"  placeholder="{{labels[0].zipCode}}" onkeypress='return(event.charCode>=47&&event.charCode<=58)'>
+              oncopy="return false" onpaste="return false" placeholder="{{labels[0].zipCode}}"
+              onkeypress='return(event.charCode>=47&&event.charCode<=58)'>
           </div>
         </div>
         <br>
@@ -171,8 +189,8 @@
           </div>
 
           <div class="col-lg-4">
-            <input type="text" placeholder="{{labels[0].monthlysubscription}}" name="monthlysubription"
-            required  [(ngModel)]="monthlysubription" class="form-control"
+            <input type="text" placeholder="{{labels[0].monthlysubscription}}" name="monthlysubription" required
+              [(ngModel)]="monthlysubription" class="form-control"
               onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
           </div>
 
@@ -184,22 +202,22 @@
             <span class="requird">*</span>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
-          required  placeholder="{{labels[0].contractstartdate}}" name="contractstartdate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
-            [(ngModel)]="contractstartdate" bsDatepicker>
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }" required
+              placeholder="{{labels[0].contractstartdate}}" name="contractstartdate"
+              [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractstartdate" bsDatepicker>
           </div>
         </div>
         <br />
-    
+
         <div class="row">
           <div class="col-lg-3">
             <label>{{labels[0].contractenddate}} :</label>
             <span class="requird">*</span>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
-          required  placeholder="{{labels[0].contractenddate}}" name="contractenddate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
-            [(ngModel)]="contractenddate" bsDatepicker>
+            <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }" required
+              placeholder="{{labels[0].contractenddate}}" name="contractenddate"
+              [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractenddate" bsDatepicker>
           </div>
         </div>
         <br />
@@ -260,11 +278,11 @@
             <input type="time" class="form-control" name="tone" required [(ngModel)]="tone"
               placeholder="{{labels[0].timings}}">
           </div>
-         
+
           <div class="col-lg-2">
             <input type="time" class="form-control" name="ttwo" required [(ngModel)]="ttwo" placeholder="Timings">
           </div>
-         
+
         </div>
         <br>
 
@@ -278,17 +296,18 @@
             <input type="time" class="form-control" name="evngtime1" required [(ngModel)]="evngtime1"
               placeholder="{{labels[0].timings}}">
           </div>
-         
+
           <div class="col-lg-2">
-            <input type="time" class="form-control" name="evngtime2" required [(ngModel)]="evngtime2" placeholder="Timings">
+            <input type="time" class="form-control" name="evngtime2" required [(ngModel)]="evngtime2"
+              placeholder="Timings">
           </div>
-         
+
         </div>
         <br>
 
         <div class="row">
           <div class="col-lg-3">
-            <label>{{labels[0].homeSamplePicUp}}  </label>
+            <label>{{labels[0].homeSamplePicUp}} </label>
 
           </div>
           <div class="col-lg-4">
@@ -334,7 +353,8 @@
               <label>{{labels[0].diagnosticCenterPhotos}} : </label>
             </div>
             <div class="col-lg-4">
-              <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
+              <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)"
+                class="dropzone_vendorinvoice h-100">
                 <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
               </ngx-dropzone>
               <div>
@@ -371,17 +391,17 @@
             </div>
           </div>
         </div>
-          <br>
-          <br>
-          
-          <button type="button" style="background-color: #f18235;color: white;" class="btn nextbtncolor"
-            awPreviousStep>{{labels[0].previous}}</button>
+        <br>
+        <br>
 
-            <button type="button" style="float: right" class="btn dashbtn nextbtncolor" awNextStep>Next</button>
-     
+        <button type="button" style="background-color: #f18235;color: white;" class="btn nextbtncolor"
+          awPreviousStep>{{labels[0].previous}}</button>
+
+        <button type="button" style="float: right" class="btn dashbtn nextbtncolor" awNextStep>Next</button>
+
         <br>
         <br>
-   
+
       </aw-wizard-step>
 
       <aw-wizard-step stepTitle="FINANCIER">
@@ -413,8 +433,8 @@
 
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control" required placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid"
-              name="businessid">
+            <input type="text" class="form-control" required placeholder="{{labels4[0].businessid}}"
+              [(ngModel)]="businessid" name="businessid">
           </div>
         </div>
 
@@ -465,8 +485,8 @@
             <label class="Address_label">{{labels4[0].nameofthebank}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control" required placeholder="{{labels4[0].nameofthebank}}" [(ngModel)]="nameofbank"
-              name="nameofbank">
+            <input type="text" class="form-control" required placeholder="{{labels4[0].nameofthebank}}"
+              [(ngModel)]="nameofbank" name="nameofbank">
           </div>
         </div>
         <br>
@@ -475,8 +495,8 @@
             <label class="Address_label">{{labels4[0].accountname}} :</label>
           </div>
           <div class="col-lg-4">
-            <input type="text" class="form-control" required placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName"
-              name="accountName">
+            <input type="text" class="form-control" required placeholder="{{labels4[0].accountname}}"
+              [(ngModel)]="accountName" name="accountName">
           </div>
         </div>
         <br>
@@ -491,7 +511,7 @@
         </div>
         <br>
 
-        <div class="row" >
+        <div class="row">
           <div class="col-lg-5">
           </div>
           <div class="col-lg-2">
@@ -502,7 +522,7 @@
           <div class="col-lg-5">
           </div>
         </div>
-      
+
 
         <button type="button" style="float: left" class="btn btncolor " awPreviousStep>{{labels[0].previous}}</button>
       </aw-wizard-step>

@@ -1,3 +1,7 @@
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
 <div class="container-fluid card card:hover headerspace">
   <div class="row headerspace headercolor">
     <div class="col-lg-5">
@@ -71,6 +75,9 @@
           <textarea class="form-control" rows="4" name="address" [(ngModel)]="address" required
             placeholder="{{labels[0].address}}"></textarea>
         </div>
+        <div class="col-lg-2">
+          <button class="btn btncolor" (click)="geocode()">{{labels4[0].getLocation}}</button>
+        </div>
       </div>
       <br>
       <div class="row">
@@ -82,6 +89,18 @@
           <select class="form-control" required [(ngModel)]="countryid" name="countryid" (change)="GetCountryID($event)">
             <option value="">{{labels[0].select}}</option>
             <option *ngFor="let cou of countrylist" value={{cou.id}}>{{cou.short}}</option>
+          </select>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-lg-4">
+          <label>Régions : </label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-6">
+          <select class="form-control" required (change)="GetRegionID($event)" [(ngModel)]="regionID" name="regionID">
+            <option value="" >{{labels[0].select}}</option>
+            <option *ngFor="let reg of regionList" value={{reg.id}}>{{reg.regionName}}</option>
           </select>
         </div>
       </div><br>
@@ -262,8 +281,58 @@
         </div>
       </div>
       <br>
+      <div class="row">
+        <div class="col-lg-4">
+          <label class="Address_label">Exonerated :</label>
+        </div>
+        <div class="col-lg-6">
+          <input type="radio" value="1" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(1)">
+          &nbsp;{{labels[0].yes}}
+          <input type="radio" value="0" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(0)">
+          &nbsp;{{labels[0].no}}
+        </div>
+      </div>
+      <br>
+      <div>
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Address_label">Vat Percentage :</label>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" 
+              name="vatpercentage" placeholder="Vat Percentage">
+          </div>
+        </div>
+        <br>
+      </div>
+      <div class="row" *ngIf="vatCheck=='1'">
+        <div class="col-lg-4">
+          <label *ngIf="languageid=='1'">Exoneration period from :</label>
+          <label *ngIf="languageid=='6'">Période d'exonération à partir de :</label>
+          <span class="required">*</span>
+        </div>
+
+        <div class="col-lg-6">
+          <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+            placeholder="{{labels[0].contractstratdate}}" [minDate]="today" name="contractstartdate" required
+            [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractstartdate" bsDatepicker>
+        </div>
+      </div>
+      <br />
+      <div class="row"  *ngIf="vatCheck=='1'">
+        <div class="col-lg-4">
+          <label *ngIf="languageid=='1'">Exoneration period to :</label>
+          <label *ngIf="languageid=='6'">Période d'exonération à :</label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-6">
+          <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+            placeholder="{{labels[0].contractenddate}}" [minDate]="contractstartdate" name="contractenddate" required
+            [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractenddate" bsDatepicker>
+        </div>
+      </div>
       <div class="row" *ngIf="hospitalclinicid=='613'">
-        <div class="col-lg-8">
+        <div class="col-lg-4">
           <label>{{labels4[0].subscriptiontype}} :</label>
           <span class="required">*</span>
         </div>

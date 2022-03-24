@@ -351,6 +351,8 @@ import { SubscriptionpaidReportsComponent } from './pages/Billing/subscriptionpa
 import { AuditReportComponent } from './pages/AdminDashboard/audit-report/audit-report.component';
 import { CreditChargesMasterComponent } from './pages/Masters/credit-charges-master/credit-charges-master.component';
 import { HomeChargesMasterComponent } from './pages/Masters/home-charges-master/home-charges-master.component';
+import { RegionMasterComponent } from './pages/Masters/region-master/region-master.component';
+import { RegionDashComponent } from './pages/Masters/region-dash/region-dash.component';
 
 
 
@@ -765,6 +767,10 @@ const routes: Routes = [
   { path: 'AuditReport', component:  AuditReportComponent},
   { path: 'CreditChargesMaster', component:  CreditChargesMasterComponent},
   { path: 'HomeChargesMaster', component:  HomeChargesMasterComponent},
+  { path: 'RegionMaster', component:  RegionMasterComponent},
+  { path: 'RegionMaster/:id', component:  RegionMasterComponent},
+  { path: 'RegionDash', component:  RegionDashComponent},
+  
 ];
 
 @NgModule({

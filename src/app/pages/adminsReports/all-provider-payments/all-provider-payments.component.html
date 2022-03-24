@@ -8,6 +8,7 @@
     <div class="col-lg-3">
       <h5>Reports</h5>
     </div>
+    
     <div class="col-lg-7">
     </div>
     <div class="col-lg-2">
@@ -264,10 +265,10 @@
                 </table>
               </div><br>
               <div class="col-lg-4 text-alignments">
-                <span>Amount : {{totrevenue|number:'1.2-2'|noComma}} Ar</span><br>
-                <span>Voiladoc Commission : {{totalcommission|number:'1.2-2'|noComma}} Ar</span><br>
-                <span>TVA : </span><br>
-                <span>Net Total : {{paymentdue|number:'1.2-2'|noComma}} Ar</span><br>
+                <span>Amount : {{totrevenue|number:'1.2-2'|noComma}} DH</span><br>
+                <span>Voiladoc Commission : {{totalcommission|number:'1.2-2'|noComma}} DH</span><br>
+                <span>TVA : {{vatAmount}}</span><br>
+                <span>Net Total : {{paymentdue|number:'1.2-2'|noComma}} DH</span><br>
               </div>
             </div>
 

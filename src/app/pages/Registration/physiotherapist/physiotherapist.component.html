@@ -76,6 +76,9 @@
         <textarea class="form-control" rows="4" name="address" [(ngModel)]="address" required
           placeholder="{{labels[0].address}}"></textarea>
       </div>
+      <div class="col-lg-2">
+        <button class="btn btncolor" (click)="geocode()">{{labels4[0].getLocation}}</button>
+      </div>
     </div>
     <br>
     <div class="row">
@@ -89,6 +92,18 @@
         </ng-multiselect-dropdown>
       </div>
     </div><br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>Régions : </label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="regionList" [settings]="regiondd"
+          (onSelect)="GetRegionID($event)" >
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <br>
     <div class="row">
       <div class="col-lg-3">
         <label class="City_label">{{labels[0].province}} :</label>

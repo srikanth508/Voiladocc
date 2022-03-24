@@ -23,7 +23,7 @@
                 <span class="required">*</span>
               </div>
               <div class="col-lg-6">
-                <input type="text"  [(ngModel)]="doctorname" name="doctorname" class="form-control">
+                <input type="text" [(ngModel)]="doctorname" name="doctorname" class="form-control">
               </div>
             </div>
             <br>
@@ -61,7 +61,7 @@
               </div>
             </div>
             <br>
-           
+
             <div class="row">
               <div class="col-lg-4">
                 <label>{{labels[0].address}} :</label>
@@ -71,6 +71,9 @@
                 <textarea id="textarea1" required rows="4" cols="45" [(ngModel)]="address" name="address"
                   class="form-control"></textarea>
               </div>
+              <div class="col-lg-2">
+                <button class="btn btncolor" (click)="geocode()">{{labels4[0].getLocation}}</button>
+              </div>
             </div>
             <br>
             <div class="row">
@@ -79,9 +82,22 @@
                 <span class="required">*</span>
               </div>
               <div class="col-lg-6">
-                <select class="form-control" required [(ngModel)]="countryid" name="countryid" (change)="GetCountryID($event)">
+                <select class="form-control" required [(ngModel)]="countryid" name="countryid"
+                  (change)="GetCountryID($event)">
                   <option value="" selected>Select</option>
                   <option *ngFor="let cou of countrylist" value={{cou.id}}>{{cou.short}}</option>
+                </select>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>Régions : </label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <select class="form-control" required (change)="GetRegionID($event)" [(ngModel)]="regionID" name="regionID">
+                  <option value="" >{{labels[0].select}}</option>
+                  <option *ngFor="let reg of regionList" value={{reg.id}}>{{reg.regionName}}</option>
                 </select>
               </div>
             </div><br>
@@ -92,7 +108,7 @@
               </div>
               <div class="col-lg-6">
                 <select class=" form-control" required [(ngModel)]="cityid" name="cityid" (change)="GetcityID($event)">
-                  <option value="" >select</option>
+                  <option value="">select</option>
                   <option *ngFor="let city of citylist" value={{city.id}}>{{city.short}}</option>
                 </select>
               </div>
@@ -105,7 +121,7 @@
               </div>
               <div class="col-lg-6">
                 <select class="form-control" required [(ngModel)]="areaid" name="areaid" (change)="GetAreaID($event)">
-                  <option value="" >Select</option>
+                  <option value="">Select</option>
                   <option *ngFor="let area of arealist" value={{area.id}}>{{area.areaName}}</option>
                 </select>
               </div>
@@ -120,7 +136,7 @@
                   name="categoryid">
                   <option value="" selected>{{labels[0].select}}</option>
                   <option value="1">{{labels[0].doctors}}</option>
-                <option value="2">{{labels[0].nonDoctors}}</option>
+                  <option value="2">{{labels[0].nonDoctors}}</option>
                 </select>
               </div>
             </div>
@@ -145,7 +161,7 @@
               <div class="col-lg-4">
                 <label>{{labels[0].experience}} :</label>
               </div>
-              <div class="col-lg-6"> 
+              <div class="col-lg-6">
                 <input type="text" maxlength="2" [(ngModel)]="experience" name="experience" class="form-control"
                   onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
               </div>
@@ -157,9 +173,8 @@
                 <label *ngIf="languageid=='1'">Hospital/Clinic : </label>
                 <label id="imp" *ngIf="languageid=='6'">Hôpital / Clinique : </label>
               </div>
-              <div class="col-lg-6"> 
-                <input type="text" disabled  [(ngModel)]="hospitalname" name="hospitalname" class="form-control"
-                 >
+              <div class="col-lg-6">
+                <input type="text" disabled [(ngModel)]="hospitalname" name="hospitalname" class="form-control">
               </div>
             </div>
             <br>
@@ -211,9 +226,11 @@
                 <span class="required">*</span>
               </div>
               <div class="col-lg-6">
-                <input type="radio" name="gender" [(ngModel)]="gender" required (click)="GetGenderID($event)" [value]="1">
+                <input type="radio" name="gender" [(ngModel)]="gender" required (click)="GetGenderID($event)"
+                  [value]="1">
                 {{labels[0].male}} &nbsp;
-                <input type="radio" name="gender" [(ngModel)]="gender" required (click)="GetGenderID($event)" [value]="2">
+                <input type="radio" name="gender" [(ngModel)]="gender" required (click)="GetGenderID($event)"
+                  [value]="2">
                 {{labels[0].female}}
               </div>
             </div>
@@ -227,10 +244,10 @@
                 <!-- <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="doctortyplist" [settings]="doctypeee"
                   (onSelect)="GetDoctypeID($event)">
                 </ng-multiselect-dropdown> -->
-  
+
                 <select class="form-control" (change)="GetDoctypeID($event)" [(ngModel)]="doctypeid" name="doctypeid">
                   <option value="0">Select</option>
-                 <option *ngFor="let doctype of doctortyplist" value="{{doctype.id}}">{{doctype.type}}</option>
+                  <option *ngFor="let doctype of doctortyplist" value="{{doctype.id}}">{{doctype.type}}</option>
                 </select>
               </div>
             </div>
@@ -251,8 +268,9 @@
                 <span class="required">*</span>
               </div>
               <div class="col-lg-6">
-                <select class="form-control" disabled required (change)="GetSlotDurationID($event)" [(ngModel)]="slotid" name="slotid">
-                  <option value="" >{{labels[0].select}}</option>
+                <select class="form-control" disabled required (change)="GetSlotDurationID($event)" [(ngModel)]="slotid"
+                  name="slotid">
+                  <option value="">{{labels[0].select}}</option>
                   <option value="1">15 Minutes</option>
                   <option value="2">30 Minutes</option>
                   <option value="3">45 Minutes</option>
@@ -284,7 +302,8 @@
           <img src={{photourl}} style="width: 100%;height: auto;" /><br><br>
           <button class="btn  btncolor" (click)="GetEditPhoto()">{{labels[0].edit}}</button><br><br>
           <div class="col-lg-8" *ngIf="editbit=='1'">
-            <ngx-dropzone [multiple]="false" (change)="onattachmentUpload1($event)" class="dropzone_vendorinvoice h-100">
+            <ngx-dropzone [multiple]="false" (change)="onattachmentUpload1($event)"
+              class="dropzone_vendorinvoice h-100">
               <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
             </ngx-dropzone><br>
 
@@ -308,7 +327,8 @@
           <button class="btn  btncolor" (click)="GetMedicalPhotoEdit(mphoto.id)">{{labels[0].edit}}</button><br><br>
 
           <div class="col-lg-4" *ngIf="meditt=='1'">
-            <ngx-dropzone [multiple]="false" (change)="onattachmentUpload2($event)" class="dropzone_vendorinvoice h-100">
+            <ngx-dropzone [multiple]="false" (change)="onattachmentUpload2($event)"
+              class="dropzone_vendorinvoice h-100">
               <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
             </ngx-dropzone>
             <span *ngFor="let sds of photodetail">
@@ -431,8 +451,7 @@
           </div>
           <div class="col-lg-4">
             <input type="text" placeholder="{{labels[0].college}}" name="colleagename" [(ngModel)]="colleagename"
-              class="form-control"
-             >
+              class="form-control">
           </div>
         </div><br>
         <div class="row">
@@ -479,7 +498,8 @@
             <img src="{{identiy.photoURL}}" style="height:100px;width:100px;"><br><br>
             <button class="btn  btncolor" (click)="GetidentityID(identiy.id)">{{labels[0].edit}}</button><br><br>
             <div class="col-lg-12" *ngIf="identiyyyds=='1'">
-              <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
+              <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)"
+                class="dropzone_vendorinvoice h-100">
 
                 <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
               </ngx-dropzone>
@@ -514,7 +534,7 @@
 
 
 
-  
+
   <aw-wizard-step stepTitle="Financial">
     <hr size="30">
     <div class="row">
@@ -532,7 +552,8 @@
 
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}" [(ngModel)]="taxidentification" name="taxidentification">
+        <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}"
+          [(ngModel)]="taxidentification" name="taxidentification">
       </div>
     </div>
     <br>
@@ -542,7 +563,8 @@
 
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid" name="businessid">
+        <input type="text" class="form-control" placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid"
+          name="businessid">
       </div>
     </div>
 
@@ -553,7 +575,8 @@
         <label class="Address_label">{{labels4[0].commercial}} :</label>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels4[0].commercial}}" [(ngModel)]="commercialcity" name="commercialcity">
+        <input type="text" class="form-control" placeholder="{{labels4[0].commercial}}" [(ngModel)]="commercialcity"
+          name="commercialcity">
       </div>
     </div>
 
@@ -564,7 +587,8 @@
         <label class="Address_label">{{labels4[0].taxprofessional}} :</label>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}" [(ngModel)]="taxprofessional" name="taxprofessional">
+        <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}"
+          [(ngModel)]="taxprofessional" name="taxprofessional">
       </div>
     </div>
     <br>
@@ -573,7 +597,8 @@
         <label class="Address_label">{{labels4[0].seccuritysocialfundno}} :</label>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels4[0].seccuritysocialfundno}}" [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
+        <input type="text" class="form-control" placeholder="{{labels4[0].seccuritysocialfundno}}"
+          [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
       </div>
     </div>
     <div class="row">
@@ -589,17 +614,19 @@
         <label class="Address_label">{{labels4[0].nameofthebank}} :</label>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels4[0].nameofthebank}}" [(ngModel)]="nameofbank" name="nameofbank">
+        <input type="text" class="form-control" placeholder="{{labels4[0].nameofthebank}}" [(ngModel)]="nameofbank"
+          name="nameofbank">
       </div>
     </div>
     <br>
-    
+
     <div class="row">
       <div class="col-lg-3">
         <label class="Address_label">{{labels4[0].accountname}} :</label>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName" name="accountName">
+        <input type="text" class="form-control" placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName"
+          name="accountName">
       </div>
     </div>
     <br>
@@ -608,11 +635,63 @@
         <label class="Address_label">{{labels4[0].accountnumber}} :</label>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels4[0].accountnumber}}" maxlength="24" [(ngModel)]="accountNumber" name="accountNumber">
+        <input type="text" class="form-control" placeholder="{{labels4[0].accountnumber}}" maxlength="24"
+          [(ngModel)]="accountNumber" name="accountNumber">
       </div>
     </div>
 
-    <div class="row" *ngIf="hospitalid=='590'" >
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">Exonerated :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="radio" value="1" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(1)">
+        &nbsp;{{labels[0].yes}}
+        <input type="radio" value="0" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(0)">
+        &nbsp;{{labels[0].no}}
+      </div>
+    </div>
+    <br>
+    <div>
+      <div class="row">
+        <div class="col-lg-3">
+          <label class="Address_label">Vat Percentage :</label>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" 
+            name="vatpercentage" placeholder="Vat Percentage">
+        </div>
+      </div>
+      <br>
+    </div>
+    <div class="row" *ngIf="vatCheck=='1'">
+      <div class="col-lg-3">
+        <label *ngIf="languageid=='1'">Exoneration period from :</label>
+        <label *ngIf="languageid=='6'">Période d'exonération à partir de :</label>
+        <span class="required">*</span>
+      </div>
+
+      <div class="col-lg-4">
+        <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+          placeholder="{{labels[0].contractstratdate}}" [minDate]="today" name="contractstartdate" required
+          [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractstartdate" bsDatepicker>
+      </div>
+    </div>
+    <br />
+    <div class="row"  *ngIf="vatCheck=='1'">
+      <div class="col-lg-3">
+        <label *ngIf="languageid=='1'">Exoneration period to :</label>
+        <label *ngIf="languageid=='6'">Période d'exonération à :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+          placeholder="{{labels[0].contractenddate}}" [minDate]="contractstartdate" name="contractenddate" required
+          [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractenddate" bsDatepicker>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="hospitalid=='590'">
       <div class="col-lg-3">
       </div>
       <div class="col-lg-9">
@@ -622,24 +701,23 @@
     </div><br>
     <div class="row" *ngIf="hospitalid=='590'">
       <div class="col-lg-3">
-        <label>{{labels4[0].subscriptiontype}} :</label>
+        <label class="Address_label">{{labels4[0].subscriptiontype}} :</label>
         <span class="required">*</span>
       </div>
       <div class="col-md-8">
-        <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
-           [value]="1">{{labels4[0].monthlySubscription}}
+        <input type="radio" name="subscriptiontype" [(ngModel)]="subscriptiontype"
+          [value]="1">{{labels4[0].monthlySubscription}}
         &nbsp;
-        <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
-           [value]="2"> {{labels4[0].appointmentpercentage}}
+        <input type="radio" name="subscriptiontype" [(ngModel)]="subscriptiontype" [value]="2">
+        {{labels4[0].appointmentpercentage}}
         &nbsp;
-        <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
-           [value]="3"> {{labels4[0].both}}
+        <input type="radio" name="subscriptiontype" [(ngModel)]="subscriptiontype" [value]="3"> {{labels4[0].both}}
       </div>
     </div><br>
     <div *ngIf="subscriptiontype=='1'">
       <div class="row">
         <div class="col-lg-3">
-          <label>{{labels4[0].monthlySubscription}} :</label>
+          <label class="Address_label">{{labels4[0].monthlySubscription}} :</label>
           <span class="required">*</span>
         </div>
         <div class="col-lg-4">
@@ -653,7 +731,7 @@
     <div *ngIf="subscriptiontype=='2'">
       <div class="row">
         <div class="col-lg-3">
-          <label>{{labels4[0].appointmentpercentage}} :</label>
+          <label class="Address_label">{{labels4[0].appointmentpercentage}} :</label>
           <span class="required">*</span>
         </div>
         <div class="col-lg-4">
@@ -666,7 +744,7 @@
     <div *ngIf="subscriptiontype=='3'">
       <div class="row">
         <div class="col-lg-3">
-          <label>{{labels4[0].appointmentpercentage}} :</label>
+          <label class="Address_label">{{labels4[0].appointmentpercentage}} :</label>
         </div>
         <div class="col-lg-4">
           <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
@@ -677,7 +755,7 @@
       <br />
       <div class="row">
         <div class="col-lg-3">
-          <label>{{labels4[0].monthlySubscription}} :</label>
+          <label class="Address_label">{{labels4[0].monthlySubscription}} :</label>
           <span class="required">*</span>
         </div>
         <div class="col-lg-4">
@@ -691,15 +769,15 @@
       <div class="col-lg-5">
       </div>
       <div class="col-lg-2">
-        <button type="button"  text_align="center"
-        class="btn btn-block btn-md allbtns btncolor" (click)="updatedetails()">{{labels[0].update}}</button>
+        <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+          (click)="updatedetails()">{{labels[0].update}}</button>
       </div>
       <div class="col-lg-5">
       </div>
-      <button type="button"  class="btn btncolor Address_label" awPreviousStep>{{labels[0].previous}}</button>
+      <button type="button" class="btn btncolor Address_label" awPreviousStep>{{labels[0].previous}}</button>
     </div><br>
 
-   
+
   </aw-wizard-step>
 
 

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HelloDoctorService } from '../../../hello-doctor.service';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
-
 @Component({
   selector: 'app-nurse',
   templateUrl: './nurse.component.html',
@@ -213,11 +212,42 @@ today = new Date()
       }
     )
   }
+  regionList:any;
+  regiondd={};
+
   public GetCountryID(item: any) {
 
     this.countryid = item.id;
 
-    this.docservice.GetCityMasterBYIDandLanguageID(this.countryid, this.languageid).subscribe(
+    this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
+      data => {
+
+        this.regionList = data;
+
+        this.regiondd = {
+          singleSelection: true,
+          idField: 'id',
+          textField: 'regionName',
+          selectAllText: 'Select All',
+          unSelectAllText: 'UnSelect All',
+          //  itemsShowLimit: 3,
+          allowSearchFilter: true,
+          searchPlaceholderText: this.search,
+        };
+      }, error => {
+      }
+    )
+  }
+
+
+
+  regionID:any;
+
+  GetRegionID(item:any)
+  {
+    this.regionID=item.id
+
+    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
       data => {
 
         this.citylist = data;
@@ -236,7 +266,6 @@ today = new Date()
       }
     )
   }
-
 
   public GetCityID(item1: any) {
 
@@ -393,6 +422,36 @@ today = new Date()
     this.slotTypeID = even.target.value;
   }
 
+
+  formatAddress: any;
+  latitude: any;
+  longitude: any;
+  googleAddress: any;
+  geocode() {
+    debugger
+    this.spinner.show()
+    this.docservice.Getlocation(this.address).subscribe(data => {
+      debugger
+      console.log("google addressmain", data);
+      if (data["results"].length!=0) {
+        this.googleAddress = data["results"];
+        console.log("google address", this.googleAddress)
+        debugger
+        this.formatAddress = this.googleAddress[0]["formatted_address"];
+        this.latitude = this.googleAddress[0].geometry.location["lat"],
+          this.longitude = this.googleAddress[0].geometry.location["lng"];
+        Swal.fire("Emplacement récupéré avec succès");
+        this.spinner.hide();
+      }
+      else {
+        Swal.fire("Entrez l'adresse correcte");
+        this.spinner.hide();
+      }
+
+    })
+  }
+
+
   public insertnursedetails() {
     if (this.hospitalclinicid == undefined || this.hospitalclinicid == "") {
       if (this.languageid == 1) {
@@ -440,8 +499,10 @@ today = new Date()
         'VAT': this.vatCheck,
         'VatPercentage':this.vatpercentage,
         'ExonerationPeriodFromDate':this.contractstartdate,
-        'ExonerationPerioToDate':this.contractenddate
-
+        'ExonerationPerioToDate':this.contractenddate,
+        'Lattitude': this.latitude,
+        'Longitude': this.longitude,
+        'FormatedAddress': this.formatAddress
       }
       this.docservice.InsertNurseRegistration(entity).subscribe(data => {
 

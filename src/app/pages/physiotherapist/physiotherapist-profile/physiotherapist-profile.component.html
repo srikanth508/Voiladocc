@@ -15,7 +15,7 @@
     <div class="col-lg-4">
       <input type="text" disabled placeholder="{{labels[0].name}}" required class="form-control" [(ngModel)]="name" name="name"
         onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode==32||event.charCode==46'>
-    </div>
+   </div>
   </div>
   <br>
   <div class="row">
@@ -146,6 +146,19 @@
     <div class="col-lg-4">
       <textarea class="form-control" rows="4" name="description" disabled [(ngModel)]="description" required
         placeholder="{{labels[0].description}}"></textarea>
+    </div>
+  </div>
+  <br>
+
+
+  <div class="row">
+    <div class="col-lg-3">
+      <label class="Address_label">Hôpital / Clinique} :</label>
+      <span class="required">*</span>
+    </div>
+    <div class="col-lg-4">
+      <textarea class="form-control" rows="4" name="hospitalName" disabled [(ngModel)]="hospitalName" required
+        placeholder="{{labels[0].hospitalName}}"></textarea>
     </div>
   </div>
   <br>

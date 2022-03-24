@@ -146,19 +146,22 @@ export class DiagnosticsregistrationComponent implements OnInit {
     )
   }
 
+  regionList:any;
+  regiondd={};
+
+
   public GetCountryID(item: any) {
 
     this.countryid = item.id;
-
-    this.docservice.GetCityMasterBYIDandLanguageID(this.countryid, this.languageid).subscribe(
+    this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
       data => {
 
-        this.citylist = data;
+        this.regionList = data;
 
-        this.citydd = {
+        this.regiondd = {
           singleSelection: true,
           idField: 'id',
-          textField: 'short',
+          textField: 'regionName',
           selectAllText: 'Select All',
           unSelectAllText: 'UnSelect All',
           //  itemsShowLimit: 3,
@@ -173,6 +176,35 @@ export class DiagnosticsregistrationComponent implements OnInit {
 
   public diagnosticappointmentperslot: any;
   public homesampleordersperslot: any;
+
+
+
+  
+regionID:any;
+
+GetRegionID(item:any)
+{
+  this.regionID=item.id
+
+  this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
+    data => {
+
+      this.citylist = data;
+
+      this.citydd = {
+        singleSelection: true,
+        idField: 'id',
+        textField: 'short',
+        selectAllText: 'Select All',
+        unSelectAllText: 'UnSelect All',
+        //  itemsShowLimit: 3,
+        allowSearchFilter: true,
+        searchPlaceholderText: this.search,
+      };
+    }, error => {
+    }
+  )
+}
 
 
   public GetCityID(item1: any) {
@@ -212,6 +244,41 @@ export class DiagnosticsregistrationComponent implements OnInit {
   nameofbank: any;
   accountName: any;
   accountNumber: any;
+
+
+
+
+
+
+  formatAddress: any;
+  latitude: any;
+  longitude: any;
+  googleAddress: any;
+  geocode() {
+    debugger
+    this.spinner.show()
+    this.docservice.Getlocation(this.address).subscribe(data => {
+      debugger
+      console.log("google addressmain", data);
+      if (data["results"].length!=0) {
+        this.googleAddress = data["results"];
+        console.log("google address", this.googleAddress)
+        debugger
+        this.formatAddress = this.googleAddress[0]["formatted_address"];
+        this.latitude = this.googleAddress[0].geometry.location["lat"],
+          this.longitude = this.googleAddress[0].geometry.location["lng"];
+        Swal.fire("Emplacement récupéré avec succès");
+        this.spinner.hide();
+      }
+      else {
+        Swal.fire("Entrez l'adresse correcte");
+        this.spinner.hide();
+      }
+
+    })
+  }
+
+
   public insertdetails() {
 
     // if (this.attachmentsurl.length == 0) {
@@ -279,7 +346,10 @@ export class DiagnosticsregistrationComponent implements OnInit {
         'Nameofthebank': this.nameofbank,
         'AccountName': this.accountName,
         'AccountNumber': this.accountNumber,
-        'VAT': 0
+        'VAT': 0,
+        'Lattitude': this.latitude,
+        'Longitude': this.longitude,
+        'FormatedAddress': this.formatAddress
       }
       this.docservice.InsertDiagnosticCenterRegistration(entity).subscribe(data => {
 
