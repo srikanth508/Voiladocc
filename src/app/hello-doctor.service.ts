@@ -28,8 +28,6 @@ export class HelloDoctorService {
 
   private host2 = "https://voiladoc.org/VoiladocRegistrationsWebApi";
 
-
-
   private url: string = '';
   public showvid = 0;
   public videopage = 0;

@@ -770,7 +770,7 @@
               <label class="Address_label">Vat Percentage :</label>
             </div>
             <div class="col-lg-4">
-              <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" required
+              <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" 
                 name="vatpercentage" placeholder="Vat Percentage">
             </div>
           </div>
@@ -816,13 +816,13 @@
             <span class="required">*</span>
           </div>
           <div class="col-md-8">
-            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+            <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
               (click)="Getsubscriptontype()" value="1">{{labels4[0].monthlySubscription}}
             &nbsp;
-            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+            <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
               (click)="Getsubscriptontype()" value="2"> {{labels4[0].appointmentpercentage}}
             &nbsp;
-            <input type="radio" name="subscriptiontype" required [(ngModel)]="subscriptiontype"
+            <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
               (click)="Getsubscriptontype()" value="3"> {{labels4[0].both}}
           </div>
         </div><br>

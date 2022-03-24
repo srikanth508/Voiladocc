@@ -43,6 +43,12 @@ export class EditphysiotherapistComponent implements OnInit {
   latitude: any;
   longitude: any;
   googleAddress: any;
+  
+  vatCheck:any;
+  vatpercentage:any;
+  today=new Date()
+  contractstartdate:any;
+  contractenddate:any;
   ngOnInit() {
     this.activatedroute.params.subscribe(params => {
 
@@ -302,7 +308,10 @@ export class EditphysiotherapistComponent implements OnInit {
       'VAT': 0,
       'Lattitude': this.latitude,
       'Longitude': this.longitude,
-      'FormatedAddress': this.formatAddress
+      'FormatedAddress': this.formatAddress,
+      'VatPercentage': this.vatpercentage,
+      'ExonerationPeriodFromDate': this.contractstartdate,
+      'ExonerationPerioToDate': this.contractenddate
     }
 
     this.docservice.UpdatephysiotherapyRegistration(entity).subscribe(data => {
@@ -431,4 +440,16 @@ export class EditphysiotherapistComponent implements OnInit {
 
     })
   }
+
+  
+  checkVatvalue(even) {
+
+    if (even == 1) {
+      this.vatpercentage = 0;
+    }
+    else {
+      this.vatpercentage = 20;
+    }
+  }
+
 }

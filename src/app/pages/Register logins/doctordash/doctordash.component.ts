@@ -275,6 +275,7 @@ export class DoctordashComponent implements OnInit {
       this.SendTwiliSms(details);
     }, error => {
       this.spinner.hide();
+      Swal.fire("issue with Email")
     })
   }
 
@@ -304,6 +305,7 @@ export class DoctordashComponent implements OnInit {
 
     }, error => {
       this.spinner.hide();
+      Swal.fire("issue with Sms")
     })
   }
 

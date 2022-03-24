@@ -41,7 +41,7 @@ export class NewBillingComponent implements OnInit {
     blob: any;
     options: NgDateRangePickerOptions;
     typeid: any;
-    labels:any;
+    labels: any;
 
     ngOnInit() {
         ;
@@ -125,6 +125,8 @@ export class NewBillingComponent implements OnInit {
     pincode: any;
     phoneNo: any;
     monthName: any;
+    vatAmount: any;
+    totalCommission:any;
     public GetList(invlist) {
         ;
         this.hospitalname = invlist.providerName;
@@ -135,7 +137,10 @@ export class NewBillingComponent implements OnInit {
         this.address = invlist.address;
         this.emailid = invlist.emailID;
         this.pincode = invlist.pincode;
-        this.totalamount = Number(invlist.monthlySubscription)
+       this.totalCommission = invlist.totalCommissionsAmount;
+        var total = Number(invlist.monthlySubscription + invlist.totalCommissionsAmount);
+        this.vatAmount = Number(total * invlist.vatPercentage / 100)
+        this.totalamount = Number(total + this.vatAmount)
         this.invoicenumber = Math.floor(100000 + Math.random() * 900000);
         this.monthName = invlist.name
 
@@ -147,44 +152,44 @@ export class NewBillingComponent implements OnInit {
 
 
 
-//     public SavePDF() {
+    //     public SavePDF() {
 
-//         this.spinner.show();
+    //         this.spinner.show();
 
 
-//         // parentdiv is the html element which has to be converted to PDF
-//         html2canvas(document.querySelector("#content")).then(canvas => {
-// debugger
-//             var pdf = new jsPDF('p', 'pt', [800, canvas.height]);
-//             debugger
-//             var imgData = canvas.toDataURL("image/jpeg", 1.0);
-//             pdf.addImage(imgData, 0, 0, 800, canvas.height);
+    //         // parentdiv is the html element which has to be converted to PDF
+    //         html2canvas(document.querySelector("#content")).then(canvas => {
+    // debugger
+    //             var pdf = new jsPDF('p', 'pt', [800, canvas.height]);
+    //             debugger
+    //             var imgData = canvas.toDataURL("image/jpeg", 1.0);
+    //             pdf.addImage(imgData, 0, 0, 800, canvas.height);
 
-//             var pdf1 = pdf.output('blob');
-//             var file = new File([pdf1], this.hospitalname + this.year + this.monthName + ".pdf");
+    //             var pdf1 = pdf.output('blob');
+    //             var file = new File([pdf1], this.hospitalname + this.year + this.monthName + ".pdf");
 
-//             let body = new FormData();
-//             debugger
-//             body.append('Dan', file);
+    //             let body = new FormData();
+    //             debugger
+    //             body.append('Dan', file);
 
-//             this.docservice.UploadInvoicePDF(file).subscribe(res => {
-//                 ;
+    //             this.docservice.UploadInvoicePDF(file).subscribe(res => {
+    //                 ;
 
-//                 this.invoiceurl = res;
+    //                 this.invoiceurl = res;
 
-//                 this.InsertDetailes();
-//             });
+    //                 this.InsertDetailes();
+    //             });
 
-//             // pdf.save('PO.pdf');
+    //             // pdf.save('PO.pdf');
 
-//         });
+    //         });
 
-//     }
+    //     }
 
 
     public SavePDF() {
         ;
-this.spinner.show()
+        this.spinner.show()
         let pdfContent = window.document.getElementById("content");
         var doc = new jsPDF('p', 'mm', "a4");
 

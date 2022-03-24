@@ -266,6 +266,7 @@ export class HspdashComponent implements OnInit {
   public doctorname: any;
 
   async sendmail(details) {
+    debugger
     this.spinner.show();
     if (this.languageid == 1) {
       var sub = "Welcome to Voiladoc"
@@ -275,7 +276,7 @@ export class HspdashComponent implements OnInit {
       var sub = "Bienvenue sur Voialdoc "
       var body = 'Cher ' + details.hospital_ClinicName + ',' + "<br><br>" + 'Merci de vous être inscrit sur Voiladoc. Voici vos identifiants de connexion. ' + "<br><br>" + 'Lien web Voiladoc pro : https://maroc.voiladoc.org/' + "<br>" + 'Code PIN  : ' + details.pinno + "<br>" + "Nom d'utilisateur :" + details.userName + "<br>" + 'Mot de passe : ' + details.password + "<br><br>" + "Veuillez ne pas partager vos identifiants de connexion avec qui que ce soit. Contactez notre ligne d'assistance au +212522446145 ou envoyez-nous un e-mail à support@voiladoc.ma" + "<br><br>" + 'Meilleures salutations,' + "<br>" + 'Team Voiladoc' + "<br>" + 'www.voiladoc.com'
     }
-
+    debugger
     var entity = {
       'emailto': details.emailID,
       'emailsubject': sub,
@@ -285,10 +286,11 @@ export class HspdashComponent implements OnInit {
       'bcclist': 0
     }
     this.docservice.sendemail(entity).subscribe(data => {
-
-      // this.SendTwiliSms(details);
+      debugger
+      this.SendTwiliSms(details);
     }, error => {
       this.spinner.hide();
+      Swal.fire("issue with Email")
     })
   }
 
@@ -318,6 +320,7 @@ export class HspdashComponent implements OnInit {
 
     }, error => {
       this.spinner.hide();
+      Swal.fire("issue with Sms")
     })
   }
 

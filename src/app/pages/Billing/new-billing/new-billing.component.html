@@ -82,6 +82,8 @@
                     <th>{{labels[0].emailID}}</th>
                     <th>{{labels[0].month}}</th>
                     <th>{{labels[0].monthlySuscriptionFees}}</th>
+                    <th>Total Appointments Commission</th>
+                    <th>TVA</th>
                     <th>{{labels[0].actions}}</th>
                 </tr>
                 <tr *ngFor="let details of billinglist">
@@ -91,7 +93,8 @@
                     <td>{{details.emailID}}</td>
                     <td>{{details.name}}</td>
                     <td>{{details.monthlySubscription|number:'1.2-2'|noComma}} DH</td>
-
+                    <td>{{details.totalCommissionsAmount}}</td>
+                    <td>{{details.vatPercentage}}</td>
                     <td><button (click)="GetList(details)" class="btncolor" data-toggle="modal" data-target="#errorServer">{{labels[0].viewInvoice}}
                             </button></td>
 
@@ -174,13 +177,15 @@
                                         <th>Phone Number</th>
                                         <th>Description</th>
                                         <th>Monthly Subscription</th>
+                                        <th>total Commission</th>
                                         <th>Total Amount</th>
                                     </tr>
                                     <tr>
                                         <td>{{hospitalname}}</td>
                                         <td>{{phoneNo}}</td>
                                         <td>Service Voiladoc </td>
-                                        <td>{{totalamount|number:'1.2-2'|noComma}} DH</td>
+                                        <td>{{monthlysub|number:'1.2-2'|noComma}} DH</td>
+                                        <td>{{totalCommission|number:'1.2-2'|noComma}} DH</td>
                                         <td>{{totalamount|number:'1.2-2'|noComma}} DH</td>
                                     </tr>
                                 </table>
@@ -200,9 +205,10 @@
                                 </table>
                             </div>
                             <div class="col-lg-4 text-alignments">
-                                <span>Net Total : {{totalamount|number:'1.2-2'|noComma}} DH</span><br>
-                                <span>TVA : </span><br>
-                                <span>TOTAL TTC MAD : {{totalamount|number:'1.2-2'|noComma}} DH</span><br>
+                                <span>Monthly Subscription : {{monthlysub|number:'1.2-2'|noComma}} DH</span><br>
+                                <span>Total Appointment Commission : {{totalCommission|number:'1.2-2'|noComma}} DH</span><br>
+                                <span>TVA : {{vatAmount}}</span><br>
+                                <span>TOTAL TTC DH : {{totalamount|number:'1.2-2'|noComma}} DH</span><br>
                             </div>
                         </div>
 
