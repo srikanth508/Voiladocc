@@ -220,6 +220,7 @@
 
 <div class="smalchat" id="Myformsss" style="overflow: auto;">
     <div class="w3-card-4 " *ngFor="let chat of chatlist" style="overflow: auto;">
+        <span (click)="GetChatIDForseen(chat.chatID)">&times;</span>
         <div class="w3-container cardss card-hover" (click)="GetChatIDForseen(chat.chatID)">
             <p>1 new message from : <b>{{chat.patientName}}</b></p>
             <hr>

@@ -645,9 +645,9 @@
         <label class="Address_label">Exonerated :</label>
       </div>
       <div class="col-lg-4">
-        <input type="radio" value="1" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(1)">
+        <input type="radio" [value]="1" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(1)">
         &nbsp;{{labels[0].yes}}
-        <input type="radio" value="0" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(0)">
+        <input type="radio" [value]="0" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(0)">
         &nbsp;{{labels[0].no}}
       </div>
     </div>

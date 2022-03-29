@@ -128,7 +128,11 @@ export class EditMidwifeComponent implements OnInit {
         this.latitude=this.details.lattitude,
         this.longitude=this.details.longitude,
         this.formatAddress=this.details.formatedAddress
-        this.regionID=this.details.regionMasterID
+        this.regionID=this.details.regionMasterID,
+        this.contractstartdate = this.details.exonerationPeriodFromDate
+        this.contractenddate = this.details.exonerationPeriodFromDate,
+          this.vatCheck = this.details.vat,
+          this.vatpercentage=this.details.vatPercentage
 
       this.GetDepartmentmaster();
       this.GetCountryMaster();
@@ -274,6 +278,8 @@ export class EditMidwifeComponent implements OnInit {
   accountNumber: any;
   subscriptiontype:any;
   public updatedetails() {
+    this.contractstartdate = this.docservice.GetDates(this.contractstartdate)
+    this.contractenddate = this.docservice.GetDates(this.contractenddate)
     var entity = {
       'LanguageID': this.languageid,
       'ID': this.id,
@@ -301,13 +307,13 @@ export class EditMidwifeComponent implements OnInit {
       'Nameofthebank': this.nameofbank,
       'AccountName': this.accountName,
       'AccountNumber': this.accountNumber,
-      'VAT': 0,
+      'VAT': this.vatCheck,
       'Lattitude': this.latitude,
       'Longitude': this.longitude,
       'FormatedAddress': this.formatAddress,
       'VatPercentage': this.vatpercentage,
-      'ExonerationPeriodFromDate': this.contractstartdate,
-      'ExonerationPerioToDate': this.contractenddate
+      'ExonerationPeriodFromDate': this.contractstartdate!=null?this.contractstartdate:new Date(),
+      'ExonerationPerioToDate': this.contractenddate!=null?this.contractstartdate:new Date()
     }
     this.docservice.UpdateMidWivesRegistration(entity).subscribe(data => {
       if (data != undefined) {
@@ -355,6 +361,7 @@ export class EditMidwifeComponent implements OnInit {
   public uploadattachments() {
     debugger
     this.docservice.pharmacyphoto(this.attachments).subscribe(res => {
+      
       this.attachmentsurl.push(res);
       this.dummnursephoto.push(res);
       let a = this.dummnursephoto[0].slice(2);
