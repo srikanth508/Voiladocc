@@ -20,6 +20,7 @@ export class DiagfnosticCalenderComponent implements OnInit {
   public diagnosticid: any;
   public term: any;
   SelectLabel: any;
+  todaydate1:any;
   // public dayid = []
   search: any;
   public todaydate: any;

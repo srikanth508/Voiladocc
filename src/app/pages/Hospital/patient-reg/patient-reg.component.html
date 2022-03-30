@@ -190,6 +190,18 @@
       </div><br>
       <div class="row">
         <div class="col-lg-3">
+          <label>Régions : </label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-4">
+          <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="regionList" [settings]="regiondd"
+            (onSelect)="GetRegionID($event)" >
+          </ng-multiselect-dropdown>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-3">
           <label class="City_label">{{labels[0].province}} :</label>
           <span class="required">*</span>
         </div>

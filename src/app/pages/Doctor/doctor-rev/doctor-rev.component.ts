@@ -38,7 +38,46 @@ export class DoctorRevComponent implements OnInit {
 
       this.id = params['id'];
 
+      if (this.id == 2) {
+        this.docservice.GetBookAppointmentByDoctorID(this.doctorID, this.startdate, this.enddate, this.languageid).subscribe(
+          data => {
   
+            debugger
+            this.appointmentdummlist = data;
+            this.appointmentlist = this.appointmentdummlist.filter(x => x.appointmentTypeID == 2 && x.isVisited == 1 && x.refundBit == 0)
+            this.GrandTotal = 0
+            for (let i = 0; i < this.appointmentlist.length; i++) {
+  
+              this.GrandTotal = this.GrandTotal + this.appointmentlist[i].indcorevenue;
+            }
+          })
+      }
+      if (this.id == 1) {
+        this.docservice.GetBookAppointmentByDoctorID(this.doctorID, this.startdate, this.enddate, this.languageid).subscribe(
+          data => {
+  
+            this.appointmentdummlist = data;
+            this.appointmentlist = this.appointmentdummlist.filter(x => x.appointmentTypeID == 1 && x.isVisited == 1 && x.refundBit == 0)
+            this.GrandTotal = 0
+            for (let i = 0; i < this.appointmentlist.length; i++) {
+  
+              this.GrandTotal = this.GrandTotal + this.appointmentlist[i].indcorevenue;
+            }
+          })
+      }
+      if (this.id == 3) {
+        this.docservice.GetBookAppointmentByDoctorID(this.doctorID, this.startdate, this.enddate, this.languageid).subscribe(
+          data => {
+  
+            this.appointmentdummlist = data;
+            this.appointmentlist = this.appointmentdummlist.filter(x => x.appointmentTypeID == 5 && x.isVisited == 1 && x.refundBit == 0)
+            this.GrandTotal = 0
+            for (let i = 0; i < this.appointmentlist.length; i++) {
+  
+              this.GrandTotal = this.GrandTotal + this.appointmentlist[i].indcorevenue;
+            }
+          })
+      }
     }
     )
 
@@ -121,7 +160,7 @@ export class DoctorRevComponent implements OnInit {
       this.docservice.GetBookAppointmentByDoctorID(this.doctorID, this.startdate, this.enddate, this.languageid).subscribe(
         data => {
 
-
+          debugger
           this.appointmentdummlist = data;
           this.appointmentlist = this.appointmentdummlist.filter(x => x.appointmentTypeID == 2 && x.isVisited == 1 && x.refundBit == 0)
           this.GrandTotal = 0

@@ -235,7 +235,12 @@
                 (click)="GetReportsssss()" />&nbsp;
                 <span style="font-family: 'Poppins', sans-serif;"
                 *ngIf="pdfexist=='0'">{{labels[0].nopdf}}</span>
-          
+
+                {{labels[0].diagnosticreport}} : <img src="assets/Images/pdf.png" *ngIf="reportURl!='0'" 
+                title="{{labels[0].video}}" style="margin: 2%;width: 20px;"
+                (click)="getDiagnosticReport()" />&nbsp;
+                <!-- <span style="font-family: 'Poppins', sans-serif;"
+                *ngIf="reportURl=='0'">{{labels[0].nopdf}}</span> -->
             </td>
           </tr>
         </table>

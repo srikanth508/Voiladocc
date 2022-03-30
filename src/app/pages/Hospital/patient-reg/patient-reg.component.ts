@@ -139,6 +139,10 @@ export class PatientRegComponent implements OnInit {
 
 
 
+
+
+
+
   public GetCountryMaster() {
     this.docservice.GetCountryMasterByLanguageID(this.languageid).subscribe(
       data => {
@@ -159,12 +163,48 @@ export class PatientRegComponent implements OnInit {
   }
 
 
+  regionList:any;
+  regiondd={};
 
   public GetCountryID(item: any) {
 
     this.countryid = item.id;
 
-    this.docservice.GetCityMasterBYIDandLanguageID(this.countryid, this.languageid).subscribe(
+    this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
+      data => {
+
+        this.regionList = data;
+
+        this.regiondd = {
+          singleSelection: true,
+          idField: 'id',
+          textField: 'regionName',
+          selectAllText: 'Select All',
+          unSelectAllText: 'UnSelect All',
+          //  itemsShowLimit: 3,
+          allowSearchFilter: true,
+          searchPlaceholderText: this.search,
+        };
+      }, error => {
+      }
+    )
+
+
+  }
+
+  public GetCityID(item1: any) {
+
+    this.cityid = item1.id;
+    this.getareamasterbyid();
+  }
+
+
+  regionID: any;
+
+  GetRegionID(item: any) {
+    this.regionID = item.id
+
+    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
       data => {
 
         this.citylist = data;
@@ -176,21 +216,13 @@ export class PatientRegComponent implements OnInit {
           selectAllText: 'Select All',
           unSelectAllText: 'UnSelect All',
           //  itemsShowLimit: 3,
-          allowSearchFilter: true
+          allowSearchFilter: true,
+          searchPlaceholderText: this.search,
         };
       }, error => {
       }
     )
   }
-
-  public GetCityID(item1: any) {
-
-    this.cityid = item1.id;
-    this.getareamasterbyid();
-  }
-
-
-
 
   public getareamasterbyid() {
 

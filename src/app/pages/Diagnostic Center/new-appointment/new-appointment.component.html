@@ -40,7 +40,7 @@
                 </tr>
                 <tr *ngFor="let list of testlist">
                     <td>{{list.testName}}</td>
-                    <td>{{list.price}} MAD</td>
+                    <td>{{list.price|number:'1.2-2'|noComma}} DH</td>
                     <td><input type="checkbox" (change)="GetSelectedTests($event,list)"></td>
                 </tr>
             </table>
@@ -52,7 +52,7 @@
                 </tr>
                 <tr *ngFor="let list of packageslist">
                     <td>{{list.packageName}}</td>
-                    <td>{{list.price}} MAD</td>
+                    <td>{{list.price|number:'1.2-2'|noComma}} DH</td>
                     <td><input type="checkbox" (change)="GetSelectedPackages($event,list)"></td>
                 </tr>
             </table>
@@ -76,7 +76,7 @@
             </tr>
             <tr *ngFor="let list of allselectedtestandpakages">
                 <td>{{list.Testorpackage}}</td>
-                <td>{{list.Price}}</td>
+                <td>{{list.Price|number:'1.2-2'|noComma}} DH</td>
                 <td>
                     <ng-template #tipcontent2>Delete</ng-template>
                     <a [ngbTooltip]="tipcontent2">
@@ -133,9 +133,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid==1">Select Slots</h5>
-                <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid==6">Sélectionner des plages horaires</h5>
-
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf="homesample==false">Au Laboratoire</h5>
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf="homesample==true">(A domicile)</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
