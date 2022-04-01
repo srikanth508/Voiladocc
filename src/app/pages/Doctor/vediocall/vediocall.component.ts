@@ -66,6 +66,7 @@ export class VediocallComponent implements OnInit {
 
   public assessment: any;
   public soapid: any;
+  reportURl:any;
 
   public temp: any;
   public plan: any;
@@ -610,7 +611,8 @@ export class VediocallComponent implements OnInit {
           this.showdosage = this.details.dosage,
           this.showfrequency = this.details.frequency,
           this.pdfexist = this.details.uploadrepornotexist,
-          this.illnesspdf = this.details.illnesspdf
+          this.illnesspdf = this.details.illnesspdf,
+          this.reportURl = this.details.reportUrl
 
 
 
@@ -883,7 +885,7 @@ export class VediocallComponent implements OnInit {
         this.followupplan = "",
         this.notes = ""
       this.plan = ""
-      this.signature = ""
+      // this.signature = ""
     }
   }
 
@@ -1562,6 +1564,8 @@ debugger
         }
       })
     }
+    var smsdesc = "Suite à votre consultation avec le Dr " + this.user + "  votre ordonnance pour vos médicaments est maintant disponible dans Accueil"
+    this.SendTwiliSms(smsdesc, this.smsmobileno)
 
   }
 
@@ -2536,6 +2540,11 @@ debugger
   }
 
 
+
+  public getDiagnosticReport() {
+
+    window.open(this.reportURl, "_blank");
+  }
 
   vaccinationlist: any;
 

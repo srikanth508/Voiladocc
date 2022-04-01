@@ -3,15 +3,15 @@
     <div class="row" style="height: 10vh;" *ngIf="isDescktopResolution==true">
         <div class="col-lg-2">
             <img src="assets/Images/logo1.png">
-            
+
         </div>
         <div class="col-lg-2">
             <p class="square">{{formatTime}}</p>
         </div>
         <div class="col-lg-4">
             <marquee *ngFor="let noti of docnoti" style="margin-top:18px;color:red">{{noti.description}}</marquee>
-        
-           
+
+
         </div>
         <div class="col-lg-4" id="vidpagehead">
             <img src="assets/Images/logout.png" title="{{labels[0].logout}}"
@@ -149,8 +149,9 @@
                             <i class="fa fa-plus fa-2x" *ngIf="phanoti.show=='1'"
                                 style="margin-left: 5px; margin-top: 3px;" aria-hidden="true"
                                 (click)="ViewMedicines(phanoti)"></i> -->
-                            <button  data-toggle="modal" data-target="#Medicines"
-                             class="viewmedicines"   (click)="ViewMedicines(phanoti)" data-dismiss="modal">{{labels[0].viewMedicines}}</button>
+                            <button data-toggle="modal" data-target="#Medicines" class="viewmedicines"
+                                (click)="ViewMedicines(phanoti)"
+                                data-dismiss="modal">{{labels[0].viewMedicines}}</button>
                         </div>
                     </div><br>
                 </div><br>
@@ -205,7 +206,7 @@
                                 (click)="RejectPhrmacyOrder()" data-dismiss="modal">{{labels[0].reject}}</button> -->
                         </div>
                         <div class="col-lg-6">
-                          
+
                         </div>
                     </div>
                 </div>
@@ -220,7 +221,10 @@
 
 <div class="smalchat" id="Myformsss" style="overflow: auto;">
     <div class="w3-card-4 " *ngFor="let chat of chatlist" style="overflow: auto;">
+
+        <!-- <span (click)="GetChatIDForseen(chat.chatID)">&times;</span> -->
         <div class="w3-container cardss card-hover" (click)="GetChatIDForseen(chat.chatID)">
+            <img src="assets/Images/cross.png" style="float: right;width: 20px;" (click)="GetChatIDForseen(chat.chatID)">
             <p>1 new message from : <b>{{chat.patientName}}</b></p>
             <hr>
             <p>{{chat.mobileMessage}}</p>
@@ -262,7 +266,7 @@
                       float: left;">
                                     <p style="margin-top: 5px;">{{convo.chatmsg}}
                                         <span style="float: right;;margin-top: 5px;">
-                                            {{convo.time}}
+                                            <!-- {{convo.time}} -->
                                         </span>
                                     </p>
                                 </div>
@@ -282,7 +286,7 @@
                                             style="width:26px;margin-top: 5px;"> &nbsp;
                                         {{convo.chatmsg}}
                                         <span style="float: right;;margin-top: 5px;">
-                                            {{convo.time}}
+                                            <!-- {{convo.time}} -->
                                         </span>
                                     </p>
                                 </div>

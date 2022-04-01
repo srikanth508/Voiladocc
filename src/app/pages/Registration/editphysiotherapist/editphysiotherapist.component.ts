@@ -142,7 +142,11 @@ export class EditphysiotherapistComponent implements OnInit {
         this.latitude=this.details.lattitude,
         this.longitude=this.details.longitude,
         this.formatAddress=this.details.formatedAddress,
-        this.regionID=this.details.regionMasterID
+        this.regionID=this.details.regionMasterID,
+        this.contractstartdate = this.details.exonerationPeriodFromDate
+        this.contractenddate = this.details.exonerationPeriodFromDate,
+          this.vatCheck = this.details.vat,
+          this.vatpercentage=this.details.vatPercentage
       this.GetDepartmentmaster();
       this.GetCountryMaster();
       this.getcitymaster();
@@ -277,7 +281,8 @@ export class EditphysiotherapistComponent implements OnInit {
   accountNumber: any;
   subscriptiontype:any;
   public updatedetails() {
-
+    this.contractstartdate = this.docservice.GetDates(this.contractstartdate)
+    this.contractenddate = this.docservice.GetDates(this.contractenddate)
     var entity = {
       'LanguageID': this.languageid,
       'ID': this.id,
@@ -305,13 +310,13 @@ export class EditphysiotherapistComponent implements OnInit {
       'Nameofthebank': this.nameofbank,
       'AccountName': this.accountName,
       'AccountNumber': this.accountNumber,
-      'VAT': 0,
+      'VAT': this.vatCheck,
       'Lattitude': this.latitude,
       'Longitude': this.longitude,
       'FormatedAddress': this.formatAddress,
       'VatPercentage': this.vatpercentage,
-      'ExonerationPeriodFromDate': this.contractstartdate,
-      'ExonerationPerioToDate': this.contractenddate
+      'ExonerationPeriodFromDate': this.contractstartdate!=null?this.contractstartdate:new Date(),
+      'ExonerationPerioToDate': this.contractenddate!=null?this.contractstartdate:new Date()
     }
 
     this.docservice.UpdatephysiotherapyRegistration(entity).subscribe(data => {

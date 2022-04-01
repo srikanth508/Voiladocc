@@ -988,24 +988,16 @@
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/NurseMonthWiseSchedule">
                 <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; Agenda
             </a>
-
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/NurseSupportDash">
-                <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].supportTickets}}
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/NurseServicesDash">
+                <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
+                Services
             </a>
-
-
-
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/NurseNotifications">
                 <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; Notifications
             </a>
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/NurseProfile">
-                <img src="assets/Images/profile.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].myProfile}}
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/NurseSupportDash">
+                <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].supportTickets}}
             </a>
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/NurseChangePwd">
-                <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
-                {{labels[0].changepassword}}
-            </a>
-
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/FAQuestions">
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
                 FAQ
@@ -1014,13 +1006,13 @@
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
                 {{labels[0].quickGuide}}
             </a>
-
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/NurseServicesDash">
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/NurseChangePwd">
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
-                Services
+                {{labels[0].changepassword}}
             </a>
-
-
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='7'" routerLink="/NurseProfile">
+                <img src="assets/Images/profile.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].myProfile}}
+            </a>
             <!-- PHYSIOTHERAPIST -->
 
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhysioAdminDash">
@@ -1054,19 +1046,15 @@
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhysiomonthWiseSchedule">
                 <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; Agenda
             </a>
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhyioSupportDash">
-                <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].supportTickets}}
-
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhysioServicesDash">
+                <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
+                Services
             </a>
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhysioNotification">
                 <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; Notification
             </a>
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhysiotherapistProfile">
-                <img src="assets/Images/profile.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].myProfile}}
-            </a>
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/ChangePhysiopwd">
-                <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
-                {{labels[0].changepassword}}
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhyioSupportDash">
+                <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].supportTickets}}
             </a>
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/FAQuestions">
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
@@ -1076,12 +1064,13 @@
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
                 {{labels[0].quickGuide}}
             </a>
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhysioServicesDash">
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/ChangePhysiopwd">
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
-                Services
+                {{labels[0].changepassword}}
             </a>
-
-
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='8'" routerLink="/PhysiotherapistProfile">
+                <img src="assets/Images/profile.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].myProfile}}
+            </a>
             <!-- MIDWIFE -->
 
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/AdminMidWifeDash">
@@ -1117,20 +1106,15 @@
                 <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; Agenda
             </a>
 
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/MidwifsupportDash">
-                <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].supportTickets}}
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/MidwifeservicesDash">
+                <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
+                Services
             </a>
-
-
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/Midwifenotifications">
                 <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; Notification
             </a>
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/MidwifeProfile">
-                <img src="assets/Images/profile.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].myProfile}}
-            </a>
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/ChangeMidPwd">
-                <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
-                {{labels[0].changepassword}}
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/MidwifsupportDash">
+                <img src="assets/Images/mywork.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].supportTickets}}
             </a>
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/FAQuestions">
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
@@ -1140,14 +1124,14 @@
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
                 {{labels[0].quickGuide}}
             </a>
-
-
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/MidwifeservicesDash">
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/ChangeMidPwd">
                 <img src="assets/Images/patientreferal.png" style="width: 15px;">&nbsp; &nbsp;
-                Services
+                {{labels[0].changepassword}}
             </a>
-
-
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='9'" routerLink="/MidwifeProfile">
+                <img src="assets/Images/profile.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].myProfile}}
+            </a>
+            
             <!-- DELIVERY -->
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='10'" routerLink="/PharmacyOrders">
                 <img src="assets/Images/offers.png" style="width: 15px;">&nbsp; &nbsp;
@@ -1634,20 +1618,7 @@
                             </a>
 
                         </li>
-                        <li *ngIf="announcements=='1'">
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/AnnounseDash">
-                                <img src="assets/Images/arrow1.png"
-                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].announcements}}
-
-                            </a>
-                        </li>
-
-                        <li *ngIf="articles=='1'">
-                            <a class="tablinks" (click)="highlight($event)" routerLink="/ArticleDash">
-                                <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;Articles
-
-                            </a>
-                        </li>
+                      
                         <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/AuditReport">
                                 <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;Rapport d'utilisation
@@ -1698,6 +1669,20 @@
                             <a class="tablinks" (click)="highlight($event)" routerLink="/AppPageSponsorshipDashBoard">
                                 <img src="assets/Images/arrow1.png"
                                     class="imagewidth">&nbsp;&nbsp;{{labels[0].appPageSponsership}}
+
+                            </a>
+                        </li>
+                        <li *ngIf="announcements=='1'">
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/AnnounseDash">
+                                <img src="assets/Images/arrow1.png"
+                                    class="imagewidth">&nbsp;&nbsp;{{labels[0].announcements}}
+
+                            </a>
+                        </li>
+
+                        <li *ngIf="articles=='1'">
+                            <a class="tablinks" (click)="highlight($event)" routerLink="/ArticleDash">
+                                <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;Articles
 
                             </a>
                         </li>

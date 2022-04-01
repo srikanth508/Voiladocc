@@ -14,7 +14,7 @@
         <span class="required">*</span>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" required placeholder="{{labels[0].firstname}}" [(ngModel)]="patientname"
+        <input type="text" class="form-control" [disabled]="showbit=='1'" required placeholder="{{labels[0].firstname}}" [(ngModel)]="patientname"
           name="patientname">
       </div>
     </div><br>
@@ -23,7 +23,7 @@
         <label>{{labels[0].lastname}} : </label>
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" placeholder="{{labels[0].lastname}}" [(ngModel)]="lastname"
+        <input type="text" class="form-control" [disabled]="showbit=='1'" placeholder="{{labels[0].lastname}}" [(ngModel)]="lastname"
           name="lastname">
       </div>
     </div><br>
@@ -56,7 +56,7 @@
 
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control"  placeholder="{{labels[0].nationalidentityno}} "
+        <input type="text" class="form-control" [disabled]="showbit=='1'"  placeholder="{{labels[0].nationalidentityno}} "
           [(ngModel)]="nationalidentitycardno" name="nationalidentitycardno">
       </div>
       <div class="col-lg-5">
@@ -188,6 +188,18 @@
           </ng-multiselect-dropdown>
         </div>
       </div><br>
+      <div class="row">
+        <div class="col-lg-3">
+          <label>Régions : </label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-4">
+          <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="regionList" [settings]="regiondd"
+            (onSelect)="GetRegionID($event)" >
+          </ng-multiselect-dropdown>
+        </div>
+      </div>
+      <br>
       <div class="row">
         <div class="col-lg-3">
           <label class="City_label">{{labels[0].province}} :</label>

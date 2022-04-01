@@ -11,3 +11,24 @@ label::first-letter{
 #imp{
   text-transform:none;
 }
+.listCss{
+  background-color: #f18235;
+  color:white;
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+}
+.accept{
+  background-color: #f18235;
+  color:white;
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+}
+.cancel{
+  background-color: #322b6b;
+  color:white;
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+}

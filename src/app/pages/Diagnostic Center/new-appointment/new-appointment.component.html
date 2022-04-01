@@ -17,8 +17,47 @@
                 (onSelect)="GetPatientID($event)">
             </ng-multiselect-dropdown>
         </div>
+        <div class="col-lg-3">
+            <button data-toggle="modal" data-target="#exampleModal" class="listCss">{{labels[0].totalPatientList}}</button>
+          </div>
     </div>
     <br>
+
+    <div class="row" style="overflow: auto;" *ngIf="showSearchBox=='1'">
+        <br>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-4">
+          <br>
+          <input type="text" class="form-control" placeholder="{{labels[0].phoneNo}}" [(ngModel)]="term" name="term"  (ngModelChange)="Searchpatient(term)">
+        </div>
+      </div>
+      <div class="row" *ngIf="searchon=='1'">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10" style="overflow: auto;">
+          <table id="Appointment">
+            <thead>
+              <tr>
+                <th>{{labels3[0].patientName}}</th>
+                <th>{{labels3[0].mobileNumber}}</th>
+                <th>{{labels3[0].emailID}}</th>
+                <th>{{labels3[0].address}}</th>
+                <th>Date de naissance</th>
+                <th>{{labels[0].select}}</th>
+              </tr>
+              <tr *ngFor="let details of patientdetails|filter:term">
+                <td>{{details.patientName}}</td>
+                <td>{{details.mobileNumber}}</td>
+                <td>{{details.emailID}}</td>
+                <td>{{details.address}}</td>
+                <td>{{details.dateOfBirth}}</td>
+                <td>
+                  <button class="listCss" (click)="GetPatientsID(details)">Valider</button>
+                </td>
+              </tr>
+            </thead>
+          </table>
+        </div><br>
+    </div><br>
     <div class="row">
         <div class="tab">
             <button class="tablinks" (click)="openCity($event, 'Tests')" id="def_open" 
@@ -40,7 +79,7 @@
                 </tr>
                 <tr *ngFor="let list of testlist">
                     <td>{{list.testName}}</td>
-                    <td>{{list.price}} MAD</td>
+                    <td>{{list.price|number:'1.2-2'|noComma}} DH</td>
                     <td><input type="checkbox" (change)="GetSelectedTests($event,list)"></td>
                 </tr>
             </table>
@@ -52,7 +91,7 @@
                 </tr>
                 <tr *ngFor="let list of packageslist">
                     <td>{{list.packageName}}</td>
-                    <td>{{list.price}} MAD</td>
+                    <td>{{list.price|number:'1.2-2'|noComma}} DH</td>
                     <td><input type="checkbox" (change)="GetSelectedPackages($event,list)"></td>
                 </tr>
             </table>
@@ -76,7 +115,7 @@
             </tr>
             <tr *ngFor="let list of allselectedtestandpakages">
                 <td>{{list.Testorpackage}}</td>
-                <td>{{list.Price}}</td>
+                <td>{{list.Price|number:'1.2-2'|noComma}} DH</td>
                 <td>
                     <ng-template #tipcontent2>Delete</ng-template>
                     <a [ngbTooltip]="tipcontent2">
@@ -133,9 +172,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid==1">Select Slots</h5>
-                <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid==6">Sélectionner des plages horaires</h5>
-
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf="homesample==false">Au Laboratoire</h5>
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf="homesample==true">(A domicile)</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -247,4 +285,139 @@
             </div>
         </div>
     </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid" *ngIf="languageid==6">
+          <h4 style="text-decoration: underline;">Conditions d’utilisation – Protection des données personnelles</h4>
+          <br>
+          <p>
+            Vous allez accéder à la base de données des patients de Voiladoc. Veuillez vous assurer que le patient à
+            donné
+            son consentement avant d’accéder à ses informations personnelles qui consistent en son nom, prénom, adresse,
+            adresse email, date de naissance, numéro de téléphone ainsi que son numéro d’identité et sa carte
+            d’assurance
+            (le renseignement de ces deux derniers champs est optionnel pour le patient).
+          </p>
+          <p>
+            Vous allez effectuer une recherche à l’aide du numéro de téléphone portable du patient. Veuillez vérifier
+            que
+            les données obtenues correspondent bien au nom, prénom et date de naissance du patient.
+          </p>
+          <p>
+            Vous confirmez que vous n’utiliserez pas ces informations sauf aux fins prévues par la plateforme Voiladoc
+            et
+            ne les divulguerez pas à des tiers non autorisés.
+          </p>
+          <p>
+            Si vous n’acceptez pas ces conditions, vous ne serez pas en mesure de continuer l’enregistrement.
+          </p>
+          <p>
+            <b>Cordialement <br>
+              Le Service d’audit de données de Voiladoc</b>
+
+          </p>
+          <div class="row">
+            <div class="col-lg-3">
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#RejectPopup" data-dismiss="modal" class="cancel">{{labels[0].reject}}
+                </button>
+            </div>
+            <div class="col-lg-6">
+
+            </div>
+            <div class="col-lg-3">
+              <button type="button" class="btn btn-primary" class="accept" (click)="acceptedTerms()"
+                data-dismiss="modal">{{labels[0].accept}}</button>
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+        <div class="container-fluid" *ngIf="languageid==1">
+          <h4 style="text-decoration: underline;">Terms of Use - Protection of personal data</h4>
+          <br>
+          <p>
+            You will access Voiladoc's patient database. Please ensure that the patient has given consent before accessing their personal information which consists of their surname, first name, address, email address, date of birth, telephone number as well as their identity number and insurance card (the information in these last two fields is optional for the patient).
+          </p>
+          <p>
+            You will perform a search using the patient's mobile phone number. Please check that the data obtained, corresponds to the patient's family name, first name and date of birth. 
+          </p>
+          <p>
+            You confirm that you will not use this information except for the intended purposes on the Voiladoc platform and will not disclose it to unauthorized third parties.
+          </p>
+          <p>
+            If you do not agree to these conditions, you will not be able to continue the registration.
+          </p>
+          <p>
+            <b>Kind regards <br>
+              Voiladoc's Data Audit Service</b>
+
+          </p>
+          <div class="row">
+            <div class="col-lg-3">
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#RejectPopup" data-dismiss="modal" class="cancel">{{labels[0].reject}}
+                </button>
+            </div>
+            <div class="col-lg-6">
+
+            </div>
+            <div class="col-lg-3">
+              <button type="button" class="btn btn-primary" class="accept" (click)="acceptedTerms()"
+                data-dismiss="modal">{{labels[0].accept}}</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="RejectPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Désolé, nous ne sommes pas en mesure de vous donner accès aux données du patient.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" class="listCss">Fermer</button>
+       
+      </div>
+    </div>
+  </div>
 </div>

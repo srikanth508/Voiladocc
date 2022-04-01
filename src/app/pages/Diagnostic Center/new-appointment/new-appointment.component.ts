@@ -46,6 +46,7 @@ export class NewAppointmentComponent implements OnInit {
     homesample: boolean;
     diagnosticslotid: any;
     slotname: any;
+    labels3:any;
     ngOnInit() {
 
         this.type = 1;
@@ -93,6 +94,7 @@ export class NewAppointmentComponent implements OnInit {
         //  document.getElementById("def_open").click();
         this.Getlanagage();
         this.GetPatients();
+        this.GetPatientDetails()
       
         var gsDayNames = [
             'Sunday',
@@ -142,6 +144,10 @@ export class NewAppointmentComponent implements OnInit {
     }
     search: any;
 
+
+    
+
+
     public Getlanagage() {
         this.docservice.GetAdmin_Doctorregistration_LabelsByLanguageID(this.languageid).subscribe(
             data => {
@@ -161,6 +167,15 @@ export class NewAppointmentComponent implements OnInit {
             }, error => {
             }
         )
+
+        this.docservice.GetAdmin_Masters_labels(this.languageid).subscribe(
+            data => {
+      
+              this.labels3 = data;
+      
+            },
+            error => { }
+          );
     }
     public GetPatients() {
         this.docservice.GetDiagnosticpatients(this.diagnosticid).subscribe(
@@ -182,6 +197,19 @@ export class NewAppointmentComponent implements OnInit {
             error => { }
         );
     }
+
+    patientdetails: any;
+
+    public GetPatientDetails() {
+      this.docservice.GetPatientRegistrationDetails().subscribe(
+        data => {
+  
+          this.patientdetails = data;
+        }, error => {
+        }
+      )
+    }
+
 
     patientname: any;
     public GetPatientID(item: any) {
@@ -585,4 +613,35 @@ export class NewAppointmentComponent implements OnInit {
         }
     }
 
+
+    searchon: any;
+    showSearchBox:any;
+  
+  
+    acceptedTerms() {
+      this.showSearchBox = 1
+    }
+
+    term:any;
+    GetPatientsID(details) {
+        this.patientid = details.id;
+        this.patientname = details.patientName
+     
+        this.searchon = 0;
+        this.showSearchBox=0;
+      }
+    
+
+      public Searchpatient(term) {
+        debugger
+        if (term.length > 6) {
+          debugger
+          this.searchon = 1
+        }
+        else {
+          debugger
+          this.searchon = 0
+        }
+    
+      }
 }

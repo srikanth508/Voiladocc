@@ -45,6 +45,7 @@
         <thead>
           <tr>
             <th id="imp">{{labels[0].appointmentyDate}}</th>
+            <th>{{labels[0].appointmentNo}}</th>
             <th>{{labels[0].patientname}}</th>
             <th>{{labels[0].phoneNo}}</th>
             <th>{{labels[0].email}}</th>
@@ -56,6 +57,7 @@
           </tr>
           <tr *ngFor="let app of appointmentreportlist|filter:term">
             <td>{{app.apptDatetime}}</td>
+            <td>{{app.id}}</td>
             <td>{{app.patientName}}</td>
             <td>{{app.mobileNumber}}</td>
             <td>{{app.emailID}}</td>
@@ -65,8 +67,11 @@
             <td *ngIf="id=='7'">{{app.nurserevenue}}</td>
             <td>
               <label *ngIf="app.isVisited=='1'" style="color:yellowgreen">{{labels[0].visited}}</label>
-              <label *ngIf="app.nurseCancelled=='1'||app.cancelled=='1'"
+              <label *ngIf="app.cancelled=='1'"
                 style="color:red">{{labels[0].cancelled}}</label>
+                <label *ngIf="app.nurseCancelled=='1'"
+                style="color:red">{{labels[0].nurseCancelled}}</label>
+
               <label *ngIf="app.notVisited=='1'" style="color:rgba(255, 0, 0, 0.425)">{{labels[0].notVisited}}</label>
               <label
                 *ngIf="app.isVisited=='0'&&app.accepted=='0'&&app.nurseCancelled=='0'&&app.cancelled=='0'&&app.notVisited=='0'"

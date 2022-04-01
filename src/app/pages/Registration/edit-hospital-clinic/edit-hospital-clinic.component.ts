@@ -59,9 +59,9 @@ export class EditHospitalClinicComponent implements OnInit {
   latitude: any;
   longitude: any;
   googleAddress: any;
-  vatCheck:any;
-  vatpercentage:any;
-  today=new Date()
+  vatCheck: any;
+  vatpercentage: any;
+  today = new Date()
 
 
 
@@ -122,7 +122,7 @@ export class EditHospitalClinicComponent implements OnInit {
 
     this.countryid = even.target.value;
     this.GetRegionMaster()
-   
+
 
   }
 
@@ -149,6 +149,7 @@ export class EditHospitalClinicComponent implements OnInit {
       data => {
 
         this.details = data[0];
+        console.log("Hospital Data", this.details);
 
         this.hospitalname = this.details.hospital_ClinicName,
           this.phno = this.details.phoneNo,
@@ -156,8 +157,8 @@ export class EditHospitalClinicComponent implements OnInit {
           this.contactpersonphno = this.details.contactPersonPhNo,
           this.address = this.details.address,
           this.emailid = this.details.emailID,
-          this.regionID=this.details.regionMasterID
-          this.cityid = this.details.cityID,
+          this.regionID = this.details.regionMasterID
+        this.cityid = this.details.cityID,
           this.zipcode = this.details.zipCode,
           this.timings = this.details.timings
         this.website = this.details.website,
@@ -185,7 +186,10 @@ export class EditHospitalClinicComponent implements OnInit {
           this.latitude = this.details.lattitude,
           this.longitude = this.details.longitude,
           this.formatAddress = this.details.formatedAddress,
-         
+          this.vatpercentage = this.details.vatPercentage,
+          this.contractstartdate = this.details.exonerationPeriodFromDate
+        this.contractenddate = this.details.exonerationPeriodFromDate,
+          this.vatCheck = this.details.vat
         this.GetCountryMaster();
         this.GetRegionMaster();
         this.getcitymaster();
@@ -212,13 +216,12 @@ export class EditHospitalClinicComponent implements OnInit {
     )
   }
 
-  regionID:any;
+  regionID: any;
 
-  GetRegionID(even)
-{
-  this.regionID=even.target.value;
-  this.getcitymaster()
-}
+  GetRegionID(even) {
+    this.regionID = even.target.value;
+    this.getcitymaster()
+  }
 
   geocode() {
     debugger
@@ -258,6 +261,8 @@ export class EditHospitalClinicComponent implements OnInit {
 
   public updatedetails() {
     debugger
+    this.contractstartdate = this.docservice.GetDates(this.contractstartdate)
+    this.contractenddate = this.docservice.GetDates(this.contractenddate)
     var entity = {
       'LanguageID': this.languageid,
       'Hospital_ClinicID': this.id,
@@ -287,14 +292,15 @@ export class EditHospitalClinicComponent implements OnInit {
       'Nameofthebank': this.nameofbank,
       'AccountName': this.accountName,
       'AccountNumber': this.accountNumber,
-      'VAT': 0,
+      'VAT':this.vatCheck,
       'Lattitude': this.latitude,
       'Longitude': this.longitude,
       'FormatedAddress': this.formatAddress,
       'VatPercentage': this.vatpercentage,
-      'ExonerationPeriodFromDate': this.contractstartdate,
-      'ExonerationPerioToDate': this.contractenddate
+      'ExonerationPeriodFromDate': this.contractstartdate!=null||undefined?this.contractstartdate:new Date(),
+      'ExonerationPerioToDate': this.contractenddate!=null||undefined?this.contractstartdate:new Date()
     }
+    debugger
     this.docservice.UpdateHospitalClinicProfile(entity).subscribe(res => {
       let test = res;
       this.gethospitalclinicdetailsbyid();

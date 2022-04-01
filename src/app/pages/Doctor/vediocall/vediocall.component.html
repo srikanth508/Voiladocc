@@ -235,7 +235,12 @@
                 (click)="GetReportsssss()" />&nbsp;
                 <span style="font-family: 'Poppins', sans-serif;"
                 *ngIf="pdfexist=='0'">{{labels[0].nopdf}}</span>
-          
+
+                {{labels[0].diagnosticreport}} : <img src="assets/Images/pdf.png" *ngIf="reportURl!='0'" 
+                title="{{labels[0].video}}" style="margin: 2%;width: 20px;"
+                (click)="getDiagnosticReport()" />&nbsp;
+                <!-- <span style="font-family: 'Poppins', sans-serif;"
+                *ngIf="reportURl=='0'">{{labels[0].nopdf}}</span> -->
             </td>
           </tr>
         </table>
@@ -869,7 +874,7 @@
               </div>
               <div class="col-lg-5">
                 <button type="button" style="background-color: #f18235;color: white;" class="btn btn-secondary"
-                  (click)="insertDiagnostictestdetails()">{{labels[0].save}}</button>
+                  (click)="insertDiagnostictestdetails()" data-dismiss="modal">{{labels[0].save}}</button>
               </div>
               <div class="col-lg-2">
               </div>
@@ -2349,7 +2354,7 @@ vaccination -->
                     float: left;">
                   <p style="margin-top: 5px;">{{convo.chatmsg}}
                     <span style="float: right;;margin-top: 5px;">
-                      {{convo.time}}
+                      <!-- {{convo.time}} -->
                     </span>
                   </p>
                 </div>
@@ -2367,7 +2372,7 @@ vaccination -->
                     <img src="{{patientphoto}}" class="rounded-circle" style="width:26px;margin-top: 5px;"> &nbsp;
                     {{convo.chatmsg}}
                     <span style="float: right;;margin-top: 5px;">
-                      {{convo.time}}
+                      <!-- {{convo.time}} -->
                     </span>
                   </p>
                 </div>

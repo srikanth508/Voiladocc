@@ -101,8 +101,12 @@ export class EditNurseComponent implements OnInit {
             this.latitude=this.nursedetails[0].lattitude,
             this.longitude=this.nursedetails[0].longitude,
             this.formatAddress=this.nursedetails[0].formatedAddress
-            this.regionID=this.nursedetails[0].regionMasterID
-        this.GetCountryMaster();
+            this.regionID=this.nursedetails[0].regionMasterID,
+            this.contractstartdate = this.nursedetails[0].exonerationPeriodFromDate
+            this.contractenddate = this.nursedetails[0].exonerationPeriodFromDate,
+              this.vatCheck = this.nursedetails[0].vat,
+              this.vatpercentage=this.nursedetails[0].vatPercentage
+       this.GetCountryMaster();
         this.GetRegionMaster()
         this.getcitymasterbyid();
         this.getareamasterbyid();
@@ -252,6 +256,8 @@ export class EditNurseComponent implements OnInit {
   subscriptiontype:any;
 
   public updatedetails() {
+    this.contractstartdate = this.docservice.GetDates(this.contractstartdate)
+    this.contractenddate = this.docservice.GetDates(this.contractenddate)
     debugger
     var entity = {
       'LanguageID': this.languageid,
@@ -280,13 +286,13 @@ export class EditNurseComponent implements OnInit {
       'Nameofthebank': this.nameofbank,
       'AccountName': this.accountName,
       'AccountNumber': this.accountNumber,
-      'VAT': 0,
+      'VAT': this.vatCheck,
       'Lattitude': this.latitude,
       'Longitude': this.longitude,
       'FormatedAddress': this.formatAddress,
       'VatPercentage': this.vatpercentage,
-      'ExonerationPeriodFromDate': this.contractstartdate,
-      'ExonerationPerioToDate': this.contractenddate
+      'ExonerationPeriodFromDate': this.contractstartdate!=null?this.contractstartdate:new Date(),
+      'ExonerationPerioToDate': this.contractenddate!=null?this.contractstartdate:new Date()
     }
     this.docservice.UpdateNurseRegistration(entity).subscribe(data => {
       if (data != undefined) {

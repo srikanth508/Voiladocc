@@ -1172,7 +1172,7 @@ export class MyappointmentsComponent implements OnInit {
     debugger
     this.sendMailPrescriptions = 1;
     this.getserverdateandtime();
-    if (this.apptypeid == 1) {
+    if (this.apptypeid == 1||5) {
       this.patientiddd = details.patientID,
         this.preappointmentid = details.appointmentID;
       this.apptypeid = details.appointmentTypeID;
@@ -1805,7 +1805,7 @@ export class MyappointmentsComponent implements OnInit {
       this.testpatientemail = pemail;
     this.prepatientemail = pemail;
     this.sendMailPrescriptions = 2;
-    if (appointmentTypeID == 1) {
+    if (appointmentTypeID == 1||5) {
       this.testdisplay = "block";
       this.diapatientid = patientID;
       this.diaappointmentID = appointmentID;
@@ -2639,7 +2639,7 @@ export class MyappointmentsComponent implements OnInit {
     this.slots = slots
     this.categoryid = categoryid;
     this.smsmobileno = smsmobileno
-    if (appointmentTypeID == 1) {
+    if (appointmentTypeID == 1||5) {
       this.soapdisplay = "block"
 
       this.objective = "",
@@ -6001,7 +6001,7 @@ export class MyappointmentsComponent implements OnInit {
         doc.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-
+      this.spinner.show()
       doc.deletePage(1)
       var pdf = doc.output('blob');
       var file = new File([pdf], "Report" + ".pdf");
@@ -6009,6 +6009,7 @@ export class MyappointmentsComponent implements OnInit {
       body.append('Dan', file);
       debugger
       let folder = this.patientid + '/' + 'Consulation Report'
+      this.spinner.show()
       this.docservice.DoctorReports(file, folder).subscribe(res => {
         ;
         // ReceiptUpload
@@ -6019,10 +6020,10 @@ export class MyappointmentsComponent implements OnInit {
 
         let b = 'https://madagascar.voiladoc.org' + a;
         this.emailurl = b;
-
+        this.spinner.show()
         this.SendMailReport()
         this.updateReport();
-        this.spinner.hide()
+      
       });
 
       // doc.save('Prescriptions.pdf');
@@ -6041,7 +6042,7 @@ export class MyappointmentsComponent implements OnInit {
     this.docservice.UpdateBookAppointmentReportPdfsUrl(entity).subscribe(data => {
       this.sendattchmenturl = [];
       this.sendattchmenturl.length = 0;
-
+      this.spinner.hide()
     })
   }
   public noattachments = []

@@ -97,7 +97,7 @@ export class EditDoctorRegistrationComponent implements OnInit {
     this.GetDoctorMedicalproof();
     this.GetDoctorIdentityProof();
     this.GetCountryMaster()
-    this.getdoctorservices();
+    // this.getdoctorservices();
     this.getdoctoreducationweb();
     this.editbit = 0;
     this.meditt = 0;
@@ -272,7 +272,11 @@ export class EditDoctorRegistrationComponent implements OnInit {
         this.latitude=this.details.lattitude,
         this.longitude=this.details.longitude,
         this.formatAddress=this.details.formatedAddress,
-        this.regionID=this.details.regionMasterID
+        this.regionID=this.details.regionMasterID,
+        this.vatpercentage = this.details.vatPercentage,
+        this.contractstartdate = this.details.exonerationPeriodFromDate
+      this.contractenddate = this.details.exonerationPeriodFromDate,
+        this.vatCheck = this.details.vat
 
 
 
@@ -358,6 +362,8 @@ export class EditDoctorRegistrationComponent implements OnInit {
 
   public updatedetails() {
     debugger
+    this.contractstartdate = this.docservice.GetDates(this.contractstartdate)
+    this.contractenddate = this.docservice.GetDates(this.contractenddate)
     var entity = {
       'LanguageID': this.languageid,
       'DoctorID': this.id,
@@ -394,13 +400,13 @@ export class EditDoctorRegistrationComponent implements OnInit {
       'Nameofthebank': this.nameofbank,
       'AccountName': this.accountName,
       'AccountNumber': this.accountNumber,
-      'VAT': 0,
+      'VAT': this.vatCheck,
       'Lattitude': this.latitude,
       'Longitude': this.longitude,
       'FormatedAddress': this.formatAddress,
       'VatPercentage': this.vatpercentage,
-      'ExonerationPeriodFromDate': this.contractstartdate,
-      'ExonerationPerioToDate': this.contractenddate,
+      'ExonerationPeriodFromDate': this.contractstartdate!=null?this.contractstartdate:new Date(),
+      'ExonerationPerioToDate': this.contractenddate!=null?this.contractstartdate:new Date()
     }
     this.docservice.UpdateDoctorPersonelInfo(entity).subscribe(res => {
       let test = res;
@@ -730,15 +736,15 @@ export class EditDoctorRegistrationComponent implements OnInit {
   }
 
 
-  public getdoctorservices() {
-    this.docservice.GetDoctorServicesAdminByLanguageID(this.id, this.languageid).subscribe(
-      data => {
+  // public getdoctorservices() {
+  //   this.docservice.GetDoctorServicesAdminByLanguageID(this.id, this.languageid).subscribe(
+  //     data => {
 
-        this.doctorservices = data;
-      }, error => {
-      }
-    )
-  }
+  //       this.doctorservices = data;
+  //     }, error => {
+  //     }
+  //   )
+  // }
 
 
   public GetServiceID(even) {
@@ -746,29 +752,29 @@ export class EditDoctorRegistrationComponent implements OnInit {
   }
 
 
-  public insertdetails() {
+  // public insertdetails() {
 
-    var entity = {
-      'DoctorID': this.id,
-      'ServiceID': this.serviceid,
-      'DepartmentID': this.departmentid
-    }
+  //   var entity = {
+  //     'DoctorID': this.id,
+  //     'ServiceID': this.serviceid,
+  //     'DepartmentID': this.departmentid
+  //   }
 
-    this.docservice.InsertDoctorServices(entity).subscribe(data => {
+  //   this.docservice.InsertDoctorServices(entity).subscribe(data => {
 
-      if (data != 0) {
+  //     if (data != 0) {
 
-        Swal.fire('Completed', 'Details saved successfully', 'success');
-        this.getdoctorservices()
+  //       Swal.fire('Completed', 'Details saved successfully', 'success');
+  //       this.getdoctorservices()
 
-      }
-      else {
-        Swal.fire("Service Already Exists");
-        this.getdoctorservices()
-      }
-    })
+  //     }
+  //     else {
+  //       Swal.fire("Service Already Exists");
+  //       this.getdoctorservices()
+  //     }
+  //   })
 
-  }
+  // }
 
   public getdoctoreducationweb() {
     this.docservice.GetDoctorEducationWebByLanguageID(this.id, this.languageid).subscribe(
@@ -813,23 +819,23 @@ export class EditDoctorRegistrationComponent implements OnInit {
     })
   }
 
-  public DeleteDoctorSrvices(id) {
+  // public DeleteDoctorSrvices(id) {
 
-    this.docservice.DeleteDoctorServices(id).subscribe(
-      data => {
-        if (this.languageid == 1) {
-          Swal.fire("Deleted Successfully");
-          this.getdoctorservices();
-        }
-        else {
-          Swal.fire("Supprimé avec succès");
-          this.getdoctorservices();
-        }
+  //   this.docservice.DeleteDoctorServices(id).subscribe(
+  //     data => {
+  //       if (this.languageid == 1) {
+  //         Swal.fire("Deleted Successfully");
+  //         this.getdoctorservices();
+  //       }
+  //       else {
+  //         Swal.fire("Supprimé avec succès");
+  //         this.getdoctorservices();
+  //       }
 
-      }, error => {
-      }
-    )
-  }
+  //     }, error => {
+  //     }
+  //   )
+  // }
 
 
   public DeleteDoctorEducation(id) {

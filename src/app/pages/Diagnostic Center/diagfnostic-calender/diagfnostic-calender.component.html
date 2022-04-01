@@ -83,18 +83,19 @@
               <td>{{details.slotname}}</td>
               <td [style.background-color]="details.mondayColor" style="color:white">{{details.monday}}<br>
                 <p [style.color]="details.mondayAvailabiltyColor">{{details.mondayAvailabilty}}</p>
-
                 <table style="box-shadow:none;overflow: auto;">
                   <tr *ngFor="let ptientdeatils of details.day1patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
-                    </td>
-                    <td style="border:none">
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
                       {{ptientdeatils.appointmentStatus}}
                     </td>
+                    <!-- <td style="border:none">
+                     
+                    </td>
+                    <td style="border:none">
+                     
+                    </td> -->
                   </tr>
                 </table>
                 <a [ngbTooltip]="tipcontent9503" style="color:black">
@@ -107,13 +108,15 @@
                 <table style="box-shadow:none;overflow: auto;">
                   <tr *ngFor="let ptientdeatils of details.day2patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
+                      {{ptientdeatils.appointmentStatus}}
                     </td>
                     <!-- <td style="border:none">
-                      {{ptientdeatils.appointmentStatus}}
+                    
+                    </td> -->
+                    <!-- <td style="border:none">
+                     
                     </td> -->
                   </tr>
                 </table>
@@ -129,13 +132,15 @@
                 <table style="box-shadow:none;overflow: auto;">
                   <tr *ngFor="let ptientdeatils of details.day3patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
+                      {{ptientdeatils.appointmentStatus}}
                     </td>
                     <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
+                     
                     </td>
                     <!-- <td style="border:none">
-                      {{ptientdeatils.appointmentStatus}}
+                      
                     </td> -->
                   </tr>
                 </table>
@@ -150,18 +155,20 @@
                 <table style="box-shadow:none">
                   <tr *ngFor="let ptientdeatils of details.day4patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
+                      {{ptientdeatils.appointmentStatus}}
                     </td>
                     <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
+                     
                     </td>
                     <!-- <td style="border:none">
-                      {{ptientdeatils.appointmentStatus}}
+                      
                     </td> -->
                   </tr>
                 </table>
 
-                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                <a  style="color:black">
                   <img src="assets/Images/edit.png" data-toggle="modal" *ngIf="showedit=='1'" data-target="#myModal"
                     style="width: 18px" (click)="GetDay4Details(details)">
                 </a><br>
@@ -171,17 +178,19 @@
                 <table style="box-shadow:none">
                   <tr *ngFor="let ptientdeatils of details.day5patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
+                      {{ptientdeatils.appointmentStatus}}
                     </td>
                     <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
+                     
                     </td>
                     <!-- <td style="border:none">
-                      {{ptientdeatils.appointmentStatus}}
+                      
                     </td> -->
                   </tr>
                 </table>
-                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                <a  style="color:black">
                   <img src="assets/Images/edit.png" data-toggle="modal" *ngIf="showedit=='1'" data-target="#myModal"
                     style="width: 18px" (click)="GetDay5Details(details)">
                 </a><br>
@@ -191,13 +200,15 @@
                 <table style="box-shadow:none">
                   <tr *ngFor="let ptientdeatils of details.day6patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
+                      {{ptientdeatils.appointmentStatus}}
                     </td>
                     <!-- <td style="border:none">
-                      {{ptientdeatils.appointmentStatus}}
+                     
+                    </td> -->
+                    <!-- <td style="border:none">
+                      
                     </td> -->
                   </tr>
                 </table>
@@ -211,17 +222,19 @@
                 <table style="box-shadow:none">
                   <tr *ngFor="let ptientdeatils of details.day7patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
+                      {{ptientdeatils.appointmentStatus}}
                     </td>
                     <!-- <td style="border:none">
-                      {{ptientdeatils.appointmentStatus}}
+                     
+                    </td> -->
+                    <!-- <td style="border:none">
+                      
                     </td> -->
                   </tr>
                 </table>
-                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                <a  style="color:black">
                   <img src="assets/Images/edit.png" data-toggle="modal" *ngIf="showedit=='1'" data-target="#myModal"
                     style="width: 18px" (click)="GetDay7Details(details)">
                 </a><br>
@@ -294,14 +307,16 @@
                 <table style="box-shadow:none">
                   <tr *ngFor="let ptientdeatils of details.day1patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
-                    </td>
-                    <td style="border:none">
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
                       {{ptientdeatils.agentname}}
                     </td>
+                    <!-- <td style="border:none">
+                     
+                    </td>
+                    <td style="border:none">
+                     
+                    </td> -->
                   </tr>
                 </table>
                 <a [ngbTooltip]="tipcontent9503" style="color:black">
@@ -316,17 +331,19 @@
                 <table style="box-shadow:none">
                   <tr *ngFor="let ptientdeatils of details.day2patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
-                    </td>
-                    <td style="border:none">
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
                       {{ptientdeatils.agentname}}
                     </td>
+                    <!-- <td style="border:none">
+                     
+                    </td>
+                    <td style="border:none">
+                     
+                    </td> -->
                   </tr>
                 </table>
-                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                <a  style="color:black">
                   <img src="assets/Images/edit.png" data-toggle="modal" *ngIf="showedit=='1'" data-target="#myModal"
                     style="width: 18px" (click)="GetDay2Details(details)">
                 </a><br>
@@ -337,17 +354,19 @@
                 <table style="box-shadow:none">
                   <tr *ngFor="let ptientdeatils of details.day3patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
-                    </td>
-                    <td style="border:none">
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
                       {{ptientdeatils.agentname}}
                     </td>
+                    <!-- <td style="border:none">
+                      
+                    </td>
+                    <td style="border:none">
+                      
+                    </td> -->
                   </tr>
                 </table>
-                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                <a  style="color:black">
                   <img src="assets/Images/edit.png" data-toggle="modal" *ngIf="showedit=='1'" data-target="#myModal"
                     style="width: 18px" (click)="GetDay3Details(details)">
                 </a><br>
@@ -358,17 +377,19 @@
                 <table style="box-shadow:none">
                   <tr *ngFor="let ptientdeatils of details.day4patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
-                    </td>
-                    <td style="border:none">
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
                       {{ptientdeatils.agentname}}
                     </td>
+                    <!-- <td style="border:none">
+                     
+                    </td>
+                    <td style="border:none">
+                      
+                    </td> -->
                   </tr>
                 </table>
-                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                <a  style="color:black">
                   <img src="assets/Images/edit.png" data-toggle="modal" *ngIf="showedit=='1'" data-target="#myModal"
                     style="width: 18px" (click)="GetDay4Details(details)">
                 </a><br>
@@ -379,17 +400,19 @@
                 <table style="box-shadow:none">
                   <tr *ngFor="let ptientdeatils of details.day5patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
-                      {{ptientdeatils.mobileNumber}}
-                    </td>
-                    <td style="border:none">
+                      {{ptientdeatils.patientName}}<br>
+                      {{ptientdeatils.mobileNumber}}<br>
                       {{ptientdeatils.agentname}}
                     </td>
+                    <!-- <td style="border:none">
+                      
+                    </td>
+                    <td style="border:none">
+                      
+                    </td> -->
                   </tr>
                 </table>
-                <a [ngbTooltip]="tipcontent9503" style="color:black">
+                <a  style="color:black">
                   <img src="assets/Images/edit.png" data-toggle="modal" *ngIf="showedit=='1'" data-target="#myModal"
                     style="width: 18px" (click)="GetDay5Details(details)">
                 </a><br>
@@ -400,13 +423,15 @@
                 <table style="box-shadow:none">
                   <tr *ngFor="let ptientdeatils of details.day6patientdetails ">
                     <td style="border:none">
-                      {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
+                      {{ptientdeatils.patientName}}<br>
                       {{ptientdeatils.mobileNumber}}
+                      {{ptientdeatils.agentname}}
                     </td>
                     <td style="border:none">
-                      {{ptientdeatils.agentname}}
+                      
+                    </td>
+                    <td style="border:none">
+                      
                     </td>
                   </tr>
                 </table>
@@ -421,13 +446,15 @@
                   <tr *ngFor="let ptientdeatils of details.day7patientdetails ">
                     <td style="border:none">
                       {{ptientdeatils.patientName}}
-                    </td>
-                    <td style="border:none">
                       {{ptientdeatils.mobileNumber}}
-                    </td>
-                    <td style="border:none">
                       {{ptientdeatils.agentname}}
                     </td>
+                    <!-- <td style="border:none">
+                      
+                    </td>
+                    <td style="border:none">
+                      
+                    </td> -->
                   </tr>
                 </table>
                 <a [ngbTooltip]="tipcontent9503" style="color:black">
