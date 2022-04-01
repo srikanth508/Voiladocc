@@ -465,14 +465,14 @@
 
             <ul class="list-unstyled components" *ngIf="roleid=='13'">
                 <li *ngIf="roleid=='13'">
-                    <a routerLink="/SupportRegDash" class="tablinks" (click)="highlight($event)">
-                        <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;{{labels[0].supportReg}}</a>
+                    <a routerLink="/SupportRegDash" class="tablinks" (click)="highlight($event)">{{labels[0].supportReg}}</a>
+                        <!-- <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp; -->
                 </li>
             </ul>
             <ul class="list-unstyled components" *ngIf="roleid=='13'">
                 <li *ngIf="roleid=='13'">
-                    <a routerLink="/SupportProfile" class="tablinks" (click)="highlight($event)"> <img
-                            src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;{{labels[0].myProfile}}</a>
+                    <a routerLink="/SupportProfile" class="tablinks" (click)="highlight($event)">{{labels[0].myProfile}}</a>
+                         <!-- <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp; -->
                 </li>
             </ul>
 
@@ -1802,7 +1802,6 @@
                     </ul>
                 </li>
             </ul>
-
             <a class="tablinks" (click)="highlight($event)" routerLink="/SupportRegDash"
                 *ngIf="supportregistration=='1'">
                 <img src="assets/Images/hos.png" style="width: 15px;">&nbsp; &nbsp; {{labels[0].supportReg}}

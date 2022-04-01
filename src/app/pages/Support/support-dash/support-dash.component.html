@@ -33,14 +33,20 @@
     <div class="col-lg-3">
       <input type="text" [(ngModel)]="term" class="form-control" placeholder="{{labels[0].search}}">
     </div>
-    <!-- <div class="col-lg-3">
-      <select class="form-control" (change)="GetResolvedStatus($event)">
+    <div class="col-lg-3">
+
+      <select class="form-control" (change)="getIssueTypeID($event)">
+        <option>{{labels[0].select}}</option>
+        <option *ngFor="let details of filterSupportList" value="{{details.id}}">{{details.name}}</option>
+      </select>
+      <!-- <select class="form-control" (change)="GetResolvedStatus($event)">
         <option value="0">{{labels[0].select}}</option>
         <option value="1">{{labels[0].resolved}}</option>
         <option value="2">{{labels[0].unresolved}}</option>
       </select>
     </div> -->
   </div>
+</div>
   <br />
   <div class="row">
     <div class="col-lg-12" style="overflow: auto;">
@@ -51,6 +57,7 @@
             <th>{{labels[0].supportdate}}</th>
             <th>{{labels[0].time}}</th>
             <th>{{labels[0].patientID}}</th>
+            <th>Issue Type</th>
             <th>{{labels[0].patientName}}</th>
             <th>{{labels[0].mobileNumber}}</th>
             <th>{{labels[0].emailID}}</th>
@@ -64,6 +71,7 @@
             <td>{{details.date}}</td>
             <td>{{details.time}}</td>
             <td>{{details.patientID}}</td>
+            <td>{{details.short}}</td>
             <td>{{details.patientName}}</td>
             <td>{{details.mobileNumber}}</td>
             <td>{{details.emailID}}</td>

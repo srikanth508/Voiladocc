@@ -6345,4 +6345,9 @@ export class HelloDoctorService {
     debugger
     return this.http.get<any[]>(this.host + '/Master/DeleteRegionMaster?ID=' + id);
   }
+  
+  public GetSupportIssueTypeWeb(id) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/GetSupportIssueTypeWeb?LanguageID=' + id);
+  }
 }
