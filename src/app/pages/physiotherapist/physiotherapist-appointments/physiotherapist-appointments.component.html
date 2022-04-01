@@ -655,11 +655,11 @@
                 <thead>
                   <tr>
                     <th>Service</th>
-                    <th>Amount</th>
+                    <th>Montant</th>
                   </tr>
                   <tr *ngFor="let ser of Services">
                     <td>{{ser.serviceName}}</td>
-                    <td>{{ser.serviceCharges}}</td>
+                    <td>{{ser.serviceCharges|number:'1.2-2'|noComma}} DH</td>
                   </tr>
                 </thead>
 

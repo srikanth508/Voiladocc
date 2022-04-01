@@ -42,6 +42,8 @@ export class BookappmentsComponent implements OnInit {
   showback: any;
   hospitalid: any;
   homevisit: boolean;
+  labels1: any;
+  term: any;
   ngOnInit() {
 
     this.user = localStorage.getItem('user');
@@ -60,12 +62,21 @@ export class BookappmentsComponent implements OnInit {
       data => {
 
         this.labels = data;
-        this.SelectLabel = this.labels[0].select;
+        this.SelectLabel = this.labels[0].selectyourpatients;
         this.search = this.labels[0].search;
 
       }, error => {
       }
     )
+
+    this.docservice.GetAdmin_Masters_labels(this.languageid).subscribe(
+      data => {
+
+        this.labels1 = data;
+
+      },
+      error => { }
+    );
     this.doctorid = localStorage.getItem('doctorid');
 
     // this.docservice.DoctorCommissionFees(this.languageid).subscribe(
@@ -112,6 +123,19 @@ export class BookappmentsComponent implements OnInit {
     this.GetPatients()
     this.GetNurses();
     this.getdoctorforadmin();
+    this.GetPatientDetails()
+  }
+
+  patientdetails: any;
+
+  public GetPatientDetails() {
+    this.docservice.GetPatientRegistrationDetails().subscribe(
+      data => {
+
+        this.patientdetails = data;
+      }, error => {
+      }
+    )
   }
 
 
@@ -209,6 +233,40 @@ export class BookappmentsComponent implements OnInit {
     //   },
     //   error => { }
     // );
+  }
+
+
+  searchon: any;
+  showSearchBox:any;
+
+
+  acceptedTerms() {
+    this.showSearchBox = 1
+  }
+
+  public Searchpatient(term) {
+    debugger
+    if (term.length > 6) {
+      debugger
+      this.searchon = 1
+    }
+    else {
+      debugger
+      this.searchon = 0
+    }
+
+  }
+
+
+  GetPatientsID(details) {
+    this.patientid = details.id;
+    this.patientname = details.patientName
+    this.mobileno = details.mobileNumber
+    this.address = details.address
+    this.email = details.emailID,
+      this.smsmobileno = details.smsmobileno
+    this.searchon = 0;
+    this.showSearchBox=0;
   }
 
   public smsmobileno: any;

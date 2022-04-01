@@ -31,7 +31,16 @@
     <div class="col-lg-3">
       <input type="text" class="form-control" [(ngModel)]="term" placeholder="{{labels[0].search}}">
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-3">
+      <!-- <ng-daterangepicker [(ngModel)]="value" [options]="options" (ngModelChange)="selectedDate($event)">
+      </ng-daterangepicker> -->
+  
+      <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
+        class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)"   bsDaterangepicker>
+      <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }"
+        class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)"  bsDaterangepicker>
+    </div>
+    <div class="col-lg-4">
 
     </div>
     <div class="col-lg-2" style="text-align: end;margin-left: -7px;">
@@ -65,7 +74,7 @@
             <td>{{app.address}}</td>
             <td>{{app.bookedTime}}</td>
             <td>{{app.reasonForVisit}}</td>
-            <td *ngIf="id=='7'">{{app.physiorevenue}}</td>
+            <td *ngIf="id=='7'">{{app.physiorevenue|number:'1.2-2'|noComma}} DH</td>
             <td>
               <label *ngIf="app.isVisited=='1'" style="color:yellowgreen">{{labels[0].visited}}</label>
               <label *ngIf="app.physioCancelled=='1'||app.cancelled=='1'" style="color:red">{{labels[0].cancelled}}</label>

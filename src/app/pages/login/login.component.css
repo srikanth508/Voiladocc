@@ -125,6 +125,18 @@ border-radius: 20px;
   width: 100%;
   box-shadow: 0px 2px grey;
 }
+
+.login:hover{
+  height: 42px;
+  color: white;
+  background-color: #f07e2e;
+  border: none;
+  border-radius: 11px;
+  width: 100%;
+  box-shadow: 0px 2px grey;
+  transform: scale(1.1);
+}
+
 .dropdown{
   color: rgb(61, 60, 60); 
 }

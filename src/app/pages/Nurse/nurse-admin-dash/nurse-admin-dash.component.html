@@ -40,7 +40,7 @@
     <div class="col-lg-1">
     </div>
     <div class="col-lg-2">
-      <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;"  [routerLink]="['/NurseAdminDashboard',1]">
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;"  [routerLink]="['/NurseAdminDashboard',2]">
         <br>
         <label style="color: black;font-size: 30px;color: white;"><b style="font-size: 15px;">
             {{labels[0].pendingAcceptence}}</b></label>
@@ -54,7 +54,7 @@
     <div class="col-lg-1">
     </div>
     <div class="col-lg-2">
-      <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;"  [routerLink]="['/NurseAdminDashboard',1]">
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;"  [routerLink]="['/NurseAdminDashboard',3]">
         <br>
         <label style="color: black;font-size: 30px;color: white;"><b style="font-size: 15px;">
             {{labels[0].accepted}}</b></label>
@@ -72,7 +72,7 @@
   <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-2">
-      <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;"  [routerLink]="['/NurseAdminDashboard',1]">
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;"  [routerLink]="['/NurseAdminDashboard',4]">
         <br>
         <label style="color: black;font-size: 30px;color: white;"><b style="font-size: 15px;">
             {{labels[0].patientVisited}}</b></label>
@@ -86,7 +86,7 @@
     <div class="col-lg-1">
     </div>
     <div class="col-lg-2">
-      <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;"  [routerLink]="['/NurseAdminDashboard',1]">
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;"  [routerLink]="['/NurseAdminDashboard',5]">
         <br>
         <label style="color: black;font-size: 30px;color: white;"><b style="font-size: 15px;">{{labels[0].notVisited}}
           </b></label>
@@ -100,13 +100,13 @@
     <div class="col-lg-1">
     </div>
     <div class="col-lg-2">
-      <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;">
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;" [routerLink]="['/NurseAdminDashboard',6]">
         <br>
         <label style="color: black;font-size: 30px;color: white;"><b style="font-size: 15px;">{{labels[0].cancelled}}
           </b></label>
         <br /> <br />
         <label style="color: black;font-size: 30px;color: #f17e2d;"><b><u style="font-size: 20px;"
-              [routerLink]="['/NurseAdminDashboard',6]">{{cancelcount}}</u></b></label>
+              >{{cancelcount}}</u></b></label>
       </div>
       <br />
       <br />
