@@ -36,6 +36,7 @@ export class SupportDashComponent implements OnInit {
   public countrymanaerid: any;
   public showexportbutton: any;
   public dropzonelable: any;
+  filterSupportList: any;
 
   ngOnInit() {
     this.spinner.show();
@@ -91,6 +92,7 @@ export class SupportDashComponent implements OnInit {
     }
     this.getlanguage();
     this.getsupport();
+    this.getSupportType();
 
 
   }
@@ -118,12 +120,39 @@ export class SupportDashComponent implements OnInit {
   }
 
 
+  getSupportType() {
+    this.docservice.GetSupportIssueTypeWeb(this.languageid).subscribe(
+      data => {
+
+        this.filterSupportList = data;
+      }, error => {
+
+      }
+    )
+
+  }
+
   // && x.meridionalBit == 0
+  issueTypeID: any;
+  dummSuportlist:any;
+
+  getIssueTypeID(even) {
+    this.issueTypeID = even.target.value;
+    if (even.target.value != 0) {
+      this.supportlist=this.dummSuportlist.filter(x=>x.issueTypeID==this.issueTypeID)
+    }
+    else{
+      this.getsupport()
+    }
+
+  }
 
   public getsupport() {
     this.docservice.GetSupport(this.startdate, this.enddate).subscribe(
       data => {
         this.supportlist = data.filter(x => x.resolve == 0);
+        this.dummSuportlist=data.filter(x => x.resolve == 0);
+
         this.dummlist = this.supportlist
         this.count = this.supportlist.length
       }, error => {

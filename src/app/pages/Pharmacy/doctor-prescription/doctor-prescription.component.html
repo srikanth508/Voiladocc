@@ -507,6 +507,8 @@
         </button>
       </div>
       <div class="modal-body">
+        <h4 *ngIf="languageid==1">File Uploaded By Patient</h4>
+        <h4 *ngIf="languageid==6">Document téléchargé par le patient (Document uploaded by patient)</h4>
         <div class="row">
           <div class="col-lg-12" id="contentPhoto">
             <img src="{{prescriptionurl}}" *ngIf="filetype=='2'" style="height: 100%;width: 100%;">
@@ -556,7 +558,8 @@
           </div> -->
         </div>
         <div class="row" *ngIf="showedit=='1'">
-          <h4>Pharmacy Updated Comments</h4>
+          <h4 *ngIf="languageid==1">File Updated By Pharmacy</h4>
+          <h4 *ngIf="languageid==6">Document mis à jour par la pharmacie</h4>
           <div class="col-lg-8">
             <img src="{{pharmcyUpdatedPhoto}}" class="imagewidth">
           </div>
