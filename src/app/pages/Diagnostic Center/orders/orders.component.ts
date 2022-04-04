@@ -581,7 +581,7 @@ export class OrdersComponent implements OnInit {
             this.getdiagnosticAppointmentsbyid();
             this.getdiagnosticAppointment();
             this.Insertnotificationsoapnotesazuere();
-            var smsdesc = "Le laboratoire a envoyé votre rapport de test. Veuillez ouvrir l'application Voiladoc et réserver avec votre médecin si vous avez besoin d'une consultation supplémentaire";
+            var smsdesc ="Le laboratoire a envoyé votre rapport de test. Veuillez ouvrir l'application Voiladoc et réserver avec votre médecin si vous avez besoin d'une consultation supplémentaire";
 
             this.SendTwiliSms(this.smsmobileno, smsdesc)
             this.notes = ""

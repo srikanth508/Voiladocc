@@ -433,8 +433,8 @@ export class DoctorPrescriptionComponent implements OnInit {
             this.InsertDeliverNotification();
             this.InsertNotiFicationDeliver();
 
-            var smsdec = "Your Medicine Order with has been Delivered."
-            this.SendTwiliSms(smsdec, this.smsmobleno)
+            // var smsdec = "Your Medicine Order with has been Delivered."
+            // this.SendTwiliSms(smsdec, this.smsmobleno)
           })
           Swal.fire(
             'Delivered!',
@@ -467,8 +467,8 @@ export class DoctorPrescriptionComponent implements OnInit {
             this.InsertDeliverNotification();
             this.InsertNotiFicationDeliver();
 
-            var smsdec = "Votre commande de médicaments avec a été livré."
-            this.SendTwiliSms(smsdec, this.smsmobleno)
+            // var smsdec = "Votre commande de médicaments avec a été livré."
+            // this.SendTwiliSms(smsdec, this.smsmobleno)
           })
           Swal.fire(
             '',
