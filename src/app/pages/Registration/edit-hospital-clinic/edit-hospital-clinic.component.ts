@@ -264,6 +264,7 @@ export class EditHospitalClinicComponent implements OnInit {
     this.contractstartdate = this.docservice.GetDates(this.contractstartdate)
     this.contractenddate = this.docservice.GetDates(this.contractenddate)
     var entity = {
+      'Hospital_ClinicName':this.hospitalname,
       'LanguageID': this.languageid,
       'Hospital_ClinicID': this.id,
       'PhoneNo': this.phno,

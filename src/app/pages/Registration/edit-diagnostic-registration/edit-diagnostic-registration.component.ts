@@ -246,6 +246,7 @@ export class EditDiagnosticRegistrationComponent implements OnInit {
   public updatedetails() {
 
     var entity = {
+      'DiagnosticCenterName':this.diagnosticcentername,
       'LanguageID': this.languageid,
       'DiagnosticCenterID': this.id,
       'PhoneNo': this.phno,

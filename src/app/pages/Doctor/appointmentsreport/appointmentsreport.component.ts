@@ -53,7 +53,7 @@ export class AppointmentsreportComponent implements OnInit {
       outputFormat: 'YYYY/MM/DD',
       startOfWeek: 1
     };
-    var kkk = this.SDate.setDate(this.SDate.getDate() - 100);
+    var kkk = this.SDate.setDate(this.SDate.getDate() - 200);
     var lll = this.EDate.setDate(this.EDate.getDate() + 100);
     const format = 'yyyy-MM-dd';
     const myDate = new Date();

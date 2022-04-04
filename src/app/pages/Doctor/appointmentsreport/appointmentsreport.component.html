@@ -37,7 +37,7 @@
         <option *ngFor="let hos of hospitallist" value="{{hos.id}}">{{hos.hospital_ClinicName}}</option>
       </select>
     </div>
-    <div class="col-lg-3" >
+    <div class="col-lg-3" *ngIf="diffid=='1'||diffid=='2'">
       <select class="form-control" (change)="getget($event)">
         <option selected value="0">{{labels[0].selectStatus}}</option>
         <option value="1">{{labels[0].visited}}</option>

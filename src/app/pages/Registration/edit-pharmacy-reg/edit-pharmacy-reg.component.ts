@@ -231,6 +231,7 @@ export class EditPharmacyRegComponent implements OnInit {
   public updatedetails() {
     debugger
     var entity = {
+      'PharmacyName':this.pharmacyname,
       'LanguageID': this.languageid,
       'PharmacyID': this.id,
       'MobileNumber': this.mobileno,
