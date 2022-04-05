@@ -1391,7 +1391,7 @@ export class DoctorPrescriptionComponent implements OnInit {
         var smsdesc = "Pharamacy has Updated Available Medicines. Please open Voiladoc App And Order it. ";
       }
       else {
-        var smsdesc = this.user + " pharmacie du maroc Pharmacy vous a envoyé une mise à jour sur les médicaments et les prix. Veuillez ouvrir Voiladoc.";
+        var smsdesc = this.user + " vous a envoyé une mise à jour sur les médicaments et les prix. Veuillez ouvrir Voiladoc.";
       }
       this.SendTwiliSms(smsdesc, this.smsmobleno);
     }

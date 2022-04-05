@@ -67,21 +67,21 @@ export class EditDoctorRegistrationComponent implements OnInit {
   public serviceid: any;
   public servicelist: any;
   public docmedicalid: any;
-  labels4:any;
+  labels4: any;
   public languageid: any;
   public labels: any;
   public speaklanguages: any;
   dropzonelable: any;
-   
+
   formatAddress: any;
   latitude: any;
   longitude: any;
   googleAddress: any;
-  vatCheck:any;
-  vatpercentage:any;
-  today=new Date()
-  contractstartdate:any;
-  contractenddate:any;
+  vatCheck: any;
+  vatpercentage: any;
+  today = new Date()
+  contractstartdate: any;
+  contractenddate: any;
   ngOnInit() {
     this.activatedroute.params.subscribe(params => {
 
@@ -148,7 +148,7 @@ export class EditDoctorRegistrationComponent implements OnInit {
       data => {
 
         this.labels4 = data;
-       
+
       }, error => {
       }
     )
@@ -182,13 +182,12 @@ export class EditDoctorRegistrationComponent implements OnInit {
     this.GetRegionMaster()
   }
 
-  regionID:any;
+  regionID: any;
 
-  GetRegionID(even)
-{
-  this.regionID=even.target.value;
-  this.getcitymaster()
-}
+  GetRegionID(even) {
+    this.regionID = even.target.value;
+    this.getcitymaster()
+  }
 
   public getdegreemaster() {
 
@@ -269,14 +268,15 @@ export class EditDoctorRegistrationComponent implements OnInit {
         this.nameofbank = this.details.nameofthebank
         this.accountName = this.details.accountName
         this.accountNumber = this.details.accountNumber,
-        this.latitude=this.details.lattitude,
-        this.longitude=this.details.longitude,
-        this.formatAddress=this.details.formatedAddress,
-        this.regionID=this.details.regionMasterID,
-        this.vatpercentage = this.details.vatPercentage,
-        this.contractstartdate = this.details.exonerationPeriodFromDate
-      this.contractenddate = this.details.exonerationPeriodFromDate,
-        this.vatCheck = this.details.vat
+          this.latitude = this.details.lattitude,
+          this.longitude = this.details.longitude,
+          this.formatAddress = this.details.formatedAddress,
+          this.regionID = this.details.regionMasterID,
+          this.vatpercentage = this.details.vatPercentage,
+          this.contractstartdate = this.details.exonerationPeriodFromDate
+        this.contractenddate = this.details.exonerationPeriodFromDate,
+          this.vatCheck = this.details.vat,
+          this.clinicNumber=this.details.clinicNumber
 
 
 
@@ -354,6 +354,7 @@ export class EditDoctorRegistrationComponent implements OnInit {
 
   appointmentpercentage: any;
   monthlysubription: any;
+  clinicNumber: any;
   public Getsubscriptontype() {
 
     this.appointmentpercentage = 0;
@@ -405,8 +406,9 @@ export class EditDoctorRegistrationComponent implements OnInit {
       'Longitude': this.longitude,
       'FormatedAddress': this.formatAddress,
       'VatPercentage': this.vatpercentage,
-      'ExonerationPeriodFromDate': this.contractstartdate!=null?this.contractstartdate:new Date(),
-      'ExonerationPerioToDate': this.contractenddate!=null?this.contractstartdate:new Date()
+      'ExonerationPeriodFromDate': this.contractstartdate != null ? this.contractstartdate : new Date(),
+      'ExonerationPerioToDate': this.contractenddate != null ? this.contractstartdate : new Date(),
+      'ClinicNumber': this.clinicNumber
     }
     this.docservice.UpdateDoctorPersonelInfo(entity).subscribe(res => {
       let test = res;
@@ -923,7 +925,7 @@ export class EditDoctorRegistrationComponent implements OnInit {
     this.docservice.Getlocation(this.address).subscribe(data => {
       debugger
       console.log("google addressmain", data);
-      if (data["results"].length!=0) {
+      if (data["results"].length != 0) {
         this.googleAddress = data["results"];
         console.log("google address", this.googleAddress)
         debugger
@@ -953,4 +955,13 @@ export class EditDoctorRegistrationComponent implements OnInit {
     }
   }
 
+  EnableSlotType: any;
+
+  TermsAndConditions() {
+    this.EnableSlotType = 1;
+  }
+
+  TermsAndConditionsDisagree() {
+    this.EnableSlotType = 0;
+  }
 }

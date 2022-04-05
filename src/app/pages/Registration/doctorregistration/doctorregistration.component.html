@@ -42,6 +42,19 @@
           <br>
           <div class="row">
             <div class="col-lg-3">
+              <label class="Phone_label">Tél clinique :</label>
+              <span class="required">*</span>
+            </div>
+            <div class="col-lg-4">
+              <input type="text" placeholder="Tél clinique" required maxlength="13" name="clinicNumber"
+                oncopy="return false" onpaste="return false" [(ngModel)]="clinicNumber" class="form-control"
+                onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-lg-3">
               <label class="Email_label">{{labels[0].email}} :</label>
               <span class="required">*</span>
             </div>

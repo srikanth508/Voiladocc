@@ -595,6 +595,10 @@
                 <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp; {{labels[0].myprivatevault}}
             </a>
 
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='24'" routerLink="/DocRecpProfile">
+                <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp; {{labels[0].myProfile}}
+            </a>
+
             <!-- HOSPITAL -->
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='3'" routerLink="/HospitalRevenue">
                 <!-- <img src="assets/Images/arrow1.png" style="width: 15px;">&nbsp; &nbsp; -->

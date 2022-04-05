@@ -378,7 +378,8 @@ import { CreditChargesMasterComponent } from './pages/Masters/credit-charges-mas
 import{NoCommaPipe} from '../app/no-comma-pipe';
 import { HomeChargesMasterComponent } from './pages/Masters/home-charges-master/home-charges-master.component';
 import { RegionMasterComponent } from './pages/Masters/region-master/region-master.component';
-import { RegionDashComponent } from './pages/Masters/region-dash/region-dash.component'
+import { RegionDashComponent } from './pages/Masters/region-dash/region-dash.component';
+import { DocRecpProfileComponent } from './pages/Doctor/doc-recp-profile/doc-recp-profile.component'
 
 
 
@@ -757,7 +758,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NoCommaPipe,
     HomeChargesMasterComponent,
     RegionMasterComponent,
-    RegionDashComponent
+    RegionDashComponent,
+    DocRecpProfileComponent
     
    
   ],

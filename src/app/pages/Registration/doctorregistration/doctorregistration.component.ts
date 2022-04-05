@@ -101,7 +101,8 @@ export class DoctorregistrationComponent implements OnInit {
   vatpercentage: any;
   contractstartdate: any;
   contractenddate: any;
-  today = new Date()
+  today = new Date();
+  clinicNumber:any;
   ngOnInit() {
     this.dummid = localStorage.getItem('hospitalid');
     this.hospitalclinicid = localStorage.getItem('hospitalid');
@@ -521,7 +522,8 @@ export class DoctorregistrationComponent implements OnInit {
         'ExonerationPerioToDate': this.contractenddate,
         'Lattitude': this.latitude,
         'Longitude': this.longitude,
-        'FormatedAddress': this.formatAddress
+        'FormatedAddress': this.formatAddress,
+        'ClinicNumber':this.clinicNumber
       }
       this.docservice.InsertDoctorRegistration(entity).subscribe(data => {
 

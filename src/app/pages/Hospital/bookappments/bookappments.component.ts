@@ -93,23 +93,42 @@ export class BookappmentsComponent implements OnInit {
     this.appoentmenTypeid = localStorage.getItem('Appointmenttypeid');
     this.bookingtypeid = localStorage.getItem('BookingTypeID');
     // this.PaidAmount = localStorage.getItem('fees');
+if(this.languageid==1)
+{
+  if (this.appoentmenTypeid == 1) {
+    this.homevisit = false;
+    this.combinationvalue = 'In Clinic';
+    this.bookingtypeid = 0;
+  }
 
-    if (this.appoentmenTypeid == 1) {
-      this.homevisit = false;
-      this.combinationvalue = 'In Clinic';
-      this.bookingtypeid = 0;
-    }
+  if (this.appoentmenTypeid == 2) {
+    this.homevisit = false;
+    this.combinationvalue = 'Video Conference';
+  }
+  if (this.appoentmenTypeid == 5) {
+    this.homevisit = true;
+    this.combinationvalue = 'Home Visit';
+  }
+}
+else{
+  if (this.appoentmenTypeid == 1) {
+    this.homevisit = false;
+    this.combinationvalue = 'en Clinique';
+    this.bookingtypeid = 0;
+  }
 
-    if (this.appoentmenTypeid == 2) {
-      this.homevisit = false;
-      this.combinationvalue = 'Video Conference';
-    }
-    if (this.appoentmenTypeid == 5) {
-      this.homevisit = true;
-      this.combinationvalue = 'Home Visit';
-    }
+  if (this.appoentmenTypeid == 2) {
+    this.homevisit = false;
+    this.combinationvalue = 'Téléconsultation';
+  }
+  if (this.appoentmenTypeid == 5) {
+    this.homevisit = true;
+    this.combinationvalue = 'A domicile';
+  }
+}
+    
 
-    const format = 'dd-MMM-yyyy';
+    const format = 'dd-MM-yyyy';
     const myDate = this.appointmentate;
     const locale = 'en-US';
     this.appdate = formatDate(myDate, format, locale);
@@ -346,7 +365,7 @@ export class BookappmentsComponent implements OnInit {
               location.href = "#/DocRecpAppointments"
             }
             else if (this.languageid == 6) {
-              var smsdesc = "Vous avez une nouvelle demande de rendez-vous pour une consultation " + this.combinationvalue + " par  " + this.doctorname + " est confirmé.Date et heure :" + this.appdate + ", " + this.slotname
+              var smsdesc = "Vous avez une nouvelle demande de rendez-vous pour une consultation " + this.combinationvalue + " par  " + this.doctorname + " est confirmé. Date et heure : " + this.appdate + ", " + this.slotname
               this.SendTwiliSms(smsdesc, this.smsmobileno);
               Swal.fire('Rendez-vous est réservé');
               location.href = "#/DocRecpAppointments"

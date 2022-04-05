@@ -43,6 +43,7 @@ export class ProfilesComponent implements OnInit {
   public languageid: any;
   public labels: any;
   dropzonelable: any;
+  regionList: any;
 
 
   ngOnInit() {
@@ -61,6 +62,23 @@ export class ProfilesComponent implements OnInit {
       this.dropzonelable = "Télécharger des fichiers"
     }
   }
+
+
+
+  GetRegionMaster() {
+    this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
+      data => {
+
+        this.regionList = data;
+
+
+      }, error => {
+      }
+    )
+  }
+
+
+
 
   public diagnosticappointmentperslot: any;
   public homesampleordersperslot: any;
@@ -83,7 +101,8 @@ export class ProfilesComponent implements OnInit {
           this.cityid = this.details.cityID,
           this.zipcode = this.details.zipcode,
           this.website = this.details.website,
-          this.timings = this.details.timings,
+          this.timings = this.details.timings, 
+          this.regionID=this.details.regionMasterID
           this.description = this.details.description,
           this.photourl = this.details.photoURL
         this.areaid = this.details.areaID,
@@ -94,6 +113,7 @@ export class ProfilesComponent implements OnInit {
           this.evngtimings = this.details.eveningTimings,
           this.homesample = this.details.homeSample,
           this.GetCountryMaster();
+          this.GetRegionMaster()
         this.getcitymaster();
         this.getareamasterbyid();
 
@@ -125,14 +145,21 @@ export class ProfilesComponent implements OnInit {
     )
   }
 
+  regionID:any;
   public GetCountryID(even) {
 
     this.countryid = even.target.value;
+    this.GetRegionMaster()
+  
+  }
+  GetRegionID(even)
+  {
+    this.regionID=even.target.value;
     this.getcitymaster()
   }
 
   public getcitymaster() {
-    this.docservice.GetCityMasterBYIDandLanguageID(this.countryid, this.languageid).subscribe(
+    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
       data => {
 
         this.citylist = data;

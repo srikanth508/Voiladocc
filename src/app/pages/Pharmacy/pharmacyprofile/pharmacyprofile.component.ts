@@ -95,7 +95,7 @@ export class PharmacyprofileComponent implements OnInit {
       data => {
 
         this.details = data[0];
-
+        this.pharmacyname = this.details.pharmacyName,
         this.pharmacyname = this.details.pharmacyName,
           this.contactpersonname = this.details.contactName,
           this.licenseno = this.details.licenseNo,
@@ -146,6 +146,7 @@ export class PharmacyprofileComponent implements OnInit {
   public updatedetails() {
 
     var entity = {
+      'PharmacyName':this.pharmacyname,
       'LanguageID': this.languageid,
       'PharmacyID': this.id,
       'MobileNumber': this.mobileno,

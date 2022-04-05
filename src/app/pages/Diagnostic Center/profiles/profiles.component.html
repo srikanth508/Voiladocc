@@ -114,6 +114,18 @@
         <br>
         <div class="row">
           <div class="col-lg-4">
+            <label>Régions : </label>
+            <span class="required">*</span>
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control" required (change)="GetRegionID($event)" [(ngModel)]="regionID" name="regionID">
+              <option value="" >{{labels[0].select}}</option>
+              <option *ngFor="let reg of regionList" value={{reg.id}}>{{reg.regionName}}</option>
+            </select>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-4">
             <label>{{labels[0].province}} :</label>
             <span class="required">*</span>
           </div>
