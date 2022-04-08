@@ -17,6 +17,14 @@ export class HelloDoctorService {
   //  public host = "https://madagascar.voiladoc.org/marocAPI";
 
   // private host1 = "https://madagascar.voiladoc.org/marocAPI";
+//  public host = "https://maroc.voiladoc.org/VoilaDocTestAPI";
+
+//  private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
+
+
+  //  public host = "https://maroc.voiladoc.org/marocAPI";
+
+  // private host1 = "https://maroc.voiladoc.org/marocAPI";
 
 
   //test1
@@ -6350,4 +6358,14 @@ export class HelloDoctorService {
     debugger
     return this.http.get<any[]>(this.host + '/Doctor/GetSupportIssueTypeWeb?LanguageID=' + id);
   }
+
+
+  public SendMailPrescription(data) {
+    debugger
+    // this.url = "http://localhost:4199/" + '/Doctor/SendMailPrescription';
+
+     return this.http.get<any[]>("http://localhost:4199/" + '/Doctor/SendMailPrescription?Text=' + data);
+    // return this.http.post(this.url, data)
+  }
+  
 }

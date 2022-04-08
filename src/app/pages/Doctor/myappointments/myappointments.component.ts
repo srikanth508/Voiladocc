@@ -641,7 +641,7 @@ export class MyappointmentsComponent implements OnInit {
             this.getbookappointmentbydocid();
             this.InsertNotifiaction(this.appointmentTypeText);
             this.Insertnotificatiaccept(this.appointmentTypeText);
-            var smsdesc = "Your " + appointmentTypeText + "  appoinment with Dr " + this.doctorname + "On " + this.slotsname + " has been accepted."
+            var smsdesc = "Your " + appointmentTypeText + "  appoinment with " + this.doctorname + "On " + this.slotsname + " has been accepted."
 
             this.SendTwiliSms(smsdesc, smsmobileno)
           })
@@ -690,7 +690,7 @@ export class MyappointmentsComponent implements OnInit {
             this.InsertNotifiaction(this.appointmentTypeText);
             this.Insertnotificatiaccept(this.appointmentTypeText);
 
-            var smsdesc = "Votre RDV " + appointmentTypeText + " avec le Dr " + this.doctorname + " le  " + this.slotsname + " a été confirmé."
+            var smsdesc = "Votre RDV " + appointmentTypeText + " avec " + this.doctorname + " le  " + this.slotsname + " a été confirmé."
             this.SendTwiliSms(smsdesc, smsmobileno)
           })
 
@@ -743,7 +743,7 @@ export class MyappointmentsComponent implements OnInit {
       var entity = {
         'PatientID': this.patientidddd,
         'Notification': "Appointment confirmed",
-        'Description': "Your " + appoinmenttypext + " Appointment with Dr " + this.doctorname + "On" + this.slotsname + " has been accepted.",
+        'Description': "Your " + appoinmenttypext + " Appointment with " + this.doctorname + "On" + this.slotsname + " has been accepted.",
         'NotificationTypeID': 10,
         'Date': this.todaydate,
         'LanguageID': this.languageid,
@@ -760,7 +760,7 @@ export class MyappointmentsComponent implements OnInit {
       var entity = {
         'PatientID': this.patientidddd,
         'Notification': "RDV confirmé",
-        'Description': "Votre RDV " + appoinmenttypext + "  avec  le Dr" + this.doctorname + " le  " + this.slotsname + "a été confirmé.",
+        'Description': "Votre RDV " + appoinmenttypext + "  avec " + this.doctorname + " le  " + this.slotsname + "a été confirmé.",
         'NotificationTypeID': 10,
         'Date': this.todaydate,
         'LanguageID': this.languageid,
@@ -850,7 +850,7 @@ export class MyappointmentsComponent implements OnInit {
 
     if (this.languageid == '1') {
       var entity = {
-        'Description': "Your " + appointmenttypetext + " appoinment with Dr " + this.candoctorname + " on " + this.canslots + " has not been confirmed. Please select another time or another doctor.",
+        'Description': "Your " + appointmenttypetext + " appoinment with " + this.candoctorname + " on " + this.canslots + " has not been confirmed. Please select another time or another doctor.",
         'ToUser': this.canemail,
       }
       this.docservice.PostGCMNotifications(entity).subscribe(data => {
@@ -861,7 +861,7 @@ export class MyappointmentsComponent implements OnInit {
     }
     else if (this.languageid == '6') {
       var entity = {
-        'Description': "Votre RDV " + appointmenttypetext + " avec le Dr " + this.candoctorname + " le n'a pas été confirmé. Veuillez choisir un autre créneau horaire ou un autre médecin. ",
+        'Description': "Votre RDV " + appointmenttypetext + " avec " + this.candoctorname + " le n'a pas été confirmé. Veuillez choisir un autre créneau horaire ou un autre professionnel de santé. ",
         'ToUser': this.canemail,
       }
       this.docservice.PostGCMNotifications(entity).subscribe(data => {
@@ -907,7 +907,7 @@ export class MyappointmentsComponent implements OnInit {
       var entity = {
         'PatientID': this.cancelpatientid,
         'Notification': "Appointment not confirmed",
-        'Description': "Your " + appointmenttypetest + " appoinment with Dr " + this.candoctorname + " on " + this.canslots + " has not been confirmed. Please select another time or another doctor.",
+        'Description': "Your " + appointmenttypetest + " appoinment with " + this.candoctorname + " on " + this.canslots + " has not been confirmed. Please select another time or another doctor.",
         'NotificationTypeID': 11,
         'Date': this.todaydate,
         'LanguageID': this.languageid,
@@ -923,7 +923,7 @@ export class MyappointmentsComponent implements OnInit {
       var entity = {
         'PatientID': this.cancelpatientid,
         'Notification': "RDV non confirmé",
-        'Description': "Votre RDV " + appointmenttypetest + " avec le Dr " + this.candoctorname + " le n'a pas été confirmé. Veuillez choisir un autre créneau horaire ou un autre médecin. ",
+        'Description': "Votre RDV " + appointmenttypetest + " avec " + this.candoctorname + " le n'a pas été confirmé. Veuillez choisir un autre créneau horaire ou un autre professionnel de santé.. ",
         'NotificationTypeID': 11,
         'Date': this.todaydate,
         'LanguageID': this.languageid,
@@ -953,7 +953,7 @@ export class MyappointmentsComponent implements OnInit {
         // this.updatedateails()
         this.insercancelnotoification(this.appointmentTypeText);
         this.Insertnotificatiacceptforcansel(this.appointmentTypeText);
-        var smsdesc = "Your " + this.appointmentTypeText + " appoinment with Dr " + this.candoctorname + " on " + this.canslots + " has not been confirmed. Please select another time or another doctor."
+        var smsdesc = "Your " + this.appointmentTypeText + " appoinment with " + this.candoctorname + " on " + this.canslots + " has not been confirmed. Please select another time or another doctor."
         this.SendTwiliSms(smsdesc, this.phonenumber)
       }
       else if (this.languageid == 6) {
@@ -963,7 +963,7 @@ export class MyappointmentsComponent implements OnInit {
         this.insercancelnotoification(this.appointmentTypeText);
         this.Insertnotificatiacceptforcansel(this.appointmentTypeText);
 
-        var smsdesc = "Votre RDV" + this.appointmentTypeText + " avec le Dr " + this.candoctorname + " le n'a pas été confirmé. Veuillez choisir un autre créneau horaire ou un autre médecin. "
+        var smsdesc = "Votre RDV" + this.appointmentTypeText + " avec " + this.candoctorname + " le n'a pas été confirmé. Veuillez choisir un autre créneau horaire ou un autre professionnel de santé. "
 
         this.SendTwiliSms(smsdesc, this.phonenumber)
       }
@@ -1079,6 +1079,8 @@ export class MyappointmentsComponent implements OnInit {
     this.patientiddd = details.patientID,
       this.preappointmentid = details.appointmentID;
     this.appointmentid = details.appointmentID;
+    this.email = details.pEmail;
+    this.patientid =  details.patientID,
     this.apptypeid = details.appointmentTypeID;
     this.countryid = details.countryID;
     this.cityid = details.cityID;
@@ -1156,6 +1158,8 @@ export class MyappointmentsComponent implements OnInit {
     this.apptypeid = details.appointmentTypeID;
     this.countryid = details.countryID;
     this.cityid = details.cityID;
+    this.email = details.pEmail;
+    this.patientid =  details.patientID,
     this.areaid = details.areaID
     this.preslots = details.slots
     this.appdate = details.appdate
@@ -1493,6 +1497,7 @@ export class MyappointmentsComponent implements OnInit {
       'ICDID': this.icrcodeid,
       'SubstainablenotPermitted': this.substainable,
       'HowmanyRefills': this.howmanyrefills
+  
     }
     this.qwerty2.push(entity1);
     this.idcount = this.idcount + 1;
@@ -1532,6 +1537,15 @@ export class MyappointmentsComponent implements OnInit {
 
 
   public insertdetails() {
+
+    debugger
+    const element = document.getElementById("tablePrescription").innerHTML;
+   const text= document.getElementById("tablePrescription").style.display = "inline";
+   debugger
+   var text1 = element.replace(/\s+/g, ' ');
+
+    // element.innerHTML = "New Heading";
+    debugger
     this.spinner.show()
     // if (this.apptypeid == '1' || this.localdocid == '0') {
     //   this.endorse = 1;
@@ -1576,6 +1590,7 @@ export class MyappointmentsComponent implements OnInit {
             this.tablecuont1 = 0;
             this.VisitDoctorAppointmentStatus(this.preappointmentid);
             debugger
+            this.qwerty2=[];
 
             var smsdesc = "Following your consultation with Dr " + this.user + " added prescription for you"
             // this.InsertPrscriptionNotifications()
@@ -1592,14 +1607,22 @@ export class MyappointmentsComponent implements OnInit {
             this.VisitDoctorAppointmentStatus(this.preappointmentid);
             debugger
 
+            // this.docservice.SendMailPrescription(text1).subscribe(data=>{
+            //   debugger
+            // })
+
             var smsdesc = "Suite à votre consultation avec le Dr " + this.user + "  votre ordonnance pour vos médicaments est maintant disponible dans Accueil"
             this.SendTwiliSms(smsdesc, this.smsmobileno)
             debugger
             debugger
 
             this.GetDoctorPrescrptionTemplates()
+            this.qwerty2=[];
             // this.qwerty2 = []
             this.display = "none";
+
+// var text="<table style='font-family: arial,sans-serif;border-collapse: collapse;width:88%;margin-left:6%;'> <tr> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Date</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Nom du médicament</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Posologie</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Quantité totale à dispenser</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Renouvellement</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Note au pharmacien</th> </tr> <tr > <td>Prescrition</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>+"+djjd+"</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.SIG}</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.DispenseQuantity} </td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'> </td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.HowmanyRefills}</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.NoteToPharmasist} </td> </tr> </table><br><br><br><br><br><br><br><br><br><br>"
+
 
           }
         }
@@ -1774,7 +1797,9 @@ export class MyappointmentsComponent implements OnInit {
     this.diapatientid = patientID;
     this.sendMailPrescriptions = 2;
     this.prepatientemail = pemail;
-
+    this.appointmentid = appointmentID;
+    this.email = pemail;
+    this.patientid = patientID;
     this.diaappointmentID = appointmentID;
     this.appdate = appdate
     this.slots = slots
@@ -2166,7 +2191,7 @@ export class MyappointmentsComponent implements OnInit {
     }
     else {
       debugger
-      var smsdesc = "Suite à votre consultation avec le Dr " + this.user + ", votre ordonnance pour vos examens médicaux est maintant disponible dans Accueil."
+      var smsdesc = "Suite à votre consultation avec " + this.user + ", votre ordonnance pour vos examens médicaux est maintant disponible dans Accueil."
       this.SendTwiliSms(smsdesc, this.smsmobileno)
     }
 
@@ -2176,7 +2201,7 @@ export class MyappointmentsComponent implements OnInit {
   public Insertnotificationtestazure() {
     if (this.languageid == 1) {
       var entity = {
-        'Description': "Following your consultation with Dr " + this.user + " your prescription for lab tests is now available in homepage.",
+        'Description': "Following your consultation with " + this.user + " your prescription for lab tests is now available in homepage.",
         'ToUser': this.testpatientemail,
       }
       this.docservice.PostGCMNotifications(entity).subscribe(data => {
@@ -2188,7 +2213,7 @@ export class MyappointmentsComponent implements OnInit {
     }
     else if (this.languageid == 6) {
       var entity = {
-        'Description': "Suite à votre consultation avec le Dr " + this.user + ", votre ordonnance pour vos examens médicaux est maintant disponible dans Accueil.",
+        'Description': "Suite à votre consultation avec " + this.user + ", votre ordonnance pour vos examens médicaux est maintant disponible dans Accueil.",
         'ToUser': this.testpatientemail,
       }
       this.docservice.PostGCMNotifications(entity).subscribe(data => {
@@ -2277,7 +2302,7 @@ export class MyappointmentsComponent implements OnInit {
       var entity = {
         'PatientID': this.diapatientid,
         'Notification': this.user + " added diagnostic test for you. ",
-        'Description': "Following your consultation with Dr " + this.user + " your prescription for lab tests is now available in homepage.",
+        'Description': "Following your consultation with " + this.user + " your prescription for lab tests is now available in homepage.",
         'NotificationTypeID': 102,
         'Date': this.todaydate,
         'LanguageID': this.languageid,
@@ -3676,7 +3701,7 @@ export class MyappointmentsComponent implements OnInit {
           this.referalnotes = " DATE: " + this.todaydate + " <p>SUBJECT : Referral To " + this.doctorname + "</p > <p>RE: Mr. " + this.patientname + "<p>i am referring my patient " + this.patientname + " for review of his new onset.<p>&nbsp;</p > <p>Thank you In advance for attending to the patients's health needs</p><p>" + this.user + "<br>" + this.MobileNumber + "</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>&nbsp;Consultation Summary<p><strong>Patient Name </strong>: &nbsp;" + this.patientname + "</p><p><strong>Date of Consult : &nbsp;</strong> &nbsp;" + this.todaydate + "</p><p><strong>Provider </strong>: &nbsp;  " + this.user + "<br>" + this.MobileNumber + "<br>" + this.Hospital_ClinicName + "</p>"
         }
         else {
-          this.referalnotes = " DATE :" + this.todaydate + "<p>OBJET : Lettre de recommandation <br> Cher(e) confrère (consœur), Je vous réfère le patient  " + this.patientname + "</p><p>Pour le(s) motif(s) et diagnostic(s) suivant(s) : " + "<br><br>" + this.user + "<br>" + this.MobileNumber + "<br>" + this.Hospital_ClinicName + "</p>"
+           this.referalnotes = " DATE :" + this.todaydate + "<br>OBJET : Lettre de recommandation <br> Cher(e) confrère (consœur), Je vous réfère le patient  " + this.patientname + "<p>Pour le(s) motif(s) et diagnostic(s) suivant(s) : " + "<p>En Vous remerciant, je vous prie d’agréer, mon cher confrère (consœur) mes salutations les meilleures.<br><br>" + this.user + "<br>" + this.MobileNumber + "<br>" + this.Hospital_ClinicName + "</p>"
         }
 
       }, error => {
@@ -3752,7 +3777,7 @@ export class MyappointmentsComponent implements OnInit {
       this.referalnotes = " DATE: " + this.todaydate + "<br><p>SUBJECT : Referral To " + this.doctorname + "</p > <p>RE: Mr. " + this.patientname + "<p>&nbsp;</p > <p>i am referring my patient " + this.patientname + " for review of his new onset.<p>&nbsp;</p > <p>Thank you In advance for attending to the patients's health needs</p><p>" + this.user + "<br>" + this.MobileNumber + "</p><p>Consultation Summary<p><strong>Patient Name </strong>: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" + this.patientname + "</p><p><strong>Date of Consult : &nbsp;</strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" + this.todaydate + "</p><p><strong>Provider </strong>: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; " + this.doctorname + "<br>" + this.docphoneno + "<br>" + this.Hospital_ClinicName + "</p>"
     }
     else if (this.languageid == 6) {
-      this.referalnotes = " DATE :" + this.todaydate + "<br>OBJET : Lettre de recommandation <br> Cher(e) confrère (consœur), Je vous réfère le patient  " + this.patientname + "<p>Pour le(s) motif(s) et diagnostic(s) suivant(s) : " + "<p>Vous remerciant, je vous prie d’agréer, mon cher confrère (consœur) mes salutations les meilleures.<br><br>" + this.user + "<br>" + this.MobileNumber + "<br>" + this.Hospital_ClinicName + "</p>"
+      this.referalnotes = " DATE :" + this.todaydate + "OBJET : Lettre de recommandation <br> Cher(e) confrère (consœur), Je vous réfère le patient  " + this.patientname + "<p>Pour le(s) motif(s) et diagnostic(s) suivant(s) : " + "<p>Vous remerciant, je vous prie d’agréer, mon cher confrère (consœur) mes salutations les meilleures.<br><br>" + this.user + "<br>" + this.MobileNumber + "<br>" + this.Hospital_ClinicName + "</p>"
     }
     // this.referalnotes = "<p><br>" + this.todaydate + "</p><p>SUBJECT : Referral To " + this.doctorname + "</p><p>RE: Mr. " + this.patientname + "</p><p>&nbsp;</p><p>i am referring my patient " + this.patientname + " for review of his new onset.</p><p>&nbsp;</p><p>Thank you In advance for attending to the patients's health needs</p><p>" + this.user + "</p><p>&nbsp;</p><p>Voiladoc</p><p>" + this.docphoneno + "</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Consultation Summary<p><strong>Patient Name </strong>: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" + this.patientname + "</p><p><strong>Date of Consult : &nbsp;</strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" + this.todaydate + "</p><p><strong>Provider </strong>: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; " + this.doctorname + "</p><p>Chief Complaint :&nbsp;</p><p>Diagnosis :</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>";
   }
@@ -3817,6 +3842,7 @@ export class MyappointmentsComponent implements OnInit {
   public user: any;
   public soap: any;
   public insertdetails1() {
+
 
     if (this.referaltypeid == 1 || this.referaltypeid == 2) {
 
@@ -3892,6 +3918,7 @@ export class MyappointmentsComponent implements OnInit {
             }
             if (this.referaltypeid == 3) {
               this.senmailToPatient()
+              this.sendmail2();
             }
             // Swal.fire('Success', 'Referral Sent To Doctor Successfully');
             location.href = "#/Sentrefferals"
@@ -3944,6 +3971,35 @@ export class MyappointmentsComponent implements OnInit {
         }
       })
     }
+  }
+
+
+  public sendmail2() {
+    if(this.languageid==1)
+    {
+      var desc=this.referalnotes+"<br>"+"Welcome to Voiladoc. If you would like to know more about Voiladoc and wish to join the Voiladoc network as a provider, please click on this link, https://voiladoc.ma/professionnel-de-sante/ or call 522446145."
+    }
+    else{
+      var desc=this.referalnotes+"<br>"+"Welcome to Voiladoc. If you would like to know more about Voiladoc and wish to join the Voiladoc network as a provider, please click on this link, https://voiladoc.ma/professionnel-de-sante/ or call 522446145."
+    }
+    var entity = {
+      'emailto': this.doctoremail,
+      'emailsubject': 'Patient Referred By ' + this.user,
+      'emailbody': desc,
+      'attachmenturl': this.emailattchementurl,
+      'cclist': this.cclist,
+      'bcclist': this.bcclist
+    }
+    this.docservice.sendemail(entity).subscribe(data => {
+
+      if (this.languageid == 1) {
+        Swal.fire('Mail sent successfully.');
+      }
+
+      else if (this.languageid == 6) {
+        Swal.fire('Email envoyé avec succès');
+      }
+    })
   }
 
 
@@ -5479,7 +5535,7 @@ export class MyappointmentsComponent implements OnInit {
 
     if (this.languageid == '1') {
       var entity = {
-        'Description': "Dr. " + list.doctorName + "has cancelled your appointment scheduled for " + list.notificationdate + '. Please use voiladoc app to reschedule or ask for refund. For any further help. Please contact our support clients',
+        'Description': "" + list.doctorName + "has cancelled your appointment scheduled for " + list.notificationdate + '. Please use voiladoc app to reschedule or ask for refund. For any further help. Please contact our support clients',
         'ToUser': list.pEmail,
       }
       this.docservice.PostGCMNotifications(entity).subscribe(data => {
@@ -5729,11 +5785,11 @@ export class MyappointmentsComponent implements OnInit {
       this.InserWlletlog()
       this.insertWalletnotification()
       if (this.languageid == 1) {
-        var smsdesc = "We like to inform you that Dr." + this.user + " has refunded " + this.paidamount + "MAD to your Voiladoc Wallet  "
+        var smsdesc = "We like to inform you that" + this.user + " has refunded " + this.paidamount + "MAD to your Voiladoc Wallet  "
         this.SendTwiliSms(smsdesc, this.smsmobileno)
       }
       else {
-        var smsdesc = "Nous vous informons que le  Dr." + this.user + " a remboursé " + this.paidamount + " MAD . sur votre portefeuille Voiladoc."
+        var smsdesc = "Nous vous informons que " + this.user + " a remboursé " + this.paidamount + " MAD . sur votre portefeuille Voiladoc."
         this.SendTwiliSms(smsdesc, this.smsmobileno)
       }
 
@@ -5777,7 +5833,7 @@ export class MyappointmentsComponent implements OnInit {
       var entity = {
         'PatientID': this.patientID,
         'Notification': "Amount Refunded By" + this.user,
-        'Description': "We like to inform you that Dr." + this.user + " has refunded " + this.paidamount + "MAD to your Voiladoc Wallet  ",
+        'Description': "We like to inform you that " + this.user + " has refunded " + this.paidamount + "MAD to your Voiladoc Wallet  ",
         'NotificationTypeID': 30,
         'Date': this.todaydate,
         'LanguageID': this.languageid,
@@ -5794,7 +5850,7 @@ export class MyappointmentsComponent implements OnInit {
       var entity = {
         'PatientID': this.patientID,
         'Notification': "Amount Refunded By" + this.user,
-        'Description': "Nous vous informons que le  Dr." + this.user + " a remboursé " + this.paidamount + " MAD . sur votre portefeuille Voiladoc.",
+        'Description': "Nous vous informons que " + this.user + " a remboursé " + this.paidamount + " MAD . sur votre portefeuille Voiladoc.",
         'NotificationTypeID': 30,
         'Date': this.todaydate,
         'LanguageID': this.languageid,
@@ -5817,7 +5873,7 @@ export class MyappointmentsComponent implements OnInit {
       'Date': this.serverdate,
       'Time': this.servertime,
       'User': this.user,
-      'Reason': "Nous vous informons que le  Dr." + this.user + " a remboursé " + this.paidamount + " MAD . sur votre portefeuille Voiladoc.",
+      'Reason': "Nous vous informons que " + this.user + " a remboursé " + this.paidamount + " MAD . sur votre portefeuille Voiladoc.",
       'Amount': this.paidamount,
       'DoctorID': this.doctorid,
       'AppointmentID': this.appointmentid,
@@ -5932,6 +5988,8 @@ export class MyappointmentsComponent implements OnInit {
     })
 
   }
+
+
 
 
 

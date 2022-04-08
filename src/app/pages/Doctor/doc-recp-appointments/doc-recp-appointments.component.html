@@ -1169,7 +1169,19 @@
             <input type="radio" value="2" [(ngModel)]="diasoaptypeid" name="diasoaptypeid">&nbsp;{{labels[0].soapnotess}}
           </div>
         </div><br>
-        <div *ngIf="diasoaptypeid=='1'||diasoaptypeid=='2'||diasoaptypeid=='3'">
+
+        
+        <div class="row">
+          <div class="col-lg-4">
+            <input type="radio" value="4" [(ngModel)]="diasoaptypeid"
+              name="diasoaptypeid">&nbsp;{{labels[0].medcalCertificate}}
+          </div>
+          <div class="col-lg-6">
+            <input type="radio" value="5" [(ngModel)]="diasoaptypeid"
+              name="diasoaptypeid">&nbsp;{{labels[0].refeletter}}
+          </div>
+        </div>
+        <div *ngIf="diasoaptypeid=='1'||diasoaptypeid=='2'||diasoaptypeid=='3'||diasoaptypeid=='4'||diasoaptypeid=='5'">
           <div class="row">
             <!-- <label>Upload Photo</label> -->
 

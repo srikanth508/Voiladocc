@@ -71,3 +71,28 @@ input:placeholder-shown {
 .Address_label{
   margin-left: 10px;
 }
+
+.agree{
+  background-color:#251156;
+  padding: 10px;
+  text-decoration: none;
+  border: none;
+  color:white;
+  border-radius: 10px;
+}
+.disagree{
+  background-color:#f18235;
+  padding: 10px;
+  text-decoration: none;
+  border: none;
+  color:white;
+  border-radius: 10px;
+}
+.terms{
+  background-color:#251156;
+  padding: 5px;
+  text-decoration: none;
+  border: none;
+  color:white;
+  border-radius: 10px;
+}

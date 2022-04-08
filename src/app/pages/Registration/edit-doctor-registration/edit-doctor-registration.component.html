@@ -41,6 +41,18 @@
             <br>
             <div class="row">
               <div class="col-lg-4">
+                <label class="Phone_label">Tél clinique :</label>
+                <span class="required">*</span>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" placeholder="Tél clinique" required maxlength="13" name="clinicNumber"
+                  oncopy="return false" onpaste="return false" [(ngModel)]="clinicNumber" class="form-control"
+                  onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-lg-4">
                 <label>{{labels[0].email}} :</label>
                 <span class="required">*</span>
               </div>
@@ -95,8 +107,9 @@
                 <span class="required">*</span>
               </div>
               <div class="col-lg-6">
-                <select class="form-control" required (change)="GetRegionID($event)" [(ngModel)]="regionID" name="regionID">
-                  <option value="" >{{labels[0].select}}</option>
+                <select class="form-control" required (change)="GetRegionID($event)" [(ngModel)]="regionID"
+                  name="regionID">
+                  <option value="">{{labels[0].select}}</option>
                   <option *ngFor="let reg of regionList" value={{reg.id}}>{{reg.regionName}}</option>
                 </select>
               </div>
@@ -268,14 +281,17 @@
                 <span class="required">*</span>
               </div>
               <div class="col-lg-6">
-                <select class="form-control"  required (change)="GetSlotDurationID($event)" [(ngModel)]="slotid"
-                  name="slotid">
+                <select class="form-control" required (change)="GetSlotDurationID($event)" [(ngModel)]="slotid"
+                  name="slotid" [disabled]="EnableSlotType!=1">
                   <option value="">{{labels[0].select}}</option>
                   <option value="1">15 Minutes</option>
                   <option value="2">30 Minutes</option>
                   <option value="3">45 Minutes</option>
                   <option value="4">1 Hour</option>
                 </select>
+              </div>
+              <div class="col-lg-2">
+                <button class="terms" data-toggle="modal" data-target="#exampleModalCenter">Message important</button>
               </div>
             </div>
             <br>
@@ -658,7 +674,7 @@
           <label class="Address_label">Vat Percentage :</label>
         </div>
         <div class="col-lg-4">
-          <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" 
+          <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage"
             name="vatpercentage" placeholder="Vat Percentage">
         </div>
       </div>
@@ -678,7 +694,7 @@
       </div>
     </div>
     <br />
-    <div class="row"  *ngIf="vatCheck=='1'">
+    <div class="row" *ngIf="vatCheck=='1'">
       <div class="col-lg-3">
         <label *ngIf="languageid=='1'">Exoneration period to :</label>
         <label *ngIf="languageid=='6'">Période d'exonération à :</label>
@@ -842,4 +858,92 @@
     </div>
     <br>
   </aw-wizard-step> -->
+
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid" *ngIf="languageid==1">
+            <div class="row">
+              <div class="col-lg-12">
+                <h4 style="text-align: center;">Important message.</h4><br>
+                <p>
+                  Once the slot time has been changed, the doctor’s entire calendar will be deleted. All active patient
+                  appointments will be deleted, and the system will automatically provide a reschedule and refund option
+                  to the patient. If it is a credit card transaction, patients will be given an option to get a refund
+                  on
+                  wallet or bank account which will then be processed by your support team. There may also be some
+                  unhappy
+                  patients which needs to be managed amicably.
+                </p>
+                <p>
+                  Please agree that you understood the action that you are about to take.
+                </p><br>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3">
+                <button class="disagree" data-dismiss="modal" (click)="TermsAndConditionsDisagree()">Do not
+                  agree</button>
+              </div>
+              <div class="col-lg-6">
+
+              </div>
+
+              <div class="col-lg-3">
+                <button class="agree" data-dismiss="modal" (click)="TermsAndConditions()">Agree</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="container-fluid" *ngIf="languageid==6">
+            <div class="row">
+              <div class="col-lg-12">
+                <h4 style="text-align: center;">Message important.</h4><br>
+                <p>
+                  Une fois la plage horaire modifiée, tous les rendez-vous actifs des patients seront supprimés et le
+                  système enverra automatiquement une option de report et de remboursement au patient. S'il s'agit d'une
+                  transaction par carte de crédit, les patients auront la possibilité d'obtenir un remboursement sur
+                  leur portefeuille ou sur leur compte bancaire qui sera ensuite traité par votre équipe d'assistance.
+                  Il peut également y avoir des patients mécontents qui doivent être gérés avec soin car cela affectera
+                  la satisfaction du client pour Voiladoc.
+                </p>
+                <p>
+                  Veuillez confirmer que vous voulez continuer cette action.
+                </p><br>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3">
+                <button class="disagree" data-dismiss="modal" (click)="TermsAndConditionsDisagree()">
+                  Annuler</button>
+              </div>
+              <div class="col-lg-6">
+
+              </div>
+
+              <div class="col-lg-3">
+                <button class="agree" data-dismiss="modal" (click)="TermsAndConditions()">Confirmer         </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
 </aw-wizard><br><br>
