@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 
@@ -33,7 +34,7 @@ export class VediocallComponent implements OnInit {
   testsname: any;
   // showModal: boolean;
 
-  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute, private ref: ChangeDetectorRef, public opentokService: OpentokService) {
+  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute, private ref: ChangeDetectorRef, public opentokService: OpentokService, private spinner: NgxSpinnerService) {
     this.changeDetectorRef = ref;
 
   }
@@ -2925,6 +2926,162 @@ debugger
   //   })
   // }
 
+
+  emailurl:any;
+  sendattchmenturl=[];
+
+  public SavePdf() {
+    this.spinner.show()
+    var data = document.getElementById('Prescriptions');
+
+    html2canvas(data).then(canvas => {
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var doc = new jsPDF("p", "mm", "a4");
+      var width = doc.internal.pageSize.getWidth();
+      var height = doc.internal.pageSize.getHeight();
+
+      var heightLeft = imgHeight;
+      var doc = new jsPDF('p', 'mm');
+      var position = 0;
+      while (heightLeft >= 0) {
+        const contentDataURL = canvas.toDataURL('image/png')
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      this.spinner.show()
+      doc.deletePage(1)
+      var pdf = doc.output('blob');
+      var file = new File([pdf], "Report" + ".pdf");
+      let body = new FormData();
+      body.append('Dan', file);
+      debugger
+      let folder = this.patientid + '/' + 'Consulation Report'
+      this.spinner.show()
+      this.docservice.DoctorReports(file, folder).subscribe(res => {
+        ;
+        // ReceiptUpload
+        // DoctorPdfreports
+        debugger
+        this.sendattchmenturl.push(res);
+        let a = this.sendattchmenturl[0].slice(2);
+
+        let b = 'https://maroc.voiladoc.org' + a;
+        this.emailurl = b;
+        this.spinner.show()
+        this.SendMailReport()
+        this.updateReport();
+      
+      });
+
+      // doc.save('Prescriptions.pdf');
+    });
+  }
+
+  public updateReport() {
+
+    var entity = {
+      'ApointmentID': this.appointmentid,
+      'ReportPdfsUrl': this.sendattchmenturl[0]
+    }
+    this.docservice.UpdateBookAppointmentReportPdfsUrl(entity).subscribe(data => {
+      this.sendattchmenturl = [];
+      this.sendattchmenturl.length = 0;
+      this.spinner.hide()
+    })
+  }
+  public noattachments = []
+  cclist=[]
+  bcclist=[]
+
+  public SendMailReport() {
+
+    if (this.languageid == 1) {
+      var sub = "Medical report";
+      var emaildesc = "As you requested, " + this.user + " sent a medical report. Please click on the link below." + this.emailurl + "<br><br>" + 'Regards,' + "<br>" + 'Voiladoc Team'
+    }
+    else {
+      var sub = "Rapport de consultation"
+      var emaildesc = "Comme vous l'avez demandé, le " + this.user + " a envoyé un rapport médical. Veuillez cliquer sur le lien ci-dessous." + this.emailurl + "<br><br>" + 'Cordialement,' + "<br>" + 'Voiladoc Team'
+    }
+
+    var entity = {
+      'emailto': this.email,
+      'emailsubject': sub,
+      'emailbody': emaildesc,
+      'attachmenturl': this.noattachments,
+      'cclist': this.cclist,
+      'bcclist': this.bcclist
+    }
+    this.docservice.sendemail(entity).subscribe(data => {
+
+      let res = data;
+      if (this.languageid == 1) {
+        Swal.fire('Mail sent successfully.');
+      }
+
+      else if (this.languageid == 6) {
+        Swal.fire('Email envoyé avec succès');
+      }
+    })
+  }
+
+
+
+
+  Prescription: any;
+  Test: any;
+  soappdf: any;
+  medicalcertificate: any;
+  referals: any;
+  medical: any;
+  pdfprslist: any;
+  
+  public DownloadPDf() {
+    this.spinner.show()
+    var data = document.getElementById('Prescriptions');
+
+    html2canvas(data).then(canvas => {
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var doc = new jsPDF("p", "mm", "a4");
+      var width = doc.internal.pageSize.getWidth();
+      var height = doc.internal.pageSize.getHeight();
+
+      var heightLeft = imgHeight;
+      var doc = new jsPDF('p', 'mm');
+      var position = 0;
+      while (heightLeft >= 0) {
+        const contentDataURL = canvas.toDataURL('image/png')
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      doc.deletePage(1)
+
+      this.spinner.hide()
+      doc.save('Reports.pdf');
+    });
+  }
+
+
+
+  public GenaratePdf() {
+    this.spinner.show()
+    this.docservice.GetBookAppointmentByAppID(this.languageid, this.appointmentid, 1).subscribe(data => {
+      this.pdfprslist = data;
+      this.spinner.hide()
+      // document.getElementById("mymodalss").click();
+
+    })
+
+  }
 
 }
 
