@@ -255,11 +255,11 @@
       </div>
       <div class="col-lg-12 ">
         <button class="buttonclass" (mouseenter)="mouseEnter($event)" (mouseleave)="mouseleave($event)"
-          data-toggle="modal" data-target="#addsoap">{{labels[0].addSoapNotes}}</button>
+          data-toggle="modal" data-target="#addtest">{{labels[0].addTest}}</button>
       </div>
       <div class="col-lg-12 ">
         <button class="buttonclass" (mouseenter)="mouseEnter($event)" (mouseleave)="mouseleave($event)"
-          data-toggle="modal" data-target="#addtest">{{labels[0].addTest}}</button>
+          data-toggle="modal" data-target="#addsoap">{{labels[0].addSoapNotes}}</button>
       </div>
       <div class="col-lg-12">
         <button class="buttonclass" (mouseenter)="mouseEnter($event)" (mouseleave)="mouseleave($event)"
@@ -750,8 +750,9 @@
                   <span class="required">*</span>
                 </div>
                 <div class="col-lg-6">
-                  <input type="text" class="form-control" placeholder="Tests" [(ngModel)]="diagnostictestname"
-                    name="diagnostictestname">
+                  <textarea class="form-control" placeholder="Tests" [(ngModel)]="diagnostictestname" rows="4"
+                  name="diagnostictestname"></textarea>
+              
                 </div>
               </div><br>
               <div class="row">
@@ -2419,6 +2420,7 @@ vaccination -->
   <div class="modal-dialog" role="document" style="float: right;">
     <div class="modal-content">
       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" >Souhaitez-vous envoyer ce document par e-mail au patient ?</h5>
         <!-- <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Refund</h5>
         <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'"> Remboursement au patient</h5> -->
 

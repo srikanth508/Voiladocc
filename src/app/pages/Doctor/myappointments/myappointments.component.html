@@ -479,7 +479,8 @@
             <div class="col-lg-4">
             </div>
             <div class="col-lg-3">
-              <button type="button" class="btn btncolor" (click)="GetFolloupVistID()" data-dismiss="modal">Sauvegarder </button>
+              <button type="button" class="btn btncolor" (click)="GetFolloupVistID()" data-dismiss="modal">Sauvegarder
+              </button>
             </div>
           </div>
 
@@ -505,7 +506,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" >Souhaitez-vous envoyer ce document par e-mail au patient ?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Souhaitez-vous envoyer ce document par e-mail au patient ?</h5>
         <!-- <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Refund</h5>
         <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'"> Remboursement au patient</h5> -->
 
@@ -1706,9 +1707,9 @@
               </div>
 
             </div><br> -->
-            <div class="row" *ngIf="tablecuont1=='1'" id="tablePrescription" > 
+            <div class="row" *ngIf="tablecuont1=='1'" id="tablePrescription">
               <div class="col-lg-12">
-                <table >
+                <table>
                   <thead>
                     <tr>
                       <th>{{labels[0].drugName}}</th>
@@ -1772,7 +1773,7 @@
               </div>
               <div class="col-lg-2">
                 <button type="button" style="background-color: #f18235;color: white;" class="btn btn-default"
-                  (click)="insertdetails()"  data-toggle="modal" data-target="#PdfsCheck">{{labels[0].save}}</button>
+                  (click)="insertdetails()" data-toggle="modal" data-target="#PdfsCheck">{{labels[0].save}}</button>
               </div>
               <div class="col-lg-5">
               </div>
@@ -1836,8 +1837,8 @@
                   <span class="required">*</span>
                 </div>
                 <div class="col-lg-6">
-                  <input type="text" class="form-control" placeholder="Tests" [(ngModel)]="diagnostictestname"
-                    name="diagnostictestname">
+                  <textarea class="form-control" placeholder="Tests" [(ngModel)]="diagnostictestname" rows="4"
+                    name="diagnostictestname"></textarea>
                 </div>
               </div><br>
               <div class="row">
@@ -1960,7 +1961,8 @@
               </div>
               <div class="col-lg-5">
                 <button type="button" style="background-color: #f18235;color: white;" class="btn btn-secondary"
-                data-toggle="modal" data-target="#PdfsCheck" (click)="insertDiagnostictestdetails()">{{labels[0].save}}</button>
+                  data-toggle="modal" data-target="#PdfsCheck"
+                  (click)="insertDiagnostictestdetails()">{{labels[0].save}}</button>
               </div>
               <div class="col-lg-2">
               </div>

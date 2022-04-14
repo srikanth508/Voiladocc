@@ -227,7 +227,6 @@ export class LoginComponent implements OnInit {
 
           this.docservice.GetDoctorLogin(this.uname, this.pwd, this.LanguageID, this.pinno).subscribe(
             data => {
-
               this.result = data;
 
               if (this.result.length != '0') {
@@ -242,9 +241,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('hospitalClinicID', this.result[0].hospitalClinicID);
                 localStorage.setItem('hospitalType', this.result[0].hospital_ClinicID)
                 localStorage.setItem('departmentid', this.result[0].departmentID)
-                this.insertProvidersAuditReport(this.result[0].doctorID, 1)
-
-
+                this.insertProvidersAuditReport(this.result[0].doctorID, 1);
 
               }
               else {
