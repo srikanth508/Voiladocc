@@ -506,7 +506,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Souhaitez-vous envoyer ce document par e-mail au patient ?</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 14px;">Souhaitez-vous envoyer ce document par e-mail au patient ?</h5>
         <!-- <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Refund</h5>
         <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'"> Remboursement au patient</h5> -->
 
@@ -1898,8 +1898,11 @@
                   <!-- <input id="typeahead-basic" type="text" class="form-control" placeholder="{{labels[0].drugName}}"
                     [(ngModel)]="medicinename" [ngModelOptions]="{standalone: true}" [ngbTypeahead]="search1"
                     (ngModelChange)="GetDrugNameID()" /> -->
-                  <input type="text" [(ngModel)]="testsname" name="testsname" class="form-control"
-                    placeholder="{{labels[0].testName}}" (ngModelChange)="SearchTestname(testsname)">
+
+                  <textarea [(ngModel)]="testsname" name="testsname" class="form-control"
+                  placeholder="{{labels[0].testName}}" (ngModelChange)="SearchTestname(testsname)"></textarea>
+
+               
                 </div>
               </div><br>
             </div>

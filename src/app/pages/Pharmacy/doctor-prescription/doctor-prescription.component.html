@@ -436,7 +436,7 @@
                                   <input type="text" class="form-control" *ngIf="medicinelist.substituteBit==true"
                                     [ngModelOptions]="{standalone: true}" [(ngModel)]="medicinelist.subAmount"
                                     name="medicinelist.subAmount"
-                                    onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+                                    onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
                                   <!-- (ngModelChange)="onChange($event)" -->
                                 </td>
                                 <td style="border: 2px solid black;">

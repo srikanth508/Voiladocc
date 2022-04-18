@@ -812,8 +812,12 @@
                   <!-- <input id="typeahead-basic" type="text" class="form-control" placeholder="{{labels[0].drugName}}"
                     [(ngModel)]="medicinename" [ngModelOptions]="{standalone: true}" [ngbTypeahead]="search1"
                     (ngModelChange)="GetDrugNameID()" /> -->
-                  <input type="text" [(ngModel)]="testsname" name="testsname" class="form-control"
-                    placeholder="{{labels[0].testName}}" (ngModelChange)="SearchTestname(testsname)">
+
+                   <textarea [(ngModel)]="testsname" name="testsname" class="form-control"
+                   placeholder="{{labels[0].testName}}" (ngModelChange)="SearchTestname(testsname)">  </textarea>
+                     
+                 
+                  <!-- <input type="text" > -->
                 </div>
               </div><br>
             </div>
@@ -875,7 +879,7 @@
               </div>
               <div class="col-lg-5">
                 <button type="button" style="background-color: #f18235;color: white;" class="btn btn-secondary"
-                  (click)="insertDiagnostictestdetails()" data-dismiss="modal">{{labels[0].save}}</button>
+                  (click)="insertDiagnostictestdetails()" data-dismiss="modal" data-toggle="modal" data-target="#PdfsCheck">{{labels[0].save}}</button>
               </div>
               <div class="col-lg-2">
               </div>
@@ -2420,7 +2424,7 @@ vaccination -->
   <div class="modal-dialog" role="document" style="float: right;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" >Souhaitez-vous envoyer ce document par e-mail au patient ?</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 14px;" >Souhaitez-vous envoyer ce document par e-mail au patient ?</h5>
         <!-- <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Refund</h5>
         <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'"> Remboursement au patient</h5> -->
 
@@ -2496,7 +2500,7 @@ vaccination -->
 
 <div id="mymodalss" class="modal fade" role="dialog" style="float: right;">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="width: 900px;
+    <div class="modal-content" style="width: 900px;margin: 10px 278px;
       height: auto;">
       <div class="modal-header">
         <!-- <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Refund</h5>
