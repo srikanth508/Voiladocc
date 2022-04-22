@@ -979,6 +979,7 @@ export class OrdersComponent implements OnInit {
 
         this.SendTwiliSms(list.smsmobileno, smsdesc)
         this.SendTwiliSms(this.patientsmsmoblile, smsdesc1)
+        this.InserAssignNotification()
         this.docservice.GetMyTeamAssainOrders(this.diagnosticid).subscribe(data => {
           this.homesamplelist = data;
         })
@@ -992,6 +993,7 @@ export class OrdersComponent implements OnInit {
         debugger
         this.SendTwiliSms(list.smsmobileno, smsdesc)
         this.SendTwiliSms(this.patientsmsmoblile, smsdesc1)
+        this.InserAssignNotification()
         debugger
         this.docservice.GetMyTeamAssainOrders(this.diagnosticid).subscribe(data => {
           this.homesamplelist = data;
@@ -1318,6 +1320,55 @@ export class OrdersComponent implements OnInit {
   open(photo)
   {
     window.open(this.showPdf,"_blank")
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  public InserAssignNotification() {
+    if (this.languageid == '1') {
+
+      var entity = {
+        'PatientID': this.patientid,
+        'Notification': "Order Assigned",
+        'Description': "A new appointment has been assigned to you with " + this.patientname + ", " + this.address + " at " + this.slottime + this.appdate + ". Please open your app and check the details.",
+        'NotificationTypeID': 16,
+        'Date': this.todaydate,
+        'LanguageID': this.languageid,
+      }
+      this.docservice.InsertNotifications(entity).subscribe(data => {
+
+        if (data != 0) {
+
+        }
+
+      })
+    }
+    else if (this.languageid == '6') {
+      var entity = {
+        'PatientID': this.patientid,
+        'Notification': "Order Assigned",
+        'Description': "Un nouveau rendez-vous a été attribué avec " + this.patientname + ", " + this.address + " à " + this.slottime + " , " + this.appdate + " . Veuillez ouvrir votre application et vérifier les détails.",
+        'NotificationTypeID': 16,
+        'Date': this.todaydate,
+        'LanguageID': this.languageid,
+      }
+      this.docservice.InsertNotifications(entity).subscribe(data => {
+
+        if (data != 0) {
+
+        }
+
+      })
+    }
   }
 }
 

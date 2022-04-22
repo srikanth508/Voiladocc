@@ -2016,6 +2016,8 @@ export class MyappointmentsComponent implements OnInit {
     }
     this.DiaenterArray.push(entity);
     this.diagnostictestname = "";
+    this.idcount = this.idcount + 1;
+    this.diatest = "";
     debugger
     // var test = this.testslist.findIndex(x => x.id == code.id);
     // this.testsslist = this.testslist.slice(test, 1, this.testslist.length);
@@ -2027,8 +2029,7 @@ export class MyappointmentsComponent implements OnInit {
     // if (this.templateid != 0) {
     //   this.UpdateTemplte()
     // }
-    this.idcount = this.idcount + 1;
-    this.diatest = "";
+  
     // this.testslist.length = 0;
     // this.tsetssslist.length = 0;
     // this.diagnostictestname = ""
@@ -2332,6 +2333,20 @@ export class MyappointmentsComponent implements OnInit {
 
       })
     }
+  }
+
+
+
+  public deleteDiagnostic(Sno) {
+
+    for (let i = 0; i < this.DiaenterArray.length; i++) {
+
+      if (Sno == this.DiaenterArray[i].Sno) {
+
+        this.DiaenterArray.splice(i, 1);
+      }
+    }
+
   }
 
 
