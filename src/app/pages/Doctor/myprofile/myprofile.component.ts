@@ -73,6 +73,38 @@ export class MyprofileComponent implements OnInit {
   public docmedicalid: any;
   public labels: any;
   public speaklanguages: any;
+  labels4: any;
+  hospitalid: any;
+  signatureurl: any;
+  referbit: any;
+  categoryid: any;
+
+
+  taxidentification: any;
+  businessid: any;
+  commercialcity: any;
+  taxprofessional: any;
+  socialseccurityfundno: any;
+  nameofbank: any;
+  accountName: any;
+  accountNumber: any;
+
+
+  appointmentpercentage: any;
+  monthlysubription: any;
+  clinicNumber: any;
+
+  formatAddress: any;
+  latitude: any;
+  longitude: any;
+  googleAddress: any;
+  vatCheck: any;
+  vatpercentage: any;
+  today = new Date()
+  contractstartdate: any;
+  contractenddate: any;
+  hospitalname: any;
+  subscriptiontype: any;
 
   ngOnInit() {
     this.spinner.show();
@@ -104,8 +136,17 @@ export class MyprofileComponent implements OnInit {
   public getlanguage() {
     this.docservice.GetAdmin_Doctorregistration_LabelsByLanguageID(this.languageid).subscribe(
       data => {
-       
+
         this.labels = data;
+      }, error => {
+      }
+    )
+
+    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
+      data => {
+
+        this.labels4 = data;
+
       }, error => {
       }
     )
@@ -117,7 +158,7 @@ export class MyprofileComponent implements OnInit {
   public GetCountryMaster() {
     this.docservice.GetCountryMasterByLanguageID(this.languageid).subscribe(
       data => {
-       
+
         this.countrylist = data;
 
 
@@ -135,7 +176,7 @@ export class MyprofileComponent implements OnInit {
   public getcitymaster() {
     this.docservice.GetCityMasterBYIDandLanguageID(this.countryid, this.languageid).subscribe(
       data => {
-       
+
         this.citylist = data;
       }, error => {
       }
@@ -155,20 +196,20 @@ export class MyprofileComponent implements OnInit {
   // }
 
   public getdepartmentmaster() {
-   
+
     this.docservice.GetDepartmentMasterByLanguageID(this.languageid).subscribe(
       data => {
-       
+
         this.departmentlist = data;
       }, error => {
       }
     )
   }
   public getdegreemaster() {
-   
+
     this.docservice.GetDegreeMasterBylanguageID(this.languageid).subscribe(
       data => {
-       
+
         this.degreelist = data;
       }, error => {
       }
@@ -179,9 +220,9 @@ export class MyprofileComponent implements OnInit {
 
     this.docservice.GetDoctorDetailsForAdminByLanguageID(this.id, this.languageid).subscribe(
       data => {
-       
+
         this.details = data[0];
-       
+
         this.doctorname = this.details.doctorName,
           this.phno = this.details.mobileNumber,
           this.emailid = this.details.emailID,
@@ -204,7 +245,7 @@ export class MyprofileComponent implements OnInit {
           this.areaid = this.details.areaID,
           this.pincode = this.details.pincode,
           this.docmedicalid = this.details.docmedicalid,
-          this.speaklanguages=this.details.spokenLanguages
+          this.speaklanguages = this.details.spokenLanguages
         this.getcitymaster();
         this.getareamasterbyid();
         this.getservicemaster();
@@ -213,21 +254,21 @@ export class MyprofileComponent implements OnInit {
     )
   }
   public GetcityID(even) {
-   
+
     this.cityid = even.target.value;
     this.getareamasterbyid();
   }
   public GetdepartmentID(even) {
-   
+
     this.departmentid = even.target.value;
   }
   public GetDegreeID(even) {
-   
+
     this.degreeid = even.target.value;
   }
 
   public updatedetails() {
-   
+
     var entity = {
       'LanguageID': this.languageid,
       'DoctorID': this.id,
@@ -259,7 +300,7 @@ export class MyprofileComponent implements OnInit {
   }
 
   public updatemedicalregistration() {
-   
+
     var entity = {
       'LanguageID': this.languageid,
       'DoctorID': this.docmedicalid,
@@ -280,7 +321,7 @@ export class MyprofileComponent implements OnInit {
 
   }
   public updatedoctoreducation() {
-   
+
     var entity = {
       'DoctorID': this.id,
       'DegreeID': this.degreeid,
@@ -306,7 +347,7 @@ export class MyprofileComponent implements OnInit {
 
 
   public onattachmentUpload1(abcd) {
-   
+
     for (let i = 0; i < abcd.length; i++) {
       this.attachments1.push(abcd[i]);
       this.uploadattachments1();
@@ -323,22 +364,22 @@ export class MyprofileComponent implements OnInit {
 
   public uploadattachments1() {
     this.docservice.DoctorPhotoUpload(this.attachments1).subscribe(res => {
-     
+
       this.attachmentsurl1.push(res);
       let a = this.attachmentsurl1[0].slice(2);
-     
+
       let b = 'https://maroc.voiladoc.org' + a;
 
       this.showdocphoto.push(b)
-     
+
 
       this.attachments1.length = 0;
-     
+
     })
     // this.sendattachment();
   }
   public updatedocphoto() {
-   
+
     var entity = {
       'ID': this.id,
       'PhotoURL': this.attachmentsurl1[0]
@@ -367,9 +408,9 @@ export class MyprofileComponent implements OnInit {
 
     this.docservice.GetDoctorHospitalDetailsWeb(this.id, this.languageid).subscribe(
       data => {
-       
+
         this.workingdetails = data;
-       
+
         // this.mid = this.details1.id,
         //   this.mphoto = this.details1.photoUrl
 
@@ -385,9 +426,9 @@ export class MyprofileComponent implements OnInit {
 
     this.docservice.GetDoctorMedicalProofs(this.id).subscribe(
       data => {
-       
+
         this.details1 = data;
-       
+
         // this.mid = this.details1.id,
         //   this.mphoto = this.details1.photoUrl
 
@@ -398,7 +439,7 @@ export class MyprofileComponent implements OnInit {
 
 
   public GetMedicalPhotoEdit(id) {
-   
+
     this.meditt = 1;
     this.medicalphotoid = id;
   }
@@ -406,7 +447,7 @@ export class MyprofileComponent implements OnInit {
 
 
   public onattachmentUpload2(abcd) {
-   
+
     for (let i = 0; i < abcd.length; i++) {
       this.attachments2.push(abcd[i]);
       this.uploadattachments2();
@@ -422,25 +463,25 @@ export class MyprofileComponent implements OnInit {
   }
   public uploadattachments2() {
     this.docservice.DoctorMedicalProof(this.attachments2).subscribe(res => {
-     
+
       this.attachmentsurl2.push(res);
-     
+
       let a = this.attachmentsurl2[0].slice(2);
-     
+
       let b = 'https://maroc.voiladoc.org' + a;
 
       this.photodetail.push(b)
-     
+
 
       this.attachments2.length = 0;
-     
+
     })
     // this.sendattachment();
   }
 
 
   public updatemedicalphoto() {
-   
+
     var entity = {
       'ID': this.medicalphotoid,
       'PhotoURL': this.attachmentsurl2[0]
@@ -466,9 +507,9 @@ export class MyprofileComponent implements OnInit {
 
     this.docservice.GetDoctorIdentityProofs(this.id).subscribe(
       data => {
-       
+
         this.identityphoto = data;
-       
+
         // this.mid = this.details1.id,
         //   this.mphoto = this.details1.photoUrl
 
@@ -477,7 +518,7 @@ export class MyprofileComponent implements OnInit {
     )
   }
   public GetidentityID(id) {
-   
+
     this.identityid = id;
     this.identiyyyds = 1;
   }
@@ -485,7 +526,7 @@ export class MyprofileComponent implements OnInit {
 
 
   public onattachmentUpload(abcd) {
-   
+
     for (let i = 0; i < abcd.length; i++) {
       this.attachments.push(abcd[i]);
       this.uploadattachments();
@@ -503,22 +544,22 @@ export class MyprofileComponent implements OnInit {
 
   public uploadattachments() {
     this.docservice.DoctorIdentityProof(this.attachments).subscribe(res => {
-     
+
       this.attachmentsurl.push(res);
       let a = this.attachmentsurl[0].slice(2);
-     
+
       let b = 'https://maroc.voiladoc.org' + a;
 
       this.showidentityproof.push(b)
       this.attachments.length = 0;
-     
+
     })
     // this.sendattachment();
   }
 
 
   public UpdateIdentityproof() {
-   
+
     var entity = {
       'ID': this.identityid,
       'PhotoURL': this.attachmentsurl[0]
@@ -542,29 +583,29 @@ export class MyprofileComponent implements OnInit {
     })
   }
   public getareamasterbyid() {
-   
+
     this.docservice.GetAreaMasterByCityID(this.cityid).subscribe(
       data => {
-       
+
         this.arealist = data;
       }, error => {
       }
     )
   }
   public GetAreaID(even) {
-   
+
     this.areaid = even.target.value;
     for (let i = 0; i < this.arealist.length; i++) {
-     
+
       if (this.arealist[i].id == this.areaid) {
-       
+
         this.pincode = this.arealist[i].pincode
       }
     }
   }
 
   public GetDepartmentID(even) {
-   
+
     this.departmentid = even.target.value;
     this.getservicemaster();
   }
@@ -572,7 +613,7 @@ export class MyprofileComponent implements OnInit {
   public getservicemaster() {
     this.docservice.GetServiceMasterByDepartmentIDAndLanguageID(this.departmentid, this.languageid).subscribe(
       data => {
-       
+
         this.servicelist = data;
 
 
@@ -586,7 +627,7 @@ export class MyprofileComponent implements OnInit {
   public getdoctorservices() {
     this.docservice.GetDoctorServicesAdminByLanguageID(this.id, this.languageid).subscribe(
       data => {
-       
+
         this.doctorservices = data;
       }, error => {
       }
@@ -602,7 +643,7 @@ export class MyprofileComponent implements OnInit {
     }
 
     this.docservice.InsertDoctorServices(entity).subscribe(data => {
-     
+
       if (data != 0) {
         Swal.fire('Completed', 'Details saved successfully', 'success');
         this.getdoctorservices()
@@ -616,10 +657,10 @@ export class MyprofileComponent implements OnInit {
 
   }
   public DeleteDoctorSrvices(id) {
-   
+
     this.docservice.DeleteDoctorServices(id).subscribe(
       data => {
-       
+
         Swal.fire("Deleted Successfully");
         this.getdoctorservices();
       }, error => {
@@ -629,7 +670,7 @@ export class MyprofileComponent implements OnInit {
 
 
   public DeleteDoctorSlots(id) {
-   
+
     Swal.fire({
       title: 'Are you sure?',
       text: "You Want to Delete This Day Slot!",
@@ -659,7 +700,7 @@ export class MyprofileComponent implements OnInit {
   public getdoctoreducationweb() {
     this.docservice.GetDoctorEducationWebByLanguageID(this.id, this.languageid).subscribe(
       data => {
-       
+
         this.educationlist = data;
 
       }, error => {
@@ -670,7 +711,7 @@ export class MyprofileComponent implements OnInit {
 
 
   public insertdoctoreducation() {
-   
+
     var entity = {
       'DoctorID': this.id,
       'CollegeName': this.colleagename,
@@ -679,7 +720,7 @@ export class MyprofileComponent implements OnInit {
       'Experience': this.id
     }
     this.docservice.InsertDoctorEducation(entity).subscribe(data => {
-     
+
       if (data != 0) {
         Swal.fire('Completed', 'Deatils Added Successfully');
         this.colleagename = "";
@@ -691,7 +732,7 @@ export class MyprofileComponent implements OnInit {
   }
 
   public DeleteDoctorEducation(id) {
-   
+
     Swal.fire({
       title: 'Are you sure?',
       text: "You Want to Delete This Education!",
@@ -718,4 +759,14 @@ export class MyprofileComponent implements OnInit {
     })
   }
 
+
+  checkVatvalue(even) {
+
+    if (even == 1) {
+      this.vatpercentage = 0;
+    }
+    else {
+      this.vatpercentage = 20;
+    }
+  }
 }

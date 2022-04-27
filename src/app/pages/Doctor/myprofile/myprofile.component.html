@@ -429,7 +429,250 @@
       </form>
     </div><br><br>
   </aw-wizard-step>
+  <aw-wizard-step stepTitle="Financial">
+    <hr size="30">
+    <div class="row">
+      <div class="col-lg-3">
 
+      </div>
+      <div class="col-lg-9">
+        <h4 class="mainheader" *ngIf="languageid=='1'">Business registration and invoicing</h4>
+        <h4 class="mainheader" *ngIf="languageid=='6'">Enregistrement et facturation des entreprises</h4>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels4[0].taxidentification}} :</label>
+
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="{{labels4[0].taxidentification}}"
+         disabled [(ngModel)]="taxidentification" name="taxidentification">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels4[0].businessid}} :</label>
+
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" disabled placeholder="{{labels4[0].businessid}}" [(ngModel)]="businessid"
+          name="businessid">
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels4[0].commercial}} :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" disabled placeholder="{{labels4[0].commercial}}" [(ngModel)]="commercialcity"
+          name="commercialcity">
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels4[0].taxprofessional}} :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="{{labels4[0].taxprofessional}}"
+        disabled  [(ngModel)]="taxprofessional" name="taxprofessional">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels4[0].seccuritysocialfundno}} :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="{{labels4[0].seccuritysocialfundno}}"
+        disabled [(ngModel)]="socialseccurityfundno" name="socialseccurityfundno">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+      </div>
+      <div class="col-lg-9">
+        <h4 class="mainheader" *ngIf="languageid=='1'">Bank details</h4>
+        <h4 class="mainheader" *ngIf="languageid=='6'">Coordonnées bancaires</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels4[0].nameofthebank}} :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="{{labels4[0].nameofthebank}}" [(ngModel)]="nameofbank"
+        disabled   name="nameofbank">
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels4[0].accountname}} :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="{{labels4[0].accountname}}" [(ngModel)]="accountName"
+        disabled  name="accountName">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels4[0].accountnumber}} :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="{{labels4[0].accountnumber}}" maxlength="24"
+        disabled [(ngModel)]="accountNumber" name="accountNumber">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label class="Address_label">Exonerated :</label>
+      </div>
+      <div class="col-lg-4">
+        <input type="radio" [value]="1" disabled [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(1)">
+        &nbsp;{{labels[0].yes}}
+        <input type="radio" [value]="0" disabled [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(0)">
+        &nbsp;{{labels[0].no}}
+      </div>
+    </div>
+    <br>
+    <div>
+      <div class="row">
+        <div class="col-lg-3">
+          <label class="Address_label">Vat Percentage :</label>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage"
+          disabled  name="vatpercentage" placeholder="Vat Percentage">
+        </div>
+      </div>
+      <br>
+    </div>
+    <div class="row" *ngIf="vatCheck=='1'">
+      <div class="col-lg-3">
+        <label *ngIf="languageid=='1'">Exoneration period from :</label>
+        <label *ngIf="languageid=='6'">Période d'exonération à partir de :</label>
+        <span class="required">*</span>
+      </div>
+
+      <div class="col-lg-4">
+        <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+          placeholder="{{labels[0].contractstratdate}}" [minDate]="today" name="contractstartdate" required
+          [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractstartdate" bsDatepicker>
+      </div>
+    </div>
+    <br />
+    <div class="row" *ngIf="vatCheck=='1'">
+      <div class="col-lg-3">
+        <label *ngIf="languageid=='1'">Exoneration period to :</label>
+        <label *ngIf="languageid=='6'">Période d'exonération à :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" [bsConfig]="{ showWeekNumbers:false }"
+          placeholder="{{labels[0].contractenddate}}" [minDate]="contractstartdate" name="contractenddate" required
+          [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractenddate" bsDatepicker>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="hospitalid=='590'">
+      <div class="col-lg-3">
+      </div>
+      <div class="col-lg-9">
+        <h4 class="mainheader" *ngIf="languageid=='1'">Subscription setup</h4>
+        <h4 class="mainheader" *ngIf="languageid=='6'">Configuration de l'abonnement</h4>
+      </div>
+    </div><br>
+    <div class="row" *ngIf="hospitalid=='590'">
+      <div class="col-lg-3">
+        <label class="Address_label">{{labels4[0].subscriptiontype}} :</label>
+        <span class="required">*</span>
+      </div>
+      <div class="col-md-8">
+        <input type="radio" name="subscriptiontype" [(ngModel)]="subscriptiontype"
+        disabled  [value]="1">{{labels4[0].monthlySubscription}}
+        &nbsp;
+        <input type="radio" name="subscriptiontype" disabled [(ngModel)]="subscriptiontype" [value]="2">
+        {{labels4[0].appointmentpercentage}}
+        &nbsp;
+        <input type="radio" name="subscriptiontype" disabled [(ngModel)]="subscriptiontype" [value]="3"> {{labels4[0].both}}
+      </div>
+    </div><br>
+    <div *ngIf="subscriptiontype=='1'">
+      <div class="row">
+        <div class="col-lg-3">
+          <label class="Address_label">{{labels4[0].monthlySubscription}} :</label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" placeholder="{{labels4[0].monthlySubscription}}" name="monthlysubription"
+            [(ngModel)]="monthlysubription" class="form-control"
+            onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+        </div>
+      </div><br>
+
+    </div>
+    <div *ngIf="subscriptiontype=='2'">
+      <div class="row">
+        <div class="col-lg-3">
+          <label class="Address_label">{{labels4[0].appointmentpercentage}} :</label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
+            [(ngModel)]="appointmentpercentage" class="form-control"
+            onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+        </div>
+      </div><br>
+    </div>
+    <div *ngIf="subscriptiontype=='3'">
+      <div class="row">
+        <div class="col-lg-3">
+          <label class="Address_label">{{labels4[0].appointmentpercentage}} :</label>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" placeholder="{{labels4[0].appointmentpercentage}}" name="appointmentpercentage"
+            [(ngModel)]="appointmentpercentage" class="form-control"
+            onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-lg-3">
+          <label class="Address_label">{{labels4[0].monthlySubscription}} :</label>
+          <span class="required">*</span>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" placeholder="{{labels4[0].monthlySubscription}}" name="monthlysubription"
+            [(ngModel)]="monthlysubription" class="form-control"
+            onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+        </div>
+      </div><br>
+    </div>
+    <div class="row">
+      <div class="col-lg-5">
+      </div>
+      <div class="col-lg-2">
+        <!-- <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+          (click)="updatedetails()">{{labels[0].update}}</button> -->
+      </div>
+      <div class="col-lg-5">
+      </div>
+      <button type="button" class="btn btncolor Address_label" awPreviousStep>{{labels[0].previous}}</button>
+    </div><br>
+
+
+  </aw-wizard-step>
 
   <!-- <aw-wizard-step stepTitle="{{labels[0].service}}">
     <br>
