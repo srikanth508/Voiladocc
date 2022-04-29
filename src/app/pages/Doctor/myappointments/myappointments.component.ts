@@ -1080,8 +1080,8 @@ export class MyappointmentsComponent implements OnInit {
       this.preappointmentid = details.appointmentID;
     this.appointmentid = details.appointmentID;
     this.email = details.pEmail;
-    this.patientid =  details.patientID,
-    this.apptypeid = details.appointmentTypeID;
+    this.patientid = details.patientID,
+      this.apptypeid = details.appointmentTypeID;
     this.countryid = details.countryID;
     this.cityid = details.cityID;
     this.areaid = details.areaID
@@ -1159,8 +1159,8 @@ export class MyappointmentsComponent implements OnInit {
     this.countryid = details.countryID;
     this.cityid = details.cityID;
     this.email = details.pEmail;
-    this.patientid =  details.patientID,
-    this.areaid = details.areaID
+    this.patientid = details.patientID,
+      this.areaid = details.areaID
     this.preslots = details.slots
     this.appdate = details.appdate
     this.prepatientemail = details.pEmail;
@@ -1176,7 +1176,7 @@ export class MyappointmentsComponent implements OnInit {
     debugger
     this.sendMailPrescriptions = 1;
     this.getserverdateandtime();
-    if (this.apptypeid == 1||5) {
+    if (this.apptypeid == 1 || 5) {
       this.patientiddd = details.patientID,
         this.preappointmentid = details.appointmentID;
       this.apptypeid = details.appointmentTypeID;
@@ -1497,7 +1497,7 @@ export class MyappointmentsComponent implements OnInit {
       'ICDID': this.icrcodeid,
       'SubstainablenotPermitted': this.substainable,
       'HowmanyRefills': this.howmanyrefills
-  
+
     }
     this.qwerty2.push(entity1);
     this.idcount = this.idcount + 1;
@@ -1540,9 +1540,9 @@ export class MyappointmentsComponent implements OnInit {
 
     debugger
     const element = document.getElementById("tablePrescription").innerHTML;
-   const text= document.getElementById("tablePrescription").style.display = "inline";
-   debugger
-   var text1 = element.replace(/\s+/g, ' ');
+    const text = document.getElementById("tablePrescription").style.display = "inline";
+    debugger
+    var text1 = element.replace(/\s+/g, ' ');
 
     // element.innerHTML = "New Heading";
     debugger
@@ -1590,14 +1590,14 @@ export class MyappointmentsComponent implements OnInit {
             this.tablecuont1 = 0;
             this.VisitDoctorAppointmentStatus(this.preappointmentid);
             debugger
-            this.qwerty2=[];
+            this.qwerty2 = [];
 
             var smsdesc = "Following your consultation with Dr " + this.user + " added prescription for you"
             // this.InsertPrscriptionNotifications()
             // this.InsertNotificationPrescription()
             this.GetDoctorPrescrptionTemplates();
-
-            // this.qwerty2 = []
+            this.Prescription=1
+            this.qwerty2 = []
             this.display = "none";
 
           }
@@ -1615,13 +1615,13 @@ export class MyappointmentsComponent implements OnInit {
             this.SendTwiliSms(smsdesc, this.smsmobileno)
             debugger
             debugger
-
+            this.Prescription=1
             this.GetDoctorPrescrptionTemplates()
-            this.qwerty2=[];
-            // this.qwerty2 = []
+            this.qwerty2 = [];
+            this.qwerty2 = []
             this.display = "none";
 
-// var text="<table style='font-family: arial,sans-serif;border-collapse: collapse;width:88%;margin-left:6%;'> <tr> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Date</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Nom du médicament</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Posologie</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Quantité totale à dispenser</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Renouvellement</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Note au pharmacien</th> </tr> <tr > <td>Prescrition</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>+"+djjd+"</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.SIG}</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.DispenseQuantity} </td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'> </td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.HowmanyRefills}</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.NoteToPharmasist} </td> </tr> </table><br><br><br><br><br><br><br><br><br><br>"
+            // var text="<table style='font-family: arial,sans-serif;border-collapse: collapse;width:88%;margin-left:6%;'> <tr> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Date</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Nom du médicament</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Posologie</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Quantité totale à dispenser</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Renouvellement</th> <th style='border: 1px solid #dddddd;text-align: left;padding: 8px;background-color: #322b6b;color:white'> Note au pharmacien</th> </tr> <tr > <td>Prescrition</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>+"+djjd+"</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.SIG}</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.DispenseQuantity} </td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'> </td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.HowmanyRefills}</td> <td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>{item.NoteToPharmasist} </td> </tr> </table><br><br><br><br><br><br><br><br><br><br>"
 
 
           }
@@ -1830,7 +1830,7 @@ export class MyappointmentsComponent implements OnInit {
       this.testpatientemail = pemail;
     this.prepatientemail = pemail;
     this.sendMailPrescriptions = 2;
-    if (appointmentTypeID == 1||5) {
+    if (appointmentTypeID == 1 || 5) {
       this.testdisplay = "block";
       this.diapatientid = patientID;
       this.diaappointmentID = appointmentID;
@@ -2029,7 +2029,7 @@ export class MyappointmentsComponent implements OnInit {
     // if (this.templateid != 0) {
     //   this.UpdateTemplte()
     // }
-  
+
     // this.testslist.length = 0;
     // this.tsetssslist.length = 0;
     // this.diagnostictestname = ""
@@ -2147,8 +2147,9 @@ export class MyappointmentsComponent implements OnInit {
         if (data != 0) {
           if (this.languageid == 1) {
             Swal.fire('Completed', 'Diagnostic Tests Added successfully', 'success');
-          
-        
+
+            this.qwerty = [];
+            this.qwerty.length = 0
             this.getdiagnostictests();
             this.SerachtestOn = 0;
             this.testsname = "";
@@ -2160,6 +2161,7 @@ export class MyappointmentsComponent implements OnInit {
             // this.tsetssslist = 0;
             this.testssid = 0;
             this.followupvisit = 0;
+            this.Test=1
           }
           else if (this.languageid == 6) {
             Swal.fire('Détails enregistrés', 'Test de laboratoire', 'success');
@@ -2168,6 +2170,8 @@ export class MyappointmentsComponent implements OnInit {
             // this.qwerty = [];
             // this.qwerty.length = 0;
             debugger
+            this.qwerty = [];
+            this.qwerty.length = 0
             this.getdiagnostictests();
             this.SerachtestOn = 0;
             this.testsname = "";
@@ -2180,6 +2184,7 @@ export class MyappointmentsComponent implements OnInit {
             this.SerachtestOn = 0;
             this.followupvisit = 0;
             debugger
+            this.Test=1
           }
 
         }
@@ -2196,7 +2201,7 @@ export class MyappointmentsComponent implements OnInit {
       this.SendTwiliSms(smsdesc, this.smsmobileno)
     }
 
-   
+
   }
 
   public Insertnotificationtestazure() {
@@ -2679,7 +2684,7 @@ export class MyappointmentsComponent implements OnInit {
     this.slots = slots
     this.categoryid = categoryid;
     this.smsmobileno = smsmobileno
-    if (appointmentTypeID == 1||5) {
+    if (appointmentTypeID == 1 || 5) {
       this.soapdisplay = "block"
 
       this.objective = "",
@@ -3022,7 +3027,7 @@ export class MyappointmentsComponent implements OnInit {
         this.clear()
         this.icdcode = ""
         this.icddesc = ""
-
+        this.soappdf=1
         this.followupvisit = 0;
         this.shoprescphoto = [];
       }
@@ -3716,7 +3721,7 @@ export class MyappointmentsComponent implements OnInit {
           this.referalnotes = " DATE: " + this.todaydate + " <p>SUBJECT : Referral To " + this.doctorname + "</p > <p>RE: Mr. " + this.patientname + "<p>i am referring my patient " + this.patientname + " for review of his new onset.<p>&nbsp;</p > <p>Thank you In advance for attending to the patients's health needs</p><p>" + this.user + "<br>" + this.MobileNumber + "</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>&nbsp;Consultation Summary<p><strong>Patient Name </strong>: &nbsp;" + this.patientname + "</p><p><strong>Date of Consult : &nbsp;</strong> &nbsp;" + this.todaydate + "</p><p><strong>Provider </strong>: &nbsp;  " + this.user + "<br>" + this.MobileNumber + "<br>" + this.Hospital_ClinicName + "</p>"
         }
         else {
-           this.referalnotes = " DATE :" + this.todaydate + "<br>OBJET : Lettre de recommandation <br> Cher(e) confrère (consœur), Je vous réfère le patient  " + this.patientname + "<p>Pour le(s) motif(s) et diagnostic(s) suivant(s) : " + "<p>En Vous remerciant, je vous prie d’agréer, mon cher confrère (consœur) mes salutations les meilleures.<br><br>" + this.user + "<br>" + this.MobileNumber + "<br>" + this.Hospital_ClinicName + "</p>"
+          this.referalnotes = " DATE :" + this.todaydate + "<br>OBJET : Lettre de recommandation <br> Cher(e) confrère (consœur), Je vous réfère le patient  " + this.patientname + "<p>Pour le(s) motif(s) et diagnostic(s) suivant(s) : " + "<p>En Vous remerciant, je vous prie d’agréer, mon cher confrère (consœur) mes salutations les meilleures.<br><br>" + this.user + "<br>" + this.MobileNumber + "<br>" + this.Hospital_ClinicName + "</p>"
         }
 
       }, error => {
@@ -3990,12 +3995,11 @@ export class MyappointmentsComponent implements OnInit {
 
 
   public sendmail2() {
-    if(this.languageid==1)
-    {
-      var desc=this.referalnotes+"<br>"+"Welcome to Voiladoc. If you would like to know more about Voiladoc and wish to join the Voiladoc network as a provider, please click on this link, https://voiladoc.ma/professionnel-de-sante/ or call 522446145."
+    if (this.languageid == 1) {
+      var desc = this.referalnotes + "<br>" + "Welcome to Voiladoc. If you would like to know more about Voiladoc and wish to join the Voiladoc network as a provider, please click on this link, https://voiladoc.ma/professionnel-de-sante/ or call 522446145."
     }
-    else{
-      var desc=this.referalnotes+"<br>"+"Welcome to Voiladoc. If you would like to know more about Voiladoc and wish to join the Voiladoc network as a provider, please click on this link, https://voiladoc.ma/professionnel-de-sante/ or call 522446145."
+    else {
+      var desc = this.referalnotes + "<br>" + "Welcome to Voiladoc. If you would like to know more about Voiladoc and wish to join the Voiladoc network as a provider, please click on this link, https://voiladoc.ma/professionnel-de-sante/ or call 522446145."
     }
     var entity = {
       'emailto': this.doctoremail,
@@ -6051,9 +6055,11 @@ export class MyappointmentsComponent implements OnInit {
 
   public sendattchmenturl = [];
   emailurl: any;
+  loader: boolean;
 
   public SavePdf() {
-    this.spinner.show()
+    // this.spinner.show()
+    this.loader = true;
     var data = document.getElementById('Prescriptions');
 
     html2canvas(data).then(canvas => {
@@ -6074,7 +6080,7 @@ export class MyappointmentsComponent implements OnInit {
         doc.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      this.spinner.show()
+   
       doc.deletePage(1)
       var pdf = doc.output('blob');
       var file = new File([pdf], "Report" + ".pdf");
@@ -6082,7 +6088,7 @@ export class MyappointmentsComponent implements OnInit {
       body.append('Dan', file);
       debugger
       let folder = this.patientid + '/' + 'Consulation Report'
-      this.spinner.show()
+
       this.docservice.DoctorReports(file, folder).subscribe(res => {
         ;
         // ReceiptUpload
@@ -6093,10 +6099,10 @@ export class MyappointmentsComponent implements OnInit {
 
         let b = 'https://maroc.voiladoc.org' + a;
         this.emailurl = b;
-        this.spinner.show()
+
         this.SendMailReport()
         this.updateReport();
-      
+
       });
 
       // doc.save('Prescriptions.pdf');
@@ -6124,11 +6130,11 @@ export class MyappointmentsComponent implements OnInit {
 
     if (this.languageid == 1) {
       var sub = "Medical report";
-      var emaildesc = "As you requested, " + this.user + " sent a medical report. Please click on the link below." + this.emailurl + "<br><br>" + 'Regards,' + "<br>" + 'Voiladoc Team'
+      var emaildesc = "As you requested, " + this.user + " sent a medical report. Please click on the link below." + '<span class="highlightText">' + this.emailurl + '</span>' + "<br><br>" + 'Regards,' + "<br>" + 'Voiladoc Team'
     }
     else {
       var sub = "Rapport de consultation"
-      var emaildesc = "Comme vous l'avez demandé, le " + this.user + " a envoyé un rapport médical. Veuillez cliquer sur le lien ci-dessous." + this.emailurl + "<br><br>" + 'Cordialement,' + "<br>" + 'Voiladoc Team'
+      var emaildesc = "Comme vous l'avez demandé, le " + this.user + " a envoyé un rapport médical. Veuillez cliquer sur le lien ci-dessous." + '<span class="highlightText">' + this.emailurl + '</span>' + "<br><br>" + 'Cordialement,' + "<br>" + 'Voiladoc Team'
     }
 
     var entity = {
@@ -6142,6 +6148,7 @@ export class MyappointmentsComponent implements OnInit {
     this.docservice.sendemail(entity).subscribe(data => {
 
       let res = data;
+      this.loader = false;
       if (this.languageid == 1) {
         Swal.fire('Mail sent successfully.');
       }
@@ -6149,6 +6156,8 @@ export class MyappointmentsComponent implements OnInit {
       else if (this.languageid == 6) {
         Swal.fire('Email envoyé avec succès');
       }
+    }, error => {
+      this.loader = false;
     })
   }
 

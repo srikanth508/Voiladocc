@@ -101,8 +101,8 @@
                         <p style="float:left"><b>{{docnoti.notificationtime}}</b></p><br>
                         <br>
                         <div *ngIf="doctorid!=undefined&&recpid==undefined">
-                            <!-- <button class="chatnow" data-dismiss="modal" style="float: left;"
-                                (click)="updateseenbit(docnoti.id)">{{labels[0].seen}}</button> -->
+                            <button class="chatnow" data-dismiss="modal" style="float: left;"
+                                (click)="updateseenbit(docnoti.id)">{{labels[0].seen}}</button>
                             <button class="chatnow" data-dismiss="modal" style="float: right;"
                                 (click)="updateseenbit(docnoti.id)"
                                 *ngIf="docnoti.notificationTypeID!=17">{{labels[0].seenAll}}</button><br>

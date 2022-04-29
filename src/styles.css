@@ -233,8 +233,8 @@ label{
      }
      label{
       font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      color: #828282;
+      /* font-weight: 600; */
+      /* color: #472626; */
       font-size: 13px;
       
      }
@@ -390,4 +390,10 @@ button:disabled {
   border: none;
   background-color: #f18235;
   border-radius: 10px;
+}
+
+
+.highlightText {
+ text-decoration: underline;
+ color:red
 }

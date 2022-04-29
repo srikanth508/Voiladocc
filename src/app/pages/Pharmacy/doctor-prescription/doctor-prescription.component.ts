@@ -81,8 +81,8 @@ export class DoctorPrescriptionComponent implements OnInit {
     const locale = 'en-US';
     this.todaydate = formatDate(myDate, format, locale);
 
-    var kkk = this.SDate.setDate(this.SDate.getDate() - 7);
-    var lll = this.EDate.setDate(this.EDate.getDate() + 7);
+    var kkk = this.SDate.setDate(this.SDate.getDate() - 0);
+    var lll = this.EDate.setDate(this.EDate.getDate() + 2);
 
     this.startdate = formatDate(kkk, format, locale);
     this.enddate = formatDate(lll, format, locale);
