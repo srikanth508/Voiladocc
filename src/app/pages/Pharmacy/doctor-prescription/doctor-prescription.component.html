@@ -92,7 +92,7 @@
 
             </td>
             <td>{{details.paymentType}}</td>
-            <td>{{details.paidAmount}}</td>
+            <td>{{details.paidAmount|number:'1.2-2'}}</td>
             <td>
               <ng-template #tipcontent12>{{labels[0].medicines}}</ng-template>
               <a [ngbTooltip]="tipcontent12">

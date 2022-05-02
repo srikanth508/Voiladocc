@@ -419,7 +419,7 @@
   <div class="row">
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions" (click)="getTypeID(1)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -443,7 +443,7 @@
     </div>
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions"  (click)="getTypeID(2)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -465,7 +465,7 @@
     </div>
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions" (click)="getTypeID(4)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -486,7 +486,7 @@
     </div>
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions"  (click)="getTypeID(3)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -690,6 +690,29 @@
       <br />
       <br />
     </div>
+
+
+    <div class="col-lg-3">
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;" 
+        *ngFor="let cou of diaphacounts">
+        <br />
+        <label style="color: black;font-size: 30px;color: white;">
+          <b style="font-size: 15px;">
+            Revenu(s) d'abonnement
+
+          </b>
+        </label>
+        <br />
+
+        <label style="color: black;font-size: 30px;color: #f17e2d;">
+          <b>
+            <u style="font-size: 20px;">{{grandTotal|number:'1.2-2'}} DH</u>
+          </b>
+        </label>
+      </div>
+      <br />
+      <br />
+    </div>
     <!-- <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;" [routerLink]="['/PharmacyReport']"
         *ngFor="let cou of diaphacounts">
@@ -743,7 +766,7 @@
 
     </div>
     <div class="col-lg-3">
-      <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;" [routerLink]="['/DiagnosticHomeReport']"
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;" 
         *ngFor="let cou of diaphacounts">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
@@ -757,6 +780,29 @@
         <label style="color: black;font-size: 30px;color: #f17e2d;">
           <b>
             <u style="font-size: 20px;">{{cou.diagnosticpadiamount|number:'1.2-2'}} DH</u>
+          </b>
+        </label>
+      </div>
+      <br />
+      <br />
+    </div>
+
+
+    <div class="col-lg-3">
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;" 
+        *ngFor="let cou of diaphacounts">
+        <br />
+        <label style="color: black;font-size: 30px;color: white;">
+          <b style="font-size: 15px;">
+            Revenu(s) d'abonnement
+
+          </b>
+        </label>
+        <br />
+
+        <label style="color: black;font-size: 30px;color: #f17e2d;">
+          <b>
+            <u style="font-size: 20px;">{{PhargrandTotal|number:'1.2-2'}} DH</u>
           </b>
         </label>
       </div>
