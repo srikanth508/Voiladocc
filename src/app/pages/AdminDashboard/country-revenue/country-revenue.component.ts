@@ -60,22 +60,22 @@ export class CountryRevenueComponent implements OnInit {
 
     this.startdate = formatDate(firstDay, format, locale);
     this.enddate = formatDate(lastDay, format, locale);
-
+    this.typeid=localStorage.getItem('TypeID');
     this.GetAllProviderReports();
 
   }
 
 
 
-  dummAllDetails:any;
+  dummAllDetails: any;
 
   public GetAllProviderReports() {
     debugger
     this.docservice.GetAllCountryManagerReports(this.startdate, this.enddate, 1, this.languageid).subscribe(
       data => {
         debugger
-        this.AllDetails = data;
         this.dummAllDetails = data;
+        this.AllDetails =data.filter(x => x.typeid == this.typeid)
         this.count = this.AllDetails.length;
       }, error => {
       }

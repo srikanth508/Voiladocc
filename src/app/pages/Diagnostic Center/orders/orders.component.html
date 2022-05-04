@@ -85,7 +85,7 @@
             </td>
 
             <td>
-              {{details.paidAmount}}
+              {{details.paidAmount|number:'1.2-2'}} DH
             </td>
             <td>
               <ng-template #tipcontent18>{{labels[0].tests}}</ng-template>
@@ -374,8 +374,11 @@
                     <td>{{listss.testName}}</td>
                     <td>{{listss.description}}</td>
                     <td>
-                      <input type="text" [(ngModel)]="listss.fees" name="listss.fees" class="form-control"
+                      <input type="text" [(ngModel)]="listss.fees" name="listss.fees" class="form-control" *ngIf="hideupdate=='0'"
                         placeholder="{{labels[0].price}}">
+
+                        <input type="text"  class="form-control" *ngIf="hideupdate=='1'"
+                        placeholder="{{listss.fees|number:'1.2-2'}}">
 
                     </td>
                     <td><input type="checkbox" disabled [(ngModel)]="listss.available"></td>

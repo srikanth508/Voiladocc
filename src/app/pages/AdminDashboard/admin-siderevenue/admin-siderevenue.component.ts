@@ -719,4 +719,9 @@ export class AdminSiderevenueComponent implements OnInit {
     localStorage.setItem('TypeID', id)
   }
 
+
+  getTypeID1(id)
+  {
+    localStorage.setItem('TypeID', id)
+  }
 }
