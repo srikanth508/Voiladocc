@@ -32,6 +32,13 @@ export class VediocallComponent implements OnInit {
   diagnosis: any;
   howmanyrefills: any;
   testsname: any;
+  Prescription: any;
+  Test: any;
+  soappdf: any;
+  medicalcertificate: any;
+  referals: any;
+  medical: any;
+  pdfprslist: any;
   // showModal: boolean;
 
   constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute, private ref: ChangeDetectorRef, public opentokService: OpentokService, private spinner: NgxSpinnerService) {
@@ -3032,13 +3039,7 @@ debugger
 
 
 
-  Prescription: any;
-  Test: any;
-  soappdf: any;
-  medicalcertificate: any;
-  referals: any;
-  medical: any;
-  pdfprslist: any;
+
   
   public DownloadPDf() {
     this.spinner.show()

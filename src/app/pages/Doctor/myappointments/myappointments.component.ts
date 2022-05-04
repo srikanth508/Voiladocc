@@ -6004,6 +6004,8 @@ export class MyappointmentsComponent implements OnInit {
       this.spinner.hide()
       // document.getElementById("mymodalss").click();
 
+    },error=>{
+      this.spinner.hide()
     })
 
   }

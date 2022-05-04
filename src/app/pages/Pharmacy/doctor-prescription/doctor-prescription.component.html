@@ -534,7 +534,7 @@
               <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
             </ngx-dropzone>
             <span>
-              <img src="{{imageurl}}" style="height: 36px;"></span>
+              <img src="{{imageurl}}" (click)="openNewwindow(imageurl)" style="height: 36px;"></span>
           </div>
         </div>
         <div class="row" *ngIf="showedit=='0'">
@@ -622,7 +622,7 @@
               <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
             </ngx-dropzone>
             <span>
-              <img src="{{imageurl}}" style="height: 35px;"></span>
+              <img src="{{imageurl}}" (click)="openNewwindow(imageurl)" style="height: 35px;"></span>
           </div>
         </div><br>
         <div class="row" *ngIf="showedit=='0'">

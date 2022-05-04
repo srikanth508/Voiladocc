@@ -54,7 +54,7 @@
       </select>
     </div>
     <div class="col-lg-2">
-      <b>Total : {{GrandTotal}}</b>
+      <b>Total : {{GrandTotal|number:'1.2-2'|noComma}} DH</b>
     </div>
     <div class="col-lg-1">
       <b>{{labels[0].count}} : {{count}}</b>
@@ -110,9 +110,9 @@
             <td>{{details.emailID}}</td>
             <td>{{details.diagnosticCenterName}}</td>
             <td>{{details.paymentType}}</td>
-            <td>{{details.paidAmount}}</td>
-            <td>{{details.meridionalCommission}}</td>
-            <td>{{details.deliveryCharges}}</td>
+            <td>{{details.paidAmount|number:'1.2-2'|noComma}} DH</td>
+            <td>{{details.meridionalCommission|number:'1.2-2'|noComma}} DH</td>
+            <td>{{details.deliveryCharges|number:'1.2-2'|noComma}} DH</td>
             <!-- <td></td> -->
           </tr>
 

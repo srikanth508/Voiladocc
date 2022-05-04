@@ -60,6 +60,11 @@ export class CountryRevenueComponent implements OnInit {
 
     this.startdate = formatDate(firstDay, format, locale);
     this.enddate = formatDate(lastDay, format, locale);
+
+
+    this.startdate=localStorage.getItem('SDATE');
+    this.enddate=localStorage.getItem('EDATE')
+
     this.typeid=localStorage.getItem('TypeID');
     this.GetAllProviderReports();
 

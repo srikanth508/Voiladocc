@@ -29,14 +29,14 @@
     </div>
     <div class="col-lg-3">
 
-      <select class="form-control" (change)="GettypeID($event)" *ngIf="languageid==1">
+      <select class="form-control" (change)="GettypeID($event)" *ngIf="languageid==1" [(ngModel)]="typeid" name="typeid">
         <option value="0">Select</option>
         <option value="4">Doctor</option>
         <option value="1">Nurse</option>
         <option value="2">Phsiotherapist</option>
         <option value="3">Midwife</option>
       </select>
-      <select class="form-control" (change)="GettypeID($event)" *ngIf="languageid==6">
+      <select class="form-control" (change)="GettypeID($event)" *ngIf="languageid==6" [(ngModel)]="typeid" name="typeid">
         <option value="0">Sélectionner</option>
         <option value="4">Médecin</option>
         <option value="1">Infirmière</option>
