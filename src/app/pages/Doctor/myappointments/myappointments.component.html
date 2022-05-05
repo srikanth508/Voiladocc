@@ -2,6 +2,8 @@
   [fullScreen]="true">
   <p style="color: white"> Loading... </p>
 </ngx-spinner>
+
+<app-loader *ngIf="loader==true"></app-loader>
 <div class="container-fluid card card:hover headerrspace">
   <div class="row headerspace">
     <div class="col-lg-3">
@@ -479,7 +481,8 @@
             <div class="col-lg-4">
             </div>
             <div class="col-lg-3">
-              <button type="button" class="btn btncolor" (click)="GetFolloupVistID()" data-dismiss="modal">Sauvegarder </button>
+              <button type="button" class="btn btncolor" (click)="GetFolloupVistID()" data-dismiss="modal">Sauvegarder
+              </button>
             </div>
           </div>
 
@@ -505,7 +508,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" >Souhaitez-vous envoyer ce document par e-mail au patient ?</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 14px;">Souhaitez-vous envoyer ce document par
+          e-mail au patient ?</h5>
         <!-- <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='1'">Refund</h5>
         <h5 class="modal-title" id="exampleModalLabel" *ngIf="languageid=='6'"> Remboursement au patient</h5> -->
 
@@ -593,7 +597,7 @@
         </button>
       </div>
 
-      <div class="modal-body" id="Prescriptions">
+      <div class="modal-body" id="Prescriptions" style="overflow: auto;">
         <div class="container-fluid" *ngFor="let alldetails of pdfprslist">
           <div *ngIf="alldetails.prescriptionExists!='0'&&Prescription==1">
             <div class="row">
@@ -797,7 +801,7 @@
           </div>
           <!-- Test -->
 
-          <div *ngIf="alldetails.diagnosticTestExist!='0'&&soappdf==1">
+          <div *ngIf="alldetails.diagnosticTestExist!='0'&&Test==1">
             <div class="row">
               <div class="col-lg-5">
                 <img src="assets/Images/logo.png" style="width: 26%;">
@@ -1706,9 +1710,9 @@
               </div>
 
             </div><br> -->
-            <div class="row" *ngIf="tablecuont1=='1'" id="tablePrescription" > 
+            <div class="row" *ngIf="tablecuont1=='1'" id="tablePrescription">
               <div class="col-lg-12">
-                <table >
+                <table>
                   <thead>
                     <tr>
                       <th>{{labels[0].drugName}}</th>
@@ -1772,7 +1776,7 @@
               </div>
               <div class="col-lg-2">
                 <button type="button" style="background-color: #f18235;color: white;" class="btn btn-default"
-                  (click)="insertdetails()"  data-toggle="modal" data-target="#PdfsCheck">{{labels[0].save}}</button>
+                  (click)="insertdetails()" data-toggle="modal" data-target="#PdfsCheck">{{labels[0].save}}</button>
               </div>
               <div class="col-lg-5">
               </div>
@@ -1836,8 +1840,8 @@
                   <span class="required">*</span>
                 </div>
                 <div class="col-lg-6">
-                  <input type="text" class="form-control" placeholder="Tests" [(ngModel)]="diagnostictestname"
-                    name="diagnostictestname">
+                  <textarea class="form-control" placeholder="Tests" [(ngModel)]="diagnostictestname" rows="4"
+                    name="diagnostictestname"></textarea>
                 </div>
               </div><br>
               <div class="row">
@@ -1867,7 +1871,7 @@
                           <ng-template #tipcontent2>{{labels[0].delete}}</ng-template>
                           <a [ngbTooltip]="tipcontent2">
                             <img src="assets/Images/dell.png" style="width: 20px;margin-left: 10px;"
-                              (click)="delete(diagtest.Sno)">
+                              (click)="deleteDiagnostic(diagtest.Sno)">
                           </a>
                         </td>
                       </tr>
@@ -1881,7 +1885,7 @@
                 </div>
                 <div class="col-lg-5">
                   <button type="button" style="background-color: #f18235;color: white;" class="btn btn-secondary"
-                    (click)="insertDiagnostictest()">{{labels[0].save}}</button>
+                    (click)="insertDiagnostictest()" data-toggle="modal" data-target="#PdfsCheck">{{labels[0].save}}</button>
                 </div>
                 <div class="col-lg-2">
                 </div>
@@ -1897,8 +1901,11 @@
                   <!-- <input id="typeahead-basic" type="text" class="form-control" placeholder="{{labels[0].drugName}}"
                     [(ngModel)]="medicinename" [ngModelOptions]="{standalone: true}" [ngbTypeahead]="search1"
                     (ngModelChange)="GetDrugNameID()" /> -->
-                  <input type="text" [(ngModel)]="testsname" name="testsname" class="form-control"
-                    placeholder="{{labels[0].testName}}" (ngModelChange)="SearchTestname(testsname)">
+
+                  <textarea [(ngModel)]="testsname" name="testsname" class="form-control"
+                    placeholder="{{labels[0].testName}}" (ngModelChange)="SearchTestname(testsname)"></textarea>
+
+
                 </div>
               </div><br>
             </div>
@@ -1960,7 +1967,8 @@
               </div>
               <div class="col-lg-5">
                 <button type="button" style="background-color: #f18235;color: white;" class="btn btn-secondary"
-                data-toggle="modal" data-target="#PdfsCheck" (click)="insertDiagnostictestdetails()">{{labels[0].save}}</button>
+                  data-toggle="modal" data-target="#PdfsCheck"
+                  (click)="insertDiagnostictestdetails()">{{labels[0].save}}</button>
               </div>
               <div class="col-lg-2">
               </div>
@@ -2938,7 +2946,7 @@
             </div>
             <div class="col-lg-2">
               <button type="button" class="btn btncolor" style="background-color: #f18235;" data-dismiss="modal"
-                data-toggle="modal" data-target="#mymedicalcertficate"
+                data-toggle="modal"   data-target="#PdfsCheck"
                 (click)="InsertSickSlipGenarator()">{{labels1[0].generate}}</button>
             </div>
             <div class="col-lg-5">
@@ -2974,8 +2982,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" style="background-color: #f18235; color: white;" class="btn btn-default"
-          (click)="sendmail()" data-dismiss="modal">{{labels[0].send}}
+        <button type="button" style="background-color: #f18235; color: white;" class="btn btn-default" 
+          (click)="sendmail()" data-toggle="modal" data-target="#PdfsCheck">{{labels[0].send}}
         </button>
         <!-- <button type="button" style="background-color: #f18235; color: white;" class="btn btn-default"
           data-dismiss="modal">{{labels[0].close}}</button> -->

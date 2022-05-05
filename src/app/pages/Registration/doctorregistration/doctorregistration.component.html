@@ -341,7 +341,7 @@
                 <label id="imp" *ngIf="languageid=='6'">Hôpital / Clinique : </label>
                 <span class="required">*</span>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-3">
                 <ng-multiselect-dropdown [placeholder]="SelectLabel" required [data]="hospitalcliniclist"
                   [settings]="hospitadd" (onSelect)="GetHospitalID($event)">
                 </ng-multiselect-dropdown>

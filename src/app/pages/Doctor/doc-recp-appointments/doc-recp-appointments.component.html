@@ -74,8 +74,18 @@
             <td>{{details.departmentname}}</td>
             <td>{{details.reasonForVisit}}</td>
             <td>
+
+              <label *ngIf="details.earlycall=='2'&&details.isVisited=='0'"
+              style="color: red;">{{labels[0].earlycallaccpeted}}
+            </label>
+
+            <label *ngIf="details.earlycall=='3'&&details.isVisited=='0'"
+              style="color: red;">{{labels[0].earlycallrejeted}}
+            </label>
+            <label *ngIf="details.followApp=='1'" style="color:red;font-size: 5px;">{{labels[0].followup}}</label>
+
               <label
-                *ngIf="details.accepted=='1'&&details.isVisited=='0'&&details.docCancelled=='0'&&details.cancelled=='0'&&details.noShow=='0'"
+              *ngIf=" details.accepted=='1' &&details.cancelled=='0' &&details.docCancelled=='0'&&details.isVisited=='0' &&details.noShow=='0'&&details.earlycall=='0'"
                 style="color: green;">{{labels[0].accepted}}</label>
               <label *ngIf="details.cancelled=='1'" style="color: red;">{{labels[0].cancelled}}</label>
               <label *ngIf="details.isVisited=='1'&&details.accepted=='1'"

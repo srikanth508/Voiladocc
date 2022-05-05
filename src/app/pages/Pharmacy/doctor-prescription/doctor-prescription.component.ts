@@ -81,8 +81,8 @@ export class DoctorPrescriptionComponent implements OnInit {
     const locale = 'en-US';
     this.todaydate = formatDate(myDate, format, locale);
 
-    var kkk = this.SDate.setDate(this.SDate.getDate() - 7);
-    var lll = this.EDate.setDate(this.EDate.getDate() + 7);
+    var kkk = this.SDate.setDate(this.SDate.getDate() - 0);
+    var lll = this.EDate.setDate(this.EDate.getDate() + 2);
 
     this.startdate = formatDate(kkk, format, locale);
     this.enddate = formatDate(lll, format, locale);
@@ -1347,6 +1347,7 @@ export class DoctorPrescriptionComponent implements OnInit {
     // }
     else {
       this.spinner.show();
+      debugger
       for (let i = 0; i < this.orderedmedicinelist.length; i++) {
         debugger
         var entity = {
@@ -1366,12 +1367,7 @@ export class DoctorPrescriptionComponent implements OnInit {
         this.docservice.UpdatePatientOrderedMedicinesAvailableMedicines(entity).subscribe(data => {
           debugger
           this.docservice.UpdatePatient_TextMedicineDetails(this.listid).subscribe(data => {
-            if (this.languageid == 1) {
-              Swal.fire('Updated Successfully');
-            }
-            else if (this.languageid == 6) {
-              Swal.fire('Mis à jour avec succès !');
-            }
+          
             this.Notification()
             
             this.GetPharmacyOrders();
@@ -1381,12 +1377,17 @@ export class DoctorPrescriptionComponent implements OnInit {
             this.spinner.hide();
           })
         },error=>{
+          debugger
           this.spinner.hide();
-        })
-
-      
+        })      
       }
 
+      if (this.languageid == 1) {
+        Swal.fire('Updated Successfully');
+      }
+      else if (this.languageid == 6) {
+        Swal.fire('Mis à jour avec succès !');
+      }
       if (this.languageid == 1) {
         var smsdesc = "Pharamacy has Updated Available Medicines. Please open Voiladoc App And Order it. ";
       }

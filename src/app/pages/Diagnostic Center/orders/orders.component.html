@@ -19,11 +19,9 @@
       <!-- <ng-daterangepicker [(ngModel)]="value" [options]="options" (ngModelChange)="selectedDate($event)">
       </ng-daterangepicker> -->
       <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
-        class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" 
-        bsDaterangepicker>
+        class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" bsDaterangepicker>
       <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }"
-        class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)" 
-        bsDaterangepicker>
+        class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)" bsDaterangepicker>
 
     </div>
     <div class="col-lg-3">
@@ -87,7 +85,7 @@
             </td>
 
             <td>
-              {{details.paidAmount}}
+              {{details.paidAmount|number:'1.2-2'}} 
             </td>
             <td>
               <ng-template #tipcontent18>{{labels[0].tests}}</ng-template>
@@ -110,6 +108,9 @@
               <ng-template #tipcontent2094>Pdf</ng-template>
               <a [ngbTooltip]="tipcontent2094" *ngIf="details.appointmentType=='2'&&details.fileAvailableBit=='1'">
                 <img src="assets/Images/pdf.png" style="height:20px;" (click)="GetPdf(details.fileUrl)"></a>
+
+              <img src="assets/Images/pack1.png" data-toggle="modal" data-target="#AcceptModal" style="height:20px;"
+                *ngIf="details.appointmentType=='2'" (click)="GetAppointmentAcceptBit(details.id,details.patientID,details.diagnosticCenterName,details.notificationdate,details.emailID,details.smsmobileno,details.homeTypeText)">&nbsp;
 
             </td>
 
@@ -309,7 +310,8 @@
               <label>{{labels[0].diagnosticReport}} :</label>
             </div>
             <div class="col-lg-6">
-              <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice h-100">
+              <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)"
+                class="dropzone_vendorinvoice h-100">
                 <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
               </ngx-dropzone>
             </div>
@@ -372,11 +374,14 @@
                     <td>{{listss.testName}}</td>
                     <td>{{listss.description}}</td>
                     <td>
-                      <input type="text" [(ngModel)]="listss.fees" name="listss.fees" class="form-control"
+                      <input type="text" [(ngModel)]="listss.fees" name="listss.fees" class="form-control" *ngIf="hideupdate=='0'"
                         placeholder="{{labels[0].price}}">
 
+                        <input type="text"  class="form-control" *ngIf="hideupdate=='1'"
+                        placeholder="{{listss.fees|number:'1.2-2'}}">
+
                     </td>
-                    <td><input type="checkbox" disabled [(ngModel)]="listss.available" ></td>
+                    <td><input type="checkbox" disabled [(ngModel)]="listss.available"></td>
                   </tr>
                 </thead>
               </table>
@@ -565,7 +570,7 @@
         <div class="row">
           <div class="col-lg-5">
           </div>
-          <div class="col-lg-2">
+          <div class="col-lg-3">
             <button style="background-color: #f18235;color: white;border:none" (click)="GetAppointmentAccept()"
               class="btn btn-block btn-md allbtns btncolor" data-dismiss="modal">{{labels[0].update}}</button>
           </div>

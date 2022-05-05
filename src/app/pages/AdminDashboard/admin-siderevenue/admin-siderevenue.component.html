@@ -256,14 +256,14 @@
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
         *ngFor="let cou of hospitalSubscriptionslist" >
         <br />
-        <label style="color: black;font-size: 30px;color: white;" >
+        <label style="color: black;font-size: 12px;color: white;" >
           <b style="font-size: 15px;">
             {{labels[0].revenue}}<br>
             {{labels[0].hospitalsubrevenue}}</b>
         </label>
         <br />
         <br />
-        <label style="color: black;font-size: 30px;color: #f17e2d;">
+        <label style="color: black;font-size: 12px;color: #f17e2d;">
           <b>
             <u style="font-size: 20px;" >{{cou.hospitalMonthlySubscription|number:'1.2-2'|noComma}} Ar</u>
           </b>
@@ -419,7 +419,7 @@
   <div class="row">
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions" (click)="getTypeID(1)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -443,7 +443,7 @@
     </div>
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions"  (click)="getTypeID(2)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -465,7 +465,7 @@
     </div>
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions" (click)="getTypeID(4)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -486,7 +486,7 @@
     </div>
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/AllMonthlysubscrptions"  (click)="getTypeID(3)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -511,7 +511,7 @@
   <div class="row">
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/CountryRevenue">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/CountryRevenue" (click)="getTypeID1(4)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -531,7 +531,7 @@
     </div>
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/CountryRevenue">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/CountryRevenue" (click)="getTypeID1(1)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -553,7 +553,7 @@
     </div>
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/CountryRevenue">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/CountryRevenue" (click)="getTypeID1(2)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -575,7 +575,7 @@
     </div>
     <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"
-        *ngFor="let cou of IndependentSubscriptionList" routerLink="/CountryRevenue">
+        *ngFor="let cou of IndependentSubscriptionList" routerLink="/CountryRevenue" (click)="getTypeID1(3)">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -649,8 +649,8 @@
 <div class="container-fluid card card-hover">
 
   <br>
-  <h3 style="text-align: center;" *ngIf="languageid==1">Pharmacy Home Delivery Charges</h3>
-  <h3 style="text-align: center;" *ngIf="languageid==6">Pharmacies (Livraisons) transactions</h3>
+  <h3 style="text-align: center;" *ngIf="languageid==1">Pharmacy subscription and transaction revenue</h3>
+  <h3 style="text-align: center;" *ngIf="languageid==6">Revenus d'abonnement et de transaction des pharmacies</h3>
   <br>
   <div class="row">
 
@@ -690,7 +690,30 @@
       <br />
       <br />
     </div>
+
+
     <div class="col-lg-3">
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;"  
+        *ngFor="let cou of diaphacounts" routerLink="/Pharmacydashboard">
+        <br />
+        <label style="color: black;font-size: 30px;color: white;">
+          <b style="font-size: 15px;">
+            Revenu(s) d'abonnement
+
+          </b>
+        </label>
+        <br />
+
+        <label style="color: black;font-size: 30px;color: #f17e2d;">
+          <b>
+            <u style="font-size: 20px;">{{grandTotal|number:'1.2-2'}} DH</u>
+          </b>
+        </label>
+      </div>
+      <br />
+      <br />
+    </div>
+    <!-- <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;" [routerLink]="['/PharmacyReport']"
         *ngFor="let cou of diaphacounts">
         <br />
@@ -728,14 +751,14 @@
       </div>
       <br />
       <br />
-    </div>
+    </div> -->
 
   </div>
 
 
   <br>
-  <h3 style="text-align: center;" *ngIf="languageid==1">Diagnostic Home Delivery Charges</h3>
-  <h3 style="text-align: center;" *ngIf="languageid==6">Analyses et Imagerie (Frais) transactions</h3>
+  <h3 style="text-align: center;" *ngIf="languageid==1">Analytics and Imaging subscription and transaction revenue</h3>
+  <h3 style="text-align: center;" *ngIf="languageid==6">Revenus d'abonnement et de transaction analytics et d'imagerie</h3>
   <br>
 
   <div class="row">
@@ -743,8 +766,8 @@
 
     </div>
     <div class="col-lg-3">
-      <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;" [routerLink]="['/DiagnosticHomeReport']"
-        *ngFor="let cou of diaphacounts">
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;" 
+        *ngFor="let cou of diaphacounts" [routerLink]="['/DiagnosticHomeReport']">
         <br />
         <label style="color: black;font-size: 30px;color: white;">
           <b style="font-size: 15px;">
@@ -763,7 +786,30 @@
       <br />
       <br />
     </div>
+
+
     <div class="col-lg-3">
+      <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;" 
+        *ngFor="let cou of diaphacounts" routerLink="/DiagnesticDashboard">
+        <br />
+        <label style="color: black;font-size: 30px;color: white;">
+          <b style="font-size: 15px;">
+            Revenu(s) d'abonnement
+
+          </b>
+        </label>
+        <br />
+
+        <label style="color: black;font-size: 30px;color: #f17e2d;">
+          <b>
+            <u style="font-size: 20px;">{{PhargrandTotal|number:'1.2-2'}} DH</u>
+          </b>
+        </label>
+      </div>
+      <br />
+      <br />
+    </div>
+    <!-- <div class="col-lg-3">
       <div class="optionsboxdown" style="cursor: pointer;border-radius: 10px;" [routerLink]="['/DiagnosticHomeReport']"
         *ngFor="let cou of diaphacounts">
         <br />
@@ -801,7 +847,7 @@
       </div>
       <br />
       <br />
-    </div>
+    </div> -->
 
   </div>
 

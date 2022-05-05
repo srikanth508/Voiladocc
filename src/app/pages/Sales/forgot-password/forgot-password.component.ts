@@ -594,6 +594,7 @@ export class ForgotPasswordComponent implements OnInit {
     }
     this.docservice.UpdateForgotPsswords(entity).subscribe(data => {
 
+      
       if (this.languageid == 1) {
         Swal.fire('Success', 'Password Reset Successfully');
         location.href = '#/login';

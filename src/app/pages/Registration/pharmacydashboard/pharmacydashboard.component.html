@@ -67,8 +67,8 @@
             <th>{{labels[0].province}}</th>
             <th>{{labels[0].city}}</th> -->
             <th>{{labels[0].licenseNumber}}</th>
-            <!-- <th *ngIf="showeditbutton!='1'">Monthly subscription</th>
-            <th *ngIf="showeditbutton!='1'">Contract start date</th>
+             <th>Souscription mensuelle</th>
+            <!-- <th *ngIf="showeditbutton!='1'">Contract start date</th>
             <th *ngIf="showeditbutton!='1'">Contract end date</th> -->
             <th>{{labels[0].address}}</th>
             <th>{{labels[0].actions}}</th>
@@ -86,10 +86,10 @@
             <td>{{details.city}}</td>
             <td>{{details.areaName}}</td> -->
             <td>{{details.licenseNo}}</td>
-            <!-- <td *ngIf="showeditbutton!='1'">{{details.monthlySubscription}}</td>
-            <td *ngIf="showeditbutton!='1'">{{details.contartStartDate}}</td>
-            <td *ngIf="showeditbutton!='1'">{{details.contractEndDate}}</td>
-            -->
+            <td >{{details.monthlySubscription}}</td>
+            <!-- <td *ngIf="showeditbutton!='1'">{{details.contartStartDate}}</td>
+            <td *ngIf="showeditbutton!='1'">{{details.contractEndDate}}</td> -->
+           
             <td>{{details.address}}</td>
             <td>
               <ng-template #tipcontent2>{{labels[0].delete}}</ng-template>

@@ -3,7 +3,7 @@
   <div class="row headerspace">
     <div class="col-lg-10">
       <h5 *ngIf="languageid==1">Diagnostic Center Home Delivery Charges Report</h5>
-      <h5 *ngIf="languageid==6">RAPPORT DE TRANSACTION DE SERVICE À DOMICILE DE LABORATOIRE</h5>
+      <h5 *ngIf="languageid==6">REVENU DES TRANSACTIONS DE LABORATOIRE</h5>
     </div>
     <div class="col-lg-2">
       <button class="btn btncolor" *ngIf="languageid==1" (click)="getglmasterexcel()">
@@ -49,12 +49,12 @@
         <option value="0">Sélectionner type de paiement</option>
         <option value="1">Portefeuille</option>
         <option value="2">Carte de crédit/debit</option>
-        <option value="3">Cash au praticien</option>
+        <option value="3">En espèces</option>
         <!-- <option value="4">Mobile Payment</option> -->
       </select>
     </div>
     <div class="col-lg-2">
-      <b>Total : {{GrandTotal}}</b>
+      <b>Total : {{GrandTotal|number:'1.2-2'|noComma}} DH</b>
     </div>
     <div class="col-lg-1">
       <b>{{labels[0].count}} : {{count}}</b>
@@ -110,9 +110,9 @@
             <td>{{details.emailID}}</td>
             <td>{{details.diagnosticCenterName}}</td>
             <td>{{details.paymentType}}</td>
-            <td>{{details.paidAmount}}</td>
-            <td>{{details.meridionalCommission}}</td>
-            <td>{{details.deliveryCharges}}</td>
+            <td>{{details.paidAmount|number:'1.2-2'|noComma}} DH</td>
+            <td>{{details.meridionalCommission|number:'1.2-2'|noComma}} DH</td>
+            <td>{{details.deliveryCharges|number:'1.2-2'|noComma}} DH</td>
             <!-- <td></td> -->
           </tr>
 

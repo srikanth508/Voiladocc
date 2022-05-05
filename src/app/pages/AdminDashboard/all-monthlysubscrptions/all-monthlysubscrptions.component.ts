@@ -46,10 +46,13 @@ export class AllMonthlysubscrptionsComponent implements OnInit {
     debugger
     this.startdate = formatDate(firstDay, format, locale);
     this.enddate = formatDate(lastDay, format, locale);
-    this.GetAllProviderReports()
-
+   
 
     this.getlanguage();
+
+    this.typeid = localStorage.getItem('TypeID');
+    this.GetAllProviderReports()
+
   }
 
   dummAlldetails: any;
@@ -58,8 +61,10 @@ export class AllMonthlysubscrptionsComponent implements OnInit {
     this.docservice.GetAllProvidersMontlySubscriptions(this.languageid).subscribe(
       data => {
         debugger
-        this.AllDetails = data;
+        // this.AllDetails = data;
         this.dummAlldetails = data;
+
+        this.AllDetails = this.dummAlldetails.filter(x => x.typeid == this.typeid)
         this.count = this.AllDetails.length;
       }, error => {
       }
@@ -75,6 +80,8 @@ export class AllMonthlysubscrptionsComponent implements OnInit {
       this.GetAllProviderReports();
     }
   }
+
+
 
 
   public getlanguage() {

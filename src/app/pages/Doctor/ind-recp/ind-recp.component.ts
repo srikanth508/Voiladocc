@@ -69,8 +69,8 @@ export class IndRecpComponent implements OnInit {
         }
       }
       else {
-        Swal.fire('Completed', 'User Name already exists', 'success');
-        location.href = "#/IndRecpdash"
+        Swal.fire('Completed', "Désolé, l'adresse email existe déjà. Veuillez en essayer un autre");
+        // location.href = "#/IndRecpdash"
       }
 
     })

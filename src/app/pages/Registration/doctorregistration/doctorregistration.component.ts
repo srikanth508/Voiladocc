@@ -787,7 +787,7 @@ export class DoctorregistrationComponent implements OnInit {
 
   public insertidentityProof() {
     if (this.attachmentsurl.length == 0) {
-      this.attachmentsurl[0] = 'C:\\MarocAPI\\Images\\DocIdentityProof\\identity.jpg'
+      this.attachmentsurl[0] = 'F:\MarocAPI\Images\DocIdentityProof\Wrong_128.png'
     }
     for (let i = 0; i < this.attachmentsurl.length; i++) {
       var entity = {

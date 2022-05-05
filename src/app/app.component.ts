@@ -127,8 +127,6 @@ export class AppComponent {
     }, 1000);
 
 
-
-
   }
 
 
@@ -165,7 +163,7 @@ export class AppComponent {
         this.GetChatnotificationslist();
         this.docservice.GetNotifications_DoctorByDoctorID(this.doctorid).subscribe(data => {
           this.doctorNotifications = data;
-          this.notificationcount = (this.doctorNotifications[0].notifycount);
+          this.notificationcount =  this.doctorNotifications.length
 
           // this.notificationcount = data[0].notifycount;
         })
@@ -191,28 +189,28 @@ export class AppComponent {
           (datas => {
 
             this.doctorNotifications = datas;
-            this.notificationcount = Number(this.doctorNotifications[0].notifycount);
+            this.notificationcount = this.doctorNotifications.length
           })
       }
       else if (this.midwifeid != null && this.midwifeid != undefined) {
         this.docservice.GetNotifications_NPMWebCOunt(this.midwifeid, 27, this.languageid).subscribe
           (datas => {
             this.doctorNotifications = datas;
-            this.notificationcount = Number(this.doctorNotifications[0].notifycount);
+            this.notificationcount =this.doctorNotifications.length
           })
       }
       else if (this.physioid != null && this.physioid != undefined) {
         this.docservice.GetNotifications_NPMWebCOunt(this.physioid, 26, this.languageid).subscribe
           (datas => {
             this.doctorNotifications = datas;
-            this.notificationcount = Number(this.doctorNotifications[0].notifycount);
+            this.notificationcount = this.doctorNotifications.length
           })
       }
       else if (this.supportid != null && this.supportid != undefined) {
         this.docservice.GetSupportForWebNotifications(this.languageid).subscribe
           (datas => {
             this.doctorNotifications = datas;
-            this.notificationcount = Number(this.doctorNotifications[0].notifycount);
+            this.notificationcount = this.doctorNotifications.length
           })
       }
       else if (this.diagnosticcenterid != null && this.diagnosticcenterid != undefined) {
@@ -221,7 +219,7 @@ export class AppComponent {
           (datas => {
 
             this.doctorNotifications = datas;
-            this.notificationcount = Number(this.doctorNotifications[0].notifycount);
+            this.notificationcount = this.doctorNotifications.length
           })
       }
       // else if (this.pharmacyid != null && this.pharmacyid != undefined) {
@@ -238,7 +236,7 @@ export class AppComponent {
           (datas => {
             this.notificationcount = 0;
             this.doctorNotifications = datas;
-            this.notificationcount = Number(this.doctorNotifications[0].notifycount);
+            this.notificationcount = this.doctorNotifications.length
             // Swal.fire('New Notifications');
           })
       }
@@ -266,7 +264,7 @@ export class AppComponent {
 
           this.notificationcount = 0;
           this.pharmcunoti = datas;
-          this.notificationcount = Number(this.pharmcunoti[0].notifycount);
+          this.notificationcount = this.pharmcunoti.lengt;
           // if (this.pharmcunoti.length > 0) {
           //   if (this.languageid == 1) {
           //     Swal.fire({ html: 'Please click the notification icons above to view the order and take action.' });
@@ -291,7 +289,7 @@ export class AppComponent {
   public GetDoctorNotifications() {
     this.docservice.GetNotifications_DoctorByDoctorID(this.doctorid).subscribe(data => {
       this.doctorNotifications = data;
-      this.notificationcount = data[0].notifycount;
+      this.notificationcount = this.doctorNotifications.length;
     })
   }
 

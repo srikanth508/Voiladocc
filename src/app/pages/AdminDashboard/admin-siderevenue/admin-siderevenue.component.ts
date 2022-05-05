@@ -53,8 +53,11 @@ export class AdminSiderevenueComponent implements OnInit {
   public year: any;
   public monthstartdate: any;
   public monthenddate: any;
-
-
+  pharmaList: any
+  pharmaCount: any;
+  grandTotal: any
+  diagnmosticList:any;
+  PhargrandTotal:any;
   ngOnInit() {
 
     const format = 'yyyy-MM-dd';
@@ -150,6 +153,37 @@ export class AdminSiderevenueComponent implements OnInit {
     this.GetAllIndependentNurseList();
     this.GetAllIndependentphysiotherapits();
     this.GetAllIndependentMidWife();
+
+
+
+
+
+    this.docservice.GetPharmacyForAdminByLanguageID(this.languageid).subscribe(
+      data => {
+        this.grandTotal =0
+        this.pharmaList = data;
+
+        for (let i = 0; i < this.pharmaList.length; i++) {
+          this.grandTotal = this.grandTotal + this.pharmaList[i].monthlySubscription
+        }
+      }, error => {
+      }
+    )
+
+
+
+    this.docservice.GetDiagnosticForAdminByLanguageID(this.languageid).subscribe(
+      data => {
+        this.PhargrandTotal =0
+        this.diagnmosticList = data;
+
+        for (let i = 0; i < this.diagnmosticList.length; i++) {
+          this.PhargrandTotal = this.PhargrandTotal + this.diagnmosticList[i].monthlySubscription
+        }
+      }, error => {
+      }
+    )
+
   }
   search: any;
 
@@ -452,7 +486,7 @@ export class AdminSiderevenueComponent implements OnInit {
 
     this.subHospitalID = item.id;
     localStorage.setItem('SubhospitalID', this.subHospitalID);
-    
+
     this.GetAllHospitalSubscriptions()
   }
 
@@ -680,4 +714,16 @@ export class AdminSiderevenueComponent implements OnInit {
     this.GetDiaPharmacCounts();
   }
 
+
+  getTypeID(id) {
+    localStorage.setItem('TypeID', id)
+  }
+
+
+  getTypeID1(id)
+  {
+    localStorage.setItem('TypeID', id);
+    localStorage.setItem('SDATE', this.monthstartdate)
+    localStorage.setItem('EDATE', this.monthenddate)
+  }
 }

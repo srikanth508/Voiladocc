@@ -15,6 +15,7 @@ import * as FileSaver from 'file-saver';
 })
 export class PharmacyChargesReportComponent implements OnInit {
   options: NgDateRangePickerOptions;
+  loader: boolean;
   constructor(public docservice: HelloDoctorService) { }
 
   value: any;
@@ -27,7 +28,15 @@ export class PharmacyChargesReportComponent implements OnInit {
   labels: any;
   labels1: any;
   todaydate: any;
+
+  term: any;
+
+  DiagnosticChargeslist: any;
+  count: any;
+  GrandTotal: any;
+  dummchargelist1: any;
   ngOnInit() {
+    this.loader=true;
     this.languageid = localStorage.getItem('LanguageID');
     this.pharmacyid = localStorage.getItem('pharmacyid');
 
@@ -86,12 +95,7 @@ export class PharmacyChargesReportComponent implements OnInit {
     )
   }
 
-  term: any;
 
-  DiagnosticChargeslist: any;
-  count: any;
-  GrandTotal: any;
-  dummchargelist1: any;
   public GetPharmacyHomeCareList() {
     this.docservice.GetPharmcyOrders_PaymentsReport(this.startdate, this.enddate, this.languageid).subscribe(
       data => {

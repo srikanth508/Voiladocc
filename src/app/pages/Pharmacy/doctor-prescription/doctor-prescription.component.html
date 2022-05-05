@@ -92,7 +92,7 @@
 
             </td>
             <td>{{details.paymentType}}</td>
-            <td>{{details.paidAmount}}</td>
+            <td>{{details.paidAmount|number:'1.2-2'}}</td>
             <td>
               <ng-template #tipcontent12>{{labels[0].medicines}}</ng-template>
               <a [ngbTooltip]="tipcontent12">
@@ -436,7 +436,7 @@
                                   <input type="text" class="form-control" *ngIf="medicinelist.substituteBit==true"
                                     [ngModelOptions]="{standalone: true}" [(ngModel)]="medicinelist.subAmount"
                                     name="medicinelist.subAmount"
-                                    onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+                                    onkeypress='return(event.charCode>=48&&event.charCode<=57)||(event.charCode==46)'>
                                   <!-- (ngModelChange)="onChange($event)" -->
                                 </td>
                                 <td style="border: 2px solid black;">
@@ -534,7 +534,7 @@
               <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
             </ngx-dropzone>
             <span>
-              <img src="{{imageurl}}" style="height: 36px;"></span>
+              <img src="{{imageurl}}" (click)="openNewwindow(imageurl)" style="height: 36px;"></span>
           </div>
         </div>
         <div class="row" *ngIf="showedit=='0'">
@@ -622,7 +622,7 @@
               <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
             </ngx-dropzone>
             <span>
-              <img src="{{imageurl}}" style="height: 35px;"></span>
+              <img src="{{imageurl}}" (click)="openNewwindow(imageurl)" style="height: 35px;"></span>
           </div>
         </div><br>
         <div class="row" *ngIf="showedit=='0'">

@@ -2,7 +2,8 @@
 <div class="container-fluid card card:hover headerspace">
   <div class="row headerspace">
     <div class="col-lg-10">
-      <h5>Subscription Reports</h5>
+      <h5 *ngIf="languageid==1">Subscription Reports</h5>
+      <h5 *ngIf="languageid==6">RAPPORT D'ABONNEMENT</h5>
     </div>
 
     <div class="col-lg-2">
@@ -21,12 +22,20 @@
       <input type="search" placeholder="{{labels[0].search}}" [(ngModel)]="term" class="form-control">
     </div>
     <div class="col-lg-3">
-      <select class="form-control" (change)="GettypeID($event)">
-        <option value="0">Select</option>
+      <select class="form-control" (change)="GettypeID($event)" *ngIf="languageid==1">
+        <option value="0">Sélectionner</option>
         <option value="1">Doctor</option>
         <option value="2">Nurse</option>
         <option value="3">Phsiotherapist</option>
         <option value="4">Midwife</option>
+      </select>
+
+      <select class="form-control" (change)="GettypeID($event)" *ngIf="languageid==6">
+        <option value="0">Sélectionner</option>
+        <option value="1">Médecin</option>
+        <option value="2">Infirmière</option>
+        <option value="3">Soignant</option>
+        <option value="4">Sage-femme</option>
       </select>
 
     </div>
@@ -39,19 +48,25 @@
     </div>
   </div>
   <br>
-  <div class="row" >
+  <div class="row">
     <div class="col-lg-12" style="overflow-y: auto;">
       <table class="table" id="AppoitmentReports" style="overflow: auto;">
         <thead>
           <tr style="height: 20px">
             <th>ID</th>
             <th>Type</th>
-            <th>Provider Name</th>
-            <th>Mobile Number</th>
-            <th>Email ID</th>
-            <th>Subscription Type</th>
-            <th>Monthly SUbscription</th>
-            <th>Appointment Percentage</th>
+            <th *ngIf="languageid==1">Provider Name</th>
+            <th *ngIf="languageid==1">Mobile Number</th>
+            <th *ngIf="languageid==1">Email ID</th>
+            <th *ngIf="languageid==1">Subscription Type</th>
+            <th *ngIf="languageid==1">Monthly SUbscription</th>
+            <th *ngIf="languageid==1">Appointment Percentage</th>
+            <th *ngIf="languageid==6">Nom</th>
+            <th *ngIf="languageid==6">Tél portable</th>
+            <th *ngIf="languageid==6">Email</th>
+            <th *ngIf="languageid==6">Type d'abonnement</th>
+            <th *ngIf="languageid==6">Abondement mensuel</th>
+            <th *ngIf="languageid==6">Pourcentage de RDV</th>
           </tr>
           <tr *ngFor="let details of AllDetails|filter:term">
             <td>{{details.id}}</td>
@@ -61,8 +76,8 @@
             <td>{{details.emailID}}</td>
             <td>
               <label *ngIf="details.subscriptionTypeID==1">Monthly Subscription</label>
-              <label *ngIf="details.subscriptionTypeID==2">Appointment Percentage</label>
-              <label *ngIf="details.subscriptionTypeID==3">Both</label>
+              <label *ngIf="details.subscriptionTypeID==2">Sur les RDV</label>
+              <label *ngIf="details.subscriptionTypeID==3">Les deux </label>
             </td>
             <td>
               <label

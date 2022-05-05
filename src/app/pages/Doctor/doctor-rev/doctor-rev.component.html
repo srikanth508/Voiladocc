@@ -2,13 +2,13 @@
   <div class="row headerspace">
     <div class="col-lg-12">
       <h5>{{labels[0].my_Revenue}} >
-         <span *ngIf="languageid=='1'&&id=='1'">In Clinic</span>
-          <span *ngIf="languageid=='6'&&id=='1'">PRÉSENTIEL</span>
-            <span *ngIf="languageid=='1'&&id=='2'">video call </span>
-              <span *ngIf="languageid=='6'&&id=='2'">TÉLÉCONSULTATION</span>
-              <span *ngIf="languageid=='1'&&id=='3'">Home Visit </span>
-              <span *ngIf="languageid=='6'&&id=='3'">Visite à domicile</span>
-          </h5>
+        <span *ngIf="languageid=='1'&&id=='1'">In Clinic</span>
+        <span *ngIf="languageid=='6'&&id=='1'">PRÉSENTIEL</span>
+        <span *ngIf="languageid=='1'&&id=='2'">video call </span>
+        <span *ngIf="languageid=='6'&&id=='2'">TÉLÉCONSULTATION</span>
+        <span *ngIf="languageid=='1'&&id=='3'">Home Visit </span>
+        <span *ngIf="languageid=='6'&&id=='3'">Visite à domicile</span>
+      </h5>
     </div>
   </div>
 </div>
@@ -20,9 +20,9 @@
     </div>
     <div class="col-lg-3">
       <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
-      class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" bsDaterangepicker>
-    <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }"
-      class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)" bsDaterangepicker>
+        class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" bsDaterangepicker>
+      <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }"
+        class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)" bsDaterangepicker>
     </div>
     <!-- <div class="col-lg-2">
           <label>{{labels[0].department}} :</label>
@@ -51,25 +51,28 @@
             <th id="imp">{{labels[0].appointment_ID}}</th>
             <th id="imp">{{labels[0].appointmentDate}}</th>
             <th id="imp">{{labels[0].appointment_Time}}</th>
-            <!-- <th>{{labels[0].department}}</th> -->
-            <th>{{labels[0].doctor}}</th>
-            <th>{{labels[0].doctor_Fees}}</th>
             <th>{{labels[0].patient_Name}}</th>
+            <!-- <th>{{labels[0].department}}</th> -->
+            <!-- <th>{{labels[0].doctor}}</th> -->
             <th>{{labels[0].reason_For_Visit}}</th>
+           
+           
+          
             <th id="imp">{{labels[0].appointment_Type}}</th>
             <th>{{labels[0].payment_Type}}</th>
+            <th>{{labels[0].doctor_Fees}}</th>
           </tr>
           <tr *ngFor="let details of appointmentlist|filter:term|filter:term1">
             <td>{{details.appointmentID}}</td>
             <td>{{details.apptDateTime}}</td>
             <td>{{details.slots}}</td>
             <!-- <td>{{details.departmentname}}</td> -->
-            <td>{{details.doctorName}}</td>
-            <td>{{details.indcorevenue}}</td>
+            <!-- <td>{{details.doctorName}}</td> -->
             <td>{{details.patientName}}</td>
             <td>{{details.reasonForVisit}}</td>
-            <td>{{details.combinationValue}}</td>
+            <td>{{details.appointmentTypeText}}</td>
             <td>{{details.paymentType}}</td>
+            <td>{{details.indcorevenue}}</td>
           </tr>
         </thead>
       </table>

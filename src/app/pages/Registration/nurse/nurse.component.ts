@@ -616,13 +616,13 @@ today = new Date()
     this.docservice.sendemail(entity).subscribe(data => {
     })
   }
-  checkVatvalue(even) {
-    debugger
-    if (even == 1) {
-      this.vatpercentage = 0;
+    checkVatvalue(even) {
+      debugger
+      if (even == 1) {
+        this.vatpercentage = 0;
+      }
+      else {
+        this.vatpercentage = 20;
+      }
     }
-    else {
-      this.vatpercentage = 20;
-    }
-  }
 }

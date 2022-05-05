@@ -423,7 +423,14 @@ export class DocRecpAppointmentsComponent implements OnInit {
     this.docservice.GetDoctorCommissionFeesByDoctorID(this.doctorslotid, this.appointmenttypeid).subscribe(data => {
 
       this.feeslist = data;
-      this.PaidAmount = this.feeslist[0].doctorFees
+      if(details.followApp==1)
+      {
+        this.PaidAmount=0
+      }
+      else{
+        this.PaidAmount = this.feeslist[0].doctorFees
+      }
+    
     })
   }
 

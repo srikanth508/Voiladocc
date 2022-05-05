@@ -21,13 +21,14 @@ export class HelloDoctorService {
 
 //  private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
 
+  //  public host = "https://maroc.voiladoc.org/marocAPI";
+
 
   //  public host = "https://maroc.voiladoc.org/marocAPI";
 
+
   // private host1 = "https://maroc.voiladoc.org/marocAPI";
 
-
-  //test1
 
   public host = "https://madagascar.voiladoc.org/MadagascarWebAPI";
 
