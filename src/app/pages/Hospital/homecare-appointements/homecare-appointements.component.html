@@ -30,14 +30,14 @@
         <option value="none" *ngIf="languageid==1">Select Appointment Type </option>
         <option value="none" *ngIf="languageid==6">Par catégorie</option>
         <option value="nurse"  *ngIf="languageid==1">Nurse </option>
-        <option value="physio"  *ngIf="languageid==1">Physiotherapist </option>
+        <option value="physio"  *ngIf="languageid==1">Caregiver </option>
         <option value="midwife"  *ngIf="languageid==1">Midwife </option>
         <option value="Doctor"  *ngIf="languageid==1">Doctor </option>
 
         <option value="nurse" *ngIf="languageid==6">Infirmiers </option>
-        <option value="physio" *ngIf="languageid==6">Physiothérapeutes </option>
+        <option value="physio" *ngIf="languageid==6">Sogiant </option>
         <option value="midwife" *ngIf="languageid==6">Sages-femmes </option>
-        <option value="Doctor" *ngIf="languageid==6">Docteurs </option>
+        <option value="Doctor" *ngIf="languageid==6">Médecin </option>
       </select>
     </div>
     <div class="col-lg-3" style="text-align: end;">
@@ -78,9 +78,9 @@
           <tr *ngFor="let details of cancelledlist|filter:term">
             <td>{{details.appdate}}</td>
             <td>{{details.appointmentID}}</td>
-            <td *ngIf="details.type=='nurse'">Nurse</td>
-            <td *ngIf="details.type=='physio'">Physiotherapist</td>
-            <td *ngIf="details.type=='midwife'">Midwife</td>
+            <td *ngIf="details.type=='nurse'">Infirmiers</td>
+            <td *ngIf="details.type=='physio'">Sogiant</td>
+            <td *ngIf="details.type=='midwife'">Sages-femmes</td>
             <td *ngIf="details.type=='Doctor'">Doctor</td>
             <td>{{details.nurseName}}</td>
             <td>{{details.reasonForVisit}}</td>

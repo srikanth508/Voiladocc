@@ -35,7 +35,7 @@
     </div>
     <div class="col-lg-3">
 
-      <select class="form-control" (change)="getTypeID($event)">
+      <select class="form-control" (change)="getTypeID($event)" *ngIf="showexportbutton==1">
         <option value="0">Type </option>
         <option value="1">Hôpitaux</option>
         <option value="2">Cliniques</option>
