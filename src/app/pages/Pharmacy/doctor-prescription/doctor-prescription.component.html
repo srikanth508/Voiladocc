@@ -534,7 +534,7 @@
               <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
             </ngx-dropzone>
             <span>
-              <img src="{{imageurl}}" (click)="openNewwindow(imageurl)" style="height: 36px;"></span>
+              <img src="{{imageurl}}" (click)="openwindow(imageurl)" style="height: 36px;"></span>
           </div>
         </div>
         <div class="row" *ngIf="showedit=='0'">
@@ -561,7 +561,7 @@
           <h4 *ngIf="languageid==1">File Updated By Pharmacy</h4>
           <h4 *ngIf="languageid==6">Document mis à jour par la pharmacie</h4>
           <div class="col-lg-8">
-            <img src="{{pharmcyUpdatedPhoto}}" class="imagewidth">
+            <img src="assets/Images/pdf.png" style="width: 100px;" (click)="windowopen()" class="imagewidth">
           </div>
         </div>
       </div>
@@ -622,7 +622,7 @@
               <ngx-dropzone-label>{{dropzonelable}}</ngx-dropzone-label>
             </ngx-dropzone>
             <span>
-              <img src="{{imageurl}}" (click)="openNewwindow(imageurl)" style="height: 35px;"></span>
+              <img src="{{imageurl}}" (click)="openwindow(imageurl)" style="height: 35px;"></span>
           </div>
         </div><br>
         <div class="row" *ngIf="showedit=='0'">
@@ -645,7 +645,7 @@
         <div class="row" *ngIf="showedit=='1'">
           <h4>Pharmacy Updated Comments</h4>
           <div class="col-lg-8">
-            <img src="{{pharmcyUpdatedPhoto}}" class="imagewidth">
+            <img  src="assets/Images/pdf.png" (click)="windowopen()" style="width: 100px;" class="imagewidth">
           </div>
         </div>
 

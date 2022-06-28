@@ -324,7 +324,7 @@
             </div>
             <div class="col-lg-4">
               <!-- {{labels1[0].vediocallreciept}} -->
-              Home Visit Payment Receipt
+              Consultation à domicile
             </div>
             <div class="col-lg-4">
               {{paidamount}}
@@ -339,7 +339,7 @@
           </div>
 
           <div style="margin-top: -83px;">
-            Physiotherapist : {{physioname}}
+            Soignant : {{physioname}}
 
             <label style="text-align: end;float: right;">{{labels1[0].totalCharges}} : {{paidamount}}</label>
           </div>
@@ -349,8 +349,8 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-md allbtns btncolor" data-dismiss="modal">{{labels1[0].close}}</button>
-        <button type="button" class="btn btn-md allbtns btncolor" (click)="SavePDF()" data-dismiss="modal">Send to
-          patient</button>
+        <button type="button" class="btn btn-md allbtns btncolor" (click)="SavePDF()" data-dismiss="modal">Envoyer au patient
+          </button>
       </div>
     </div>
   </div>

@@ -43,6 +43,8 @@
             <th *ngIf="languageid=='6'">Date d'enregistrement</th>
             <th>{{ labels[0].mobileNumber }}</th>
             <th>{{ labels[0].emailID }}</th>
+            <th *ngIf="languageid==1">Date Of Birth</th>
+            <th *ngIf="languageid==6">Date de naissance</th>
             <!-- <th>{{ labels[0].password }}</th> -->
             <!-- <th *ngIf="roleid!='14' || roleid!='3'">{{labels[0].patientWallet }}</th> -->
             <th>{{ labels[0].actions }}</th>
@@ -53,6 +55,7 @@
             <td>{{list.registereddate|date:'dd-MM-yyyy'}}</td>
             <td>{{list.mobileNumber}}</td>
             <td>{{list.emailID}}</td>
+            <td>{{list.dateofbirth}}</td>
             <td>
 
               <ng-template #tipcontent1>Edit</ng-template>

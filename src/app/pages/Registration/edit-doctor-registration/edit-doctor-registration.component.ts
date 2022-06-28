@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { HelloDoctorService } from '../../../hello-doctor.service';
-import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { HelloDoctorService } from "../../../hello-doctor.service";
+import Swal from "sweetalert2";
+import { ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 @Component({
-  selector: 'app-edit-doctor-registration',
-  templateUrl: './edit-doctor-registration.component.html',
-  styleUrls: ['./edit-doctor-registration.component.css']
+  selector: "app-edit-doctor-registration",
+  templateUrl: "./edit-doctor-registration.component.html",
+  styleUrls: ["./edit-doctor-registration.component.css"],
 })
 export class EditDoctorRegistrationComponent implements OnInit {
-
-  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute, private spinner: NgxSpinnerService) { }
+  constructor(
+    public docservice: HelloDoctorService,
+    private activatedroute: ActivatedRoute,
+    private spinner: NgxSpinnerService
+  ) {}
   public doctorid: any;
   public details: any;
   public doctorname: any;
@@ -79,24 +82,22 @@ export class EditDoctorRegistrationComponent implements OnInit {
   googleAddress: any;
   vatCheck: any;
   vatpercentage: any;
-  today = new Date()
+  today = new Date();
   contractstartdate: any;
   contractenddate: any;
   ngOnInit() {
-    this.activatedroute.params.subscribe(params => {
-
-      this.id = params['id'];
-    }
-    )
-    this.languageid = localStorage.getItem('LanguageID');
-    this.getservicemaster()
+    this.activatedroute.params.subscribe((params) => {
+      this.id = params["id"];
+    });
+    this.languageid = localStorage.getItem("LanguageID");
+    this.getservicemaster();
     this.getcitymaster();
     this.getdepartmentmaster();
     this.getdegreemaster();
     this.getdoctordetailsbyid();
     this.GetDoctorMedicalproof();
     this.GetDoctorIdentityProof();
-    this.GetCountryMaster()
+    this.GetCountryMaster();
     // this.getdoctorservices();
     this.getdoctoreducationweb();
     this.editbit = 0;
@@ -111,220 +112,205 @@ export class EditDoctorRegistrationComponent implements OnInit {
     this.getlanguage();
 
     if (this.languageid == 1) {
-      this.dropzonelable = "Upload file"
+      this.dropzonelable = "Upload file";
+    } else if (this.languageid == 6) {
+      this.dropzonelable = "Télécharger des fichiers";
     }
-    else if (this.languageid == 6) {
-      this.dropzonelable = "Télécharger des fichiers"
-    }
-    this.GetDoctorType()
+    this.GetDoctorType();
   }
 
   doctortyplist: any;
 
-
   public GetDoctorType() {
-    this.docservice.GetDoctorTypeMasterByLanguageID(this.languageid).subscribe(data => {
-      this.doctortyplist = data;
-
-    }, error => {
-    })
+    this.docservice.GetDoctorTypeMasterByLanguageID(this.languageid).subscribe(
+      (data) => {
+        this.doctortyplist = data;
+      },
+      (error) => {}
+    );
   }
 
-
-
-
-
-  onChange(newValue) { const validEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; if (validEmailRegEx.test(newValue)) { this.validEmail = true; } else { this.validEmail = false; } }
+  onChange(newValue) {
+    const validEmailRegEx =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (validEmailRegEx.test(newValue)) {
+      this.validEmail = true;
+    } else {
+      this.validEmail = false;
+    }
+  }
 
   public getlanguage() {
-    this.docservice.GetAdmin_Doctorregistration_LabelsByLanguageID(this.languageid).subscribe(
-      data => {
-
-        this.labels = data;
-      }, error => {
-      }
-    )
-    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
-      data => {
-
-        this.labels4 = data;
-
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetAdmin_Doctorregistration_LabelsByLanguageID(this.languageid)
+      .subscribe(
+        (data) => {
+          this.labels = data;
+        },
+        (error) => {}
+      );
+    this.docservice
+      .GetAdmin_HospitalClinicRegistration_Lables(this.languageid)
+      .subscribe(
+        (data) => {
+          this.labels4 = data;
+        },
+        (error) => {}
+      );
   }
   public getcitymaster() {
-    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
-      data => {
-
-        this.citylist = data;
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetCityMasterBYIDandLanguageID(this.regionID, this.languageid)
+      .subscribe(
+        (data) => {
+          this.citylist = data;
+        },
+        (error) => {}
+      );
   }
 
   public GetCountryMaster() {
     this.docservice.GetCountryMasterByLanguageID(this.languageid).subscribe(
-      data => {
-
+      (data) => {
         this.countrylist = data;
-
-
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
 
-
   public GetCountryID(even) {
-
     this.countryid = even.target.value;
-    this.GetRegionMaster()
+    this.GetRegionMaster();
   }
 
   regionID: any;
 
   GetRegionID(even) {
     this.regionID = even.target.value;
-    this.getcitymaster()
+    this.getcitymaster();
   }
 
   public getdegreemaster() {
-
     this.docservice.GetDegreeMasterBylanguageID(this.languageid).subscribe(
-      data => {
-
+      (data) => {
         this.degreelist = data;
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
-
 
   public GetCategoryID(even) {
     this.categoryid = even.target.value;
-    this.getdepartmentmaster()
+    this.getdepartmentmaster();
   }
 
   public getdepartmentmaster() {
-
     this.docservice.GetDepartmentMasterByLanguageID(this.languageid).subscribe(
-      data => {
-
-        this.departmentlist = data.filter(x => x.categoryID == this.categoryid);
-      }, error => {
-      }
-    )
+      (data) => {
+        this.departmentlist = data.filter(
+          (x) => x.categoryID == this.categoryid
+        );
+      },
+      (error) => {}
+    );
   }
   hospitalname: any;
   subscriptiontype: any;
 
   public getdoctordetailsbyid() {
+    this.docservice
+      .GetDoctorDetailsForAdminByLanguageID(this.id, this.languageid)
+      .subscribe(
+        (data) => {
+          this.details = data[0];
 
-    this.docservice.GetDoctorDetailsForAdminByLanguageID(this.id, this.languageid).subscribe(
-      data => {
+          (this.doctorname = this.details.doctorName),
+            (this.phno = this.details.mobileNumber),
+            (this.emailid = this.details.emailID),
+            (this.departmentid = this.details.departmentID),
+            (this.address = this.details.address),
+            (this.description = this.details.description),
+            (this.registrationno = this.details.registrationNo),
+            (this.experience = this.details.experience),
+            (this.registrationcouncil = this.details.registrationCouncil),
+            (this.registrationyear = this.details.registrationYear),
+            (this.photourl = this.details.photoURL),
+            (this.homevisit = this.details.homeVisit),
+            (this.areaid = this.details.areaID),
+            (this.pincode = this.details.pincode),
+            (this.dcoverify = this.details.documentsVerified),
+            (this.mallprcise = this.details.mallPractise),
+            (this.countryid = this.details.countryID),
+            (this.cityid = this.details.cityID),
+            (this.areaid = this.details.areaID),
+            (this.pincode = this.details.pincode),
+            (this.docmedicalid = this.details.docmedicalid),
+            (this.speaklanguages = this.details.spokenLanguages),
+            (this.slotid = this.details.slotDurationID),
+            (this.gender = this.details.genderID),
+            (this.doctypeid = this.details.doctorType),
+            (this.hospitalid = this.details.hospitalClinicID),
+            (this.signatureurl = this.details.signatureURL),
+            (this.referbit = this.details.referealBit),
+            (this.categoryid = this.details.categoryID),
+            (this.hospitalname = this.details.hospital_ClinicName),
+            (this.subscriptiontype = this.details.subscriptionTypeID),
+            (this.monthlysubription = this.details.monthlySubscription);
+          this.appointmentpercentage = this.details.appointmentPercentage;
+          this.taxidentification = this.details.taxIdentification;
+          this.businessid = this.details.businessID;
+          this.commercialcity = this.details.commercialRegCity;
+          this.taxprofessional = this.details.taxProfessional;
 
-        this.details = data[0];
+          this.socialseccurityfundno = this.details.socialSeccurityNo;
+          this.nameofbank = this.details.nameofthebank;
+          this.accountName = this.details.accountName;
+          (this.accountNumber = this.details.accountNumber),
+            (this.latitude = this.details.lattitude),
+            (this.longitude = this.details.longitude),
+            (this.formatAddress = this.details.formatedAddress),
+            (this.regionID = this.details.regionMasterID),
+            (this.vatpercentage = this.details.vatPercentage),
+            (this.contractstartdate = this.details.exonerationPeriodFromDate);
+          (this.contractenddate = this.details.exonerationPeriodFromDate),
+            (this.vatCheck = this.details.vat),
+            (this.clinicNumber = this.details.clinicNumber);
 
-        this.doctorname = this.details.doctorName,
-          this.phno = this.details.mobileNumber,
-          this.emailid = this.details.emailID,
-          this.departmentid = this.details.departmentID,
-          this.address = this.details.address,
-          this.description = this.details.description,
-          this.registrationno = this.details.registrationNo,
-          this.experience = this.details.experience,
-          this.registrationcouncil = this.details.registrationCouncil,
-          this.registrationyear = this.details.registrationYear,
-          this.photourl = this.details.photoURL,
-          this.homevisit = this.details.homeVisit,
-          this.areaid = this.details.areaID,
-          this.pincode = this.details.pincode,
-          this.dcoverify = this.details.documentsVerified,
-          this.mallprcise = this.details.mallPractise,
-          this.countryid = this.details.countryID,
-          this.cityid = this.details.cityID,
-          this.areaid = this.details.areaID,
-          this.pincode = this.details.pincode,
-          this.docmedicalid = this.details.docmedicalid,
-          this.speaklanguages = this.details.spokenLanguages,
-          this.slotid = this.details.slotDurationID,
-          this.gender = this.details.genderID,
-          this.doctypeid = this.details.doctorType,
-          this.hospitalid = this.details.hospitalClinicID,
-          this.signatureurl = this.details.signatureURL,
-          this.referbit = this.details.referealBit,
-          this.categoryid = this.details.categoryID,
-          this.hospitalname = this.details.hospital_ClinicName,
-          this.subscriptiontype = this.details.subscriptionTypeID,
-          this.monthlysubription = this.details.monthlySubscription
-        this.appointmentpercentage = this.details.appointmentPercentage
-        this.taxidentification = this.details.taxIdentification
-        this.businessid = this.details.businessID
-        this.commercialcity = this.details.commercialRegCity
-        this.taxprofessional = this.details.taxProfessional
-
-        this.socialseccurityfundno = this.details.socialSeccurityNo
-        this.nameofbank = this.details.nameofthebank
-        this.accountName = this.details.accountName
-        this.accountNumber = this.details.accountNumber,
-          this.latitude = this.details.lattitude,
-          this.longitude = this.details.longitude,
-          this.formatAddress = this.details.formatedAddress,
-          this.regionID = this.details.regionMasterID,
-          this.vatpercentage = this.details.vatPercentage,
-          this.contractstartdate = this.details.exonerationPeriodFromDate
-        this.contractenddate = this.details.exonerationPeriodFromDate,
-          this.vatCheck = this.details.vat,
-          this.clinicNumber=this.details.clinicNumber
-
-
-
-        this.GetCountryMaster()
-        this.GetRegionMaster()
-        this.getcitymaster();
-        this.getareamasterbyid();
-        this.getservicemaster()
-        this.GetDoctorType()
-        this.getdepartmentmaster()
-      }, error => {
-      }
-    )
+          this.GetCountryMaster();
+          this.GetRegionMaster();
+          this.getcitymaster();
+          this.getareamasterbyid();
+          this.getservicemaster();
+          this.GetDoctorType();
+          this.getdepartmentmaster();
+        },
+        (error) => {}
+      );
   }
-
-
 
   regionList: any;
 
   GetRegionMaster() {
     this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
-      data => {
-
+      (data) => {
         this.regionList = data;
-
-
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
 
-
   public GetcityID(even) {
-
     this.cityid = even.target.value;
     this.getareamasterbyid();
   }
   public GetdepartmentID(even) {
-
     this.departmentid = even.target.value;
   }
   public GetDegreeID(even) {
-
     this.degreeid = even.target.value;
   }
 
   public GetDepartmentID(even) {
-
     this.departmentid = even.target.value;
     this.getservicemaster();
   }
@@ -341,7 +327,6 @@ export class EditDoctorRegistrationComponent implements OnInit {
   referbit: any;
   categoryid: any;
 
-
   taxidentification: any;
   businessid: any;
   commercialcity: any;
@@ -351,126 +336,121 @@ export class EditDoctorRegistrationComponent implements OnInit {
   accountName: any;
   accountNumber: any;
 
-
   appointmentpercentage: any;
   monthlysubription: any;
   clinicNumber: any;
   public Getsubscriptontype() {
-
     this.appointmentpercentage = 0;
     this.monthlysubription = 0;
   }
 
   public updatedetails() {
-    debugger
-    this.contractstartdate = this.docservice.GetDates(this.contractstartdate)
-    this.contractenddate = this.docservice.GetDates(this.contractenddate)
+    debugger;
+    this.contractstartdate = this.docservice.GetDates(this.contractstartdate);
+    this.contractenddate = this.docservice.GetDates(this.contractenddate);
     var entity = {
-      'LanguageID': this.languageid,
-      'DoctorID': this.id,
-      'MobileNumber': this.phno,
-      'EmailID': this.emailid,
-      'Address': this.address,
-      'CityID': this.cityid,
-      'DepartmentID': this.departmentid,
-      'Experience': this.experience,
-      'Description': this.description,
-      'HomeVisit': Number(this.homevisit),
-      'AreaID': this.areaid,
-      'Pincode': this.pincode,
-      'DocumentsVerified': this.dcoverify,
-      'MallPractise': this.mallprcise,
-      'CountryID': this.countryid,
-      'SpokenLanguages': this.speaklanguages,
-      'SlotDurationID': this.slotid,
-      'DoctorName': this.doctorname,
-      'GenderID': this.gender,
-      'DoctorType': this.doctypeid,
-      'HospitalClinicID': this.hospitalid,
-      'SignatureURL': this.signatureurl,
-      'ReferealBit': this.referbit,
-      'CategoryID': this.categoryid,
-      'SubscriptionTypeID': this.subscriptiontype,
-      'MonthlySubscription': this.monthlysubription,
-      'AppointmentPercentage': this.appointmentpercentage,
-      'TaxIdentification': this.taxidentification,
-      'BusinessID': this.businessid,
-      'CommercialRegCity': this.commercialcity,
-      'TaxProfessional': this.taxprofessional,
-      'SocialSeccurityNo': this.socialseccurityfundno,
-      'Nameofthebank': this.nameofbank,
-      'AccountName': this.accountName,
-      'AccountNumber': this.accountNumber,
-      'VAT': this.vatCheck,
-      'Lattitude': this.latitude,
-      'Longitude': this.longitude,
-      'FormatedAddress': this.formatAddress,
-      'VatPercentage': this.vatpercentage,
-      'ExonerationPeriodFromDate': this.contractstartdate != null ? this.contractstartdate : new Date(),
-      'ExonerationPerioToDate': this.contractenddate != null ? this.contractstartdate : new Date(),
-      'ClinicNumber': this.clinicNumber
-    }
-    this.docservice.UpdateDoctorPersonelInfo(entity).subscribe(res => {
+      LanguageID: this.languageid,
+      DoctorID: this.id,
+      MobileNumber: this.phno,
+      EmailID: this.emailid,
+      Address: this.address,
+      CityID: this.cityid,
+      DepartmentID: this.departmentid,
+      Experience: this.experience,
+      Description: this.description,
+      HomeVisit: Number(this.homevisit),
+      AreaID: this.areaid,
+      Pincode: this.pincode,
+      DocumentsVerified: this.dcoverify,
+      MallPractise: this.mallprcise,
+      CountryID: this.countryid,
+      SpokenLanguages: this.speaklanguages,
+      SlotDurationID: this.slotid,
+      DoctorName: this.doctorname,
+      GenderID: this.gender,
+      DoctorType: this.doctypeid,
+      HospitalClinicID: this.hospitalid,
+      SignatureURL: this.signatureurl,
+      ReferealBit: this.referbit,
+      CategoryID: this.categoryid,
+      SubscriptionTypeID: this.subscriptiontype,
+      MonthlySubscription: this.monthlysubription,
+      AppointmentPercentage: this.appointmentpercentage,
+      TaxIdentification: this.taxidentification,
+      BusinessID: this.businessid,
+      CommercialRegCity: this.commercialcity,
+      TaxProfessional: this.taxprofessional,
+      SocialSeccurityNo: this.socialseccurityfundno,
+      Nameofthebank: this.nameofbank,
+      AccountName: this.accountName,
+      AccountNumber: this.accountNumber,
+      VAT: this.vatCheck,
+      Lattitude: this.latitude,
+      Longitude: this.longitude,
+      FormatedAddress: this.formatAddress,
+      VatPercentage: this.vatpercentage,
+      ExonerationPeriodFromDate:
+        this.contractstartdate != null ? this.contractstartdate : new Date(),
+      ExonerationPerioToDate:
+        this.contractenddate != null ? this.contractstartdate : new Date(),
+      ClinicNumber: this.clinicNumber,
+      PayTypeID: 1,
+      TypeofPayment: 1,
+      cash: 1,
+      Wallet: 0,
+      CreditCard: 0,
+    };
+    this.docservice.UpdateDoctorPersonelInfo(entity).subscribe((res) => {
       let test = res;
 
       if (this.languageid == 1) {
         this.getdoctordetailsbyid();
-        Swal.fire('Updated Successfully');
-      }
-      else if (this.languageid == 6) {
+        Swal.fire("Updated Successfully");
+      } else if (this.languageid == 6) {
         this.getdoctordetailsbyid();
-        Swal.fire('Mis à jour avec succés');
+        Swal.fire("Mis à jour avec succés");
       }
-
-    })
-
+    });
   }
 
   public updatemedicalregistration() {
-    debugger
+    debugger;
     var entity = {
-      'LanguageID': this.languageid,
-      'DoctorID': this.docmedicalid,
-      'RegistrationNo': this.registrationno,
-      'RegistrationCouncil': this.registrationcouncil,
-      'RegistrationYear': this.registrationyear
-
-    }
-    this.docservice.UpdateDoctorMedicalRegistration(entity).subscribe(res => {
+      LanguageID: this.languageid,
+      DoctorID: this.docmedicalid,
+      RegistrationNo: this.registrationno,
+      RegistrationCouncil: this.registrationcouncil,
+      RegistrationYear: this.registrationyear,
+    };
+    this.docservice.UpdateDoctorMedicalRegistration(entity).subscribe((res) => {
       let test = res;
-      debugger
+      debugger;
       if (this.languageid == 1) {
         this.getdoctordetailsbyid();
-        Swal.fire('Updated Successfully');
-      }
-      else if (this.languageid == 6) {
+        Swal.fire("Updated Successfully");
+      } else if (this.languageid == 6) {
         this.getdoctordetailsbyid();
-        Swal.fire('Mis à jour avec succés');
+        Swal.fire("Mis à jour avec succés");
       }
-
-    })
-
+    });
   }
   public updatedoctoreducation() {
-
     var entity = {
-      'DoctorID': this.id,
-      'DegreeID': this.degreeid,
-      'CollegeName': this.colleagename,
-      'YearOfPassing': this.yearofpassing
-    }
-    this.docservice.UpdateDoctorEducationAdmin(entity).subscribe(res => {
+      DoctorID: this.id,
+      DegreeID: this.degreeid,
+      CollegeName: this.colleagename,
+      YearOfPassing: this.yearofpassing,
+    };
+    this.docservice.UpdateDoctorEducationAdmin(entity).subscribe((res) => {
       let test = res;
       if (this.languageid == 1) {
         this.getdoctordetailsbyid();
-        Swal.fire('Updated Successfully');
-      }
-      else if (this.languageid == 6) {
+        Swal.fire("Updated Successfully");
+      } else if (this.languageid == 6) {
         this.getdoctordetailsbyid();
-        Swal.fire('Mis à jour avec succés');
+        Swal.fire("Mis à jour avec succés");
       }
-    })
-
+    });
   }
 
   public slotid: any;
@@ -479,264 +459,213 @@ export class EditDoctorRegistrationComponent implements OnInit {
     this.slotid = even.target.value;
   }
 
-
-
   public GetEditPhoto() {
     this.editbit = 1;
   }
 
-
   public onattachmentUpload1(abcd) {
-
     // for (let i = 0; i < abcd.length; i++) {
     this.attachments1.push(abcd.addedFiles[0]);
     this.uploadattachments1();
     // }
     if (this.languageid == 1) {
-
-      Swal.fire('Added Successfully');
+      Swal.fire("Added Successfully");
       abcd.length = 0;
-    }
-    else {
-      Swal.fire('Ajouté avec succès');
+    } else {
+      Swal.fire("Ajouté avec succès");
       abcd.length = 0;
     }
   }
 
   public uploadattachments1() {
-    this.docservice.DoctorPhotoUpload(this.attachments1).subscribe(res => {
-
+    this.docservice.DoctorPhotoUpload(this.attachments1).subscribe((res) => {
       this.attachmentsurl1.push(res);
       let a = this.attachmentsurl1[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = "https://maroc.voiladoc.org" + a;
 
-      this.showdocphoto.push(b)
+      this.showdocphoto.push(b);
       this.attachments1.length = 0;
-
-    })
+    });
     // this.sendattachment();
   }
 
-
   public updatedocphoto() {
-
     var entity = {
-      'ID': this.id,
-      'PhotoURL': this.attachmentsurl1[0]
-    }
-    this.docservice.UpdateDoctorRegistrationPhoto(entity).subscribe(res => {
+      ID: this.id,
+      PhotoURL: this.attachmentsurl1[0],
+    };
+    this.docservice.UpdateDoctorRegistrationPhoto(entity).subscribe((res) => {
       let test = res;
       if (this.languageid == 1) {
         this.getdoctordetailsbyid();
-        Swal.fire(' Updated Successfully');
+        Swal.fire(" Updated Successfully");
         this.editbit = 0;
-        this.attachmentsurl1.length = 0
-        this.showdocphoto.length = 0
-      }
-      else {
+        this.attachmentsurl1.length = 0;
+        this.showdocphoto.length = 0;
+      } else {
         this.getdoctordetailsbyid();
-        Swal.fire('Mis à jour avec succés');
+        Swal.fire("Mis à jour avec succés");
         this.editbit = 0;
-        this.attachmentsurl1.length = 0
-        this.showdocphoto.length = 0
+        this.attachmentsurl1.length = 0;
+        this.showdocphoto.length = 0;
       }
-
-    })
-
+    });
   }
 
-
-
-
-
   public GetDoctorMedicalproof() {
-
     this.docservice.GetDoctorMedicalProofs(this.id).subscribe(
-      data => {
-
+      (data) => {
         this.details1 = data;
 
         // this.mid = this.details1.id,
         //   this.mphoto = this.details1.photoUrl
-
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
 
-
   public GetMedicalPhotoEdit(id) {
-
     this.meditt = 1;
     this.medicalphotoid = id;
   }
 
-
-
   public onattachmentUpload2(abcd) {
-
     // for (let i = 0; i < abcd.length; i++) {
     this.attachments2.push(abcd.addedFiles[0]);
     this.uploadattachments2();
     // }
 
-    Swal.fire('Added Successfully');
+    Swal.fire("Added Successfully");
     abcd.length = 0;
   }
   public uploadattachments2() {
-    this.docservice.DoctorMedicalProof(this.attachments2).subscribe(res => {
-
+    this.docservice.DoctorMedicalProof(this.attachments2).subscribe((res) => {
       this.attachmentsurl2.push(res);
 
       let a = this.attachmentsurl2[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = "https://maroc.voiladoc.org" + a;
 
-      this.photodetail.push(b)
-
+      this.photodetail.push(b);
 
       this.attachments2.length = 0;
-
-    })
+    });
     // this.sendattachment();
   }
 
-
   public updatemedicalphoto() {
-
     var entity = {
-      'ID': this.medicalphotoid,
-      'PhotoURL': this.attachmentsurl2[0]
-    }
-    this.docservice.UpdateDoctorMedicalProofs(entity).subscribe(res => {
+      ID: this.medicalphotoid,
+      PhotoURL: this.attachmentsurl2[0],
+    };
+    this.docservice.UpdateDoctorMedicalProofs(entity).subscribe((res) => {
       let test = res;
       if (this.languageid == 1) {
         this.getdoctordetailsbyid();
         this.GetDoctorMedicalproof();
-        Swal.fire(' Updated Successfully');
+        Swal.fire(" Updated Successfully");
 
-        this.attachmentsurl2.length = 0
-        this.photodetail.length = 0
+        this.attachmentsurl2.length = 0;
+        this.photodetail.length = 0;
         this.meditt = 0;
-      }
-      else {
+      } else {
         this.getdoctordetailsbyid();
         this.GetDoctorMedicalproof();
-        Swal.fire('Mis à jour avec succés');
+        Swal.fire("Mis à jour avec succés");
 
-        this.attachmentsurl2.length = 0
-        this.photodetail.length = 0
+        this.attachmentsurl2.length = 0;
+        this.photodetail.length = 0;
         this.meditt = 0;
       }
-
-    })
+    });
   }
 
-
   public GetDoctorIdentityProof() {
-
     this.docservice.GetDoctorIdentityProofs(this.id).subscribe(
-      data => {
-
+      (data) => {
         this.identityphoto = data;
 
         // this.mid = this.details1.id,
         //   this.mphoto = this.details1.photoUrl
-
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
   public GetidentityID(id) {
-
     this.identityid = id;
     this.identiyyyds = 1;
   }
 
-
   public onattachmentUpload(abcd) {
-
     // for (let i = 0; i < abcd.length; i++) {
     this.attachments.push(abcd.addedFiles[0]);
     this.uploadattachments();
     // }
     if (this.languageid == 1) {
-      Swal.fire('Added Successfully');
+      Swal.fire("Added Successfully");
+      abcd.length = 0;
+    } else {
+      Swal.fire("Ajouté avec succès");
       abcd.length = 0;
     }
-    else {
-      Swal.fire('Ajouté avec succès');
-      abcd.length = 0;
-    }
-
   }
 
   public uploadattachments() {
-    this.docservice.DoctorIdentityProof(this.attachments).subscribe(res => {
-
+    this.docservice.DoctorIdentityProof(this.attachments).subscribe((res) => {
       this.attachmentsurl.push(res);
       let a = this.attachmentsurl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = "https://maroc.voiladoc.org" + a;
 
-      this.showidentityproof.push(b)
+      this.showidentityproof.push(b);
       this.attachments.length = 0;
-
-    })
+    });
     // this.sendattachment();
   }
 
-
   public UpdateIdentityproof() {
-
     var entity = {
-      'ID': this.identityid,
-      'PhotoURL': this.attachmentsurl[0]
-    }
-    this.docservice.UpdateDoctorIdentityProofs(entity).subscribe(res => {
+      ID: this.identityid,
+      PhotoURL: this.attachmentsurl[0],
+    };
+    this.docservice.UpdateDoctorIdentityProofs(entity).subscribe((res) => {
       let test = res;
       if (this.languageid == 1) {
         this.GetDoctorIdentityProof();
-        Swal.fire(' Updated Successfully');
+        Swal.fire(" Updated Successfully");
 
-        this.attachmentsurl.length = 0
-        this.showidentityproof.length = 0
+        this.attachmentsurl.length = 0;
+        this.showidentityproof.length = 0;
         this.identiyyyds = 0;
-      }
-      else {
+      } else {
         this.GetDoctorIdentityProof();
-        Swal.fire('Mis à jour avec succés');
+        Swal.fire("Mis à jour avec succés");
 
-        this.attachmentsurl.length = 0
-        this.showidentityproof.length = 0
+        this.attachmentsurl.length = 0;
+        this.showidentityproof.length = 0;
         this.identiyyyds = 0;
       }
-
-    })
+    });
   }
   public getareamasterbyid() {
-
-    this.docservice.GetAreaMasterByCityIDAndLanguageID(this.cityid, this.languageid).subscribe(
-      data => {
-
-        this.arealist = data;
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetAreaMasterByCityIDAndLanguageID(this.cityid, this.languageid)
+      .subscribe(
+        (data) => {
+          this.arealist = data;
+        },
+        (error) => {}
+      );
   }
   public GetAreaID(even) {
-
     this.areaid = even.target.value;
     for (let i = 0; i < this.arealist.length; i++) {
-
       if (this.arealist[i].id == this.areaid) {
-
-        this.pincode = this.arealist[i].pincode
+        this.pincode = this.arealist[i].pincode;
       }
     }
   }
-
 
   // public getdoctorservices() {
   //   this.docservice.GetDoctorServicesAdminByLanguageID(this.id, this.languageid).subscribe(
@@ -748,11 +677,9 @@ export class EditDoctorRegistrationComponent implements OnInit {
   //   )
   // }
 
-
   public GetServiceID(even) {
     this.serviceid = even.target.value;
   }
-
 
   // public insertdetails() {
 
@@ -779,46 +706,39 @@ export class EditDoctorRegistrationComponent implements OnInit {
   // }
 
   public getdoctoreducationweb() {
-    this.docservice.GetDoctorEducationWebByLanguageID(this.id, this.languageid).subscribe(
-      data => {
-
-        this.educationlist = data;
-
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetDoctorEducationWebByLanguageID(this.id, this.languageid)
+      .subscribe(
+        (data) => {
+          this.educationlist = data;
+        },
+        (error) => {}
+      );
   }
 
-
-
   public insertdoctoreducation() {
-
     var entity = {
-      'DoctorID': this.id,
-      'CollegeName': this.colleagename,
-      'YearOfPassing': this.yearofpassing,
-      'DegreeID': this.degreeid,
-      'Experience': this.id
-    }
-    this.docservice.InsertDoctorEducation(entity).subscribe(data => {
-
+      DoctorID: this.id,
+      CollegeName: this.colleagename,
+      YearOfPassing: this.yearofpassing,
+      DegreeID: this.degreeid,
+      Experience: this.id,
+    };
+    this.docservice.InsertDoctorEducation(entity).subscribe((data) => {
       if (data != 0) {
         if (this.languageid == 1) {
-          Swal.fire('Completed', 'Details Added Successfully');
+          Swal.fire("Completed", "Details Added Successfully");
+          this.colleagename = "";
+          this.yearofpassing = "";
+          this.getdoctoreducationweb();
+        } else if (this.languageid == 6) {
+          Swal.fire("Ajouté avec succès.");
           this.colleagename = "";
           this.yearofpassing = "";
           this.getdoctoreducationweb();
         }
-        else if (this.languageid == 6) {
-          Swal.fire('Ajouté avec succès.');
-          this.colleagename = "";
-          this.yearofpassing = "";
-          this.getdoctoreducationweb();
-        }
-
       }
-
-    })
+    });
   }
 
   // public DeleteDoctorSrvices(id) {
@@ -839,118 +759,90 @@ export class EditDoctorRegistrationComponent implements OnInit {
   //   )
   // }
 
-
   public DeleteDoctorEducation(id) {
     if (this.languageid == 1) {
       Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You Want to Delete This Education!",
-        type: 'warning',
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.value) {
-          this.docservice.DeleteDoctorEducation(id).subscribe(res => {
+          this.docservice.DeleteDoctorEducation(id).subscribe((res) => {
             let test = res;
             this.getdoctoreducationweb();
-          })
-          Swal.fire(
-            'Deleted!',
-            'Education has been deleted.',
-            'success'
-          )
-        }
-        else {
+          });
+          Swal.fire("Deleted!", "Education has been deleted.", "success");
+        } else {
           this.getdoctoreducationweb();
         }
-      })
-    }
-    else if (this.languageid == 6) {
+      });
+    } else if (this.languageid == 6) {
       Swal.fire({
-        title: 'Êtes-vous sûr ?',
+        title: "Êtes-vous sûr ?",
         text: "Supprimer !",
-        type: 'warning',
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Oui',
-        cancelButtonText: 'Annuler'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Oui",
+        cancelButtonText: "Annuler",
       }).then((result) => {
         if (result.value) {
-          this.docservice.DeleteDoctorEducation(id).subscribe(res => {
+          this.docservice.DeleteDoctorEducation(id).subscribe((res) => {
             let test = res;
             this.getdoctoreducationweb();
-          })
-          Swal.fire(
-            '',
-            'Enregistré !'
-
-          )
-        }
-        else {
+          });
+          Swal.fire("", "Enregistré !");
+        } else {
           this.getdoctoreducationweb();
         }
-      })
-
+      });
     }
-
   }
 
   public getservicemaster() {
     this.docservice.GetServiceMasterByDepartmentID(this.departmentid).subscribe(
-      data => {
-
+      (data) => {
         this.servicelist = data;
-
-
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
 
-
-
   public GetGenderID(even) {
-
     this.gender = even.target.value;
   }
 
-
-
   geocode() {
-    debugger
-    this.spinner.show()
-    this.docservice.Getlocation(this.address).subscribe(data => {
-      debugger
+    debugger;
+    this.spinner.show();
+    this.docservice.Getlocation(this.address).subscribe((data) => {
+      debugger;
       console.log("google addressmain", data);
       if (data["results"].length != 0) {
         this.googleAddress = data["results"];
-        console.log("google address", this.googleAddress)
-        debugger
+        console.log("google address", this.googleAddress);
+        debugger;
         this.formatAddress = this.googleAddress[0]["formatted_address"];
-        this.latitude = this.googleAddress[0].geometry.location["lat"],
-          this.longitude = this.googleAddress[0].geometry.location["lng"];
+        (this.latitude = this.googleAddress[0].geometry.location["lat"]),
+          (this.longitude = this.googleAddress[0].geometry.location["lng"]);
         Swal.fire("Emplacement récupéré avec succès");
         this.spinner.hide();
-      }
-      else {
+      } else {
         Swal.fire("Entrez l'adresse correcte");
         this.spinner.hide();
       }
-
-    })
+    });
   }
 
-
-
   checkVatvalue(even) {
-
     if (even == 1) {
       this.vatpercentage = 0;
-    }
-    else {
+    } else {
       this.vatpercentage = 20;
     }
   }

@@ -615,7 +615,7 @@ export class MyappointmentsComponent implements OnInit {
 
   appointmentTypeText: any;
 
-  public Appointmentstatus(appointmentID, patientID, notificationdate, doctorName, hospital_ClinicName, emailID, smsmobileno, appointmentTypeText) {
+  public Appointmentstatus(appointmentID, patientID, notificationdate, doctorName, hospital_ClinicName, emailID, smsmobileno, appointmentTypeText,appointmenttypeid) {
 
     if (this.languageid == 1) {
       this.doctorname = doctorName;
@@ -690,8 +690,17 @@ export class MyappointmentsComponent implements OnInit {
             this.InsertNotifiaction(this.appointmentTypeText);
             this.Insertnotificatiaccept(this.appointmentTypeText);
 
+
+            if(appointmenttypeid==1)
+            {
+              var smsdesc = "Votre rendez-vous avec le professionnel de santé Basma " + this.doctorname + " du  " + this.slotsname + " a été confirmé. . Type : au cabinet médical/clinique."
+              this.SendTwiliSms(smsdesc, smsmobileno)
+            }
+            else
+            {
             var smsdesc = "Votre RDV " + appointmentTypeText + " avec " + this.doctorname + " le  " + this.slotsname + " a été confirmé."
             this.SendTwiliSms(smsdesc, smsmobileno)
+            }
           })
 
           Swal.fire('Rendez-vous accepté !')
@@ -2200,7 +2209,8 @@ export class MyappointmentsComponent implements OnInit {
       var smsdesc = "Suite à votre consultation avec " + this.user + ", votre ordonnance pour vos examens médicaux est maintant disponible dans Accueil."
       this.SendTwiliSms(smsdesc, this.smsmobileno)
     }
-
+    this.qwerty = [];
+    this.qwerty.length = 0
 
   }
 
@@ -4003,7 +4013,7 @@ export class MyappointmentsComponent implements OnInit {
     }
     var entity = {
       'emailto': this.doctoremail,
-      'emailsubject': 'Patient Referred By ' + this.user,
+      'emailsubject': this.user+' vous réfère un patient.',
       'emailbody': desc,
       'attachmenturl': this.emailattchementurl,
       'cclist': this.cclist,
@@ -5721,7 +5731,7 @@ export class MyappointmentsComponent implements OnInit {
   public SavePDF() {
     ;
 
-    let pdfContent = window.document.getElementById("content");
+    let pdfContent = window.document.getElementById("Receipts");
     var doc = new jsPDF('p', 'mm', "a4");
 
     html2canvas(pdfContent).then(canvas => {
@@ -6475,9 +6485,6 @@ export class MyappointmentsComponent implements OnInit {
       this.spinner.hide();
     })
   }
-
-
-
 
 
 }

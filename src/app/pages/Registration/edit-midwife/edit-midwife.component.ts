@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { HelloDoctorService } from '../../../hello-doctor.service';
-import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { HelloDoctorService } from "../../../hello-doctor.service";
+import Swal from "sweetalert2";
+import { ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 @Component({
-  selector: 'app-edit-midwife',
-  templateUrl: './edit-midwife.component.html',
-  styleUrls: ['./edit-midwife.component.css']
+  selector: "app-edit-midwife",
+  templateUrl: "./edit-midwife.component.html",
+  styleUrls: ["./edit-midwife.component.css"],
 })
 export class EditMidwifeComponent implements OnInit {
   public countrylist: any;
@@ -36,236 +36,217 @@ export class EditMidwifeComponent implements OnInit {
   public languageid: any;
   public labels: any;
   public dropzonelable: any;
-  labels4:any;
+  labels4: any;
   formatAddress: any;
   latitude: any;
   longitude: any;
   googleAddress: any;
-  vatCheck:any;
-  vatpercentage:any;
-  today=new Date()
-  contractstartdate:any;
-  contractenddate:any;
-  constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute,private spinner: NgxSpinnerService) { }
+  vatCheck: any;
+  vatpercentage: any;
+  today = new Date();
+  contractstartdate: any;
+  contractenddate: any;
+  constructor(
+    public docservice: HelloDoctorService,
+    private activatedroute: ActivatedRoute,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
-    this.activatedroute.params.subscribe(params => {
-
-      this.id = params['id'];
-      this.languageid = localStorage.getItem('LanguageID');
-      this.Getmidwifedetails()
-      this.GetCountryMaster()
-    }
-    )
+    this.activatedroute.params.subscribe((params) => {
+      this.id = params["id"];
+      this.languageid = localStorage.getItem("LanguageID");
+      this.Getmidwifedetails();
+      this.GetCountryMaster();
+    });
     if (this.languageid == 1) {
-      this.dropzonelable = "Upload file"
-    }
-    else if (this.languageid == 6) {
-      this.dropzonelable = "Télécharger des fichiers"
+      this.dropzonelable = "Upload file";
+    } else if (this.languageid == 6) {
+      this.dropzonelable = "Télécharger des fichiers";
     }
 
     this.getlanguage();
     this.countryid = "";
     this.cityid = "";
     this.areaid = "";
-
   }
 
   public getlanguage() {
-    this.docservice.GetAdmin_MidWifeRegistration_LabelByLanguageID(this.languageid).subscribe(
-      data => {
+    this.docservice
+      .GetAdmin_MidWifeRegistration_LabelByLanguageID(this.languageid)
+      .subscribe(
+        (data) => {
+          this.labels = data;
+        },
+        (error) => {}
+      );
 
-        this.labels = data;
-      }, error => {
-      }
-    )
-    
-    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
-      data => {
-
-        this.labels4 = data;
-       
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetAdmin_HospitalClinicRegistration_Lables(this.languageid)
+      .subscribe(
+        (data) => {
+          this.labels4 = data;
+        },
+        (error) => {}
+      );
   }
   public attachmentsurl = [];
   public photourl: any;
   hospitalname: any;
-  hospitalclinicid:any;
+  hospitalclinicid: any;
   public Getmidwifedetails() {
-    this.docservice.GetMidWivesRegistrationByIDAndLanguageID(this.id, this.languageid).subscribe(data => {
-      this.details = data[0];
+    this.docservice
+      .GetMidWivesRegistrationByIDAndLanguageID(this.id, this.languageid)
+      .subscribe(
+        (data) => {
+          this.details = data[0];
 
-      this.name = this.details.name,
-        this.phno = this.details.phoneNo,
-        this.email = this.details.email,
-        this.genderid = this.details.genderID,
-        this.address = this.details.address,
-        this.deptid = this.details.departementID,
-        this.exp = this.details.experience,
-        this.description = this.details.description,
-        this.homevisit = this.details.homeVisit,
-        this.countryid = this.details.countryID,
-        this.cityid = this.details.cityID,
-        this.areaid = this.details.areaID,
-        this.pincode = this.details.pincode
-      this.photourl = this.details.photoURL;
-      this.attachmentsurl[0] = this.details.photoUrlPath;
-      this.hospitalname = this.details.hospital_ClinicName;
-      this.subscriptiontype=this.details.subscriptionTypeID,
-      this.monthlysubription=this.details.monthlySubscription
-      this.appointmentpercentage=this.details.appointmentPercentage
-       this.taxidentification=this.details.taxIdentification
-       this.businessid=this.details.businessID
-      this.commercialcity=this.details.commercialRegCity
-       this.taxprofessional=this.details.taxProfessional
-       this.socialseccurityfundno=this.details.socialSeccurityNo
-       this.nameofbank=this.details.nameofthebank
-        this.accountName=this.details.accountName
-        this.accountNumber=this.details.accountNumber,
-        this.hospitalclinicid=this.details.hospitalClinicID,
-        this.latitude=this.details.lattitude,
-        this.longitude=this.details.longitude,
-        this.formatAddress=this.details.formatedAddress
-        this.regionID=this.details.regionMasterID,
-        this.contractstartdate = this.details.exonerationPeriodFromDate
-        this.contractenddate = this.details.exonerationPeriodFromDate,
-          this.vatCheck = this.details.vat,
-          this.vatpercentage=this.details.vatPercentage
+          (this.name = this.details.name),
+            (this.phno = this.details.phoneNo),
+            (this.email = this.details.email),
+            (this.genderid = this.details.genderID),
+            (this.address = this.details.address),
+            (this.deptid = this.details.departementID),
+            (this.exp = this.details.experience),
+            (this.description = this.details.description),
+            (this.homevisit = this.details.homeVisit),
+            (this.countryid = this.details.countryID),
+            (this.cityid = this.details.cityID),
+            (this.areaid = this.details.areaID),
+            (this.pincode = this.details.pincode);
+          this.photourl = this.details.photoURL;
+          this.attachmentsurl[0] = this.details.photoUrlPath;
+          this.hospitalname = this.details.hospital_ClinicName;
+          (this.subscriptiontype = this.details.subscriptionTypeID),
+            (this.monthlysubription = this.details.monthlySubscription);
+          this.appointmentpercentage = this.details.appointmentPercentage;
+          this.taxidentification = this.details.taxIdentification;
+          this.businessid = this.details.businessID;
+          this.commercialcity = this.details.commercialRegCity;
+          this.taxprofessional = this.details.taxProfessional;
+          this.socialseccurityfundno = this.details.socialSeccurityNo;
+          this.nameofbank = this.details.nameofthebank;
+          this.accountName = this.details.accountName;
+          (this.accountNumber = this.details.accountNumber),
+            (this.hospitalclinicid = this.details.hospitalClinicID),
+            (this.latitude = this.details.lattitude),
+            (this.longitude = this.details.longitude),
+            (this.formatAddress = this.details.formatedAddress);
+          (this.regionID = this.details.regionMasterID),
+            (this.contractstartdate = this.details.exonerationPeriodFromDate);
+          (this.contractenddate = this.details.exonerationPeriodFromDate),
+            (this.vatCheck = this.details.vat),
+            (this.vatpercentage = this.details.vatPercentage);
 
-      this.GetDepartmentmaster();
-      this.GetCountryMaster();
-      this.getcitymaster();
-      this.getareamasterbyid();
-      this.GetRegionMaster()
-
-
-    }, error => {
-
-    })
+          this.GetDepartmentmaster();
+          this.GetCountryMaster();
+          this.getcitymaster();
+          this.getareamasterbyid();
+          this.GetRegionMaster();
+        },
+        (error) => {}
+      );
   }
 
   regionList: any;
 
   GetRegionMaster() {
     this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
-      data => {
-
+      (data) => {
         this.regionList = data;
-
-
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
 
+  regionID: any;
 
-  regionID:any;
-
-  GetRegionID(even)
-{
-  this.regionID=even.target.value;
-  this.getcitymaster()
-}
-
+  GetRegionID(even) {
+    this.regionID = even.target.value;
+    this.getcitymaster();
+  }
 
   public GetDepartmentmaster() {
     this.docservice.GetDepartmentMasterByLanguageID(this.languageid).subscribe(
-      data => {
-
+      (data) => {
         this.departmentlist = data;
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
-
 
   public GetCountryMaster() {
     this.docservice.GetCountryMasterByLanguageID(this.languageid).subscribe(
-      data => {
-
+      (data) => {
         this.countrylist = data;
-
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
   public GetCountryID(even) {
-
     this.countryid = even.target.value;
     this.GetRegionMaster();
-
   }
 
   public getcitymaster() {
-    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
-      data => {
-
-        this.citylist = data;
-
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetCityMasterBYIDandLanguageID(this.regionID, this.languageid)
+      .subscribe(
+        (data) => {
+          this.citylist = data;
+        },
+        (error) => {}
+      );
   }
 
-
   public GetcityID(even) {
-
     this.cityid = even.target.value;
     this.getareamasterbyid();
   }
   public getareamasterbyid() {
-
-    this.docservice.GetAreaMasterByCityIDAndLanguageID(this.cityid, this.languageid).subscribe(
-      data => {
-
-        this.arealist = data;
-
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetAreaMasterByCityIDAndLanguageID(this.cityid, this.languageid)
+      .subscribe(
+        (data) => {
+          this.arealist = data;
+        },
+        (error) => {}
+      );
   }
 
   public GetDepartmentID(even) {
-
     this.deptid = even.target.value;
   }
 
   public GetAreaID(even) {
-
     this.areaid = even.target.value;
     for (let i = 0; i < this.arealist.length; i++) {
-
       if (this.arealist[i].id == this.areaid) {
-
-        this.pincode = this.arealist[i].pincode
+        this.pincode = this.arealist[i].pincode;
       }
     }
   }
 
   geocode() {
-    debugger
-    this.spinner.show()
-    this.docservice.Getlocation(this.address).subscribe(data => {
-      debugger
+    debugger;
+    this.spinner.show();
+    this.docservice.Getlocation(this.address).subscribe((data) => {
+      debugger;
       console.log("google addressmain", data);
-      if (data["results"].length!=0) {
+      if (data["results"].length != 0) {
         this.googleAddress = data["results"];
-        console.log("google address", this.googleAddress)
-        debugger
+        console.log("google address", this.googleAddress);
+        debugger;
         this.formatAddress = this.googleAddress[0]["formatted_address"];
-        this.latitude = this.googleAddress[0].geometry.location["lat"],
-          this.longitude = this.googleAddress[0].geometry.location["lng"];
+        (this.latitude = this.googleAddress[0].geometry.location["lat"]),
+          (this.longitude = this.googleAddress[0].geometry.location["lng"]);
         Swal.fire("Emplacement récupéré avec succès");
         this.spinner.hide();
-      }
-      else {
+      } else {
         Swal.fire("Entrez l'adresse correcte");
         this.spinner.hide();
       }
-
-    })
+    });
   }
 
   taxidentification: any;
@@ -276,82 +257,82 @@ export class EditMidwifeComponent implements OnInit {
   nameofbank: any;
   accountName: any;
   accountNumber: any;
-  subscriptiontype:any;
+  subscriptiontype: any;
   public updatedetails() {
-    this.contractstartdate = this.docservice.GetDates(this.contractstartdate)
-    this.contractenddate = this.docservice.GetDates(this.contractenddate)
+    this.contractstartdate = this.docservice.GetDates(this.contractstartdate);
+    this.contractenddate = this.docservice.GetDates(this.contractenddate);
     var entity = {
-      'LanguageID': this.languageid,
-      'ID': this.id,
-      'Name': this.name,
-      'PhoneNo': this.phno,
-      'Email': this.email,
-      'GenderID': this.genderid,
-      'Address': this.address,
-      'CityID': this.cityid,
-      'AreaID': this.areaid,
-      'DepartementID': this.deptid,
-      'Experience': this.exp,
-      'Description': this.description,
-      'HomeVisit': Number(this.homevisit),
-      'Pincode': this.pincode,
-      'CountryID': this.countryid,
-      'SubscriptionTypeID': this.subscriptiontype,
-      'MonthlySubscription': this.monthlysubription,
-      'AppointmentPercentage': this.appointmentpercentage,
-      'TaxIdentification': this.taxidentification,
-      'BusinessID': this.businessid,
-      'CommercialRegCity': this.commercialcity,
-      'TaxProfessional': this.taxprofessional,
-      'SocialSeccurityNo': this.socialseccurityfundno,
-      'Nameofthebank': this.nameofbank,
-      'AccountName': this.accountName,
-      'AccountNumber': this.accountNumber,
-      'VAT': this.vatCheck,
-      'Lattitude': this.latitude,
-      'Longitude': this.longitude,
-      'FormatedAddress': this.formatAddress,
-      'VatPercentage': this.vatpercentage,
-      'ExonerationPeriodFromDate': this.contractstartdate!=null?this.contractstartdate:new Date(),
-      'ExonerationPerioToDate': this.contractenddate!=null?this.contractstartdate:new Date()
-    }
-    this.docservice.UpdateMidWivesRegistration(entity).subscribe(data => {
+      LanguageID: this.languageid,
+      ID: this.id,
+      Name: this.name,
+      PhoneNo: this.phno,
+      Email: this.email,
+      GenderID: this.genderid,
+      Address: this.address,
+      CityID: this.cityid,
+      AreaID: this.areaid,
+      DepartementID: this.deptid,
+      Experience: this.exp,
+      Description: this.description,
+      HomeVisit: Number(this.homevisit),
+      Pincode: this.pincode,
+      CountryID: this.countryid,
+      SubscriptionTypeID: this.subscriptiontype,
+      MonthlySubscription: this.monthlysubription,
+      AppointmentPercentage: this.appointmentpercentage,
+      TaxIdentification: this.taxidentification,
+      BusinessID: this.businessid,
+      CommercialRegCity: this.commercialcity,
+      TaxProfessional: this.taxprofessional,
+      SocialSeccurityNo: this.socialseccurityfundno,
+      Nameofthebank: this.nameofbank,
+      AccountName: this.accountName,
+      AccountNumber: this.accountNumber,
+      VAT: this.vatCheck,
+      Lattitude: this.latitude,
+      Longitude: this.longitude,
+      FormatedAddress: this.formatAddress,
+      VatPercentage: this.vatpercentage,
+      ExonerationPeriodFromDate:
+        this.contractstartdate != null ? this.contractstartdate : new Date(),
+      ExonerationPerioToDate:
+        this.contractenddate != null ? this.contractstartdate : new Date(),
+      PayTypeID: 1,
+      TypeofPayment: 1,
+      cash: 1,
+      Wallet: 0,
+      CreditCard: 0,
+    };
+    this.docservice.UpdateMidWivesRegistration(entity).subscribe((data) => {
       if (data != undefined) {
         if (this.languageid == 1) {
           Swal.fire("Updated Successfully");
-          this.Getmidwifedetails()
+          this.Getmidwifedetails();
           this.updatephoto();
-          location.href = "#/MidwifeDashboard"
-        }
-        else if (this.languageid == 6) {
+          location.href = "#/MidwifeDashboard";
+        } else if (this.languageid == 6) {
           Swal.fire("Mis à jour avec succés");
-          this.Getmidwifedetails()
+          this.Getmidwifedetails();
           location.href = "#/MidwifeDashboard";
           this.updatephoto();
         }
-
-
       }
-    })
-
+    });
   }
 
-
-
-  public dummnursephoto = []
+  public dummnursephoto = [];
   public onattachmentUpload(abcd) {
     this.attachmentsurl = [];
-    this.dummnursephoto = []
+    this.dummnursephoto = [];
     // for (let i = 0; i < abcd.length; i++) {
     this.attachments.push(abcd.addedFiles[0]);
     this.uploadattachments();
     // }
     if (this.languageid == 1) {
-      Swal.fire('Added Successfully');
+      Swal.fire("Added Successfully");
       abcd.length = 0;
-    }
-    else if (this.languageid == 6) {
-      Swal.fire('Mis à jour avec succés');
+    } else if (this.languageid == 6) {
+      Swal.fire("Mis à jour avec succés");
       abcd.length = 0;
     }
   }
@@ -359,19 +340,17 @@ export class EditMidwifeComponent implements OnInit {
   public showphoto = [];
   public attachments = [];
   public uploadattachments() {
-    debugger
-    this.docservice.pharmacyphoto(this.attachments).subscribe(res => {
-      
+    debugger;
+    this.docservice.pharmacyphoto(this.attachments).subscribe((res) => {
       this.attachmentsurl.push(res);
       this.dummnursephoto.push(res);
       let a = this.dummnursephoto[0].slice(2);
-      debugger
-      let b = 'https://maroc.voiladoc.org' + a;
+      debugger;
+      let b = "https://maroc.voiladoc.org" + a;
 
-      this.showphoto.push(b)
+      this.showphoto.push(b);
       this.attachments.length = 0;
-
-    })
+    });
     // this.sendattachment();
   }
 
@@ -382,48 +361,43 @@ export class EditMidwifeComponent implements OnInit {
   }
 
   public updatephoto() {
-    debugger
+    debugger;
     var entity = {
-      'ID': this.id,
-      'PhotoUrl': this.attachmentsurl[0]
-    }
-    this.docservice.UpdateMidWivesRegistrationPhoto(entity).subscribe(data => {
-      if (this.languageid == 1) {
-        // Swal.fire("Updated Successfully");
-        this.editbit = 0;
-        this.dummnursephoto.length = 0;
-        this.attachmentsurl.length = 0;
-        this.showphoto.length = 0;
-        this.ngOnInit();
-      }
-      else if (this.languageid == 6) {
-        // Swal.fire("Mis à jour avec succés");
-        this.editbit = 0;
-        this.dummnursephoto.length = 0;
-        this.attachmentsurl.length = 0;
-        this.showphoto.length = 0;
-        this.ngOnInit();
-      }
-    })
+      ID: this.id,
+      PhotoUrl: this.attachmentsurl[0],
+    };
+    this.docservice
+      .UpdateMidWivesRegistrationPhoto(entity)
+      .subscribe((data) => {
+        if (this.languageid == 1) {
+          // Swal.fire("Updated Successfully");
+          this.editbit = 0;
+          this.dummnursephoto.length = 0;
+          this.attachmentsurl.length = 0;
+          this.showphoto.length = 0;
+          this.ngOnInit();
+        } else if (this.languageid == 6) {
+          // Swal.fire("Mis à jour avec succés");
+          this.editbit = 0;
+          this.dummnursephoto.length = 0;
+          this.attachmentsurl.length = 0;
+          this.showphoto.length = 0;
+          this.ngOnInit();
+        }
+      });
   }
-
 
   appointmentpercentage: any;
   monthlysubription: any;
   public Getsubscriptontype() {
-
     this.appointmentpercentage = 0;
     this.monthlysubription = 0;
   }
   checkVatvalue(even) {
-
     if (even == 1) {
       this.vatpercentage = 0;
-    }
-    else {
+    } else {
       this.vatpercentage = 20;
     }
   }
-
-
 }

@@ -110,7 +110,7 @@
                 placeholder="{{labels[0].address}}" class="form-control"></textarea>
             </div>
             <div class="col-lg-2">
-              <button  class="btn btncolor" (click)="geocode()">{{labels[0].getLocation}}</button>
+              <button class="btn btncolor" (click)="geocode()">{{labels[0].getLocation}}</button>
             </div>
           </div>
           <br />
@@ -231,6 +231,18 @@
             </div>
           </div>
           <br /> -->
+
+          <div class="row">
+            <div class="col-lg-3">
+              <label>horaires de la clinique :</label>
+            </div>
+
+            <div class="col-lg-4">
+              <input type="text" placeholder="Clinic Timings" name="horaires de la clinique" [(ngModel)]="clinicTimings"
+                class="form-control">
+            </div>
+
+          </div><br>
 
           <div class="row">
             <div class="col-lg-3">
@@ -491,25 +503,25 @@
             <label class="Address_label">Exonerated :</label>
           </div>
           <div class="col-lg-4">
-            <input type="radio"  value="1" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(1)">
+            <input type="radio" value="1" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(1)">
             &nbsp;{{labels[0].yes}}
-            <input type="radio" value="0" [(ngModel)]="vatCheck" name="vatCheck"  (click)="checkVatvalue(0)">
+            <input type="radio" value="0" [(ngModel)]="vatCheck" name="vatCheck" (click)="checkVatvalue(0)">
             &nbsp;{{labels[0].no}}
           </div>
         </div>
         <br>
         <div>
-        <div class="row" >
-          <div class="col-lg-3">
-            <label class="Address_label">Vat Percentage :</label>
+          <div class="row">
+            <div class="col-lg-3">
+              <label class="Address_label">Vat Percentage :</label>
+            </div>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" required
+                name="vatpercentage" placeholder="Vat Percentage">
+            </div>
           </div>
-          <div class="col-lg-4">
-            <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" required
-              name="vatpercentage" placeholder="Vat Percentage">
-          </div>
+          <br>
         </div>
-        <br>
-      </div>
         <div class="row">
           <div class="col-lg-3">
             <label *ngIf="languageid=='1'">Exoneration period from :</label>

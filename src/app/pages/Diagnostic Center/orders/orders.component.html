@@ -103,14 +103,16 @@
               <a [ngbTooltip]="tipcontent2045">
                 <img src="assets/Images/phaprescripton.png"
                   *ngIf="details.appointmentType=='2'&&details.photoexist=='1'" data-toggle="modal"
-                  data-target="#exampleModal6" style="height:20px;" (click)="GetAttachments(details.id)"></a>
+                  data-target="#exampleModal6" style="height:20px;" (click)="GetAttachments(details.id)"></a>  <br>
 
               <ng-template #tipcontent2094>Pdf</ng-template>
               <a [ngbTooltip]="tipcontent2094" *ngIf="details.appointmentType=='2'&&details.fileAvailableBit=='1'">
-                <img src="assets/Images/pdf.png" style="height:20px;" (click)="GetPdf(details.fileUrl)"></a>
+                <img src="assets/Images/pdf.png" style="height:20px;" (click)="GetPdf(details.fileUrl)">
+                &nbsp;&nbsp;</a>
+              <br>
 
               <img src="assets/Images/pack1.png" data-toggle="modal" data-target="#AcceptModal" style="height:20px;"
-                *ngIf="details.appointmentType=='2'" (click)="GetAppointmentAcceptBit(details.id,details.patientID,details.diagnosticCenterName,details.notificationdate,details.emailID,details.smsmobileno,details.homeTypeText)">&nbsp;
+                *ngIf="details.appointmentType=='2'&&details.acceptedBit==0" (click)="GetAppointmentAcceptBit(details.id,details.patientID,details.diagnosticCenterName,details.notificationdate,details.emailID,details.smsmobileno,details.homeTypeText)">&nbsp;
 
             </td>
 

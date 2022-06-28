@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { HelloDoctorService } from '../../../hello-doctor.service';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from "@angular/core";
+import { HelloDoctorService } from "../../../hello-doctor.service";
+import Swal from "sweetalert2";
 import { NgxSpinnerService } from "ngx-spinner";
 @Component({
-  selector: 'app-midwife',
-  templateUrl: './midwife.component.html',
-  styleUrls: ['./midwife.component.css']
+  selector: "app-midwife",
+  templateUrl: "./midwife.component.html",
+  styleUrls: ["./midwife.component.css"],
 })
 export class MidwifeComponent implements OnInit {
-
-  constructor(public docservice: HelloDoctorService, private spinner: NgxSpinnerService) { }
+  constructor(
+    public docservice: HelloDoctorService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   public name: any;
   public phno: any;
@@ -36,7 +38,7 @@ export class MidwifeComponent implements OnInit {
   public countrylist: any;
   public countrydd: any;
   public countryid: any;
-  today = new Date()
+  today = new Date();
   public citydd: any;
   public areadd: any;
   public languageid: any;
@@ -53,285 +55,261 @@ export class MidwifeComponent implements OnInit {
   labels4: any;
   vatCheck: any;
   vatpercentage: any;
-contractstartdate:any;
-contractenddate:any;
+  contractstartdate: any;
+  contractenddate: any;
   ngOnInit() {
+    this.dummid = localStorage.getItem("hospitalid");
+    this.hospitalclinicid = localStorage.getItem("hospitalid");
+    this.languageid = localStorage.getItem("LanguageID");
 
-    this.dummid = localStorage.getItem('hospitalid');
-    this.hospitalclinicid = localStorage.getItem('hospitalid');
-    this.languageid = localStorage.getItem('LanguageID');
-
-    this.docservice.GetAdmin_MidWifeRegistration_LabelByLanguageID(this.languageid).subscribe(
-      data => {
-
-        this.labels = data;
-        this.SelectLabel = this.labels[0].select;
-        this.search = this.labels[0].search;
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetAdmin_MidWifeRegistration_LabelByLanguageID(this.languageid)
+      .subscribe(
+        (data) => {
+          this.labels = data;
+          this.SelectLabel = this.labels[0].select;
+          this.search = this.labels[0].search;
+        },
+        (error) => {}
+      );
 
     this.docservice.GetCityMaster().subscribe(
-      data => {
-
+      (data) => {
         this.citylist = data;
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
 
     this.docservice.GetDepartmentMasterByLanguageID(this.languageid).subscribe(
-      data => {
+      (data) => {
         this.departmentlist = data;
 
         // this.departmentlist = this.dummdepartmentlist.filter(x => x.id == 12)
-      }, error => {
-      }
-    )
-    this.GetCountryMaster()
+      },
+      (error) => {}
+    );
+    this.GetCountryMaster();
     this.getlanguage();
-    this.gethosptilclinicforadmin()
+    this.gethosptilclinicforadmin();
     if (this.languageid == 1) {
-      this.dropzonelable = "Upload file"
-    }
-    else if (this.languageid == 6) {
-      this.dropzonelable = "Télécharger des fichiers"
+      this.dropzonelable = "Upload file";
+    } else if (this.languageid == 6) {
+      this.dropzonelable = "Télécharger des fichiers";
     }
   }
-
 
   public gethosptilclinicforadmin() {
-
-    this.docservice.GetHospital_ClinicForAdminByAdmin(this.languageid).subscribe(
-      data => {
-
-        this.hospitalcliniclist = data.filter(x => x.id != '590' && x.id != '613' && x.id != '612');
-        this.hospitadd = {
-          singleSelection: true,
-          idField: 'id',
-          textField: 'hospital_ClinicName',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
-          //  itemsShowLimit: 3,
-          allowSearchFilter: true,
-          searchPlaceholderText: this.search
-        };
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetHospital_ClinicForAdminByAdmin(this.languageid)
+      .subscribe(
+        (data) => {
+          this.hospitalcliniclist = data.filter(
+            (x) => x.id != "590" && x.id != "613" && x.id != "612"
+          );
+          this.hospitadd = {
+            singleSelection: true,
+            idField: "id",
+            textField: "hospital_ClinicName",
+            selectAllText: "Select All",
+            unSelectAllText: "UnSelect All",
+            //  itemsShowLimit: 3,
+            allowSearchFilter: true,
+            searchPlaceholderText: this.search,
+          };
+        },
+        (error) => {}
+      );
   }
 
-
   public GetHospitalID(item: any) {
-
     this.hospitalclinicid = item.id;
   }
   public getlanguage() {
-    this.docservice.GetAdmin_MidWifeRegistration_LabelByLanguageID(this.languageid).subscribe(
-      data => {
+    this.docservice
+      .GetAdmin_MidWifeRegistration_LabelByLanguageID(this.languageid)
+      .subscribe(
+        (data) => {
+          this.labels = data;
+          this.SelectLabel = this.labels[0].select;
+        },
+        (error) => {}
+      );
 
-        this.labels = data;
-        this.SelectLabel = this.labels[0].select;
-
-
-      }, error => {
-      }
-    )
-
-    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
-      data => {
-
-        this.labels4 = data;
-
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetAdmin_HospitalClinicRegistration_Lables(this.languageid)
+      .subscribe(
+        (data) => {
+          this.labels4 = data;
+        },
+        (error) => {}
+      );
   }
 
-
-  SelectLabel
+  SelectLabel;
   public GetCountryMaster() {
     this.docservice.GetCountryMasterByLanguageID(this.languageid).subscribe(
-      data => {
-
+      (data) => {
         this.countrylist = data;
         this.countrydd = {
           singleSelection: true,
-          idField: 'id',
-          textField: 'short',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
+          idField: "id",
+          textField: "short",
+          selectAllText: "Select All",
+          unSelectAllText: "UnSelect All",
           //  itemsShowLimit: 3,
           allowSearchFilter: false,
-          searchPlaceholderText: this.search
+          searchPlaceholderText: this.search,
         };
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
-  regionList:any;
-  regiondd={};
+  regionList: any;
+  regiondd = {};
 
   public GetCountryID(item: any) {
-
     this.countryid = item.id;
 
- 
     this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
-      data => {
-
+      (data) => {
         this.regionList = data;
 
         this.regiondd = {
           singleSelection: true,
-          idField: 'id',
-          textField: 'regionName',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
+          idField: "id",
+          textField: "regionName",
+          selectAllText: "Select All",
+          unSelectAllText: "UnSelect All",
           //  itemsShowLimit: 3,
           allowSearchFilter: true,
           searchPlaceholderText: this.search,
         };
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
 
-  regionID:any;
+  regionID: any;
 
-  GetRegionID(item:any)
-  {
-    this.regionID=item.id
+  GetRegionID(item: any) {
+    this.regionID = item.id;
 
-    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
-      data => {
+    this.docservice
+      .GetCityMasterBYIDandLanguageID(this.regionID, this.languageid)
+      .subscribe(
+        (data) => {
+          this.citylist = data;
 
-        this.citylist = data;
-
-        this.citydd = {
-          singleSelection: true,
-          idField: 'id',
-          textField: 'short',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
-          //  itemsShowLimit: 3,
-          allowSearchFilter: true,
-          searchPlaceholderText: this.search,
-        };
-      }, error => {
-      }
-    )
+          this.citydd = {
+            singleSelection: true,
+            idField: "id",
+            textField: "short",
+            selectAllText: "Select All",
+            unSelectAllText: "UnSelect All",
+            //  itemsShowLimit: 3,
+            allowSearchFilter: true,
+            searchPlaceholderText: this.search,
+          };
+        },
+        (error) => {}
+      );
   }
-
 
   public GetCityID(item1: any) {
-
     this.cityid = item1.id;
     this.getareamasterbyid();
   }
 
-
   public GetDepartmentID(even) {
-
     this.deptid = even.target.value;
   }
 
-
-  public dummphotourl = []
+  public dummphotourl = [];
   public onattachmentUpload(abcd) {
-
-    this.dummphotourl = []
+    this.dummphotourl = [];
     // for (let i = 0; i < abcd.length; i++) {
     this.attachments.push(abcd.addedFiles[0]);
     this.uploadattachments();
     // }
 
     if (this.languageid == 1) {
-      Swal.fire('Added Successfully');
+      Swal.fire("Added Successfully");
       abcd.length = 0;
-    }
-    else if (this.languageid == 6) {
-      Swal.fire('Mis à jour avec succés');
+    } else if (this.languageid == 6) {
+      Swal.fire("Mis à jour avec succés");
       abcd.length = 0;
     }
   }
 
   public uploadattachments() {
-    this.docservice.pharmacyphoto(this.attachments).subscribe(res => {
-
+    this.docservice.pharmacyphoto(this.attachments).subscribe((res) => {
       this.attachmentsurl.push(res);
       this.dummphotourl.push(res);
       let a = this.dummphotourl[0].slice(2);
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = "https://maroc.voiladoc.org" + a;
 
-      this.showphoto.push(b)
+      this.showphoto.push(b);
       this.attachments.length = 0;
-
-    })
+    });
     // this.sendattachment();
   }
 
-  public dummidentityphotourl = []
+  public dummidentityphotourl = [];
 
   public onidUpload(abcd) {
-    this.dummidentityphotourl = []
+    this.dummidentityphotourl = [];
     // for (let i = 0; i < abcd.length; i++) {
     this.idproof.push(abcd.addedFiles[0]);
     this.uploadid();
     // }
     if (this.languageid == 1) {
-      Swal.fire('Added Successfully');
+      Swal.fire("Added Successfully");
       abcd.length = 0;
-    }
-    else if (this.languageid == 6) {
-      Swal.fire('Mis à jour avec succés');
+    } else if (this.languageid == 6) {
+      Swal.fire("Mis à jour avec succés");
       abcd.length = 0;
     }
   }
 
   public uploadid() {
-    this.docservice.pharmacyphoto(this.idproof).subscribe(res => {
-
+    this.docservice.pharmacyphoto(this.idproof).subscribe((res) => {
       this.idproofurl.push(res);
       this.dummidentityphotourl.push(res);
       let a = this.dummidentityphotourl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
-      this.showidproof.push(b)
+      let b = "https://maroc.voiladoc.org" + a;
+      this.showidproof.push(b);
       this.idproof.length = 0;
-
-    })
+    });
     // this.sendattachment();
   }
 
   public getareamasterbyid() {
-
-    this.docservice.GetAreaMasterByCityIDAndLanguageID(this.cityid, this.languageid).subscribe(
-      data => {
-
-        this.arealist = data;
-        this.areadd = {
-          singleSelection: true,
-          idField: 'id',
-          textField: 'areaName',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
-          //  itemsShowLimit: 3,
-          allowSearchFilter: true,
-          searchPlaceholderText: this.search
-        };
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetAreaMasterByCityIDAndLanguageID(this.cityid, this.languageid)
+      .subscribe(
+        (data) => {
+          this.arealist = data;
+          this.areadd = {
+            singleSelection: true,
+            idField: "id",
+            textField: "areaName",
+            selectAllText: "Select All",
+            unSelectAllText: "UnSelect All",
+            //  itemsShowLimit: 3,
+            allowSearchFilter: true,
+            searchPlaceholderText: this.search,
+          };
+        },
+        (error) => {}
+      );
   }
 
   public GetAreaID(item3: any) {
-
     this.areaid = item3.id;
     for (let i = 0; i < this.arealist.length; i++) {
-
       if (this.arealist[i].id == this.areaid) {
-
-        this.pincode = this.arealist[i].pincode
+        this.pincode = this.arealist[i].pincode;
       }
     }
   }
@@ -340,7 +318,6 @@ contractenddate:any;
   GetSlotDurationID(even) {
     this.slotTypeID = even.target.value;
   }
-
 
   taxidentification: any;
   businessid: any;
@@ -355,136 +332,146 @@ contractenddate:any;
   appointmentpercentage: any;
   monthlysubription: any;
   public Getsubscriptontype() {
-
     this.appointmentpercentage = 0;
     this.monthlysubription = 0;
   }
-
-
-
 
   formatAddress: any;
   latitude: any;
   longitude: any;
   googleAddress: any;
   geocode() {
-    debugger
-    this.spinner.show()
-    this.docservice.Getlocation(this.address).subscribe(data => {
-      debugger
+    debugger;
+    this.spinner.show();
+    this.docservice.Getlocation(this.address).subscribe((data) => {
+      debugger;
       console.log("google addressmain", data);
-      if (data["results"].length!=0) {
+      if (data["results"].length != 0) {
         this.googleAddress = data["results"];
-        console.log("google address", this.googleAddress)
-        debugger
+        console.log("google address", this.googleAddress);
+        debugger;
         this.formatAddress = this.googleAddress[0]["formatted_address"];
-        this.latitude = this.googleAddress[0].geometry.location["lat"],
-          this.longitude = this.googleAddress[0].geometry.location["lng"];
+        (this.latitude = this.googleAddress[0].geometry.location["lat"]),
+          (this.longitude = this.googleAddress[0].geometry.location["lng"]);
         Swal.fire("Emplacement récupéré avec succès");
         this.spinner.hide();
-      }
-      else {
+      } else {
         Swal.fire("Entrez l'adresse correcte");
         this.spinner.hide();
       }
-
-    })
+    });
   }
-
-
 
   public InsertMidWives() {
-    this.spinner.show();
-    var entity = {
-      'Name': this.name,
-      'PhoneNo': this.phno,
-      'Email': this.email,
-      'GenderID': this.genderid,
-      'Address': this.address,
-      'CityID': this.cityid,
-      'AreaID': this.areaid,
-      'DepartementID': 2,
-      'Experience': this.exp,
-      'Description': this.description,
-      'HomeVisit': Number(this.homevisit),
-      'IDProof': this.idproofurl[0],
-      'PhotoUrl': this.attachmentsurl[0],
-      'Pincode': this.pincode,
-      'CountryID': this.countryid,
-      'HospitalClinicID': this.hospitalclinicid,
-      'Education': this.education,
-      'SpokenLanguages': this.spokenlanguages,
-      'SlotDurationID': this.slotTypeID,
-      'SubscriptionTypeID': this.subscriptiontype,
-      'MonthlySubscription': this.monthlysubription,
-      'AppointmentPercentage': this.appointmentpercentage,
-      'TaxIdentification': this.taxidentification,
-      'BusinessID': this.businessid,
-      'CommercialRegCity': this.commercialcity,
-      'TaxProfessional': this.taxprofessional,
-      'SocialSeccurityNo': this.socialseccurityfundno,
-      'Nameofthebank': this.nameofbank,
-      'AccountName': this.accountName,
-      'AccountNumber': this.accountNumber,
-      'VAT': this.vatCheck,
-      'VatPercentage': this.vatpercentage,
-      'ExonerationPeriodFromDate': this.contractstartdate,
-      'ExonerationPerioToDate': this.contractenddate,
-      'Lattitude': this.latitude,
-      'Longitude': this.longitude,
-      'FormatedAddress': this.formatAddress
+    if (this.latitude == undefined || this.longitude == undefined) {
+      Swal.fire(
+        "Il est obligatoire de cliquer sur le bouton « Valider la position » puis de cliquer sur le bouton « Mettre à jour » avant que le prestataire ne soit enregistré."
+      );
+    } else {
+      this.spinner.show();
+      var entity = {
+        Name: this.name,
+        PhoneNo: this.phno,
+        Email: this.email,
+        GenderID: this.genderid,
+        Address: this.address,
+        CityID: this.cityid,
+        AreaID: this.areaid,
+        DepartementID: 2,
+        Experience: this.exp,
+        Description: this.description,
+        HomeVisit: Number(this.homevisit),
+        IDProof: this.idproofurl[0],
+        PhotoUrl: this.attachmentsurl[0],
+        Pincode: this.pincode,
+        CountryID: this.countryid,
+        HospitalClinicID: this.hospitalclinicid,
+        Education: this.education,
+        SpokenLanguages: this.spokenlanguages,
+        SlotDurationID: this.slotTypeID,
+        SubscriptionTypeID: this.subscriptiontype,
+        MonthlySubscription: this.monthlysubription,
+        AppointmentPercentage: this.appointmentpercentage,
+        TaxIdentification: this.taxidentification,
+        BusinessID: this.businessid,
+        CommercialRegCity: this.commercialcity,
+        TaxProfessional: this.taxprofessional,
+        SocialSeccurityNo: this.socialseccurityfundno,
+        Nameofthebank: this.nameofbank,
+        AccountName: this.accountName,
+        AccountNumber: this.accountNumber,
+        VAT: this.vatCheck,
+        VatPercentage: this.vatpercentage,
+        ExonerationPeriodFromDate: this.contractstartdate,
+        ExonerationPerioToDate: this.contractenddate,
+        Lattitude: this.latitude,
+        Longitude: this.longitude,
+        FormatedAddress: this.formatAddress,
+        PayTypeID: 1,
+        TypeofPayment: 1,
+        cash: 1,
+        Wallet: 0,
+        CreditCard: 0,
+      };
+      this.docservice.InsertMidWivesRegistration(entity).subscribe(
+        (data) => {
+          if (data != 0 && data != 1) {
+            if (this.languageid == 1) {
+              Swal.fire(
+                "Registration Completed",
+                "Midwife saved successfully",
+                "success"
+              );
+              this.spinner.hide();
+              location.href = "#/MidwifeDashboard";
+            } else if (this.languageid == 6) {
+              Swal.fire("", "Détails enregistrés avec succès", "success");
+              this.spinner.hide();
+              location.href = "#/MidwifeDashboard";
+            }
+          } else {
+            if (data == 0) {
+              if (this.languageid == 1) {
+                Swal.fire(
+                  "Email address already exists. Please verify and use the correct email address."
+                );
+                this.spinner.hide();
+              } else {
+                Swal.fire(
+                  "L'adresse email existe déjà. Veuillez vérifier et utiliser la bonne adresse email."
+                );
+                this.spinner.hide();
+              }
+            } else {
+              if (this.languageid == 1) {
+                Swal.fire(
+                  "The phone number already exists. Please verify and use the correct number"
+                );
+                this.spinner.hide();
+              } else {
+                Swal.fire(
+                  "Le numéro de téléphone existe déjà.Veuillez vérifier et utiliser le bon numéro."
+                );
+                this.spinner.hide();
+              }
+            }
+            // location.href = '#/MidwifeDashboard';
+          }
+        },
+        (error) => {
+          Swal.fire("Exception while saving.Please try after some time");
+          this.spinner.hide();
+        }
+      );
     }
-    this.docservice.InsertMidWivesRegistration(entity).subscribe(data => {
-      if (data != 0 && data != 1) {
-        if (this.languageid == 1) {
-          Swal.fire('Registration Completed', 'Midwife saved successfully', 'success');
-          this.spinner.hide();
-          location.href = '#/MidwifeDashboard';
-        }
-        else if (this.languageid == 6) {
-          Swal.fire('', 'Détails enregistrés avec succès', 'success');
-          this.spinner.hide();
-          location.href = '#/MidwifeDashboard';
-        }
-
-      }
-      else {
-        if (data == 0) {
-          if (this.languageid == 1) {
-            Swal.fire('Email address already exists. Please verify and use the correct email address.');
-            this.spinner.hide();
-          }
-          else {
-            Swal.fire("L'adresse email existe déjà. Veuillez vérifier et utiliser la bonne adresse email.");
-            this.spinner.hide();
-          }
-
-        }
-        else {
-          if (this.languageid == 1) {
-            Swal.fire('The phone number already exists. Please verify and use the correct number');
-            this.spinner.hide();
-          }
-          else {
-            Swal.fire("Le numéro de téléphone existe déjà.Veuillez vérifier et utiliser le bon numéro.");
-            this.spinner.hide();
-          }
-        }
-        // location.href = '#/MidwifeDashboard';
-      }
-    }, error => {
-      Swal.fire("Exception while saving.Please try after some time");
-      this.spinner.hide();
-    })
   }
+
   checkVatvalue(even) {
-    debugger
+    debugger;
     if (even == 1) {
       this.vatpercentage = 0;
-    }
-    else {
+    } else {
       this.vatpercentage = 20;
     }
   }
 }
-

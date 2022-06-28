@@ -1272,8 +1272,16 @@ export class DoctorPrescriptionComponent implements OnInit {
     debugger
     this.spinner.show();
     this.attachments.push(abcd.addedFiles[0]);
+    
     this.uploadattachments();
 
+    // if(abcd.addedFiles[0].type=='application/pdf')
+    // {
+    //   this.imageurl = "assets/Images/pdf.png"
+    // }
+    // else{
+
+    // }
     if(this.languageid==1)
     {
       Swal.fire('Added Successfully');
@@ -1287,6 +1295,12 @@ export class DoctorPrescriptionComponent implements OnInit {
 
   }
 
+
+  openwindow()
+  {
+   window.open(this.openPdf,"_blank") 
+  }
+  openPdf:any;
   public uploadattachments() {
     debugger
     this.docservice.pharmacyphoto(this.attachments).subscribe(res => {
@@ -1296,7 +1310,9 @@ export class DoctorPrescriptionComponent implements OnInit {
       let a = this.attachmentsurl[0].slice(2);
       debugger
       let b = 'https://maroc.voiladoc.org' + a;
-      this.imageurl = b;
+      this.openPdf=b;
+      // this.showphoto.push('assets/Images/pdf.png');
+      this.imageurl = "assets/Images/pdf.png"
       this.image = 1;
       this.attachments.length = 0;
     }, error => {
@@ -1545,6 +1561,11 @@ export class DoctorPrescriptionComponent implements OnInit {
     this.p = even;
   }
 
+
+  windowopen()
+  {
+    window.open(this.pharmcyUpdatedPhoto,"_blank")
+  }
 }
 
 

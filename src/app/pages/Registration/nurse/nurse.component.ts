@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { HelloDoctorService } from '../../../hello-doctor.service';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from "@angular/core";
+import { HelloDoctorService } from "../../../hello-doctor.service";
+import Swal from "sweetalert2";
 import { NgxSpinnerService } from "ngx-spinner";
 @Component({
-  selector: 'app-nurse',
-  templateUrl: './nurse.component.html',
-  styleUrls: ['./nurse.component.css']
+  selector: "app-nurse",
+  templateUrl: "./nurse.component.html",
+  styleUrls: ["./nurse.component.css"],
 })
 export class NurseComponent implements OnInit {
-
-  constructor(public docservice: HelloDoctorService, private spinner: NgxSpinnerService) { }
+  constructor(
+    public docservice: HelloDoctorService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   public name: any;
   public phno: any;
@@ -39,7 +41,8 @@ export class NurseComponent implements OnInit {
   public servicelist: any;
   public servicedd = {};
   public serviceid = [];
-  public countrylist; any;
+  public countrylist;
+  any;
   public countrydd: any;
   public countryid: any;
   public citydd: any;
@@ -55,348 +58,315 @@ export class NurseComponent implements OnInit {
   dropzonelable: any;
   public search: any;
   public dummapecilizationlist: any;
-  labels4:any;
+  labels4: any;
   vatCheck: any;
   vatpercentage: any;
-contractstartdate:any;
-contractenddate:any;
-today = new Date()
+  contractstartdate: any;
+  contractenddate: any;
+  today = new Date();
   ngOnInit() {
+    this.dummid = localStorage.getItem("hospitalid");
+    this.hospitalclinicid = localStorage.getItem("hospitalid");
+    this.languageid = localStorage.getItem("LanguageID");
 
-    this.dummid = localStorage.getItem('hospitalid');
-    this.hospitalclinicid = localStorage.getItem('hospitalid');
-    this.languageid = localStorage.getItem('LanguageID');
-
-    this.docservice.GetAdmin_NurseRegistration_labelByLanguageID(this.languageid).subscribe(
-      data => {
-
-        this.labels = data;
-        this.SelectLabel = this.labels[0].select;
-        this.search = this.labels[0].search
-      }, error => {
-      }
-    )
-    this.docservice.GetAdmin_HospitalClinicRegistration_Lables(this.languageid).subscribe(
-      data => {
-
-        this.labels4 = data;
-       
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetAdmin_NurseRegistration_labelByLanguageID(this.languageid)
+      .subscribe(
+        (data) => {
+          this.labels = data;
+          this.SelectLabel = this.labels[0].select;
+          this.search = this.labels[0].search;
+        },
+        (error) => {}
+      );
+    this.docservice
+      .GetAdmin_HospitalClinicRegistration_Lables(this.languageid)
+      .subscribe(
+        (data) => {
+          this.labels4 = data;
+        },
+        (error) => {}
+      );
     // this.getlanguage();
 
     this.docservice.GetDepartmentMasterByLanguageID(this.languageid).subscribe(
-      data => {
-
+      (data) => {
         this.departmentlist = data;
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
 
+    this.docservice
+      .GetSpecilaizationMasterByLanguageID(this.languageid)
+      .subscribe(
+        (data) => {
+          this.dummapecilizationlist = data;
+          this.specilisationlist = this.dummapecilizationlist.filter(
+            (x) => x.departmentID == 30
+          );
 
-    this.docservice.GetSpecilaizationMasterByLanguageID(this.languageid).subscribe(
-      data => {
-
-
-        this.dummapecilizationlist = data;
-        this.specilisationlist = this.dummapecilizationlist.filter(x => x.departmentID == 30)
-
-        this.specilisatiodd = {
-          singleSelection: false,
-          idField: 'id',
-          textField: 'specilaizationName',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
-          itemsShowLimit: 3,
-          allowSearchFilter: true,
-          enableCheckAll: false,
-          searchPlaceholderText: this.search,
-        };
-
-      }, error => {
-      }
-    )
+          this.specilisatiodd = {
+            singleSelection: false,
+            idField: "id",
+            textField: "specilaizationName",
+            selectAllText: "Select All",
+            unSelectAllText: "UnSelect All",
+            itemsShowLimit: 3,
+            allowSearchFilter: true,
+            enableCheckAll: false,
+            searchPlaceholderText: this.search,
+          };
+        },
+        (error) => {}
+      );
     this.docservice.GetServiceMasterByLanguageID(this.languageid).subscribe(
-      data => {
-
+      (data) => {
         let temp: any = data;
-        this.servicelist = temp.filter(x => x.typeID == 2);
+        this.servicelist = temp.filter((x) => x.typeID == 2);
 
         this.servicedd = {
           singleSelection: false,
-          idField: 'id',
-          textField: 'serviceName',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
+          idField: "id",
+          textField: "serviceName",
+          selectAllText: "Select All",
+          unSelectAllText: "UnSelect All",
           itemsShowLimit: 3,
           allowSearchFilter: true,
           enableCheckAll: false,
           searchPlaceholderText: this.search,
         };
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
     this.GetCountryMaster();
 
-    this.gethosptilclinicforadmin()
-
+    this.gethosptilclinicforadmin();
 
     if (this.languageid == 1) {
-      this.dropzonelable = "Upload file"
-    }
-    else if (this.languageid == 6) {
-      this.dropzonelable = "Télécharger des fichiers"
+      this.dropzonelable = "Upload file";
+    } else if (this.languageid == 6) {
+      this.dropzonelable = "Télécharger des fichiers";
     }
   }
-
 
   public gethosptilclinicforadmin() {
-
-    this.docservice.GetHospital_ClinicForAdminByAdmin(this.languageid).subscribe(
-      data => {
-
-        this.hospitalcliniclist = data.filter(x => x.id != '590' && x.id != '613' && x.id != '614');
-        this.hospitadd = {
-          singleSelection: true,
-          idField: 'id',
-          textField: 'hospital_ClinicName',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
-          //  itemsShowLimit: 3,
-          allowSearchFilter: true,
-          searchPlaceholderText: this.search,
-        };
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetHospital_ClinicForAdminByAdmin(this.languageid)
+      .subscribe(
+        (data) => {
+          this.hospitalcliniclist = data.filter(
+            (x) => x.id != "590" && x.id != "613" && x.id != "614"
+          );
+          this.hospitadd = {
+            singleSelection: true,
+            idField: "id",
+            textField: "hospital_ClinicName",
+            selectAllText: "Select All",
+            unSelectAllText: "UnSelect All",
+            //  itemsShowLimit: 3,
+            allowSearchFilter: true,
+            searchPlaceholderText: this.search,
+          };
+        },
+        (error) => {}
+      );
   }
 
-
   public GetHospitalID(item: any) {
-
     this.hospitalclinicid = item.id;
   }
   public getlanguage() {
-    this.docservice.GetAdmin_NurseRegistration_labelByLanguageID(this.languageid).subscribe(
-      data => {
-
-        this.labels = data;
-        this.SelectLabel = this.labels[0].select;
-        this.search = this.labels[0].search
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetAdmin_NurseRegistration_labelByLanguageID(this.languageid)
+      .subscribe(
+        (data) => {
+          this.labels = data;
+          this.SelectLabel = this.labels[0].select;
+          this.search = this.labels[0].search;
+        },
+        (error) => {}
+      );
   }
 
-
-
-  SelectLabel
+  SelectLabel;
 
   public GetCountryMaster() {
     this.docservice.GetCountryMasterByLanguageID(this.languageid).subscribe(
-      data => {
-
+      (data) => {
         this.countrylist = data;
         this.countrydd = {
           singleSelection: true,
-          idField: 'id',
-          textField: 'short',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
+          idField: "id",
+          textField: "short",
+          selectAllText: "Select All",
+          unSelectAllText: "UnSelect All",
           //  itemsShowLimit: 3,
           allowSearchFilter: true,
           searchPlaceholderText: this.search,
         };
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
-  regionList:any;
-  regiondd={};
+  regionList: any;
+  regiondd = {};
 
   public GetCountryID(item: any) {
-
     this.countryid = item.id;
 
     this.docservice.GetRegionMasterWeb(this.countryid).subscribe(
-      data => {
-
+      (data) => {
         this.regionList = data;
 
         this.regiondd = {
           singleSelection: true,
-          idField: 'id',
-          textField: 'regionName',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
+          idField: "id",
+          textField: "regionName",
+          selectAllText: "Select All",
+          unSelectAllText: "UnSelect All",
           //  itemsShowLimit: 3,
           allowSearchFilter: true,
           searchPlaceholderText: this.search,
         };
-      }, error => {
-      }
-    )
+      },
+      (error) => {}
+    );
   }
 
+  regionID: any;
 
+  GetRegionID(item: any) {
+    this.regionID = item.id;
 
-  regionID:any;
+    this.docservice
+      .GetCityMasterBYIDandLanguageID(this.regionID, this.languageid)
+      .subscribe(
+        (data) => {
+          this.citylist = data;
 
-  GetRegionID(item:any)
-  {
-    this.regionID=item.id
-
-    this.docservice.GetCityMasterBYIDandLanguageID(this.regionID, this.languageid).subscribe(
-      data => {
-
-        this.citylist = data;
-
-        this.citydd = {
-          singleSelection: true,
-          idField: 'id',
-          textField: 'short',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
-          //  itemsShowLimit: 3,
-          allowSearchFilter: true,
-          searchPlaceholderText: this.search,
-        };
-      }, error => {
-      }
-    )
+          this.citydd = {
+            singleSelection: true,
+            idField: "id",
+            textField: "short",
+            selectAllText: "Select All",
+            unSelectAllText: "UnSelect All",
+            //  itemsShowLimit: 3,
+            allowSearchFilter: true,
+            searchPlaceholderText: this.search,
+          };
+        },
+        (error) => {}
+      );
   }
 
   public GetCityID(item1: any) {
-
     this.cityid = item1.id;
     this.getareamasterbyid();
   }
 
-
-
   public GetDepartmentID(even) {
-
     this.deptid = even.target.value;
   }
 
   public GetSpecilizationID(item: any) {
-
     this.specilisationid.push(item);
-
   }
 
   public GetServiceID(item: any) {
-
     this.serviceid.push(item);
-
   }
 
-
-  public dummnursephoto = []
+  public dummnursephoto = [];
   public onattachmentUpload(abcd) {
-
-    this.dummnursephoto = []
+    this.dummnursephoto = [];
     // for (let i = 0; i < abcd.length; i++) {
     this.attachments.push(abcd.addedFiles[0]);
     this.uploadattachments();
     // }
     if (this.languageid == 1) {
-      Swal.fire('Added Successfully');
+      Swal.fire("Added Successfully");
+      abcd.length = 0;
+    } else if (this.languageid == 6) {
+      Swal.fire("Mis à jour avec succés");
       abcd.length = 0;
     }
-    else if (this.languageid == 6) {
-      Swal.fire('Mis à jour avec succés');
-      abcd.length = 0;
-    }
-
-
   }
 
   public uploadattachments() {
-    this.docservice.pharmacyphoto(this.attachments).subscribe(res => {
-
+    this.docservice.pharmacyphoto(this.attachments).subscribe((res) => {
       this.attachmentsurl.push(res);
       this.dummnursephoto.push(res);
       let a = this.dummnursephoto[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = "https://maroc.voiladoc.org" + a;
 
-      this.showphoto.push(b)
+      this.showphoto.push(b);
       this.attachments.length = 0;
-
-    })
+    });
     // this.sendattachment();
   }
 
-  public dummidentityproof = []
+  public dummidentityproof = [];
 
   public onidUpload(abcd) {
-    this.dummidentityproof = []
+    this.dummidentityproof = [];
     // for (let i = 0; i < abcd.length; i++) {
     this.idproof.push(abcd.addedFiles[0]);
     this.uploadid();
     // }
     if (this.languageid == 1) {
-      Swal.fire('Added Successfully');
+      Swal.fire("Added Successfully");
       abcd.length = 0;
-    }
-    else if (this.languageid == 6) {
-      Swal.fire('Mis à jour avec succés');
+    } else if (this.languageid == 6) {
+      Swal.fire("Mis à jour avec succés");
       abcd.length = 0;
     }
   }
 
   public uploadid() {
-    this.docservice.pharmacyphoto(this.idproof).subscribe(res => {
-
+    this.docservice.pharmacyphoto(this.idproof).subscribe((res) => {
       this.idproofurl.push(res);
       this.dummidentityproof.push(res);
       let a = this.dummidentityproof[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
-      this.showidproof.push(b)
+      let b = "https://maroc.voiladoc.org" + a;
+      this.showidproof.push(b);
       this.idproof.length = 0;
-
-    })
+    });
     // this.sendattachment();
   }
 
   public getareamasterbyid() {
-
-    this.docservice.GetAreaMasterByCityIDAndLanguageID(this.cityid, this.languageid).subscribe(
-      data => {
-
-        this.arealist = data;
-        this.areadd = {
-          singleSelection: true,
-          idField: 'id',
-          textField: 'areaName',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
-          //  itemsShowLimit: 3,
-          allowSearchFilter: true,
-          searchPlaceholderText: this.search
-        };
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetAreaMasterByCityIDAndLanguageID(this.cityid, this.languageid)
+      .subscribe(
+        (data) => {
+          this.arealist = data;
+          this.areadd = {
+            singleSelection: true,
+            idField: "id",
+            textField: "areaName",
+            selectAllText: "Select All",
+            unSelectAllText: "UnSelect All",
+            //  itemsShowLimit: 3,
+            allowSearchFilter: true,
+            searchPlaceholderText: this.search,
+          };
+        },
+        (error) => {}
+      );
   }
 
   public GetAreaID(item3: any) {
-
     this.areaid = item3.id;
     for (let i = 0; i < this.arealist.length; i++) {
-
       if (this.arealist[i].id == this.areaid) {
-
-        this.pincode = this.arealist[i].pincode
+        this.pincode = this.arealist[i].pincode;
       }
     }
   }
   public nurseid: any;
   slotTypeID: any;
-
 
   taxidentification: any;
   businessid: any;
@@ -411,218 +381,231 @@ today = new Date()
   appointmentpercentage: any;
   monthlysubription: any;
   public Getsubscriptontype() {
-
     this.appointmentpercentage = 0;
     this.monthlysubription = 0;
   }
 
-
   GetSlotDurationID(even) {
-    debugger
+    debugger;
     this.slotTypeID = even.target.value;
   }
-
 
   formatAddress: any;
   latitude: any;
   longitude: any;
   googleAddress: any;
   geocode() {
-    debugger
-    this.spinner.show()
-    this.docservice.Getlocation(this.address).subscribe(data => {
-      debugger
+    debugger;
+    this.spinner.show();
+    this.docservice.Getlocation(this.address).subscribe((data) => {
+      debugger;
       console.log("google addressmain", data);
-      if (data["results"].length!=0) {
+      if (data["results"].length != 0) {
         this.googleAddress = data["results"];
-        console.log("google address", this.googleAddress)
-        debugger
+        console.log("google address", this.googleAddress);
+        debugger;
         this.formatAddress = this.googleAddress[0]["formatted_address"];
-        this.latitude = this.googleAddress[0].geometry.location["lat"],
-          this.longitude = this.googleAddress[0].geometry.location["lng"];
+        (this.latitude = this.googleAddress[0].geometry.location["lat"]),
+          (this.longitude = this.googleAddress[0].geometry.location["lng"]);
         Swal.fire("Emplacement récupéré avec succès");
         this.spinner.hide();
-      }
-      else {
+      } else {
         Swal.fire("Entrez l'adresse correcte");
         this.spinner.hide();
       }
-
-    })
+    });
   }
-
 
   public insertnursedetails() {
     if (this.hospitalclinicid == undefined || this.hospitalclinicid == "") {
       if (this.languageid == 1) {
-        Swal.fire("Exceptional error. Please try again after completing all mandatory fields");
+        Swal.fire(
+          "Exceptional error. Please try again after completing all mandatory fields"
+        );
+      } else {
+        Swal.fire(
+          "Erreur exceptionnelle.  Veuillez réessayer après avoir rempli tous les champs obligatoires"
+        );
       }
-      else {
-        Swal.fire("Erreur exceptionnelle.  Veuillez réessayer après avoir rempli tous les champs obligatoires");
-      }
-    }
-    else {
-
-
+    } else if (this.latitude == undefined || this.longitude == undefined) {
+      Swal.fire(
+        "Il est obligatoire de cliquer sur le bouton « Valider la position » puis de cliquer sur le bouton « Mettre à jour » avant que le prestataire ne soit enregistré."
+      );
+    } else {
       this.spinner.show();
       var entity = {
-        'NurseName': this.name,
-        'PhoneNo': this.phno,
-        'Email': this.email,
-        'GenderID': this.genderid,
-        'Address': this.address,
-        'CityID': this.cityid,
-        'AreaID': this.areaid,
-        'DepartementID': 2,
-        'Experience': this.exp,
-        'Description': this.description,
-        'HomeVisit': Number(this.homevisit),
-        'IDProof': this.idproofurl[0],
-        'PhotoUrl': this.attachmentsurl[0],
-        'Pincode': this.pincode,
-        'CountryID': this.countryid,
-        'HospitalClinicID': this.hospitalclinicid,
-        'Education': this.education,
-        'SpokenLanguages': this.spokenlanguages,
-        'SlotDurationID': this.slotTypeID,
-        'SubscriptionTypeID': this.subscriptiontype,
-        'MonthlySubscription': this.monthlysubription,
-        'AppointmentPercentage': this.appointmentpercentage,
-        'TaxIdentification': this.taxidentification,
-        'BusinessID': this.businessid,
-        'CommercialRegCity': this.commercialcity,
-        'TaxProfessional': this.taxprofessional,
-        'SocialSeccurityNo': this.socialseccurityfundno,
-        'Nameofthebank': this.nameofbank,
-        'AccountName': this.accountName,
-        'AccountNumber': this.accountNumber,
-        'VAT': this.vatCheck,
-        'VatPercentage':this.vatpercentage,
-        'ExonerationPeriodFromDate':this.contractstartdate,
-        'ExonerationPerioToDate':this.contractenddate,
-        'Lattitude': this.latitude,
-        'Longitude': this.longitude,
-        'FormatedAddress': this.formatAddress
-      }
-      this.docservice.InsertNurseRegistration(entity).subscribe(data => {
-
-
-        this.nurseid = data;
-        if (this.nurseid != 0) {
-
-
-
-          for (let s = 0; s < this.serviceid.length; s++) {
-            var serviceentity = {
-              'NurseID': this.nurseid,
-              'ServiceID': this.serviceid[s].id,
-              'LanguageID': 1
+        NurseName: this.name,
+        PhoneNo: this.phno,
+        Email: this.email,
+        GenderID: this.genderid,
+        Address: this.address,
+        CityID: this.cityid,
+        AreaID: this.areaid,
+        DepartementID: 2,
+        Experience: this.exp,
+        Description: this.description,
+        HomeVisit: Number(this.homevisit),
+        IDProof: this.idproofurl[0],
+        PhotoUrl: this.attachmentsurl[0],
+        Pincode: this.pincode,
+        CountryID: this.countryid,
+        HospitalClinicID: this.hospitalclinicid,
+        Education: this.education,
+        SpokenLanguages: this.spokenlanguages,
+        SlotDurationID: this.slotTypeID,
+        SubscriptionTypeID: this.subscriptiontype,
+        MonthlySubscription: this.monthlysubription,
+        AppointmentPercentage: this.appointmentpercentage,
+        TaxIdentification: this.taxidentification,
+        BusinessID: this.businessid,
+        CommercialRegCity: this.commercialcity,
+        TaxProfessional: this.taxprofessional,
+        SocialSeccurityNo: this.socialseccurityfundno,
+        Nameofthebank: this.nameofbank,
+        AccountName: this.accountName,
+        AccountNumber: this.accountNumber,
+        VAT: this.vatCheck,
+        VatPercentage: this.vatpercentage,
+        ExonerationPeriodFromDate: this.contractstartdate,
+        ExonerationPerioToDate: this.contractenddate,
+        Lattitude: this.latitude,
+        Longitude: this.longitude,
+        FormatedAddress: this.formatAddress,
+        PayTypeID: 1,
+        TypeofPayment: 1,
+        cash: 1,
+        Wallet: 0,
+        CreditCard: 0,
+      };
+      this.docservice.InsertNurseRegistration(entity).subscribe(
+        (data) => {
+          this.nurseid = data;
+          if (this.nurseid != 0) {
+            for (let s = 0; s < this.serviceid.length; s++) {
+              var serviceentity = {
+                NurseID: this.nurseid,
+                ServiceID: this.serviceid[s].id,
+                LanguageID: 1,
+              };
+              this.docservice
+                .InsertNurseServices(serviceentity)
+                .subscribe((data) => {});
             }
-            this.docservice.InsertNurseServices(serviceentity).subscribe(data => {
-            })
-          }
 
-          for (let s = 0; s < this.specilisationid.length; s++) {
-            var specentity = {
-              'NurseID': this.nurseid,
-              'SpecializationID': this.specilisationid[s].id,
-              'LanguageID': 1
+            for (let s = 0; s < this.specilisationid.length; s++) {
+              var specentity = {
+                NurseID: this.nurseid,
+                SpecializationID: this.specilisationid[s].id,
+                LanguageID: 1,
+              };
+              this.docservice
+                .InsertNurseSpecialization(specentity)
+                .subscribe((data) => {});
             }
-            this.docservice.InsertNurseSpecialization(specentity).subscribe(data => {
-            })
+            if (this.languageid == 1) {
+              Swal.fire(
+                "Registration Completed",
+                "Nurse saved successfully",
+                "success"
+              );
+              this.spinner.hide();
+              location.href = "#/NurseDashboard";
+            } else if (this.languageid == 6) {
+              Swal.fire("", "Mis à jour avec succès");
+              this.spinner.hide();
+              location.href = "#/NurseDashboard";
+            }
+          } else {
+            if (data == 0) {
+              if (this.languageid == 1) {
+                Swal.fire(
+                  "Email address already exists. Please verify and use the correct email address."
+                );
+                this.spinner.hide();
+              } else {
+                Swal.fire(
+                  "L'adresse email existe déjà. Veuillez vérifier et utiliser la bonne adresse email."
+                );
+                this.spinner.hide();
+              }
+            } else {
+              if (this.languageid == 1) {
+                Swal.fire(
+                  "The phone number already exists. Please verify and use the correct number"
+                );
+                this.spinner.hide();
+              } else {
+                Swal.fire(
+                  "Le numéro de téléphone existe déjà.Veuillez vérifier et utiliser le bon numéro."
+                );
+                this.spinner.hide();
+              }
+            }
+            // location.href = '#/NurseDashboard';
           }
+        },
+        (error) => {
           if (this.languageid == 1) {
-            Swal.fire('Registration Completed', 'Nurse saved successfully', 'success');
-            this.spinner.hide();
-            location.href = '#/NurseDashboard';
+            Swal.fire(
+              "Exceptional error. Please try again after completing all mandatory fields"
+            );
+          } else {
+            Swal.fire(
+              "Erreur exceptionnelle.  Veuillez réessayer après avoir rempli tous les champs obligatoires"
+            );
           }
-          else if (this.languageid == 6) {
-            Swal.fire('', "Mis à jour avec succès");
-            this.spinner.hide();
-            location.href = '#/NurseDashboard';
-          }
-
+          this.spinner.hide();
         }
-        else {
-          if (data == 0) {
-            if (this.languageid == 1) {
-              Swal.fire('Email address already exists. Please verify and use the correct email address.');
-              this.spinner.hide();
-            }
-            else {
-              Swal.fire("L'adresse email existe déjà. Veuillez vérifier et utiliser la bonne adresse email.");
-              this.spinner.hide();
-            }
-
-          }
-          else {
-            if (this.languageid == 1) {
-              Swal.fire('The phone number already exists. Please verify and use the correct number');
-              this.spinner.hide();
-            }
-            else {
-              Swal.fire("Le numéro de téléphone existe déjà.Veuillez vérifier et utiliser le bon numéro.");
-              this.spinner.hide();
-            }
-          }
-          // location.href = '#/NurseDashboard';
-        }
-      }, error => {
-        if (this.languageid == 1) {
-          Swal.fire("Exceptional error. Please try again after completing all mandatory fields");
-        }
-        else {
-          Swal.fire("Erreur exceptionnelle.  Veuillez réessayer après avoir rempli tous les champs obligatoires");
-        }
-        this.spinner.hide();
-      })
+      );
     }
   }
-
-
-
 
   nurselist: any;
 
-
-
-
   public getnurselist() {
-    this.docservice.GetNurseRegistrationAdminByLanguageID(this.languageid).subscribe(
-      data => {
-        this.nurselist = data;
-        var list = this.nurselist.filter(x => x.id == this.nurseid)
-        this.pinno = list[0].pinno
-      }, error => {
-      }
-    )
+    this.docservice
+      .GetNurseRegistrationAdminByLanguageID(this.languageid)
+      .subscribe(
+        (data) => {
+          this.nurselist = data;
+          var list = this.nurselist.filter((x) => x.id == this.nurseid);
+          this.pinno = list[0].pinno;
+        },
+        (error) => {}
+      );
   }
-
-
 
   pinno: any;
   emailattchementurl = [];
 
   public sendmail() {
-
     var entity = {
-      'emailto': this.email,
-      'emailsubject': "Voiladoc",
-      'emailbody': 'Dear ' + this.name + ',' + "<br><br>" + 'Thank You For Registering Voiladoc Plaform. Your Pin is ' + this.pinno + '.  Dont Share Anyone. For any further help. Please contact our support clients' + "<br><br>" + 'Regards,' + "<br>" + 'Voiladoc Team',
-      'attachmenturl': this.emailattchementurl,
-      'cclist': 0,
-      'bcclist': 0
-    }
-    this.docservice.sendemail(entity).subscribe(data => {
-    })
+      emailto: this.email,
+      emailsubject: "Voiladoc",
+      emailbody:
+        "Dear " +
+        this.name +
+        "," +
+        "<br><br>" +
+        "Thank You For Registering Voiladoc Plaform. Your Pin is " +
+        this.pinno +
+        ".  Dont Share Anyone. For any further help. Please contact our support clients" +
+        "<br><br>" +
+        "Regards," +
+        "<br>" +
+        "Voiladoc Team",
+      attachmenturl: this.emailattchementurl,
+      cclist: 0,
+      bcclist: 0,
+    };
+    this.docservice.sendemail(entity).subscribe((data) => {});
   }
-    checkVatvalue(even) {
-      debugger
-      if (even == 1) {
-        this.vatpercentage = 0;
-      }
-      else {
-        this.vatpercentage = 20;
-      }
+  checkVatvalue(even) {
+    debugger;
+    if (even == 1) {
+      this.vatpercentage = 0;
+    } else {
+      this.vatpercentage = 20;
     }
+  }
 }

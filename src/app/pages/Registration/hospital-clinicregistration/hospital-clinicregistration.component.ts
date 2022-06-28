@@ -69,7 +69,7 @@ export class HospitalClinicregistrationComponent implements OnInit {
   vatpercentage: any;
   regionList:any;
   regiondd={};
-
+  clinicTimings:any;
 
   ngOnInit() {
 
@@ -310,6 +310,9 @@ export class HospitalClinicregistrationComponent implements OnInit {
     else if (this.areaid == undefined || this.areaid.length == 0) {
       Swal.fire("Please Select City");
     }
+    else if ( this.latitude  == undefined || this.longitude  == undefined) {
+      Swal.fire("Il est obligatoire de cliquer sur le bouton « Valider la position » puis de cliquer sur le bouton « Mettre à jour » avant que le prestataire ne soit enregistré.");
+    }
     else {
       if (this.attachmentsurl.length == 0) {
         this.attachmentsurl[0] = 'C:\\MarocAPI\\Images\\HospitalPhotos\\Hospital.jpg';
@@ -364,7 +367,8 @@ export class HospitalClinicregistrationComponent implements OnInit {
         'ExonerationPerioToDate':this.contractenddate,
         'Lattitude': this.latitude,
         'Longitude': this.longitude,
-        'FormatedAddress': this.formatAddress
+        'FormatedAddress': this.formatAddress,
+        'CLinicTimings':this.clinicTimings
 
       }
       this.docservice.InsertHospitalClinicDetailsMaster(entity).subscribe(data => {

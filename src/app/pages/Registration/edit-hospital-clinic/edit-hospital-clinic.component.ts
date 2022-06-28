@@ -62,7 +62,7 @@ export class EditHospitalClinicComponent implements OnInit {
   vatCheck: any;
   vatpercentage: any;
   today = new Date()
-
+  clinicTimings:any;
 
 
   ngOnInit() {
@@ -189,7 +189,8 @@ export class EditHospitalClinicComponent implements OnInit {
           this.vatpercentage = this.details.vatPercentage,
           this.contractstartdate = this.details.exonerationPeriodFromDate
         this.contractenddate = this.details.exonerationPeriodFromDate,
-          this.vatCheck = this.details.vat
+          this.vatCheck = this.details.vat,
+          this.clinicTimings=this.details.clinicTimings
         this.GetCountryMaster();
         this.GetRegionMaster();
         this.getcitymaster();
@@ -299,7 +300,8 @@ export class EditHospitalClinicComponent implements OnInit {
       'FormatedAddress': this.formatAddress,
       'VatPercentage': this.vatpercentage,
       'ExonerationPeriodFromDate': this.contractstartdate!=null||undefined?this.contractstartdate:new Date(),
-      'ExonerationPerioToDate': this.contractenddate!=null||undefined?this.contractstartdate:new Date()
+      'ExonerationPerioToDate': this.contractenddate!=null||undefined?this.contractstartdate:new Date(),
+      'CLinicTimings':this.clinicTimings
     }
     debugger
     this.docservice.UpdateHospitalClinicProfile(entity).subscribe(res => {

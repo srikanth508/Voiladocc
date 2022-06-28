@@ -619,7 +619,7 @@ export class ForgotPasswordComponent implements OnInit {
     if (this.languageid == 1) {
       var entity = {
         'emailto': this.emailid,
-        'emailsubject': "Reset Password",
+        'emailsubject': "Réinitialisation de votre code d’accès Voiladoc.",
         'emailbody': 'Dear ' + this.name + ",<br><br>" + 'Your New Password is : ' + this.password + "<br><br>" + 'For data safety and that of your patients, do not share your password and change it regularly!  If you need help, please contact our support team.' + "<br><br>" + 'Regards,' + "<br>" + 'Voiladoc Team',
         'attachmenturl': this.emailattchementurl,
         'cclist': 0,
@@ -641,7 +641,7 @@ export class ForgotPasswordComponent implements OnInit {
       var entity = {
         'emailto': this.emailid,
         'emailsubject': "Reset Password",
-        'emailbody': 'Cher  ' + this.name + ",<br><br>" + 'Votre nouveau mot de passe est : ' + this.password + "<br><br>" + 'Pour votre sécurité et celle de vos patients, ne partagez pas votre mot de passe et changez-le régulièrement !' + "<br><br>" + "Si vous avez besoin d'aide, veuillez contacter notre équipe d'assistance." + "<br><br>" + 'Amicalement,' + "<br>" + "L'équipe de Voiladoc",
+        'emailbody': 'Cher(e)  ' + this.name + ",<br><br>" + 'Votre nouveau mot de passe généré aléatoirement par le système est : ' + this.password + "<br><br>" + 'Pour votre sécurité et celle de vos patients, ne partagez pas votre mot de passe et changez-le régulièrement !' + "<br><br>" + "Si vous avez besoin d'aide, veuillez contacter notre équipe d'assistance." + "<br><br>" + 'Amicalement,' + "<br>" + "L'équipe de Voiladoc",
         'attachmenturl': this.emailattchementurl,
         'cclist': 0,
         'bcclist': 0

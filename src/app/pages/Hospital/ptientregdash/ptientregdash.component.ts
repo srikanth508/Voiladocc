@@ -89,6 +89,7 @@ export class PtientregdashComponent implements OnInit {
           this.patientslist = data;
           this.dummlist = this.patientslist
           this.count = this.patientslist.length
+          console.log(this.patientslist)
         },
         error => { }
       );
@@ -99,6 +100,7 @@ export class PtientregdashComponent implements OnInit {
 
           this.dummlist = data;
           this.patientslist = this.dummlist.filter(x => x.doctorID == this.doctorid)
+          console.log(this.patientslist)
           this.count = this.patientslist.length
         },
         error => { }

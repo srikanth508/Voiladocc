@@ -379,7 +379,8 @@ import{NoCommaPipe} from '../app/no-comma-pipe';
 import { HomeChargesMasterComponent } from './pages/Masters/home-charges-master/home-charges-master.component';
 import { RegionMasterComponent } from './pages/Masters/region-master/region-master.component';
 import { RegionDashComponent } from './pages/Masters/region-dash/region-dash.component';
-import { DocRecpProfileComponent } from './pages/Doctor/doc-recp-profile/doc-recp-profile.component'
+import { DocRecpProfileComponent } from './pages/Doctor/doc-recp-profile/doc-recp-profile.component';
+import { BookAppointmentsComponent } from './pages/Doctor/book-appointments/book-appointments.component'
 
 
 
@@ -759,7 +760,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     HomeChargesMasterComponent,
     RegionMasterComponent,
     RegionDashComponent,
-    DocRecpProfileComponent
+    DocRecpProfileComponent,
+    BookAppointmentsComponent
     
    
   ],

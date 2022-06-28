@@ -8,6 +8,23 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  monthlysubription: any;
+  appointmentpercentage: any;
+  taxidentification: any;
+  businessid: any;
+  taxprofessional: any;
+  commercialcity: any;
+  socialseccurityfundno: any;
+  nameofbank: any;
+  accountNumber: any;
+  latitude: any;
+  longitude: any;
+  formatAddress: any;
+  vatpercentage: any;
+  contractstartdate: any;
+  contractenddate: any;
+  vatCheck: any;
+  clinicTimings: any;
 
   constructor(public docservice: HelloDoctorService, private spinner: NgxSpinnerService) { }
 
@@ -119,6 +136,7 @@ export class ProfileComponent implements OnInit {
     this.getareamasterbyid()
   }
 
+  subscriptiontype:any;
 
   public gethospitalclinicdetailsbyid() {
     this.docservice.GetHospital_ClinicDetailsForAdminByLanguageID(this.id, this.languageid).subscribe(
@@ -144,7 +162,30 @@ export class ProfileComponent implements OnInit {
           this.pincode = this.details.pincode,
           this.countryid = this.details.countryID,
           this.areaid = this.details.areaID,
-          this.pincode = this.details.pincode
+          this.pincode = this.details.pincode,
+          this.countryid = this.details.countryID,
+          this.areaid = this.details.areaID,
+          this.pincode = this.details.pincode,
+          this.subscriptiontype = this.details.subscriptionTypeID,
+          this.monthlysubription = this.details.monthlySubscription
+        this.appointmentpercentage = this.details.appointmentPercentage
+        this.taxidentification = this.details.taxIdentification
+        this.businessid = this.details.businessID
+        this.commercialcity = this.details.commercialRegCity
+        this.taxprofessional = this.details.taxProfessional
+
+        this.socialseccurityfundno = this.details.socialSeccurityNo
+        this.nameofbank = this.details.nameofthebank
+        this.accountNumber = this.details.accountName
+        this.accountNumber = this.details.accountNumber,
+          this.latitude = this.details.lattitude,
+          this.longitude = this.details.longitude,
+          this.formatAddress = this.details.formatedAddress,
+          this.vatpercentage = this.details.vatPercentage,
+          this.contractstartdate = this.details.exonerationPeriodFromDate
+        this.contractenddate = this.details.exonerationPeriodFromDate,
+          this.vatCheck = this.details.vat,
+          this.clinicTimings=this.details.clinicTimings
 
         this.GetCountryMaster();
         this.getcitymaster()
@@ -153,6 +194,7 @@ export class ProfileComponent implements OnInit {
       }
     )
   }
+  accountName:any;
   public updatedetails() {
 
     var entity = {
@@ -172,7 +214,26 @@ export class ProfileComponent implements OnInit {
       'Description': this.description,
       'AreaID': this.areaid,
       'Pincode': this.pincode,
-      'CountryID': this.countryid
+      'CountryID': this.countryid,
+      'SubscriptionTypeID': this.subscriptiontype,
+      'MonthlySubscription': this.monthlysubription,
+      'AppointmentPercentage': this.appointmentpercentage,
+      'TaxIdentification': this.taxidentification,
+      'BusinessID': this.businessid,
+      'CommercialRegCity': this.commercialcity,
+      'TaxProfessional': this.taxprofessional,
+      'SocialSeccurityNo': this.socialseccurityfundno,
+      'Nameofthebank': this.nameofbank,
+      'AccountName': this.accountName,
+      'AccountNumber': this.accountNumber,
+      'VAT':this.vatCheck,
+      'Lattitude': this.latitude,
+      'Longitude': this.longitude,
+      'FormatedAddress': this.formatAddress,
+      'VatPercentage': this.vatpercentage,
+      'ExonerationPeriodFromDate': this.contractstartdate!=null||undefined?this.contractstartdate:new Date(),
+      'ExonerationPerioToDate': this.contractenddate!=null||undefined?this.contractstartdate:new Date(),
+      'CLinicTimings':this.clinicTimings
     }
     this.docservice.UpdateHospitalClinicProfile(entity).subscribe(res => {
       let test = res;
