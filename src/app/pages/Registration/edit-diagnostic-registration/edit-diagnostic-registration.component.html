@@ -102,6 +102,26 @@
             </div><br>
             <div class="row">
               <div class="col-lg-4">
+                <label>Lattitude : </label>
+      
+              </div>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Lattitude" [(ngModel)]="latitude" name="latitude">
+              </div>
+      
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
+                <label>Longitude : </label>
+      
+              </div>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="Longitude" [(ngModel)]="longitude" name="longitude">
+              </div>
+      
+            </div><br>
+            <div class="row">
+              <div class="col-lg-4">
                 <label>{{labels[0].country}} : </label>
                 <span class="required">*</span>
               </div>
@@ -386,6 +406,36 @@
         </div>
       </div>
       <br>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h4 class="mainheader">Mode de paiement pour les patients</h4>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-lg-2">
+          <label>En espèces :</label>
+        </div>
+        <div class="col-lg-2">
+          <input type="radio" [(ngModel)]="cash" name="cash" [value]="true" required />&nbsp;{{ labels[0].yes }}&nbsp;&nbsp;
+          <input type="radio" [(ngModel)]="cash" name="cash" [value]="false" required />&nbsp;{{ labels[0].no }}&nbsp;&nbsp;
+        </div>
+  
+        <div class="col-lg-1">
+          <label>Portefeuille :</label>
+        </div>
+        <div class="col-lg-2">
+          <input type="radio" [(ngModel)]="wallet" name="wallet" required [value]="true" />&nbsp;{{ labels[0].yes }}&nbsp;&nbsp;&nbsp;
+          <input type="radio" [(ngModel)]="wallet" name="wallet" required [value]="false" />&nbsp;{{ labels[0].no }}&nbsp;&nbsp;&nbsp;
+        </div>
+  
+        <div class="col-lg-2">
+          Carte de crédit / débit :
+        </div>
+        <div class="col-lg-2">
+          <input type="radio" [(ngModel)]="creditCard" name="creditCard" required [value]="true" />&nbsp;{{ labels[0].yes }}&nbsp;&nbsp;&nbsp;
+          <input type="radio" [(ngModel)]="creditCard" name="creditCard" required [value]="false" />&nbsp;{{ labels[0].no }}&nbsp;&nbsp;&nbsp;
+        </div>
+      </div><br>
 
       <div class="row">
         <div class="col-lg-5">

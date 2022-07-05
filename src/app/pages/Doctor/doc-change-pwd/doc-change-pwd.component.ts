@@ -181,4 +181,15 @@ export class DocChangePwdComponent implements OnInit {
     let fgdgfgd = even;
     this.p = even;
   }
+
+
+  removeHash(event: { which: any; keyCode: any; }): boolean {
+    debugger
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode == 35) {
+      return false;
+    }
+    return true;
+
+  }
 }

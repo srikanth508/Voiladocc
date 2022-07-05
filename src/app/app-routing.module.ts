@@ -756,6 +756,7 @@ const routes: Routes = [
   { path: 'HomedeliverMaster', component:  HomedeliverMasterComponent},
   { path: 'Loader', component:  LoaderComponent},
   { path: 'CreateFolders', component:  CreateFoldersComponent},
+  { path: 'CreateFolders/:id', component:  CreateFoldersComponent},
   { path: 'FoldersDash', component:  FoldersDashComponent},
   { path: 'MyFiles/:id/:Foldername', component:  MyFilesComponent},
   { path: 'SubFolderFiles/:folderid/:subfolderid/:Foldername/:SubFolderName', component:  SubFolderFilesComponent},

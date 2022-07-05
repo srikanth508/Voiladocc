@@ -55,6 +55,9 @@ export class EditDiagnosticRegistrationComponent implements OnInit {
   latitude: any;
   longitude: any;
   googleAddress: any;
+  cash: boolean | undefined;
+  creditCard: boolean | undefined;
+  wallet: boolean | undefined;
   ngOnInit() {
     this.activatedroute.params.subscribe((params) => {
       this.id = params["id"];
@@ -129,6 +132,9 @@ export class EditDiagnosticRegistrationComponent implements OnInit {
             (this.latitude = this.details.lattitude),
             (this.longitude = this.details.longitude),
             (this.formatAddress = this.details.formatedAddress);
+            (this.cash = this.details.cash),
+            (this.wallet = this.details.wallet),
+            (this.creditCard = this.details.creditCard);
 
           debugger;
           this.GetCountryMaster();
@@ -274,9 +280,9 @@ export class EditDiagnosticRegistrationComponent implements OnInit {
       Lattitude: this.latitude,
       Longitude: this.longitude,
       FormatedAddress: this.formatAddress,
-      cash: 1,
-      Wallet: 0,
-      CreditCard: 0,
+      cash: this.cash,
+      Walle: this.wallet,
+      CreditCard: this.creditCard
     };
     this.docservice.UpdateDiagnosticCenterProfile(entity).subscribe((res) => {
       let test = res;

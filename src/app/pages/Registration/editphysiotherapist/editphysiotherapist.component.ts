@@ -52,6 +52,11 @@ export class EditphysiotherapistComponent implements OnInit {
   today = new Date();
   contractstartdate: any;
   contractenddate: any;
+  cash: boolean | undefined;
+  creditCard: boolean | undefined;
+  wallet: boolean | undefined;
+  typeOfPayment: any;
+
   ngOnInit() {
     this.activatedroute.params.subscribe((params) => {
       this.id = params["id"];
@@ -148,11 +153,17 @@ export class EditphysiotherapistComponent implements OnInit {
           (this.contractenddate = this.details.exonerationPeriodFromDate),
             (this.vatCheck = this.details.vat),
             (this.vatpercentage = this.details.vatPercentage);
+            (this.cycleID = this.details.payTypeID),
+            (this.typeOfPayment = this.details.typeofPayment),
+            (this.cash = this.details.cash),
+            (this.wallet = this.details.wallet),
+            (this.creditCard = this.details.creditCard);
           this.GetDepartmentmaster();
           this.GetCountryMaster();
           this.getcitymaster();
           this.getareamasterbyid();
           this.GetRegionMaster();
+          this.getSubscriptionMasetr();
         },
         (error) => {}
       );
@@ -430,4 +441,19 @@ export class EditphysiotherapistComponent implements OnInit {
       this.vatpercentage = 20;
     }
   }
+
+  paymenyCycleList: any;
+
+  getSubscriptionMasetr() {
+    this.docservice.GetSubscriptionPayTypeMaster().subscribe((data) => {
+      this.paymenyCycleList = data;
+    });
+  }
+
+  cycleID: any;
+
+  getMonthCycleID(even: any) {
+    this.cycleID = even.target.value;
+  }
+
 }

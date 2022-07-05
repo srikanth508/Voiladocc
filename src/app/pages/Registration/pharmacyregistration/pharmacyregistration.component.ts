@@ -33,6 +33,9 @@ export class PharmacyregistrationComponent implements OnInit {
   public description: any;
   public pharmacyid;
   any;
+  cash: boolean | undefined;
+  creditCard: boolean | undefined;
+  wallet: boolean | undefined;
   public attachments = [];
   public attachmentsurl = [];
   public validEmail: any;

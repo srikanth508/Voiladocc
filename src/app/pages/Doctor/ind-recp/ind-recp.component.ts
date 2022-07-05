@@ -19,7 +19,7 @@ export class IndRecpComponent implements OnInit {
   email: any;
   labels: any;
   address: any;
-  doctorid:any;
+  doctorid: any;
   ngOnInit() {
     this.hospitalclinicid = localStorage.getItem('hospitalid');
     this.languageID = localStorage.getItem('LanguageID');
@@ -69,7 +69,7 @@ export class IndRecpComponent implements OnInit {
         }
       }
       else {
-        Swal.fire('Completed', "Désolé, l'adresse email existe déjà. Veuillez en essayer un autre");
+        Swal.fire('Completed', "Merci de renseigner le numéro d’identité d’un parent ou du tuteur légal si le patient est mineur.");
         // location.href = "#/IndRecpdash"
       }
 
@@ -82,16 +82,15 @@ export class IndRecpComponent implements OnInit {
   emailattchementurl = [];
 
   public sendmail() {
-    if(this.languageID==1)
-    {
-      var sub='Welcome TO VOiladoc'
-      var body='Dear ' + this.name + ',' + "<br><br>" + 'Thank You For Registering Voiladoc Plaform. Please use the below link to  login Voiladoc Platform ' + "<br><br>" + 'Link : https://maroc.voiladoc.org/' + "<br>" + 'Pin : ' + this.pinno + "<br>" + 'UserName :' + this.username + "<br>" + 'Password : ' + this.password + "<br><br>" + 'Dont Share Your Passwords to Anyone. For any further help. Please contact our support clients' + "<br><br>" + 'Regards,' + "<br>" + 'Voiladoc Team'
+    if (this.languageID == 1) {
+      var sub = 'Welcome TO VOiladoc'
+      var body = 'Dear ' + this.name + ',' + "<br><br>" + 'Thank You For Registering Voiladoc Plaform. Please use the below link to  login Voiladoc Platform ' + "<br><br>" + 'Link : https://maroc.voiladoc.org/' + "<br>" + 'Pin : ' + this.pinno + "<br>" + 'UserName :' + this.username + "<br>" + 'Password : ' + this.password + "<br><br>" + 'Dont Share Your Passwords to Anyone. For any further help. Please contact our support clients' + "<br><br>" + 'Regards,' + "<br>" + 'Voiladoc Team'
     }
-    else{
-      var sub='Bienvenue sur Voialdoc'
-      var body='Cher ' + this.name + ',' + "<br><br>" + 'Merci de vous être inscrit sur Voiladoc. Voici vos identifiants de connexion.' + "<br><br>" + 'Lien web Voiladoc pro https://maroc.voiladoc.org/' + "<br>" + 'Code PIN : ' + this.pinno + "<br>" + "Nom d'utilisateur : " + this.username + "<br>" + 'Mot de passe  : ' + this.password + "<br><br>" + "Veuillez ne pas partager vos identifiants de connexion avec qui que ce soit. Contactez notre ligne d'assistance au +212522446145 ou envoyez-nous un e-mail à support@voiladoc.ma" + "<br><br>" + 'Meilleures salutations,' + "<br>" + 'Team Voiladoc'+"<br>"+"www.voiladoc.ma"
+    else {
+      var sub = 'Bienvenue sur Voialdoc'
+      var body = 'Cher ' + this.name + ',' + "<br><br>" + 'Merci de vous être inscrit sur Voiladoc. Voici vos identifiants de connexion.' + "<br><br>" + 'Lien web Voiladoc pro https://maroc.voiladoc.org/' + "<br>" + 'Code PIN : ' + this.pinno + "<br>" + "Nom d'utilisateur : " + this.username + "<br>" + 'Mot de passe  : ' + this.password + "<br><br>" + "Veuillez ne pas partager vos identifiants de connexion avec qui que ce soit. Contactez notre ligne d'assistance au +212522446145 ou envoyez-nous un e-mail à support@voiladoc.ma" + "<br><br>" + 'Meilleures salutations,' + "<br>" + 'Team Voiladoc' + "<br>" + "www.voiladoc.ma"
     }
-    
+
     var entity = {
       'emailto': this.email,
       'emailsubject': sub,
@@ -101,6 +100,38 @@ export class IndRecpComponent implements OnInit {
       'bcclist': 0
     }
     this.docservice.sendemail(entity).subscribe(data => {
+      this.SendTwiliSms();
+    })
+  }
+
+
+
+  smsdesc: any;
+
+  public SendTwiliSms() {
+
+    if (this.languageID == 1) {
+      var sub =
+        "Welcome to Voiladoc" +
+        "Pin code  : " +
+        this.pinno +
+        "UserName :" +
+        this.username +
+        "Password : " +
+        this.password;
+    } else {
+      var sub =
+        "Bienvenue sur Voialdoc" +
+        " Code PIN  : " +
+        this.pinno +
+        "     Nom dutilisateur :" +
+        this.username +
+        "     Mot de passe : " +
+        this.password;
+    }
+    debugger
+    this.docservice.SendTwillioSMS("212" + this.phoneno, sub).subscribe(data => {
+
     })
   }
 

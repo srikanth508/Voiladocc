@@ -14,7 +14,7 @@ export class EditNurseComponent implements OnInit {
     public docservice: HelloDoctorService,
     private activatedroute: ActivatedRoute,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
   public id: any;
   public nursedetails: any;
@@ -60,6 +60,11 @@ export class EditNurseComponent implements OnInit {
   today = new Date();
   contractstartdate: any;
   contractenddate: any;
+  cash: boolean | undefined;
+  creditCard: boolean | undefined;
+  wallet: boolean | undefined;
+  typeOfPayment: any;
+
   ngOnInit() {
     this.activatedroute.params.subscribe((params) => {
       this.id = params["id"];
@@ -109,12 +114,19 @@ export class EditNurseComponent implements OnInit {
             this.nursedetails[0].exonerationPeriodFromDate),
             (this.vatCheck = this.nursedetails[0].vat),
             (this.vatpercentage = this.nursedetails[0].vatPercentage);
+
+          (this.cycleID = this.nursedetails[0].payTypeID),
+            (this.typeOfPayment = this.nursedetails[0].typeofPayment),
+            (this.cash = this.nursedetails[0].cash),
+            (this.wallet = this.nursedetails[0].wallet),
+            (this.creditCard = this.nursedetails[0].creditCard);
           this.GetCountryMaster();
           this.GetRegionMaster();
           this.getcitymasterbyid();
           this.getareamasterbyid();
+          this.getSubscriptionMasetr();
         },
-        (error) => {}
+        (error) => { }
       );
 
     this.GetCountryMaster();
@@ -138,7 +150,7 @@ export class EditNurseComponent implements OnInit {
         (data) => {
           this.labels = data;
         },
-        (error) => {}
+        (error) => { }
       );
     this.docservice
       .GetAdmin_HospitalClinicRegistration_Lables(this.languageid)
@@ -146,7 +158,7 @@ export class EditNurseComponent implements OnInit {
         (data) => {
           this.labels4 = data;
         },
-        (error) => {}
+        (error) => { }
       );
   }
   public GetDepartmentID(even) {
@@ -158,7 +170,7 @@ export class EditNurseComponent implements OnInit {
       (data) => {
         this.departmentlist = data;
       },
-      (error) => {}
+      (error) => { }
     );
   }
 
@@ -169,7 +181,7 @@ export class EditNurseComponent implements OnInit {
       (data) => {
         this.regionList = data;
       },
-      (error) => {}
+      (error) => { }
     );
   }
 
@@ -185,7 +197,7 @@ export class EditNurseComponent implements OnInit {
       (data) => {
         this.countrylist = data;
       },
-      (error) => {}
+      (error) => { }
     );
   }
   public GetCountryID(even) {
@@ -200,7 +212,7 @@ export class EditNurseComponent implements OnInit {
         (data) => {
           this.citylist = data;
         },
-        (error) => {}
+        (error) => { }
       );
   }
   public GetCityID(even) {
@@ -215,7 +227,7 @@ export class EditNurseComponent implements OnInit {
         (data) => {
           this.arealist = data;
         },
-        (error) => {}
+        (error) => { }
       );
   }
 
@@ -278,11 +290,12 @@ export class EditNurseComponent implements OnInit {
         this.contractstartdate != null ? this.contractstartdate : new Date(),
       ExonerationPerioToDate:
         this.contractenddate != null ? this.contractstartdate : new Date(),
-      PayTypeID: 1,
-      TypeofPayment: 1,
-      cash: 1,
-      Wallet: 0,
-      CreditCard: 0,
+      PayTypeID: this.cycleID,
+      TypeofPayment: this.typeOfPayment,
+      cash: this.cash,
+      Wallet: this.wallet,
+      CreditCard: this.creditCard,
+
     };
     this.docservice.UpdateNurseRegistration(entity).subscribe((data) => {
       if (data != undefined) {
@@ -395,4 +408,19 @@ export class EditNurseComponent implements OnInit {
       this.vatpercentage = 20;
     }
   }
+
+  paymenyCycleList: any;
+
+  getSubscriptionMasetr() {
+    this.docservice.GetSubscriptionPayTypeMaster().subscribe((data) => {
+      this.paymenyCycleList = data;
+    });
+  }
+
+  cycleID: any;
+
+  getMonthCycleID(even: any) {
+    this.cycleID = even.target.value;
+  }
+
 }

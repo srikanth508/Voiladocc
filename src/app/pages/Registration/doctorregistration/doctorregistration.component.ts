@@ -135,6 +135,8 @@ export class DoctorregistrationComponent implements OnInit {
     }
 
     //  this.getGeoLocation(this.address);
+    this.getSubscriptionMasetr();
+    this.cycleID=""
   }
 
   SelectLabel: any;
@@ -497,11 +499,11 @@ export class DoctorregistrationComponent implements OnInit {
         Longitude: this.longitude,
         FormatedAddress: this.formatAddress,
         ClinicNumber: this.clinicNumber,
-        PayTypeID: 1,
-        TypeofPayment: 1,
-        cash: 1,
-        Wallet: 0,
-        CreditCard: 0,
+        PayTypeID: this.cycleID,
+        TypeofPayment: this.typeOfPayment,
+        cash: this.cash,
+        Wallet: this.wallet,
+        CreditCard: this.creditCard
       };
       this.docservice.InsertDoctorRegistration(entity).subscribe(
         (data) => {
@@ -1034,5 +1036,19 @@ export class DoctorregistrationComponent implements OnInit {
         this.spinner.hide();
       }
     });
+  }
+
+
+
+  paymenyCycleList: any;
+
+  getSubscriptionMasetr() {
+    this.docservice.GetSubscriptionPayTypeMaster().subscribe((data) => {
+      this.paymenyCycleList = data;
+    });
+  }
+
+  getMonthCycleID(even: any) {
+    this.cycleID = even.target.value;
   }
 }

@@ -28,7 +28,8 @@ export class PtientregdashComponent implements OnInit {
   public hospitalid: any;
   doctorid: any;
   recpid: any;
-  showback:any;
+  typeID: any;
+  showback: any;
   ngOnInit() {
 
     const format = 'yyyy-MM-dd';
@@ -38,7 +39,7 @@ export class PtientregdashComponent implements OnInit {
 
     this.doctorid = localStorage.getItem('userid');
     this.recpid = localStorage.getItem('recpid');
-  
+
     this.options = {
       theme: 'default',
       range: 'tm',
@@ -70,6 +71,8 @@ export class PtientregdashComponent implements OnInit {
     this.roleid = localStorage.getItem("roleid");
     this.getlanguage();
     this.Getregisterdpatients();
+    this.typeID = 1;
+
   }
   public getlanguage() {
     this.docservice.GetAdmin_Masters_labels(this.languageid).subscribe(
@@ -139,4 +142,39 @@ export class PtientregdashComponent implements OnInit {
     this.enddate = this.docservice.GetDates(data[1])
     this.Getregisterdpatients();
   }
+
+  gotoFolder(patiname) {
+    localStorage.setItem("patientName", patiname);
+    location.href = "#/CreateFolders"
+  }
+
+
+
+  getTypeID(type) {
+    this.typeID = type;
+    if (this.typeID == 1) {
+      this.Getregisterdpatients()
+    }
+    else {
+      this.getChildPatients()
+    }
+
+  }
+
+
+  getChildPatients() {
+    
+    this.docservice.GetPatientRelationFamilyTreeWeb(this.hospitalid, this.startdate, this.enddate).subscribe(
+      data => {
+
+        this.patientslist = data;
+        
+        this.dummlist = this.patientslist
+        this.count = this.patientslist.length
+        console.log(this.patientslist)
+      },
+      error => { }
+    );
+  }
+
 }

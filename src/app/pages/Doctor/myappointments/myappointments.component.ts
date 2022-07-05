@@ -4037,8 +4037,8 @@ export class MyappointmentsComponent implements OnInit {
 
     var entity = {
       'emailto': this.doctoremail,
-      'emailsubject': 'Patient Referred By ' + this.user,
-      'emailbody': this.referalnotes,
+      'emailsubject':  this.user+ 'vous a envoyé une lettre de recommendation',
+      'emailbody':"Veuillez trouver ci-joint la lettre de recommandation envoyée par "+this.user+"<br><br>"+ this.referalnotes+"<br><br><br>"+"Cette lettre de recommandation vous a été envoyée via la plateforme Voiladoc  www.voiladoc.ma",
       'attachmenturl': this.emailattchementurl,
       'cclist': this.cclist,
       'bcclist': this.bcclist

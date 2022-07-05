@@ -29,7 +29,9 @@
 </div>
 <div class="col-lg-2">
   <button type="button" text_align="center"
-  class="btn btn-block btn-md allbtns btncolor" (click)="InsertDetails()" [disabled]="folderForm.form.invalid">{{labels[0].save}}</button>
+  class="btn btn-block btn-md allbtns btncolor" (click)="InsertDetails()" [disabled]="folderForm.form.invalid" *ngIf="showEdit==0">{{labels[0].save}}</button>
+  <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor" (click)="UpdateDoctors_PersonalFolder()" [disabled]="folderForm.form.invalid" *ngIf="showEdit==1&&languageid==1">Update</button>
+  <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor" (click)="UpdateDoctors_PersonalFolder()" [disabled]="folderForm.form.invalid" *ngIf="showEdit==1&&languageid==6">Mise à jour</button>
 </div>
   </div><br><br>
 </form>

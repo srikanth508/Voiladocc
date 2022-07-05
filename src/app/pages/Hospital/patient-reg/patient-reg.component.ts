@@ -50,11 +50,17 @@ export class PatientRegComponent implements OnInit {
   dropzonelable: any;
   id: any;
   showbit: any;
+  typeID: any;
+  patientdd={}
+  relationshipid:any;
+  user:any;
+  dummpatientList:any;
   constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
     this.languageid = localStorage.getItem("LanguageID");
     this.doctorid = localStorage.getItem('userid');
+    this.user=localStorage.getItem('user');
 
     this.activatedroute.params.subscribe(params => {
       this.id = params['id'];
@@ -76,6 +82,29 @@ export class PatientRegComponent implements OnInit {
     else if (this.languageid == 6) {
       this.dropzonelable = "Télécharger des fichiers"
     }
+
+
+    this.docservice.GetPatientRegistration('2020-01-01', '2060-01-01').subscribe(
+      data => {
+
+        // this.patientslist = 
+        // this.dummlist.filter(x => x.doctorID == this.doctorid)
+        this.patientslist = data;
+        this.dummpatientList=data;
+        this.patientdd = {
+          singleSelection: true,
+          idField: 'id',
+          textField: 'patientName',
+          selectAllText: 'Select All',
+          unSelectAllText: 'UnSelect All',
+          itemsShowLimit: 3,
+          allowSearchFilter: true,
+          searchPlaceholderText: 'Rechercher'
+        };
+
+      },
+      error => { }
+    );
   }
 
   public getlanguage() {
@@ -163,8 +192,8 @@ export class PatientRegComponent implements OnInit {
   }
 
 
-  regionList:any;
-  regiondd={};
+  regionList: any;
+  regiondd = {};
 
   public GetCountryID(item: any) {
 
@@ -341,6 +370,31 @@ export class PatientRegComponent implements OnInit {
 
   insurancename: any;
 
+
+
+  checkdetails() {
+    if (this.typeID == 1) {
+      this.relationshipid=1
+      this.insertdetails()
+
+    }
+    else if (this.typeID == 2) {
+      this.relationshipid=7;
+      this.Insertfamilytredetail()
+    }
+  }
+
+
+  public GetPatientID(item: any) {
+
+    this.patientid = item.id;
+
+    var list=this.dummpatientList.filter(x=>x.id==this.patientid)
+    this.email=list[0].emailID,
+    this.mobileno=list[0].mobileNumber
+    
+  }
+
   public insertdetails() {
 
     var entity = {
@@ -417,7 +471,7 @@ export class PatientRegComponent implements OnInit {
   public Insertfamilytredetail() {
 
     var entity = {
-      'PatientRelationTypeID': 1,
+      'PatientRelationTypeID': this.relationshipid,
       'PatientID': this.patientid,
       'PR_FirstName': this.patientname,
       'PR_LastName': this.lastname,
@@ -435,6 +489,14 @@ export class PatientRegComponent implements OnInit {
     }
     this.docservice.InsertPatientRelation_FamilyTree_Web(entity).subscribe(data => {
 
+      if (this.languageid == '1') {
+        Swal.fire("Patient Registred Successfully")
+        location.href = "#/Ptientregdash"
+      }
+      else if (this.languageid == '6') {
+        Swal.fire('Patient enregistré avec succès')
+        location.href = "#/Ptientregdash"
+      }
     })
 
   }
@@ -482,11 +544,11 @@ export class PatientRegComponent implements OnInit {
   public sendmail() {
     if (this.languageid == 1) {
       var subject = "Welcome to Voiladoc"
-      var desc = 'Welcome to Voiladoc, your digital health app. Your provider ' + this.patientname + ' has registered you on Voiladoc. Please login with your mobile number.'
+      var desc = 'Welcome to Voiladoc, your digital health app. Your provider ' + this.user + ' has registered you on Voiladoc. Please login with your mobile number.'
     }
     else {
-      var subject = "Welcome to Voiladoc"
-      var desc = 'Bienvenue sur Voiladoc, l app de santé numérique. Votre prestataire ' + this.patientname + ' " vous a enregistré sur Voiladoc. Veuillez-vous connecter avec votre no de mobile.'
+      var subject = "Bienvenue sur Voiladoc"
+      var desc = 'Le prestataire ' + this.user + ' " vous a inscrit sur lapp Voiladoc. Veuillez-vous connecter avec votre numéro de mobile.'
     }
     var entity = {
       'emailto': this.email,
@@ -506,13 +568,13 @@ export class PatientRegComponent implements OnInit {
     var smsno = "212" + this.mobileno
     if (this.languageid == 1) {
 
-      var desc = 'Welcome to Voiladoc, your digital health app. Your provider ' + this.patientname + ' has registered you on Voiladoc. Please login with your mobile number.'
+      var desc = 'The service provider ' + this.user + ' has registered you on the Voiladoc app. Please login with your mobile number.'
     }
     else {
 
-      var desc = 'Bienvenue sur Voiladoc, l app de santé numérique. Votre prestataire ' + this.patientname + ' " vous a enregistré sur Voiladoc. Veuillez-vous connecter avec votre no de mobile.'
+      var desc = 'Le prestataire ' + this.user + ' " " vous a inscrit sur lapp Voiladoc. Veuillez-vous connecter avec votre numéro de mobile'
     }
-    this.docservice.SendTwillioSMS(smsno, desc).subscribe(data=>{
+    this.docservice.SendTwillioSMS(smsno, desc).subscribe(data => {
 
     })
   }

@@ -156,6 +156,7 @@ export class DocworkingdetailsComponent implements OnInit {
       data => {
 
         this.labels = data;
+        console.log(this.labels);
         this.labels = data;
         this.SelectLabel = this.labels[0].select;
         this.search = this.labels[0].search;

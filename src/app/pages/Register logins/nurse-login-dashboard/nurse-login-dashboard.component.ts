@@ -248,7 +248,7 @@ export class NurseLoginDashboardComponent implements OnInit {
     }
     else {
       var sub = "Bienvenue sur Voialdoc "
-      var body = 'Cher ' + details.nurseName + ',' + "<br><br>" + 'Merci de vous être inscrit sur Voiladoc. Voici vos identifiants de connexion. ' + "<br><br>" + 'Lien web Voiladoc pro : https://maroc.voiladoc.org/' + "<br>" + 'Code PIN  : ' + details.pinno + "<br>" + "Nom d'utilisateur :" + details.userName + "<br>" + 'Mot de passe : ' + details.password + "<br><br>" + "Veuillez ne pas partager vos identifiants de connexion avec qui que ce soit. Contactez notre ligne d'assistance au +212522446145 ou envoyez-nous un e-mail à support@voiladoc.ma" + "<br><br>" + 'Meilleures salutations,' + "<br>" + 'Team Voiladoc' + "<br>" + 'www.voiladoc.com'
+      var body = 'Cher ' + details.nurseName + ',' + "<br><br>" + 'Merci de vous être inscrit sur Voiladoc. Voici vos identifiants de connexion. ' + "<br><br>" + 'Lien web Voiladoc pro : https://maroc.voiladoc.org/' + "<br>" + 'Code PIN  : ' + details.pinno + "<br>" + "Nom d'utilisateur :" + details.userName + "<br>" + 'Mot de passe : ' + details.password + "<br><br>" + "Veuillez ne pas partager vos identifiants de connexion avec qui que ce soit. Contactez notre ligne d'assistance au +212522446145 ou envoyez-nous un e-mail à support@voiladoc.ma" + "<br><br>" + 'Meilleures salutations,' + "<br>" + 'Team Voiladoc' + "<br>" + 'www.voiladoc.ma'
     }
 
     var entity = {
@@ -297,4 +297,13 @@ export class NurseLoginDashboardComponent implements OnInit {
   }
 
 
+  removeHash(event: { which: any; keyCode: any; }): boolean {
+    debugger
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode == 35) {
+      return false;
+    }
+    return true;
+
+  }
 }

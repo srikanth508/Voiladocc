@@ -591,9 +591,9 @@
                 <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp; {{labels[0].supportTickets}}
 
             </a>
-            <!-- <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='24'" routerLink="/FoldersDash">
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='24'" routerLink="/FoldersDash">
                 <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp; {{labels[0].myprivatevault}}
-            </a> -->
+            </a>
 
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='24'" routerLink="/DocRecpProfile">
                 <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp; {{labels[0].myProfile}}
@@ -806,9 +806,9 @@
                 <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;{{labels[0].offers}}
             </a>
 
-            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='4'" routerLink="/PaymentLinkDash">
+            <!-- <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='4'" routerLink="/PaymentLinkDash">
                 <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;{{labels[0].paymentLink}}
-            </a>
+            </a> -->
             <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='4'" routerLink="/UserPlanning">
                 <img src="assets/Images/arrow1.png" class="imagewidth">&nbsp;&nbsp;{{labels[0].usersreport}}
             </a>
@@ -2031,7 +2031,7 @@
                                     class="imagewidth">&nbsp;&nbsp;{{labels[0].insuranceMaster}}
                             </a>
                         </li>
-                        <li *ngIf="degreemaster=='1'">
+                        <li >
                             <a class="tablinks" (click)="highlight($event)" routerLink="/DegreeMasterDash">
                                 <img src="assets/Images/arrow1.png"
                                     class="imagewidth">&nbsp;&nbsp;{{labels[0].degreeMaster}}
@@ -2177,12 +2177,12 @@
                               
                             </a>
                         </li> -->
-                        <!-- <li>
+                        <li>
                             <a class="tablinks" (click)="highlight($event)" routerLink="/DegreeMasterDash">
-                                {{labels[0].degreeMaster}}
+                                <img src="assets/Images/arrow1.png"> {{labels[0].degreeMaster}}
                               
                             </a>
-                        </li><br><br> -->
+                        </li><br><br>
                     </ul>
                 </li>
             </ul><br><br>

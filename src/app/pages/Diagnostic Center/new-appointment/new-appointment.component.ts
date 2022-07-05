@@ -214,7 +214,7 @@ export class NewAppointmentComponent implements OnInit {
     patientname: any;
     public GetPatientID(item: any) {
 
-        this.patientid = item.id;
+        this.patientid = item.patientID;
         var list = this.patientslist.filter(x => x.id == this.patientid)
         this.patientname = list[0].patientName
     }
@@ -296,7 +296,9 @@ export class NewAppointmentComponent implements OnInit {
                     TestID: this.selectedtestlist[i].id,
                     Testorpackage: this.selectedtestlist[i].testName,
                     Price: this.selectedtestlist[i].price,
-                    PackageID: null
+                    PackageID: null,
+                    TestType: this.selectedtestlist[i].testType,
+                    TestName: this.selectedtestlist[i].testName
                 }
                 this.allselectedtestandpakages.push(testentity);
                 this.idcount = this.idcount + 1;
@@ -365,7 +367,10 @@ export class NewAppointmentComponent implements OnInit {
                     var entity2 = {
                         DiagnosticCenterTestsID: this.allselectedtestandpakages[k].TestID,
                         PackageID: this.allselectedtestandpakages[k].PackageID,
-                        DiagnosticAppointmentsID: this.appointmentid
+                        DiagnosticAppointmentsID: this.appointmentid,
+                        TestType: this.allselectedtestandpakages[k].TestType,
+                        TestName: this.allselectedtestandpakages[k].TestName,
+                        Fees: this.allselectedtestandpakages[k].Price,
                     }
                     this.docservice.InsertDiagnosticBookedTests(entity2).subscribe(data => {
 
@@ -377,11 +382,11 @@ export class NewAppointmentComponent implements OnInit {
             }
             if (this.languageid == 1) {
                 Swal.fire("Booked Successfully");
-                location.href = "#/DiagnosticAppointmentDash";
+                location.href = "#/Orders";
             }
             else {
                 Swal.fire("Réservé");
-                location.href = "#/DiagnosticAppointmentDash";
+                location.href = "#/Orders";
             }
 
         })

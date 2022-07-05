@@ -13,7 +13,7 @@ export class EditPharmacyRegComponent implements OnInit {
     public docservice: HelloDoctorService,
     private activatedroute: ActivatedRoute,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
   public pharmacyid: any;
   public details: any;
   public pharmacyname: any;
@@ -53,6 +53,11 @@ export class EditPharmacyRegComponent implements OnInit {
   latitude: any;
   longitude: any;
   googleAddress: any;
+  cash: boolean | undefined;
+  creditCard: boolean | undefined;
+  wallet: boolean | undefined;
+  typeOfPayment: any;
+
   ngOnInit() {
     this.activatedroute.params.subscribe((params) => {
       this.id = params["id"];
@@ -91,7 +96,7 @@ export class EditPharmacyRegComponent implements OnInit {
         (data) => {
           this.citylist = data;
         },
-        (error) => {}
+        (error) => { }
       );
   }
   public GetcityID(even) {
@@ -106,7 +111,7 @@ export class EditPharmacyRegComponent implements OnInit {
         (data) => {
           this.labels = data;
         },
-        (error) => {}
+        (error) => { }
       );
 
     this.docservice
@@ -115,7 +120,7 @@ export class EditPharmacyRegComponent implements OnInit {
         (data) => {
           this.labels4 = data;
         },
-        (error) => {}
+        (error) => { }
       );
   }
 
@@ -160,12 +165,17 @@ export class EditPharmacyRegComponent implements OnInit {
             (this.latitude = this.details.lattitude),
             (this.longitude = this.details.longitude),
             (this.formatAddress = this.details.formatedAddress);
+
+          (this.cash = this.details.cash),
+            (this.wallet = this.details.wallet),
+            (this.creditCard = this.details.creditCard);
           this.GetCountryMaster();
           this.getcitymaster();
           this.getareamasterbyid();
           this.GetRegionMaster();
+          this.getSubscriptionMasetr();
         },
-        (error) => {}
+        (error) => { }
       );
   }
 
@@ -176,7 +186,7 @@ export class EditPharmacyRegComponent implements OnInit {
       (data) => {
         this.regionList = data;
       },
-      (error) => {}
+      (error) => { }
     );
   }
 
@@ -200,7 +210,7 @@ export class EditPharmacyRegComponent implements OnInit {
       (data) => {
         this.countrylist = data;
       },
-      (error) => {}
+      (error) => { }
     );
   }
 
@@ -256,9 +266,9 @@ export class EditPharmacyRegComponent implements OnInit {
       Lattitude: this.latitude,
       Longitude: this.longitude,
       FormatedAddress: this.formatAddress,
-      cash: 1,
-      Wallet: 0,
-      CreditCard: 0,
+      cash: this.cash,
+      Walle: this.wallet,
+      CreditCard: this.creditCard
     };
     this.docservice.UpdatePharmacyProfile(entity).subscribe((res) => {
       debugger;
@@ -277,7 +287,7 @@ export class EditPharmacyRegComponent implements OnInit {
       (data) => {
         this.photos = data;
       },
-      (error) => {}
+      (error) => { }
     );
   }
   public GetPharmacyPhotoID(id) {
@@ -338,7 +348,7 @@ export class EditPharmacyRegComponent implements OnInit {
         (data) => {
           this.arealist = data;
         },
-        (error) => {}
+        (error) => { }
       );
   }
   public GetAreaID(even) {
@@ -445,5 +455,19 @@ export class EditPharmacyRegComponent implements OnInit {
         this.spinner.hide();
       }
     });
+  }
+
+  paymenyCycleList: any;
+
+  getSubscriptionMasetr() {
+    this.docservice.GetSubscriptionPayTypeMaster().subscribe((data) => {
+      this.paymenyCycleList = data;
+    });
+  }
+
+  cycleID: any;
+
+  getMonthCycleID(even: any) {
+    this.cycleID = even.target.value;
   }
 }

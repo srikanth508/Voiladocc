@@ -46,8 +46,8 @@
               <!-- <span class="required">*</span> -->
             </div>
             <div class="col-lg-4">
-              <input type="text" placeholder="Tél clinique"  maxlength="13" name="clinicNumber"
-                oncopy="return false" onpaste="return false" [(ngModel)]="clinicNumber" class="form-control"
+              <input type="text" placeholder="Tél clinique" maxlength="13" name="clinicNumber" oncopy="return false"
+                onpaste="return false" [(ngModel)]="clinicNumber" class="form-control"
                 onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
             </div>
           </div>
@@ -97,10 +97,30 @@
                 placeholder="{{labels[0].address}}"></textarea>
             </div>
             <div class="col-lg-2">
-              <button  class="btn btncolor" (click)="geocode()">{{labels4[0].getLocation}}</button>
+              <button class="btn btncolor" (click)="geocode()">{{labels4[0].getLocation}}</button>
             </div>
           </div>
           <br>
+          <div class="row">
+            <div class="col-lg-3">
+              <label>Lattitude : </label>
+
+            </div>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" placeholder="Lattitude" [(ngModel)]="latitude" name="latitude">
+            </div>
+
+          </div><br>
+          <div class="row">
+            <div class="col-lg-3">
+              <label>Longitude : </label>
+
+            </div>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" placeholder="Longitude" [(ngModel)]="longitude" name="longitude">
+            </div>
+
+          </div><br>
           <div class="row">
             <div class="col-lg-3">
               <label>{{labels[0].country}} : </label>
@@ -113,7 +133,7 @@
             </div>
           </div>
           <br>
-          
+
           <div class="row">
             <div class="col-lg-3">
               <label>Régions : </label>
@@ -121,7 +141,7 @@
             </div>
             <div class="col-lg-4">
               <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="regionList" [settings]="regiondd"
-                (onSelect)="GetRegionID($event)" >
+                (onSelect)="GetRegionID($event)">
               </ng-multiselect-dropdown>
             </div>
           </div>
@@ -783,7 +803,7 @@
               <label class="Address_label">Vat Percentage :</label>
             </div>
             <div class="col-lg-4">
-              <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage" 
+              <input type="text" class="form-control" [disabled]="vatCheck=='1'" [(ngModel)]="vatpercentage"
                 name="vatpercentage" placeholder="Vat Percentage">
             </div>
           </div>
@@ -803,7 +823,7 @@
           </div>
         </div>
         <br />
-        <div class="row"  *ngIf="vatCheck=='1'">
+        <div class="row" *ngIf="vatCheck=='1'">
           <div class="col-lg-3">
             <label *ngIf="languageid=='1'">Exoneration period to :</label>
             <label *ngIf="languageid=='6'">Période d'exonération à :</label>
@@ -815,6 +835,31 @@
               [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="contractenddate" bsDatepicker>
           </div>
         </div>
+       
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Cycle de facturation</label>
+          </div>
+          <div class="col-lg-4">
+            <select class="form-control" (change)="getMonthCycleID($event)" [(ngModel)]="cycleID" name="cycleID"
+              required>
+              <option value="">Cycle de facturation</option>
+              <option *ngFor="let deta of paymenyCycleList" value="{{deta.id}}">{{deta.monthlyType}}</option>
+            </select>
+          </div>
+        </div>
+<br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Type de paiement </label>
+          </div>
+          <div class="col-lg-4">
+            <input type="radio" [(ngModel)]="typeOfPayment" name="typeOfPayment" [value]="1" required />&nbsp;
+            Recurrent&nbsp;&nbsp;
+            <input type="radio" [(ngModel)]="typeOfPayment" name="typeOfPayment" [value]="2" required />&nbsp; Unique
+          </div>
+        </div>
+        <br>
         <div class="row" *ngIf="hospitalclinicid=='590'">
           <div class="col-lg-3">
           </div>
@@ -823,20 +868,22 @@
             <h4 class="mainheader" *ngIf="languageid=='6'">Configuration de l'abonnement</h4>
           </div>
         </div><br>
+
+
         <div class="row" *ngIf="hospitalclinicid=='590'">
           <div class="col-lg-3">
             <label class="Address_label"> Subscription type :</label>
             <span class="required">*</span>
           </div>
           <div class="col-md-8">
-            <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
-              (click)="Getsubscriptontype()" value="1">{{labels4[0].monthlySubscription}}
+            <input type="radio" name="subscriptiontype" [(ngModel)]="subscriptiontype" (click)="Getsubscriptontype()"
+              value="1">{{labels4[0].monthlySubscription}}
             &nbsp;
-            <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
-              (click)="Getsubscriptontype()" value="2"> {{labels4[0].appointmentpercentage}}
+            <input type="radio" name="subscriptiontype" [(ngModel)]="subscriptiontype" (click)="Getsubscriptontype()"
+              value="2"> {{labels4[0].appointmentpercentage}}
             &nbsp;
-            <input type="radio" name="subscriptiontype"  [(ngModel)]="subscriptiontype"
-              (click)="Getsubscriptontype()" value="3"> {{labels4[0].both}}
+            <input type="radio" name="subscriptiontype" [(ngModel)]="subscriptiontype" (click)="Getsubscriptontype()"
+              value="3"> {{labels4[0].both}}
           </div>
         </div><br>
         <div *ngIf="subscriptiontype=='1'">
@@ -894,6 +941,39 @@
             </div>
           </div><br>
         </div>
+
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h4 class="mainheader">Mode de paiement pour les patients</h4>
+          </div>
+        </div><br>
+
+        <div class="row">
+          <div class="col-lg-2">
+            <label>En espèces :</label>
+          </div>
+          <div class="col-lg-2">
+            <input type="radio" [(ngModel)]="cash" name="cash" [value]="true" required />&nbsp;{{ labels[0].yes }}&nbsp;&nbsp;
+            <input type="radio" [(ngModel)]="cash" name="cash" [value]="false" required />&nbsp;{{ labels[0].no }}&nbsp;&nbsp;
+          </div>
+    
+          <div class="col-lg-1">
+            <label>Portefeuille :</label>
+          </div>
+          <div class="col-lg-2">
+            <input type="radio" [(ngModel)]="wallet" name="wallet" required [value]="true" />&nbsp;{{ labels[0].yes }}&nbsp;&nbsp;&nbsp;
+            <input type="radio" [(ngModel)]="wallet" name="wallet" required [value]="false" />&nbsp;{{ labels[0].no }}&nbsp;&nbsp;&nbsp;
+          </div>
+    
+          <div class="col-lg-2">
+            Carte de crédit / débit :
+          </div>
+          <div class="col-lg-2">
+            <input type="radio" [(ngModel)]="creditCard" name="creditCard" required [value]="true" />&nbsp;{{ labels[0].yes }}&nbsp;&nbsp;&nbsp;
+            <input type="radio" [(ngModel)]="creditCard" name="creditCard" required [value]="false" />&nbsp;{{ labels[0].no }}&nbsp;&nbsp;&nbsp;
+          </div>
+        </div><br>
+
         <div class="row">
           <div class="col-lg-5">
           </div>

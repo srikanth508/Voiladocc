@@ -64,7 +64,7 @@ export class DeliveryCompanyLoginComponent implements OnInit {
   }
 
   public insertdetails() {
-    this.password = Math.random().toString(36).slice(-8);
+    this.password=  this.docservice.generateRandomPassword();
     if (this.dcid == undefined) {
       if (this.languageid == 1) {
         Swal.fire("Please Select Delivery Company");

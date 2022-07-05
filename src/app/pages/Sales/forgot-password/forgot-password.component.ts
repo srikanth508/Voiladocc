@@ -100,7 +100,7 @@ export class ForgotPasswordComponent implements OnInit {
                     this.emailid = this.result[0].emailID
                   this.name = this.result[0].name
                   this.smsmobileno = this.result[0].smsmobileno
-                  this.password = Math.random().toString(36).slice(-8);
+                  this.password=  this.docservice.generateRandomPassword();
 
                   var smsdesc = "Your New Password is : " + this.password
                   this.SendTwiliSms(smsdesc)
@@ -152,7 +152,7 @@ export class ForgotPasswordComponent implements OnInit {
                     this.emailid = this.result[0].emailID
                   this.name = this.result[0].name
                   this.smsmobileno = this.result[0].smsmobileno
-                  this.password = Math.random().toString(36).slice(-8);
+                  this.password=  this.docservice.generateRandomPassword();
                   var smsdesc = "Your New Password is : " + this.password
                   this.SendTwiliSms(smsdesc)
                   this.sendmail(8)
@@ -202,7 +202,7 @@ export class ForgotPasswordComponent implements OnInit {
                     this.emailid = this.result[0].emailID
                   this.name = this.result[0].name,
                     this.smsmobileno = this.result[0].smsmobileno
-                  this.password = Math.random().toString(36).slice(-8);
+                    this.password=  this.docservice.generateRandomPassword();
                   var smsdesc = "Your New Password is : " + this.password
                   this.SendTwiliSms(smsdesc)
                   this.sendmail(6)
@@ -252,7 +252,7 @@ export class ForgotPasswordComponent implements OnInit {
                     this.emailid = this.result[0].emailID
                   this.name = this.result[0].name
                   this.smsmobileno = this.result[0].smsmobileno
-                  this.password = Math.random().toString(36).slice(-8);
+                  this.password=  this.docservice.generateRandomPassword();
                   var smsdesc = "Your New Password is : " + this.password
                   this.SendTwiliSms(smsdesc)
                   this.sendmail(5)
@@ -303,7 +303,7 @@ export class ForgotPasswordComponent implements OnInit {
                     this.emailid = this.result[0].emailID
                   this.name = this.result[0].name
                   this.smsmobileno = this.result[0].smsmobileno
-                  this.password = Math.random().toString(36).slice(-8);
+                  this.password=  this.docservice.generateRandomPassword();
                   var smsdesc = "Your New Password is : " + this.password
                   this.SendTwiliSms(smsdesc)
 
@@ -354,7 +354,7 @@ export class ForgotPasswordComponent implements OnInit {
                     this.emailid = this.result[0].emailID
                   this.name = this.result[0].name
                   this.smsmobileno = this.result[0].smsmobileno
-                  this.password = Math.random().toString(36).slice(-8);
+                  this.password=  this.docservice.generateRandomPassword();
                    var smsdesc = "Your New Password is : " + this.password
                   this.SendTwiliSms(smsdesc)
                   this.sendmail(4)
@@ -405,7 +405,7 @@ export class ForgotPasswordComponent implements OnInit {
                     this.emailid = this.result[0].emailID
                   this.name = this.result[0].name
                   this.smsmobileno = this.result[0].smsmobileno
-                  this.password = Math.random().toString(36).slice(-8);
+                  this.password=  this.docservice.generateRandomPassword();
                   var smsdesc = "Your New Password is : " + this.password
                   this.SendTwiliSms(smsdesc)
                   this.sendmail(3)
@@ -455,7 +455,7 @@ export class ForgotPasswordComponent implements OnInit {
                     this.emailid = this.result[0].emailID
                   this.name = this.result[0].name
                   this.smsmobileno = this.result[0].smsmobileno
-                  this.password = Math.random().toString(36).slice(-8);
+                  this.password=  this.docservice.generateRandomPassword();
                   var smsdesc = "Your New Password is : " + this.password
                   this.SendTwiliSms(smsdesc)
                   this.sendmail(7)
@@ -504,7 +504,7 @@ export class ForgotPasswordComponent implements OnInit {
                     this.emailid = this.result[0].emailID
                   this.name = this.result[0].name
                   this.smsmobileno = this.result[0].smsmobileno
-                  this.password = Math.random().toString(36).slice(-8);
+                  this.password=  this.docservice.generateRandomPassword();
                   var smsdesc = "Your New Password is : " + this.password
                   this.SendTwiliSms(smsdesc)
                   this.recpsendmail(1)
@@ -554,7 +554,7 @@ export class ForgotPasswordComponent implements OnInit {
                     this.emailid = this.result[0].emailID
                   this.name = this.result[0].name
                   this.smsmobileno = this.result[0].smsmobileno
-                  this.password = Math.random().toString(36).slice(-8);
+                  this.password=  this.docservice.generateRandomPassword();
                   var smsdesc = "Your New Password is : " + this.password
                   this.SendTwiliSms(smsdesc)
 

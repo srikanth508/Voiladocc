@@ -75,7 +75,10 @@ export class EditDoctorRegistrationComponent implements OnInit {
   public labels: any;
   public speaklanguages: any;
   dropzonelable: any;
-
+  cash: boolean | undefined;
+  creditCard: boolean | undefined;
+  wallet: boolean | undefined;
+  typeOfPayment: any;
   formatAddress: any;
   latitude: any;
   longitude: any;
@@ -85,6 +88,7 @@ export class EditDoctorRegistrationComponent implements OnInit {
   today = new Date();
   contractstartdate: any;
   contractenddate: any;
+  
   ngOnInit() {
     this.activatedroute.params.subscribe((params) => {
       this.id = params["id"];
@@ -275,7 +279,12 @@ export class EditDoctorRegistrationComponent implements OnInit {
           (this.contractenddate = this.details.exonerationPeriodFromDate),
             (this.vatCheck = this.details.vat),
             (this.clinicNumber = this.details.clinicNumber);
-
+            (this.cycleID = this.details.payTypeID),
+            (this.typeOfPayment = this.details.typeofPayment),
+            (this.cash = this.details.cash),
+            (this.wallet = this.details.wallet),
+            (this.creditCard = this.details.creditCard);
+            
           this.GetCountryMaster();
           this.GetRegionMaster();
           this.getcitymaster();
@@ -283,6 +292,7 @@ export class EditDoctorRegistrationComponent implements OnInit {
           this.getservicemaster();
           this.GetDoctorType();
           this.getdepartmentmaster();
+          this.getSubscriptionMasetr();
         },
         (error) => {}
       );
@@ -394,11 +404,11 @@ export class EditDoctorRegistrationComponent implements OnInit {
       ExonerationPerioToDate:
         this.contractenddate != null ? this.contractstartdate : new Date(),
       ClinicNumber: this.clinicNumber,
-      PayTypeID: 1,
-      TypeofPayment: 1,
-      cash: 1,
-      Wallet: 0,
-      CreditCard: 0,
+      PayTypeID: this.cycleID,
+      TypeofPayment: this.typeOfPayment,
+      cash: this.cash,
+      Wallet: this.wallet,
+      CreditCard: this.creditCard,
     };
     this.docservice.UpdateDoctorPersonelInfo(entity).subscribe((res) => {
       let test = res;
@@ -855,5 +865,20 @@ export class EditDoctorRegistrationComponent implements OnInit {
 
   TermsAndConditionsDisagree() {
     this.EnableSlotType = 0;
+  }
+
+
+  paymenyCycleList: any;
+
+  getSubscriptionMasetr() {
+    this.docservice.GetSubscriptionPayTypeMaster().subscribe((data) => {
+      this.paymenyCycleList = data;
+    });
+  }
+
+  cycleID: any;
+
+  getMonthCycleID(even: any) {
+    this.cycleID = even.target.value;
   }
 }

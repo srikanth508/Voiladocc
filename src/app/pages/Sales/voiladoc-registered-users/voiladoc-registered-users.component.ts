@@ -275,7 +275,25 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
       'Pincode': list.zipcode,
       'CountryID': list.countryID,
       'MonthlySubscription': 0,
-      'Hospitalfulltimebit': list.open24Hrs
+      'Hospitalfulltimebit': 0,
+      'SubscriptionTypeID': 1,
+      'AppointmentPercentage': 0,
+      'TaxIdentification': 0,
+      'BusinessID': "",
+      'CommercialRegCity': "",
+      'TaxProfessional': "",
+      'SocialSeccurityNo': 0,
+      'Nameofthebank': 0,
+      'AccountName': 0,
+      'AccountNumber': 0,
+      'VAT': 0,
+      'VatPercentage': 0,
+      'ExonerationPeriodFromDate': 0,
+      'ExonerationPerioToDate': 0,
+      'Lattitude': 0,
+      'Longitude': 0,
+      'FormatedAddress': 0,
+      'CLinicTimings': 0,
     }
     this.docservice.InsertHospitalClinicDetailsMaster(entity).subscribe(data => {
 
@@ -416,7 +434,16 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
       'VAT': 0,
       'VatPercentage': 0,
       'ExonerationPeriodFromDate': new Date(),
-      'ExonerationPerioToDate': new Date()
+      'ExonerationPerioToDate': new Date(),
+      Lattitude: 0,
+      Longitude: 0,
+      FormatedAddress: 0,
+      ClinicNumber: 0,
+      PayTypeID: 1,
+      TypeofPayment: 1,
+      cash: 1,
+      Wallet: 0,
+      CreditCard: 0,
     }
     this.docservice.InsertDoctorRegistration(entity).subscribe(data => {
 
@@ -690,7 +717,15 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
       'VAT': 0,
       'VatPercentage': 0,
       'ExonerationPeriodFromDate': 0,
-      'ExonerationPerioToDate': 0
+      'ExonerationPerioToDate': 0,
+      Lattitude: 0,
+      Longitude: 0,
+      FormatedAddress: 0,
+      PayTypeID: 0,
+      TypeofPayment: 1,
+      cash: 1,
+      Wallet: 0,
+      CreditCard: 0,
     }
     this.docservice.InsertNurseRegistration(entity).subscribe(data => {
 
@@ -807,7 +842,15 @@ export class VoiladocRegisteredUsersComponent implements OnInit {
       'VAT': 0,
       'VatPercentage': 0,
       'ExonerationPeriodFromDate': new Date(),
-      'ExonerationPerioToDate': new Date()
+      'ExonerationPerioToDate': new Date(),
+      Lattitude: 0,
+      Longitude: 0,
+      FormatedAddress: 0,
+      PayTypeID: 0,
+      TypeofPayment: 0,
+      cash: 0,
+      Wallet: 0,
+      CreditCard: 0,
     }
     this.docservice.InsertphysiotherapyRegistrationAdmin(entity).subscribe(data => {
       this.physioid = data;

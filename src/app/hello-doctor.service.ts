@@ -9,12 +9,12 @@ import { pipeDef } from '@angular/core/src/view';
 
 export class HelloDoctorService {
   //live
-  // public host = "https://maroc.voiladoc.org/VoilaDocTestAPI";
-  // private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
+  public host = "https://maroc.voiladoc.org/VoilaDocTestAPI";
+  private host1 = "https://maroc.voiladoc.org/VoilaDocTestAPI";
 
-   public host = "https://maroc.voiladoc.org/marocAPI";
+  //  public host = "https://maroc.voiladoc.org/marocAPI";
 
-  private host1 = "https://maroc.voiladoc.org/marocAPI";
+  // private host1 = "https://maroc.voiladoc.org/marocAPI";
 
 
   //test1
@@ -6357,5 +6357,42 @@ export class HelloDoctorService {
      return this.http.get<any[]>("http://localhost:4199/" + '/Doctor/SendMailPrescription?Text=' + data);
     // return this.http.post(this.url, data)
   }
+
+    generateRandomPassword() {
+    var result = '';
+    length = 8;
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@$*&!';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() *
+        charactersLength));
+    }
+    return result;
+  }
   
+
+  public GetSubscriptionPayTypeMaster() {
+
+    return this.http.get<any[]>(this.host + '/Doctor/GetSubscriptionPayTypeMaster');
+  }
+
+
+  public DeleteDoctors_PersonalFolder(id) {
+    return this.http.get<any[]>(this.host + '/Doctor/DeleteDoctors_PersonalFolder?ID=' + id);
+  }
+
+  public UpdateDoctors_PersonalFolder(data) {
+    this.url = this.host + '/Doctor/UpdateDoctors_PersonalFolder';
+    return this.http.post(this.url, data)
+  }
+
+
+
+
+  public GetPatientRelationFamilyTreeWeb(hosid,sdate,edate) {
+    debugger
+    return this.http.get<any[]>(this.host + '/Doctor/GetPatientRelationFamilyTreeWeb?HospitalID='+hosid+'&Startdate='+sdate+'&Enddate='+edate);
+  }
+
+
 }

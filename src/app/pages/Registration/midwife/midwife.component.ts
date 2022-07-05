@@ -53,10 +53,14 @@ export class MidwifeComponent implements OnInit {
   public dropzonelable: any;
   public search: any;
   labels4: any;
+  typeOfPayment:any;
   vatCheck: any;
   vatpercentage: any;
   contractstartdate: any;
   contractenddate: any;
+  cash: boolean | undefined;
+  creditCard: boolean | undefined;
+  wallet: boolean | undefined;
   ngOnInit() {
     this.dummid = localStorage.getItem("hospitalid");
     this.hospitalclinicid = localStorage.getItem("hospitalid");
@@ -96,6 +100,9 @@ export class MidwifeComponent implements OnInit {
     } else if (this.languageid == 6) {
       this.dropzonelable = "Télécharger des fichiers";
     }
+
+    this.getSubscriptionMasetr();
+    this.cycleID=""
   }
 
   public gethosptilclinicforadmin() {
@@ -407,11 +414,11 @@ export class MidwifeComponent implements OnInit {
         Lattitude: this.latitude,
         Longitude: this.longitude,
         FormatedAddress: this.formatAddress,
-        PayTypeID: 1,
-        TypeofPayment: 1,
-        cash: 1,
-        Wallet: 0,
-        CreditCard: 0,
+        PayTypeID: this.cycleID,
+        TypeofPayment: this.typeOfPayment,
+        cash: this.cash,
+        Wallet: this.wallet,
+        CreditCard: this.creditCard,
       };
       this.docservice.InsertMidWivesRegistration(entity).subscribe(
         (data) => {
@@ -473,5 +480,18 @@ export class MidwifeComponent implements OnInit {
     } else {
       this.vatpercentage = 20;
     }
+  }
+
+  
+  paymenyCycleList: any;
+  cycleID:any;
+  getSubscriptionMasetr() {
+    this.docservice.GetSubscriptionPayTypeMaster().subscribe((data) => {
+      this.paymenyCycleList = data;
+    });
+  }
+
+  getMonthCycleID(even: any) {
+    this.cycleID = even.target.value;
   }
 }

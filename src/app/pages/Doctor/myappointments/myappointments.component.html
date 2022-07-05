@@ -2303,6 +2303,7 @@
                 <thead>
                   <tr>
                     <th id="imp">{{labels[0].appointmentNumber}}</th>
+                    <th>{{labels[0].nationalidentityno}}</th>
                     <th>{{labels[0].appointmentDate}}</th>
                     <th>{{labels[0].department}}</th>
                     <th>{{labels[0].doctorName}}</th>
@@ -2313,6 +2314,7 @@
                   </tr>
                   <tr *ngFor="let dia of dialist">
                     <td>{{dia.appointmentID}}</td>
+                    <td></td>
                     <td>{{dia.appdate}}</td>
                     <td>{{dia.departmentname}}</td>
                     <td>{{dia.doctorName}}</td>
@@ -2448,6 +2450,7 @@
                   <th *ngIf="languageid=='1'">Reference number</th>
                   <th *ngIf="languageid=='6'">Numéro de réference</th>
                   <th id="imp">{{labels[0].appointmentNumber}}</th>
+                  <th>{{labels[0].nationalidentityno}}</th>
                   <th>{{labels[0].date}}</th>
                   <th>{{labels[0].department}}</th>
                   <th>{{labels[0].doctorName}}</th>
@@ -2471,6 +2474,7 @@
                 <tr *ngFor="let presciption of prescrptionlist">
                   <td>{{presciption.referenceNumber}}</td>
                   <td>{{presciption.appointmentID}}</td>
+                  <td></td>
                   <td>{{presciption.date}}</td>
                   <td>{{presciption.departmentname}}</td>
                   <td>{{presciption.doctorName}}</td>

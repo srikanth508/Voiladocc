@@ -63,6 +63,9 @@ export class DiagnosticsregistrationComponent implements OnInit {
   public contractstartdate: any;
   public contractenddate: any;
   public search: any;
+  cash: boolean | undefined;
+  creditCard: boolean | undefined;
+  wallet: boolean | undefined;
   ngOnInit() {
     this.hospitalclinicid = localStorage.getItem("hospitalid");
     this.languageid = localStorage.getItem("LanguageID");
@@ -327,9 +330,9 @@ export class DiagnosticsregistrationComponent implements OnInit {
         Lattitude: this.latitude,
         Longitude: this.longitude,
         FormatedAddress: this.formatAddress,
-        cash: 1,
-        Wallet: 0,
-        CreditCard: 0,
+        cash: this.cash,
+      Walle: this.wallet,
+      CreditCard: this.creditCard
       };
       this.docservice.InsertDiagnosticCenterRegistration(entity).subscribe(
         (data) => {
