@@ -55,6 +55,7 @@ export class PatientRegComponent implements OnInit {
   relationshipid:any;
   user:any;
   dummpatientList:any;
+  relation:any;
   constructor(public docservice: HelloDoctorService, private activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -370,7 +371,7 @@ export class PatientRegComponent implements OnInit {
 
   insurancename: any;
 
-
+  relationPatientID:any;
 
   checkdetails() {
     if (this.typeID == 1) {
@@ -387,9 +388,9 @@ export class PatientRegComponent implements OnInit {
 
   public GetPatientID(item: any) {
 
-    this.patientid = item.id;
+    this.relationPatientID = item.id;
 
-    var list=this.dummpatientList.filter(x=>x.id==this.patientid)
+    var list=this.dummpatientList.filter(x=>x.id==this.relationPatientID)
     this.email=list[0].emailID,
     this.mobileno=list[0].mobileNumber
     
@@ -416,7 +417,10 @@ export class PatientRegComponent implements OnInit {
       'KnownAllergies': this.knownalrregies,
       'InsurancePhotoUrl': this.attachmentsurl[0],
       'NationIDPhotoUrl': this.idproofurl[0],
-      'InsuranceName': this.insurancename
+      'InsuranceName': this.insurancename,
+      'PatientID': this.typeID == 1 ? 0 : this.relationPatientID,
+      'RelationshipTypeID': this.typeID == 1 ? 1 : 9,
+      'AdultBit': this.typeID == 1 ? 1 : 0
     }
     this.docservice.InsertPatientRegistration(entity).subscribe(data => {
       this.patientid = data;
@@ -456,6 +460,7 @@ export class PatientRegComponent implements OnInit {
 
 
   public patientwalletdetails() {
+    if (this.typeID == 1) {
     var entity = {
       'PatientID': this.patientid,
       'WalletAmount': 0
@@ -464,6 +469,7 @@ export class PatientRegComponent implements OnInit {
 
     })
   }
+}
 
 
 
@@ -471,20 +477,20 @@ export class PatientRegComponent implements OnInit {
   public Insertfamilytredetail() {
 
     var entity = {
-      'PatientRelationTypeID': this.relationshipid,
-      'PatientID': this.patientid,
+      'PatientRelationTypeID': this.typeID == 1 ? 1 : 9,
+      'PatientID': this.typeID == 1 ? this.patientid : this.relationPatientID,
       'PR_FirstName': this.patientname,
       'PR_LastName': this.lastname,
       'PR_EmailID': this.email,
       'PR_MobileNumber': this.mobileno,
-      'PR_GenderID': this.getareamasterbyid,
+      'PR_GenderID': this.gender,
       'PR_BloodGroupID': 0,
       'PR_Height': 0,
       'PR_Weight': 0,
       'PR_KnownAllergies': this.knownalrregies,
-      'PR_ProfilePic': 0,
+      'PR_ProfilePic': null,
       'DateOfBirth': this.dateofbirth,
-      'NewDesc': 0,
+      'NewDesc': this.relation,
       'PR_BMI': 0
     }
     this.docservice.InsertPatientRelation_FamilyTree_Web(entity).subscribe(data => {

@@ -527,11 +527,11 @@ export class SidebarComponent implements OnInit {
   }
 
   public highlight(evt) {
-    this.spinner.show();
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 2000);
+    // this.spinner.show();
+    // setTimeout(() => {
+    //   /** spinner ends after 5 seconds */
+    //   this.spinner.hide();
+    // }, 2000);
     var i, tablinks;
 
     tablinks = document.getElementsByClassName("tablinks");

@@ -29,6 +29,18 @@
 
 </div><br>
 </div>
+
+<div class="row" *ngIf="typeID==2" >
+  <div class="col-lg-3">
+    <label>Relation : </label>
+    <span class="required">*</span>
+  </div>
+  <div class="col-lg-4">
+    <input type="text" class="form-control"  required placeholder="{{labels[0].firstname}}" [(ngModel)]="relation"
+      name="relation">
+  </div>
+</div><br>
+
     <div class="row" >
       <div class="col-lg-3">
         <label>{{labels[0].firstname}} : </label>
@@ -56,7 +68,7 @@
 
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" [disabled]="showbit=='1'" required placeholder="{{labels[0].mobile}}" [(ngModel)]="mobileno"
+        <input type="text" class="form-control" [disabled]="showbit=='1'||typeID==2" required placeholder="{{labels[0].mobile}}" [(ngModel)]="mobileno"
           name="mobileno">
 
       </div>
@@ -67,7 +79,7 @@
         <!-- <span class="required">*</span> -->
       </div>
       <div class="col-lg-4">
-        <input type="text" class="form-control" [disabled]="showbit=='1'" placeholder="Email" [(ngModel)]="email" name="email">
+        <input type="text" class="form-control" [disabled]="showbit=='1'||typeID==2" placeholder="Email" [(ngModel)]="email" name="email">
       </div>
     </div><br>
 
@@ -186,11 +198,11 @@
         <span class="required">*</span>
       </div>
       <div class="col-lg-4">
-        <input type="radio" name="gender" required [(ngModel)]="gender" [value]="1"> {{labels[0].male}} &nbsp;
-        <input type="radio" name="gender" required [(ngModel)]="gender" [value]="2"> {{labels[0].female}}
+        <input type="radio" required [value]="1" [(ngModel)]="gender"  name="gender" > {{labels[0].male}} &nbsp;
+        <input type="radio" required [value]="2" [(ngModel)]="gender"  name="gender" > {{labels[0].female}}
       </div>
     </div><br>
-    <div *ngIf="showbit=='0'">
+    <!-- <div *ngIf="showbit=='0'">
       <div class="row">
         <div class="col-lg-3">
           <label>{{labels[0].country}} : </label>
@@ -238,13 +250,13 @@
           </ng-multiselect-dropdown>
         </div>
       </div><br>
-    </div>
+    </div> -->
     <div class="row">
       <div class="col-lg-5">
       </div>
       <div class="col-lg-2">
         <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
-          [disabled]="hospitalForm.form.invalid" *ngIf="showbit=='0'" (click)="checkdetails()">{{labels[0].save}}</button>
+          [disabled]="hospitalForm.form.invalid" *ngIf="showbit=='0'" (click)="insertdetails()">{{labels[0].save}}</button>
 
           <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
           [disabled]="hospitalForm.form.invalid" *ngIf="showbit=='1'" (click)="updatedetails()">Mettre à jour</button>

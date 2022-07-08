@@ -354,6 +354,7 @@ import { HomeChargesMasterComponent } from './pages/Masters/home-charges-master/
 import { RegionMasterComponent } from './pages/Masters/region-master/region-master.component';
 import { RegionDashComponent } from './pages/Masters/region-dash/region-dash.component';
 import { DocRecpProfileComponent } from './pages/Doctor/doc-recp-profile/doc-recp-profile.component';
+import { ViewfilesComponent } from './pages/viewfiles/viewfiles.component';
 
 
 
@@ -773,6 +774,7 @@ const routes: Routes = [
   { path: 'RegionMaster/:id', component:  RegionMasterComponent},
   { path: 'RegionDash', component:  RegionDashComponent},
   { path: 'DocRecpProfile', component:  DocRecpProfileComponent},
+  { path: 'view', component:  ViewfilesComponent},
   
 ];
 
